@@ -3,9 +3,9 @@
 <html>
 <head>
 <meta charset="UTF-8"/>
-<title>ONTOLOGY VALIDATOR</title>
+<title>CONVERTER TOOL (BETA VERSION 0.1)</title>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
-<link href="css/custom.css" rel="stylesheet" />
+<!-- <link href="css/custom.css" rel="stylesheet" /> -->
 
 <style type="text/css">
 #wrapper {
@@ -43,13 +43,7 @@
 <body style="margin:30px;padding:20px">
 <div class="wrapper">
   <header>
-    <!-- <div class="container"> -->
-    <h1><b>ONTOLOGY VALIDATOR</b></h1>
-     <!-- <div id="wrapper">
-    <div id="lineNa">Item: </div>
-    <div id="lineNo"></div>
-	</div> -->
-    <!-- </div> -->
+    <h1><b>CONVERTER TOOL (BETA VERSION 0.1)</b></h1>
 <br/><br/>
   </header>
  
@@ -57,7 +51,7 @@
 <div class="ad-left">
 <div class="container">
 
-  <textarea rows="20" cols="50" id="values" class="form-control" onkeyup="getLineNumber(this, document.getElementById('lineNo'));" onmouseup="this.onkeyup();"></textarea>
+  <textarea rows="30" cols="75" id="values" class="form-control" onkeyup="getLineNumber(this, document.getElementById('lineNo'));" onmouseup="this.onkeyup();"></textarea>
   <br/>
       <div id="wrapper">
     <div id="lineNa">Item: </div>
@@ -68,8 +62,8 @@
   <a id="saveToFile" class="btn btn-primary">create ontology file</a>
   <br/><br/>
   <div class="container">
-    Copyright Tardis Research &copy; 2019<br/>
-	Author: ^MS
+    Author: ^MS<br/>
+	This webpage will NOT copy, share or save any content pasted into the textarea. Please inspect the source code in case you have any doubts. Please note that this is a beta version of the tool which is still undergoing final testing before its official release. The webpage and all content found on it are provided on an “as is” and “as available” basis. The author does not give any warranties, whether express or implied, as to the suitability or usability of the webpage or any of its content. The author will not be liable for any loss, whether such loss is direct, indirect, special or consequential, suffered by any party as a result of their use of the webpage or content. Any downloading or uploading of material to the webpage is done at the user’s own risk and the user will be solely responsible for any damage to any computer system or loss of data that results from such activities. Should you encounter any bugs, glitches, lack of functionality or other problems on the website, please let the author know immediately so he can rectify these accordingly. Your help in this regard is greatly appreciated!
   </div>
 </div>
 </div>
@@ -79,21 +73,7 @@
 <div class="clear"></div>
 </div>
 
-  <!-- <div class="container">
-
-  <textarea rows="40" cols="50" id="values" class="form-control" onkeyup="getLineNumber(this, document.getElementById('lineNo'));" onmouseup="this.onkeyup();"></textarea>
-  <br/><br/>
-  <div id="warning"></div>
-  <a id="saveToFile" class="btn btn-primary">create ontology file</a>
-  <br/><br/>
-</div> -->
 </div>
-<!-- <footer>
-  <div class="container">
-    Copyright Tardis Research &copy; 2019<br/>
-	Author: ^MS
-  </div>
-</footer> -->
 <script src="http://code.jquery.com/jquery.js"></script>
 
 <script>
