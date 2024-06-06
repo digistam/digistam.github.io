@@ -64,4 +64,16 @@ target OS. This kind of rootkits work by modifying the system's boot sequence so
     <ul>Netfilter</ul>
     <ul>Skidmap</ul>
   </ol> 
-  
+  </p>
+<h1>Rings</h1>
+<ol>
+  <ul>Ring 0: kernelmode, the "real" rootkits start from this layer. They live in a kernel space, altering behavior of kernel-mode functions. A specific variant of kernelmode rootkit that attacks bootloader is called a bootkit</ul>
+<ul>Ring 1: running on the lowest level, hypervisor, that is basically a firmware. The kernel of the system infected by this type of a rootkit is not aware that it is not interacting with a real hardware, but with the environment altered by the rootkit</ul>
+  <ul>Ring 3: usermode, most common and easiest to implement, it uses relatively simple techniques such as IAT and inline hooks, to alter behavior of called functions</ul>
+</ol>
+<p>The rule states that a rootkit running in the lower layer can't be detected by any rootkit software running in all of the above layers</p>
+<h1>Remediation</h1>
+<p>Rootkits (especially low level types) are very difficult to detect. Casual users may never even notice that they have been infected, and removing the threat manually is almost impossible. This type of malware 
+  may even hide from typical antivirus programs. Only specialized anti-rootkit software can help in such cases. However, it may also not give 100% protection from unknown rootkits, written by professionals, basing on custom 
+  and novel ideas. That's why sometimes reinstalling the full system is necessary (still, it may not help in case of UEFI rootkits). Malicious rootkits are the most dangerous type of malware. They may stay in the system for a long time,
+  carrying on their mission without being noticed. During this time, the user is exposed to any type of malicious activities planned by attackers. </p>
