@@ -37,14 +37,14 @@ Objectives of a rootkit:
   <ul>Application-level / User-mode rootkit</ul>
   <ul>Library-level rootkit</ul>
 </ol></p>
-<p>A Hypervisor-level rootkit is created by exploiting hardware features such as IntelVT and AMD-V. These rootkits run in Ring-1 and host the OS of the target machine as a virtual machine, intercepting all hardware calls made by the 
+<p>A <b>Hypervisor-level</b> rootkit is created by exploiting hardware features such as IntelVT and AMD-V. These rootkits run in Ring-1 and host the OS of the target machine as a virtual machine, intercepting all hardware calls made by the 
 target OS. This kind of rootkits work by modifying the system's boot sequence so that it is loaded instead of the original virtual machine monitor.</p>
-<p>A hardware/firmware rootkit use devices or platform firmware to create a persistent malware image in hardware, such as a hard drive, system BIOS or network card. The rootkit hides in firmware as the users do not inspect it for code integrity.</p>
-<p>A kernel-level rootkit uses the core of the OS: the kernel. A kernel-level rootkit runs in Ring-0 with the highest OS privileges. These cover backdoors on the computer and are created by writing additional code, or by 
+<p>A <b>hardware/firmware</b> rootkit use devices or platform firmware to create a persistent malware image in hardware, such as a hard drive, system BIOS or network card. The rootkit hides in firmware as the users do not inspect it for code integrity.</p>
+<p>A <b>kernel-level</b> rootkit uses the core of the OS: the kernel. A kernel-level rootkit runs in Ring-0 with the highest OS privileges. These cover backdoors on the computer and are created by writing additional code, or by 
   substituting portions of kernel code with modified code via device drivers in Windows or loadable kernel modules in Linux. If the kit's code contains mistakes or bugs, kernel-level rootkits affect the stability of the system. These have the same 
   privileges as the OS; they are difficult to detect and can intercept or subvert the operation of an OS.</p>
-<p>A boot-loader-level rootkit functions either by modifying the legitimate boot loader or replacing it with another one. The bootkit can activite even before the OS starts. Bootkits are serious threats to security because they facilitate
+<p>A <b>boot-loader-level</b> rootkit functions either by modifying the legitimate boot loader or replacing it with another one. The bootkit can activite even before the OS starts. Bootkits are serious threats to security because they facilitate
   the hacking of encryption keys and passwords</p>
-  <p>An application-level / user-mode rootkit runs in Ring-3 as a user along with other applications in the system. It exploits the standard behavior of API's. It operates inside the victim's computer by replacing the standard
+  <p>An <b>application-level / user-mode</b> rootkit runs in Ring-3 as a user along with other applications in the system. It exploits the standard behavior of API's. It operates inside the victim's computer by replacing the standard
   application files (binaries) with rootkits or by modifying the behavior of present applications with patches, inject malicious code etc.</p>
-  <p>A library-level rootkit works high up in the OS and usually patch, hook or supplant system calls with backdoor versions to keep the attacker unknown. They replace original system calls with fake ones to hide information about the hacker.</p>
+  <p>A <b>library-level</b> rootkit works high up in the OS and usually patch, hook or supplant system calls with backdoor versions to keep the attacker unknown. They replace original system calls with fake ones to hide information about the hacker.</p>
