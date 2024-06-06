@@ -48,3 +48,20 @@ target OS. This kind of rootkits work by modifying the system's boot sequence so
   <p>An <b>application-level / user-mode</b> rootkit runs in Ring-3 as a user along with other applications in the system. It exploits the standard behavior of API's. It operates inside the victim's computer by replacing the standard
   application files (binaries) with rootkits or by modifying the behavior of present applications with patches, inject malicious code etc.</p>
   <p>A <b>library-level</b> rootkit works high up in the OS and usually patch, hook or supplant system calls with backdoor versions to keep the attacker unknown. They replace original system calls with fake ones to hide information about the hacker.</p>
+<h1>How a rootkit works</h1>
+<p><b>System hooking</b> is the process of changing and replacing the original function pointer with a pointer provided by the rootkit in stealth mode. Inline function hooking is a technique in which a rootkit changes some of the bytes
+  of a function inside the core system DLLs (kernel32.dll and ntdll.dll), placing an instruction so that any process calls hit the rootkit first. Direct kernel object manipulation (DKOM) rootkits can locate and manipulate the "system"
+  process in kernel memory structures and patch it. This can also hide processes and ports, change privileges and misguide the Windows event viewer without any problem by manipulating the list of active processes of the OS, thereby
+  altering data inside the process identifier structures. It can obtain read/write access to the \Device\Physical Memory object. It hides a process by unlinking it from the process list.</p>
+  <hr/>
+  <h1>Popular rootkits</h1>
+  <ol>
+    <ul>Purple Fox rootkit (distributed via fake malicious Telegram installer)</ul>
+    <ul>MoonBounce (UEFI firmware bootkit)</ul>
+    <ul>Dubbed Demodex rootkit</ul>
+    <ul>Moriya</ul>
+    <ul>iLOBleed</ul>
+    <ul>Netfilter</ul>
+    <ul>Skidmap</ul>
+  </ol> 
+  
