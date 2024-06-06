@@ -30,24 +30,24 @@ Objectives of a rootkit:
 </p>
 <h1>Six types of rootkits</h1>
 <p><ol>
-  <ul>Hypervisor-level rootkit</ul>
-  <ul>Hardware/Firmware rootkit</ul>
-  <ul>Kernel-level rootkit</ul>
-  <ul>Boot-loader-level rootkit</ul>
-  <ul>Application-level / User-mode rootkit</ul>
-  <ul>Library-level rootkit</ul>
+  <ul>1. Hypervisor-level rootkit</ul>
+  <ul>2. Hardware/Firmware rootkit</ul>
+  <ul>3. Kernel-level rootkit</ul>
+  <ul>4. Boot-loader-level rootkit</ul>
+  <ul>5. Application-level / User-mode rootkit</ul>
+  <ul>6. Library-level rootkit</ul>
 </ol></p>
-<p>A <b>Hypervisor-level</b> rootkit is created by exploiting hardware features such as IntelVT and AMD-V. These rootkits run in Ring-1 and host the OS of the target machine as a virtual machine, intercepting all hardware calls made by the 
+<p>1. A <b>Hypervisor-level</b> rootkit is created by exploiting hardware features such as IntelVT and AMD-V. These rootkits run in Ring-1 and host the OS of the target machine as a virtual machine, intercepting all hardware calls made by the 
 target OS. This kind of rootkits work by modifying the system's boot sequence so that it is loaded instead of the original virtual machine monitor.</p>
-<p>A <b>hardware/firmware</b> rootkit use devices or platform firmware to create a persistent malware image in hardware, such as a hard drive, system BIOS or network card. The rootkit hides in firmware as the users do not inspect it for code integrity.</p>
-<p>A <b>kernel-level</b> rootkit uses the core of the OS: the kernel. A kernel-level rootkit runs in Ring-0 with the highest OS privileges. These cover backdoors on the computer and are created by writing additional code, or by 
+<p>2. A <b>hardware/firmware</b> rootkit use devices or platform firmware to create a persistent malware image in hardware, such as a hard drive, system BIOS or network card. The rootkit hides in firmware as the users do not inspect it for code integrity.</p>
+<p>3. A <b>kernel-level</b> rootkit uses the core of the OS: the kernel. A kernel-level rootkit runs in Ring-0 with the highest OS privileges. These cover backdoors on the computer and are created by writing additional code, or by 
   substituting portions of kernel code with modified code via device drivers in Windows or loadable kernel modules in Linux. If the kit's code contains mistakes or bugs, kernel-level rootkits affect the stability of the system. These have the same 
   privileges as the OS; they are difficult to detect and can intercept or subvert the operation of an OS.</p>
-<p>A <b>boot-loader-level</b> rootkit functions either by modifying the legitimate boot loader or replacing it with another one. The bootkit can activite even before the OS starts. Bootkits are serious threats to security because they facilitate
+<p>4. A <b>boot-loader-level</b> rootkit functions either by modifying the legitimate boot loader or replacing it with another one. The bootkit can activite even before the OS starts. Bootkits are serious threats to security because they facilitate
   the hacking of encryption keys and passwords</p>
-  <p>An <b>application-level / user-mode</b> rootkit runs in Ring-3 as a user along with other applications in the system. It exploits the standard behavior of API's. It operates inside the victim's computer by replacing the standard
+  <p>5. An <b>application-level / user-mode</b> rootkit runs in Ring-3 as a user along with other applications in the system. It exploits the standard behavior of API's. It operates inside the victim's computer by replacing the standard
   application files (binaries) with rootkits or by modifying the behavior of present applications with patches, inject malicious code etc.</p>
-  <p>A <b>library-level</b> rootkit works high up in the OS and usually patch, hook or supplant system calls with backdoor versions to keep the attacker unknown. They replace original system calls with fake ones to hide information about the hacker.</p>
+  <p>6. A <b>library-level</b> rootkit works high up in the OS and usually patch, hook or supplant system calls with backdoor versions to keep the attacker unknown. They replace original system calls with fake ones to hide information about the hacker.</p>
 <h1>How a rootkit works</h1>
 <p><b>System hooking</b> is the process of changing and replacing the original function pointer with a pointer provided by the rootkit in stealth mode. Inline function hooking is a technique in which a rootkit changes some of the bytes
   of a function inside the core system DLLs (kernel32.dll and ntdll.dll), placing an instruction so that any process calls hit the rootkit first. Direct kernel object manipulation (DKOM) rootkits can locate and manipulate the "system"
