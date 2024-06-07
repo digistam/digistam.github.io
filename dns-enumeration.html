@@ -6,7 +6,7 @@
 <p>command: dig ns <i>tld</i></p>
 <p>Output</p>
 <code>
-; <<>> DiG 9.19.19-1-Debian <<>> ns aimsupport.nl
+; <<>> DiG 9.19.19-1-Debian <<>> ns mydomain.nl
 ;; global options: +cmd
 ;; Got answer:
 ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 58997
@@ -15,16 +15,42 @@
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags:; udp: 512
 ;; QUESTION SECTION:
-;aimsupport.nl.                 IN      NS
+;mydomain.nl.                 IN      NS
 
 ;; ANSWER SECTION:
-aimsupport.nl.          86400   IN      NS      ns4.bdm.microsoftonline.com.
-aimsupport.nl.          86400   IN      NS      ns2.bdm.microsoftonline.com.
-aimsupport.nl.          86400   IN      NS      ns3.bdm.microsoftonline.com.
-aimsupport.nl.          86400   IN      NS      ns1.bdm.microsoftonline.com.
+mydomain.nl.          86400   IN      NS      ns4.bdm.microsoftonline.com.
+mydomain.nl.          86400   IN      NS      ns2.bdm.microsoftonline.com.
+mydomain.nl.          86400   IN      NS      ns3.bdm.microsoftonline.com.
+mydomain.nl.          86400   IN      NS      ns1.bdm.microsoftonline.com.
 
 ;; Query time: 31 msec
 ;; SERVER: 192.168.2.254#53(192.168.2.254) (UDP)
 ;; WHEN: Fri Jun 07 11:55:27 UTC 2024
 ;; MSG SIZE  rcvd: 137
 </code>
+<p>DIG can be used to check for zonewalking possibiliies:</p>
+<p>command: dig ns1.bdm.microsoftonline.com mydomain.nl</p>
+<p>Output:</p>
+<code>
+; <<>> DiG 9.19.19-1-Debian <<>> ns1.bdm.microsoftonline.com mydomain.nl axfr
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 4997
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;ns1.bdm.microsoftonline.com.   IN      A
+
+;; ANSWER SECTION:
+ns1.bdm.microsoftonline.com. 216 IN     A       13.107.236.208
+
+;; Query time: 23 msec
+;; SERVER: 192.168.2.254#53(192.168.2.254) (UDP)
+;; WHEN: Fri Jun 07 11:57:06 UTC 2024
+;; MSG SIZE  rcvd: 72
+
+; Transfer failed.
+</code>
+  
