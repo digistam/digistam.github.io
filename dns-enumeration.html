@@ -1,0 +1,30 @@
+<a href=index.html>Back to home</a>
+<hr/>
+<h1><b>DNS enumeration</b></h1>
+<p>The amount of tools do perform DNS enumeration confuses me. I created an overview with standard tools to use:</p>
+<h2>DIG</h2>
+<p>command: dig ns <i>tld</i></p>
+<p>Output</p>
+<code>
+; <<>> DiG 9.19.19-1-Debian <<>> ns aimsupport.nl
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 58997
+;; flags: qr rd ra; QUERY: 1, ANSWER: 4, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;aimsupport.nl.                 IN      NS
+
+;; ANSWER SECTION:
+aimsupport.nl.          86400   IN      NS      ns4.bdm.microsoftonline.com.
+aimsupport.nl.          86400   IN      NS      ns2.bdm.microsoftonline.com.
+aimsupport.nl.          86400   IN      NS      ns3.bdm.microsoftonline.com.
+aimsupport.nl.          86400   IN      NS      ns1.bdm.microsoftonline.com.
+
+;; Query time: 31 msec
+;; SERVER: 192.168.2.254#53(192.168.2.254) (UDP)
+;; WHEN: Fri Jun 07 11:55:27 UTC 2024
+;; MSG SIZE  rcvd: 137
+</code>
