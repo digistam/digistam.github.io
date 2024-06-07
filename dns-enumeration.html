@@ -59,34 +59,61 @@ ns1.bdm.microsoftonline.com. 216 IN     A       13.107.236.208
   <code>
 std: Performing General Enumeration against: mydomain.nl...<br>
 DNSSEC is not configured for mydomain.nl<br>
-SOA ns1.bdm.microsoftonline.com 13.107.236.208
-SOA ns1.bdm.microsoftonline.com 2603:1061:0:700::d0
-NS ns2.bdm.microsoftonline.com 150.171.21.208
-NS ns2.bdm.microsoftonline.com 2620:1ec:8ec:700::d0
-NS ns3.bdm.microsoftonline.com 204.14.183.208
-NS ns3.bdm.microsoftonline.com 2a01:111:4000:700::d0
-NS ns4.bdm.microsoftonline.com 208.84.5.208
-NS ns4.bdm.microsoftonline.com 2620:1ec:bda:700::d0
-NS ns1.bdm.microsoftonline.com 13.107.236.208
-NS ns1.bdm.microsoftonline.com 2603:1061:0:700::d0
-MX mydomain-nl.mail.protection.outlook.com 52.101.68.0
-MX mydomain-nl.mail.protection.outlook.com 52.101.73.4
-MX mydomain-nl.mail.protection.outlook.com 52.101.68.3
-MX mydomain-nl.mail.protection.outlook.com 52.101.68.32
-MX mydomain-nl.mail.protection.outlook.com 52.101.73.1
-MX mydomain-nl.mail.protection.outlook.com 52.101.73.15
-MX mydomain-nl.mail.protection.outlook.com 52.101.68.15
-A mydomain.nl 141.138.169.243
-AAAA mydomain.nl 2a03:3c00:a002:240::100a
-TXT mydomain.nl v=spf1 include:spf.protection.outlook.com -all
-TXT mydomain.nl MS=ms35460186
-TXT mydomain.nl mscid=1urmnVblomZTl7cNNd2rfOWXoLjDT7ZdU5HvghSN6j4X3DR8e2bwyNB7VNG92klgIjStqLvM3M9H1kZAo7ZEYQ==
-Enumerating SRV Records
-No SRV Records Found for mydomain.nl
-Performing NSEC Zone Walk for mydomain.nl
-Getting SOA record for mydomain.nl
-Name Server 13.107.236.208 will be used
-A mydomain.nl 141.138.169.243
-AAAA domain.nl 2a03:3c00:a002:240::100a
+SOA ns1.bdm.microsoftonline.com 13.107.236.208<br>
+SOA ns1.bdm.microsoftonline.com 2603:1061:0:700::d0<br>
+NS ns2.bdm.microsoftonline.com 150.171.21.208<br>
+NS ns2.bdm.microsoftonline.com 2620:1ec:8ec:700::d0<br>
+NS ns3.bdm.microsoftonline.com 204.14.183.208<br>
+NS ns3.bdm.microsoftonline.com 2a01:111:4000:700::d0<br>
+NS ns4.bdm.microsoftonline.com 208.84.5.208<br>
+NS ns4.bdm.microsoftonline.com 2620:1ec:bda:700::d0<br>
+NS ns1.bdm.microsoftonline.com 13.107.236.208<br>
+NS ns1.bdm.microsoftonline.com 2603:1061:0:700::d0<br>
+MX mydomain-nl.mail.protection.outlook.com 52.101.68.0<br>
+MX mydomain-nl.mail.protection.outlook.com 52.101.73.4<br>
+MX mydomain-nl.mail.protection.outlook.com 52.101.68.3<br>
+MX mydomain-nl.mail.protection.outlook.com 52.101.68.32<br>
+MX mydomain-nl.mail.protection.outlook.com 52.101.73.1<br>
+MX mydomain-nl.mail.protection.outlook.com 52.101.73.15<br>
+MX mydomain-nl.mail.protection.outlook.com 52.101.68.15<br>
+A mydomain.nl 141.138.169.243<br>
+AAAA mydomain.nl 2a03:3c00:a002:240::100a<br>
+TXT mydomain.nl v=spf1 include:spf.protection.outlook.com -all<br>
+TXT mydomain.nl MS=ms35460186<br>
+TXT mydomain.nl mscid=1urmnVblomZTl7cNNd2rfOWXoLjDT7ZdU5HvghSN6j4X3DR8e2bwyNB7VNG92klgIjStqLvM3M9H1kZAo7ZEYQ==<br>
+Enumerating SRV Records<br>
+No SRV Records Found for mydomain.nl<br>
+Performing NSEC Zone Walk for mydomain.nl<br>
+Getting SOA record for mydomain.nl<br>
+Name Server 13.107.236.208 will be used<br>
+A mydomain.nl 141.138.169.243<br>
+AAAA domain.nl 2a03:3c00:a002:240::100a<br>
 2 records found
+</code>
+<h2>Nmap</h2>
+<p>command: nmap --script=broadcast-dns-service-discovery <i>tld</i></p>
+<p>Output:</p>
+<code>
+Nmap scan report for mydomain.nl (141.138.169.243)<br>
+Host is up (0.020s latency).<br>
+Other addresses for mydomain.nl (not scanned): 2a03:3c00:a002:240::100a<br>
+rDNS record for 141.138.169.243: s240.webhostingserver.nl<br>
+Not shown: 984 filtered tcp ports (no-response)<br>
+PORT      STATE  SERVICE<br>
+20/tcp    closed ftp-data<br>
+21/tcp    open   ftp<br>
+22/tcp    open   ssh<br>
+25/tcp    open   smtp<br>
+80/tcp    open   http<br>
+81/tcp    closed hosts2-ns<br>
+110/tcp   open   pop3<br>
+143/tcp   open   imap<br>
+443/tcp   open   https<br>
+465/tcp   open   smtps<br>
+587/tcp   open   submission<br>
+993/tcp   open   imaps<br>
+995/tcp   open   pop3s<br>
+2222/tcp  open   EtherNetIP-1<br>
+3306/tcp  open   mysql<br>
+35500/tcp closed unknown
 </code>
