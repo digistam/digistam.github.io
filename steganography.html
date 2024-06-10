@@ -62,12 +62,34 @@ Text Semagrams: a text semagram hides the text message by converting or transfor
 <ul>Algorithms and Transformation: hiding secret information during image compression (mathematical function)</ul></ol></p>
   <p><b>Least-Significant-Bit insertion technique</b>: the rightmost bit of each pixel of an image hold secret data<br/>
   0001 010<b>1</b> 0101 110<b>0</b> 0100 110<b>0</b> 1101 100<b>1</b> etc.</p>
-  <h2>Tools</h2>
-  <p><b>OpenStego</b></p>
-  <p><a target=_top href=https://www.openstego.com>OpenStego</a> is a free steganography tools with two main functionalities: data hiding within a cover file and watermarking files with an invisible signature to detect unauthorized file copying.</p>
 <h1>Steganalysis</h1>
 <p>Steganalysis is the process of discovering the existence of hidden information in a medium. The reverse process of Steganography. The Steganalyst tries to detect the hidden messages embedded in images, text, audio, video etc.</p>
 <p>Two aspects:
 <ol><ul><b>Detection</b>: in the detection phase the Steganalyst observes the relationships between Stego tools, media, cover and message</ul>
 <ul><b>Distortion</b>: in the distortion phase the Stego media is manipulated to extract the embedded message and the decision is made: is the message useful or not</ul>
 </ol></p>
+<p><b>Steganalysis Methods</b>:
+<ol><ul>Stego-only attack: if the Steganalyst only has the medium or Stego object</ul>
+  <ul>Known-stego attack: if the Steganalyst knows the Stego algorithm and medium / object</ul>
+  <ul>Known-message attack: if the Steganalyst knows the message and the medium / object</ul>
+  <ul>Known-cover attack: if the Steganalyst knows the medium/object AND the original cover medium</ul>
+  <ul>Chosen-message attack: if the Steganalyst knows the message he can use various Stego tools to find the algorithm (determine patterns in the Stego object)</ul>
+  <ul>Chosen-stego attack: if the Steganalyst knows the Stego object and Stego tool / algorithm used</ul>
+  <ul>Chi-square attack: probability analysis to test wheter a given Stego object and original data are the same or not</ul>
+  <ul>Distinguishing statistical attack: algorithm analysis</ul>
+  <ul>Blind classifier attack: a blind detector is fed with unmodified data to learn the appearance of the original data from multiple perspectives</ul>
+</p>
+<h1>Detecting Steganography</h1>
+<p>
+  <ol>
+    <ul><b>Text File</b>: look for text patterns or disturbances like an unusual number of blank spaces</ul>
+    <ul><b>Image File</b>: look for several display distortions in images like exaggerated 'noise'</ul>
+    <ul><b>Audio File</b>: Inaudible frequencies can be scanned for hidden information</ul>
+    <ul><b>Video File</b>: Special code signs and gestures help in detecting secret data</ul>
+  </ol>
+</p>
+    <h1>Tools</h1>
+  <p><b>OpenStego</b></p>
+  <p><a target=_top href=https://www.openstego.com>OpenStego</a> is a free steganography tools with two main functionalities: data hiding within a cover file and watermarking files with an invisible signature to detect unauthorized file copying.</p>
+  <p><b>Zsteg</b></p>
+  <p><a target=_top href=https://www.github.com/zed-0xff/zsteg>Zsteg</a> can be used to detect hidden secret messages in PNG and BMP image files.</p>
