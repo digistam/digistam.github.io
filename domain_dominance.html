@@ -87,4 +87,6 @@ Methods:
   <ul>The attacker creates a forged or fake Kerberos TGS ticket using the Mimikatz tool to establish a connection with the target service</ul>
   <ul>The attacker uses both the forged TGS and hash data to authenticate the local service as a legitimate user</ul>
   <ul>The attacker exploits TGS to elevate privileges and permissions</ul>
+  <ul>If an attacker can succesfully elevate privileges and obtain admin rights to execute code on a local machine, they can run the following command to retrieve the NTLM hashes of the AD system's password:</ul>
+  <ul>mimikatz "privilege::debug" "sekurlsa::logonpasswords"</ul>
 </ol></p>
