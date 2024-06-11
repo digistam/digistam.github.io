@@ -34,3 +34,10 @@
   </ol></p>
 <h1>Wireshark</h1>
 <p>Using wireshark while using hping3 will give a good insight in what's going on!</p>
+<h1>Enumeration</h1>
+<h2>Scan open ports on target</h2>
+<p>
+  <ol>
+    <ul>sudo hping3 -8 (--scan) 0-1000 -S 192.168.1.254 -i 3 | grep -v 'Not'</ul>
+  </ol>
+</p>
