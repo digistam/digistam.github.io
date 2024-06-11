@@ -1,0 +1,32 @@
+<h1>Hping3 commands</h1>
+<h2>Hping3 cheat sheet</h2>
+<p><a target=_blank href=https://cyberwar.nl/d/cheatsheets/hping3_cheatsheet_v1.0-ENG.pdf>https://cyberwar.nl/d/cheatsheets/hping3_cheatsheet_v1.0-ENG.pdf</a></p>
+<p>Most useful:
+<ol><ul>-c --count -> count response packets</ul>
+  <ul>-i --interval -> secs</ul>
+  <ul>-d --data -> datasize packet body size</ul>
+  <ul>-E --file -> insert file into packet's data (target machine must be listening !)</ul>
+  <ul>-T --traceroute</ul>
+  <ul>-a --spoof -> spoof IP address (manually)</ul>
+  <ul>--rand-source -> spoof IP address (randomly)</ul>
+  <ul>-t --ttl -> set ttl value</ul>
+  <ul>-w --win  -> set windows size (64)</ul>
+  <ul>-f --frag -> split packets (16 bytes)</ul>
+</ol></p>
+<p>TCP Flags:
+<ol>
+  <ul>-S --syn</ul>
+  <ul>-A --ack</ul>
+  <ul>-F --fin</ul>
+  <ul>-R --rst</ul>
+  <ul>-P --push</ul>
+  <ul>-U --urg</ul>
+  <ul>-X --xmas</ul>
+</ol></p>
+<p>Protocol selection:
+  <ol><ul>-1 --icmp</ul>
+  <ul>-2 --ucp</ul>
+  <ul>-0 --rawip</ul>
+  <ul>-8 --scan</ul>
+  <ul>-9 --listen</ul>
+  </ol></p>
