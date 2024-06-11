@@ -47,3 +47,44 @@ Methods:
   <ul>Invoke-Mimikatz -command "lsadump::dcsync /domain:<Target Domain> /user:<krbtgt>\<Any Domain User>"</ul>
   <ul>The above command generates NTML hashes of the given domain user</ul>
 </ol></p>
+
+    <h2>Skeleton Key Attack</h2>
+<p>A skeleton key is a form of malware that attackers use to inject false credentials into DC to create a backdoor password. It's a memory-resident virus that enables an attacker to obtain a master password to validate themselves 
+   as a legitimate user in the domain. This attack necessitates Domain Administrator rights and DC access. This attack is difficult to distinguish from other standard user authentication methods, making it difficult to detect. 
+  The attack is straightforward and only requires the execution of misc::skeleton on each DC using:
+
+<ol>
+  <ul>Invoke-Mimikatz -Command '"privilege::debug" "misc::skeleton"' -<Target DC name></ul>
+</ol> After execution the attacker can masquerade as any user with the default mimikatz credentials. Attackers also perform skeleton key attacks by patching the Local Security Authority Server Service (LSASS). 
+  Attackers leverage their access to the domain and install malware on the DCs. The malware autopatches the LSASS which produces a new skeleton key or master password that works for all the users.</p>
+
+    <h2>Golden Ticket Attack</h2>
+<p>A golden ticket attack is a post-exploitation technique implemented by attackers to gain complete control of the entire AD. Attackers forge the Kerberos authentication protocol to issue a Ticket Granting Ticket (TGT) by 
+  compromising a Key Distribution Service account (KRBTGT) to access various resources. This attack allows to maintain persistence and more information by masquerading as privileged users. A valid user account is compromised 
+  either using phishing emails or by exploiting vulnerabilities or security misconfigurations.
+<ol>
+  <ul>Attackers obtain domain information such as the domain name and domain security identifier (SID) using the WHOAMI command</ul>
+  <ul>Attackers elevate their privileges to the Domain Administrator-level user account to steal the NTLM hash or KRBTGT</ul>
+  <ul>Attackers use Mimikatz to perform a PTH attack or DCSync attack to steal KRBTGT password hash by executing:</ul>
+  <ul>lsadump::dcsync /domain:domain name /user:krbtgt</ul>
+<ul>After obtaining the password hashes attacker run the following mimikatz command to obtain a golden ticket by impersonating an administrator level user</ul>
+  <ul>kerberos::golden /domain:domain name /sid:SID /rc4:KRBTGT hash value /id:value /user:username</ul>
+  <ul>It allows the attackers to access any resource, group or domain in the environment</ul>
+  <ul>Finally, attackers maintain persistence by setting the validity of the ticket</ul>
+</ol></p>
+
+    <h2>Silver Ticket Attack</h2>
+<p>A silver ticket attack is a post-exploitation technique implemented by attackers to steal legitimate users' credentials and create a fake Kerberos Ticket Granting Service (TGS) ticket. This attack allows 
+  an attacker to acquire permissions to ONLY A SINGLE SERVICE in an application, unlike the golden ticket attack, in which the attacker acquire permissions OVER THE ENTIRE AD.<br/>
+  To initiate a silver ticket attack, the attacker must hold access to the credentials gathered from a local service account or the system's SAM database. Then the attacker forges or creates a silver ticket 
+  without any intermediary such as a DC, which makes it easier for the attacker to intrude and become untraceable for monitoring solutions. The attacker initiates the silver ticket attack by creating a false 
+  Kerberos silver ticket using:
+<ol>
+  <ul>The attacker obtains domain information such as the Domain name and Domain security identifier (SID) using WHOAMI</ul>
+  <ul>The attacker obtains other details of the service or service type they wish to target</ul>
+  <ul>The attacker deploys password cracking tools such as Mimikatz on the compromised system to extract the Kerberos service's local NTLM password hash</ul>
+  <ul>The attacker initiates offline password attacks such as Kerberoasting to obtain a raw of plaintext password for the service</ul>
+  <ul>The attacker creates a forged or fake Kerberos TGS ticket using the Mimikatz tool to establish a connection with the target service</ul>
+  <ul>The attacker uses both the forged TGS and hash data to authenticate the local service as a legitimate user</ul>
+  <ul>The attacker exploits TGS to elevate privileges and permissions</ul>
+</ol></p>
