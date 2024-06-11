@@ -1,0 +1,26 @@
+<h1>Domain Dominance</h1>
+<p>Advanced techniques to abuse the trust within Kerberos and an Active Directory domain to gain dominance over all devices within a Windows domain and setting up persistence within Active Directory. Elements:
+<ol>
+  <ul>Golden ticket</ul>
+  <ul>Silver ticket</ul>
+  <ul>Skeleton key -> form of malware used to inject false credentials into Domain Controllers to create a backdoor (memory resident virus to obtain master password)</ul>
+</ol>
+Methods:
+<ol>
+  <ul>Remote code execution</ul>
+  <ul>Golden ticket attacks</ul>
+  <ul>Silver ticket attacks</ul>
+  <ul>Skeleton key attacks</ul>
+  <ul>Data Protection API abuse (DPAPI)</ul>
+  <ul>Malicious replication</ul>
+</ol>
+</p>
+<h2>Remote Code Execution</h2>
+<p>Malicious code -> Domain Controller using command line. Using this technique attackers hold persistence to perform malicious activities over time without being detected. 
+<ol>
+  <ul>Create a dummy process and user on DC using WMI</ul>
+  <ul>wmic /node:<DC name> process call create "net user" /add TheUserName ThePassword</ul>
+  <ul>Add newly created user to Admins group</ul>
+  <ul>psExec \\<DC name> -accepteula net localgroup "Admins" TheUserName /add</ul>
+  <ul>After succesfully adding a new user to the "Admins" group, the attacker uses these credentials to hold persistence on the target DC</ul>
+</ol></p>
