@@ -9,13 +9,13 @@
 </p>
   <h2>Techniques for covering tracks</h2>
   <p><ol>
-    <ul>Disabling Auditing -> auditpol using Windows CLI (Administrator privileges)
-    <li>enable -> c:\> auditpol /set /category:"system","account logon" /success:enable /failure:enable</li>
+    <ul>Disabling Auditing -> auditpol using Windows CLI (Administrator privileges)</ul>
+    <ul><li>enable -> c:\> auditpol /set /category:"system","account logon" /success:enable /failure:enable</li>
       <li>disable -> c:\> auditpol /set /category:"system","account logon" /success:disable /failure:disable</li>
       <li>auditpol /get /category:*</li>
     </ul>
-    <ul>Clearing Logs
-    <li><a target=_blank href=https://www.tenforums.com/attachments/tutorials/197097d1532546562-clear-all-event-logs-event-viewer-windows-clear_event_viewer_logs.bat>Clear_Event_Viewer_Logs.bat</a> can be used to 
+    <ul>Clearing Logs</ul>
+    <ul><li><a target=_blank href=https://www.tenforums.com/attachments/tutorials/197097d1532546562-clear-all-event-logs-event-viewer-windows-clear_event_viewer_logs.bat>Clear_Event_Viewer_Logs.bat</a> can be used to 
     wipe out the logs of the target system</li>
       <li>Run as admninistrator</li>
       <li>A Meterpreter shell can also be used: clearev -> Enter</li>
@@ -28,17 +28,20 @@
       <li>Manually: Linux cd /var/log -> delete all the log entries </li>
     </ul>
     <ul>Manipulating Logs</ul>
+    <ul>
     <li>Modifying Time: timestomp file_name.doc -z "<Date> <Time>"
       <li>Modifying Time: PowerShell -Command "(Get-Item $File_name).LastWrittenTime = $(Get-Date).AddHours(-10)"
         <li>Modifying Time (Linux): touch -a -d '<Date> <Time>' $File_name</li>
           <li>Modifying Time (Linux): touch -m -d '<Date> <Time>' $File_name</li>
-    <ul>Covering Tracks on the Network
-    <li>Using Reverse HTTP Shells</li>
+          </ul>
+    <ul>Covering Tracks on the Network</ul>
+    <ul><li>Using Reverse HTTP Shells</li>
       <li>Using Reverse ICMP Tunnels</li>
       <li>Using DNS Tunnels</li>
       <li>Using TCP Parameters</li>
     </ul>
-    <ul>Covering Tracks on the OS
+    <ul>Covering Tracks on the OS</ul>
+            <ul>
     <li>Windows 11: right-click Start -> Settings -> Personalization -> Start</li>
       <li>Registry editor: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer -> remove key for "RecentDocs"</li>
       <li>Bourne Again Shell (Bash) -> more ~/.bash_history (view history of commands)</li>
@@ -50,13 +53,14 @@
       <li>NTFS has a feature called ADS -> type C:\SecretFile.txt > C:\LegitFile.txt:SecretFile.txt (SecretFile.txt is now hidden in LegitFile.txt), to view the hidden file, type more < C:\SecretFile.txt (for this, you have to know the hidden file name)</li>
         <li>In Linux, appending a dot in front of a file name makes it hidden, best put it in /dev/, /tmp and /etc</li>
     </ul>
-    <ul>Deleting Files
-    <li>Cipher.exe (in-built Windows CLI tool) can be used to securely delete data</li>
+    <ul>Deleting Files</ul>
+    <ul><li>Cipher.exe (in-built Windows CLI tool) can be used to securely delete data</li>
       <li>cipher /w:<drive_letter>:\<folder name></li>
         <li>cipher /w:<drive_letter></li>
         <li>Ccleaner</li>
     </ul>
-    <ul>Disabling Windows Functionality
+    <ul>Disabling Windows Functionality</ul>
+        <ul>
       <li>fsutil (set NTFS volume behavior parameter, DisableLastAccess, which controls the enabling or disabling of the last access timestamp</li>
       <li>DisableLastAccess = 1 (disabled)</li>
       <li>DisableLastAccess = 0 (enabled)</li>
@@ -69,7 +73,8 @@
       <li>Thumbs.db -> Windows + R -> gpedit.msc -> Local Group Policy Editor -> User Configuration -> Administrative Templates -> Windows Components -> File Explorer -> Turn off caching of thumbnails</li>
       <li>Windows Prefetch -> Windows + R -> services.msc -> SysMain (SuperFetch) -> SysMain Properties -> Startup type -> disabled</li>
     </ul>
-    <ul>Hiding Artifacts
+    <ul>Hiding Artifacts</ul>
+        <ul>
     <li>Hiding Files and Folders -> attrib +h +s +r <Folder></li>
       <li>Hiding Users -> net user <UserName> /add</li>
       <li>Activate the account -> net user <UserName> /active:yes</li>
