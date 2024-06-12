@@ -30,6 +30,8 @@
     <ul>Manipulating Logs</ul>
     <li>Modifying Time: timestomp file_name.doc -z "<Date> <Time>"
       <li>Modifying Time: PowerShell -Command "(Get-Item $File_name).LastWrittenTime = $(Get-Date).AddHours(-10)"
+        <li>Modifying Time (Linux): touch -a -d '<Date> <Time>' $File_name</li>
+          <li>Modifying Time (Linux): touch -m -d '<Date> <Time>' $File_name</li>
     <ul>Covering Tracks on the Network
     <li>Using Reverse HTTP Shells</li>
       <li>Using Reverse ICMP Tunnels</li>
@@ -46,8 +48,39 @@
       <li>shred ~/.bash_history</li>
       <li>shred ~/.bash_history && cat /dev/null > .bash_history && history -c && exit</li>
       <li>NTFS has a feature called ADS -> type C:\SecretFile.txt > C:\LegitFile.txt:SecretFile.txt (SecretFile.txt is now hidden in LegitFile.txt), to view the hidden file, type more < C:\SecretFile.txt (for this, you have to know the hidden file name)</li>
+        <li>In Linux, appending a dot in front of a file name makes it hidden, best put it in /dev/, /tmp and /etc</li>
     </ul>
-    <ul>Deleting Files</ul>
-    <ul>Disabling Windows Functionality</ul>
-    <ul>Hiding Artifacts</ul>
+    <ul>Deleting Files
+    <li>Cipher.exe (in-built Windows CLI tool) can be used to securely delete data</li>
+      <li>cipher /w:<drive_letter>:\<folder name></li>
+        <li>cipher /w:<drive_letter></li>
+        <li>Ccleaner</li>
+    </ul>
+    <ul>Disabling Windows Functionality
+      <li>fsutil (set NTFS volume behavior parameter, DisableLastAccess, which controls the enabling or disabling of the last access timestamp</li>
+      <li>DisableLastAccess = 1 (disabled)</li>
+      <li>DisableLastAccess = 0 (enabled)</li>
+      <li>fsutil behavior set disablelastaccess = 1</li>
+      <li>disable hibernation -> Reg edit Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power</li>
+      <li>Double-click HibernateEnabledDefault -> enter a value of 0 to disable hibernation -> OK</li>
+      <li>CLI: powercfg.exe /hibernate off</li>
+      <li>Paging file (virtual memory) -> Control Panel -> System and Security -> System -> Advanced system settings -> Advanced -> Settings -> Performance -> Virtual Memory change -> No </li>
+      <li>System Restore Points -> Control Panel -> System -> System protection -> Configure -> Disable System protection -> Continue</li>
+      <li>Thumbs.db -> Windows + R -> gpedit.msc -> Local Group Policy Editor -> User Configuration -> Administrative Templates -> Windows Components -> File Explorer -> Turn off caching of thumbnails</li>
+      <li>Windows Prefetch -> Windows + R -> services.msc -> SysMain (SuperFetch) -> SysMain Properties -> Startup type -> disabled</li>
+    </ul>
+    <ul>Hiding Artifacts
+    <li>Hiding Files and Folders -> attrib +h +s +r <Folder></li>
+      <li>Hiding Users -> net user <UserName> /add</li>
+      <li>Activate the account -> net user <UserName> /active:yes</li>
+      <li>Hide it when not active -> net user <UserName> /active:no</li>
+      <li>Hiding User Accounts -> Reg Edit HKEY_LOCAL_MACHINE\Software\Microsoft\WindowsNT\CurrentVersion\Winlogon -> right-click Winlogon -> New -> Key -> Rename key as <Account1> -> right-click <Account1> -> Rename key as <Account2></li>
+      <li>Linux -> Hiding Files and Folders -> cd ~/Documents/MaliciousFiles</li>
+        <li>mv MaliciousFile.txt .MaliciousFile.txt</li>
+        <li>ls -al</li>
+        <li>mkdir .HiddenMaliciousFiles</li>
+        <li>create new file in hidden folder -> touch .MaliciousFile.txt</li>
+        <li>Mac -> Hiding Files and Folders -> defaults write com.apple.finder AppleShowAllFiles FALSE killall Finder</li>
+        <li>To hide a specific file -> chflags hidden -> drag target file to terminal -> Return</li>
+    </ul>
   </ol></p>
