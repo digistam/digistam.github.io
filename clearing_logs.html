@@ -28,8 +28,25 @@
       <li>Manually: Linux cd /var/log -> delete all the log entries </li>
     </ul>
     <ul>Manipulating Logs</ul>
-    <ul>Covering Tracks on the Network</ul>
-    <ul>Covering Tracks on the OS</ul>
+    <li>Modifying Time: timestomp file_name.doc -z "<Date> <Time>"
+      <li>Modifying Time: PowerShell -Command "(Get-Item $File_name).LastWrittenTime = $(Get-Date).AddHours(-10)"
+    <ul>Covering Tracks on the Network
+    <li>Using Reverse HTTP Shells</li>
+      <li>Using Reverse ICMP Tunnels</li>
+      <li>Using DNS Tunnels</li>
+      <li>Using TCP Parameters</li>
+    </ul>
+    <ul>Covering Tracks on the OS
+    <li>Windows 11: right-click Start -> Settings -> Personalization -> Start</li>
+      <li>Registry editor: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer -> remove key for "RecentDocs"</li>
+      <li>Bourne Again Shell (Bash) -> more ~/.bash_history (view history of commands)</li>
+      <li>history -c</li>
+      <li>history -w</li>
+      <li>cat /dev/null > ~.bash_history && history -c && exit</li>
+      <li>shred ~/.bash_history</li>
+      <li>shred ~/.bash_history && cat /dev/null > .bash_history && history -c && exit</li>
+      <li>NTFS has a feature called ADS -> type C:\SecretFile.txt > C:\LegitFile.txt:SecretFile.txt (SecretFile.txt is now hidden in LegitFile.txt), to view the hidden file, type more < C:\SecretFile.txt (for this, you have to know the hidden file name)</li>
+    </ul>
     <ul>Deleting Files</ul>
     <ul>Disabling Windows Functionality</ul>
     <ul>Hiding Artifacts</ul>
