@@ -12,9 +12,21 @@
     <ul>Disabling Auditing -> auditpol using Windows CLI (Administrator privileges)
     <li>enable -> c:\> auditpol /set /category:"system","account logon" /success:enable /failure:enable</li>
       <li>disable -> c:\> auditpol /set /category:"system","account logon" /success:disable /failure:disable</li>
-      <li>auditpol /get /category:*
+      <li>auditpol /get /category:*</li>
     </ul>
-    <ul>Clearing Logs</ul>
+    <ul>Clearing Logs
+    <li><a target=_blank href=https://www.tenforums.com/attachments/tutorials/197097d1532546562-clear-all-event-logs-event-viewer-windows-clear_event_viewer_logs.bat>Clear_Event_Viewer_Logs.bat</a> can be used to 
+    wipe out the logs of the target system</li>
+      <li>Run as admninistrator</li>
+      <li>A Meterpreter shell can also be used: clearev -> Enter</li>
+      <li>POSH: Clear-EventLog "Windows PowerShell"</li>
+      <li>POSH: Clear-EventLog -LogName ODiag, OSession -ComputerName localhost, Server02</li>
+      <li>POSH: Clear-EventLog -LogName application, system -confirm</li>
+      <li>CLI: wevtutil el (event logs)</li>
+      <li>CLI: wevtutil cl <log_name></li>
+      <li>Manually: Windows Event Viewer</li>
+      <li>Manually: Linux cd /var/log -> delete all the log entries </li>
+    </ul>
     <ul>Manipulating Logs</ul>
     <ul>Covering Tracks on the Network</ul>
     <ul>Covering Tracks on the OS</ul>
