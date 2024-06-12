@@ -134,3 +134,10 @@ Methods:
     </ol></p>
 
     
+        <h2>Overpass-the-Hash Attack</h2>
+<p>OPtH is an extension of pass-the-ticket and pass-the-hash attacks. It's a kind of credential theft-and-reuse attack. The main goal is acquire Kerberos tickets by using the NTLM hash of different user accounts.
+  It's a post-exploitation process so the attackers must have already obtained valid NTLM hashes or AES keys of the target user to request a Kerberos TGT for that account. Attackers use Mimikatz to perform OPtH attacks. 
+<ol>
+  <ul>privilege::debug</ul>
+  <ul>sekurlsa::ekeys</ul>
+</ol></p>
