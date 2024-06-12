@@ -9,9 +9,10 @@
 </p>
   <h2>Techniques for covering tracks</h2>
   <p><ol>
-    <ul>Disabling Auditing
+    <ul>Disabling Auditing -> auditpol using Windows CLI (Administrator privileges)
     <li>enable -> c:\> auditpol /set /category:"system","account logon" /success:enable /failure:enable</li>
       <li>disable -> c:\> auditpol /set /category:"system","account logon" /success:disable /failure:disable</li>
+      <li>auditpol /get /category:*
     </ul>
     <ul>Clearing Logs</ul>
     <ul>Manipulating Logs</ul>
