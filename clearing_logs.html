@@ -1,0 +1,23 @@
+<a href=index.html>Back to home</a>
+<hr/>
+<h1>Clearing Logs</h1>
+<p>Covering tracks is important to remain oscure. The attacker can manipulate log files with the help of eventlogs:
+<ol>
+<ul>SECEVENT.EVT (security): failed logins, accessing files without privileges</ul>
+  <ul>SYSEVENT.EVT (system): driver failure, all that's not operating correctly</ul>
+  <ul>APPEVENT.EVT (applications)</ul>
+</p>
+  <h2>Techniques for covering tracks</h2>
+  <p><ol>
+    <ul>Disabling Auditing
+    <li>enable -> c:\> auditpol /set /category:"system","account logon" /success:enable /failure:enable</li>
+      <li>disable -> c:\> auditpol /set /category:"system","account logon" /success:disable /failure:disable</li>
+    </ul>
+    <ul>Clearing Logs</ul>
+    <ul>Manipulating Logs</ul>
+    <ul>Covering Tracks on the Network</ul>
+    <ul>Covering Tracks on the OS</ul>
+    <ul>Deleting Files</ul>
+    <ul>Disabling Windows Functionality</ul>
+    <ul>Hiding Artifacts</ul>
+  </ol></p>
