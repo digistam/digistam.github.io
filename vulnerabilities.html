@@ -75,3 +75,68 @@ flaws that will expose an operating system and its applications to exploit, atta
     <ul>-> Organize methods for prioritizing the assets</ul>
   </ol>
  </p>
+<h2>Vulnerability Assessment Phase</h2>
+<p>
+ <ol>
+   <ul>Crucial phase in vulnerability management</ul>
+   <ul>Examine and evaluate the physical security</ul>
+   <ul>Check for misconfigurations and human errors</ul>
+   <ul>Run vulnerability scans using tools</ul>
+   <ul>Select the type of scan based on the organization or compliance requirements</ul>
+   <ul>Identify and prioritize vulnerabilities</ul>
+   <ul>Identify false positives and false negatives</ul>
+   <ul>Apply the business and technology context to scanner results</ul>
+   <ul>Perform OSINT information gathering to validate the vulnerabilities</ul>
+   <ul>Create a vulnerability scan report</ul>
+ </ol>
+</p>
+<h2>Post Assessment Phase</h2>
+<p><ol>
+  <ul>Recommendation phase</ul>
+  <ul>Creating a priority list for assessment recommendations based on the impact analysis</ul>
+  <ul>Developing an action plan to implement the proposed remediation</ul>
+  <ul>Capturing lessons learned to improve the complete process in the future</ul>
+  <ul>Conducting training for employees</ul>
+  <ul>Risk Assessment -> risks are identified, characterized and classified along with the techniques used to control or reduce their impact. Risk levels can be high, moderate or low.</ul>
+  <ul>Remediation -> applying fixes, based on risk ranking, develop and action plan to implement the remediation, perform root-cause analysis, apply patches and fixes, capture lessons learned, conduct awareness training, perform exception handling and risk acceptance for the vulnerabilities that can not be remediated</ul>
+  <ul>Verification -> re-scan of systems to assess if the remediation is complete, verification of remedies, using ticketing systems, scanners and reports</ul>
+  <ul>Monitoring -> periodic vulnerability scan and assessment, timely remediation of identified vulnerabilities, monitoring intrusion detection, implementing policies, procedures and controls</ul>
+</ol></p>
+
+<h1>Vulnerability Classification and Assessment Types</h1>
+<h2>Vulnerability Classification</h2>
+<p><b>Misconfigurations / Weak configurations</b>:
+<ol>
+  <ul>Most common vulnerability, mainly caused by human error</ul>
+  <ul>Attackers detect misconfigurations through various scanning techniques</ul>
+  <ul>Default configurations of devices have to be changed and optimized</ul>
+</ol>
+</p>
+<h2>Network Misconfigurations</h2>
+<p><ol>
+  <ul>Frequent changes to network and security devices are inevitable and essential for business improvement</ul>
+  <ul>Insecure protocols -> transmitting information or data in plaintext without encryption, use of vulnerable protocols (ftp, telnet etc.)</ul>
+  <ul>Open Ports and Services -> Servers often operate with some ports open, but all open ports are not dangerous, unless they are misconfigured, unpatched or implemented with poor security rules. Open ports must be limited. Leaving ports open for unnecessary services can invite new threads to the network, they may lead to the loss of data or DDOS attacks.</ul>
+  <ul>Errors -> improper configuration of applications or services can generate error reports, outdated software can also generate security errors, invite code injections. Applications should not disclose critical information that can help attackers.</ul>
+  <ul>Weak encryption -> can allow attackers to perform man-in-the-middle attacks, sniff the traffic, masquerade as legitimate service to communicate with end users with false information, same goes for key generation with guessable credentials, insecure key distribution</ul>
+</ol>
+</ol></p>
+<h2>Host Misconfigurations</h2>
+<p><ol>
+  <ul>Open Permissions -> granting unnecessary permissions to a user or group can lead to security issues such as data leakage or corruption of system functionality, an attacker can perform privilege escalation by using unnecessarily created accounts to access unprotected files or to run command on the operating system</ul>
+  <ul>Unsecured Root Accounts -> using manufacturer-allotted default administrative account credentials can lead to system security issues, attackers can guess the credentials using different brute-force techniques</ul>
+</ol></p>
+<h2>Application Flaws</h2>
+<p>Application flaws are vulnerabilities in applications that are exploited by attackers. Applications should be secured using the validation and authorization of the user. 
+<ol>
+  <ul>Buffer Overflows</ul>
+  <ul>Memory Leaks</ul>
+  <ul>Resource Exhaustion</ul>
+  <ul>Integer Overflows</ul>
+  <ul>Null Pointer / Object Dereference</ul>
+  <ul>DLL Injection</ul>
+  <ul>Race Conditions</ul>
+  <ul>Time of Check / Time of Use</ul>
+</ol></p>
+<h2>Improper Input Handling</h2>
+<p>Verification of application functionalities such as validation, filtering, sanitizing, encryption and decryption of INPUT data. </p>
