@@ -139,4 +139,47 @@ flaws that will expose an operating system and its applications to exploit, atta
   <ul>Time of Check / Time of Use</ul>
 </ol></p>
 <h2>Improper Input Handling</h2>
-<p>Verification of application functionalities such as validation, filtering, sanitizing, encryption and decryption of INPUT data. </p>
+<p>Verification of application functionalities such as validation, filtering, sanitizing, encryption and decryption of INPUT data. Failure in verifying the input data results in vulnerablities. Attackers use techniques such as SQL Injection, cross-site scripting and buffer overflow. </p>
+<h2>Improper Error Handling</h2>
+<p>An attacker can use error information to exploit a system. Most web applications or server disclose detailed information about errors such as database dumps and stack traces. <b>Fail-open</b> is one of the security issues and defined as the granting of access after a system has failed or denied access.</p>
+<h1>Poor Patch Management</h1>
+<p>Software vendors provide patches that prevent exploitation and reduce probability of threats. Unpatched software is dangerous. </p>
+<h2>Unpatched Servers</h2>
+<p>Attackers search for vulnerabilities in servers and exploit them. Unpatched servers use as a hub or an entry point into a network.</p>
+<h2>Unpatched firmware</h2>
+<p>Firmware vulnerabilities allow attackers to inject malicious code etc. Firmware must regularly be checked and updated.</p>
+<h2>Unpatched OS</h2>
+<p>Attackers search for systems having unpatched OS and use them for spreading malware to other systems in the network. A vulnerability in an OS can be used to perform privilege escalation using malware that gains sytem- or root-level access. Auto-update feature for OS must be activated.</p>
+<h2>Unpatched Applications</h2>
+<p>Unpatched application vulnerabilities allow attackers to inject and run malicious code by exploiting a known software bug. No software or application is flawless !</p>
+<h1>Design Flaws</h1>
+<p>Design flaws are universal to all operating systems and devices. Think of incorrect encryption or poor validation of data. </p>
+<h1>Operating System Flaws</h1>
+<p>Due to vulnerabilities in OS, applications such as Trojans, Worms and Viruses post threats. Timely patching of the OS, installing minimal sofware applicatinos and using firewall capabilities are essential.</p>
+<h1>Third-Party Risks</h1>
+<h2>Vendor management</h2>
+<p><ol>
+  <ul>selecting suppliers and assess the risks of third-party services and products</ul>
+  <ul>System integration -> employing third-party services or hiring third-party vendors to run business operations. Integrators work from inside and can evade firewalls and security solutions, install software, scan ports etc.</ul>
+  <ul>Lack of vendor support -> organizations depend on third-party vendors to manage the security of systems inside a network. In such cases vendors are entrusted with discovering and fixing issues. If they have insufficient knowledge, new risks can arise. </ul>
+</ol></p>
+<h2>Supply-chain risks</h2>
+<p>The majority of network devices and systems are often purchased from a third party. Software or hardware from a third party may not be properly sanitized and can contain malware.</p>
+<h2>Outsourced code development</h2>
+<p>Organizations hire contract-based third parties and should establish a secure environment to develop and assess the code being built. The code needs to be securely stored somewhere etc.</p>
+<h2>Data storage</h2>
+<p>Emerge of cloud technology, vendors may have access to organization data. Data should regularly be checked for security concerns. Data transmission should be performed with encryption and through a secure channel.</p>
+<h2>Cloud-based vs. on-premises risks</h2>
+<p>Storage and data exposure issues often arise in third-party storage locations. But businesses running in an on-premises environment may also have issues such as weak security configurations, vulnerabilities and vendor issues.</p>
+<h1>Default installations / Default configurations</h1>
+<p>Default installations are usually user-friendly, especially when being used for the first (installation) time. Failing to change the default settings allows attackers to guess the settings to break into a system. It is important to disable unnecessary components and services associated with the default configuration.</p>
+<h1>Default Passwords</h1>
+<p>Manufacturers provide users with default passwords to access the device during it's initial setup. Users forget to update the passwords and continue using the default ones.</p>
+<h1>Zero-Day Vulnerabilities</h1>
+<p>Exposed, but not yet patched ! Major cyber-threat that continuously expose the vulnerable systems until they get patched.</p>
+<h1>Legacy Platform Vulnerabilities</h1>
+<p>Obsolete and familiar codes and not supported when patching. Legacy systems can be secured using other security controls, for example segregate them from the network so that attackers cannot gain physical access.</p>
+<h1>System Sprawl/Undocumenten Assets</h1>
+<p>Increased number of systems or server connections without proper documentation or understanding of the maintenance.</p>
+<h1>Improper Certificate and Key Management</h1>
+<p>Improper certificate and key management may lead to many vulnerabilities that allow attackers to perform password cracking and data exfiltration attacks. Keys stored on servers are vulnerable to attacks. Keys should be stored in an encrypted format and are decrypted only in a protected secure environment. Private keys used with certificates must be stored in a highly secured environment, otherwise an unauthorized individual can intercept the keys and gain access to confidential data or critical systems.</p>
