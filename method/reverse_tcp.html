@@ -65,3 +65,34 @@
   <ul>Save</ul>
 </ol>
 </p>
+<h2>Host malicious file</h2>
+<p><ol>
+<ul>mkdir /var/www/html/share</ul>
+<ul>chmod -R 755 /var/www/html/share</ul>
+<ul>chown -R www-data:www-data /var/www/html/share</ul>
+<ul>cp /home/myusername/Desktop/ChristmasCardTest.exe /var/www/html/share</ul>
+</ol></p>
+<h2>Start webserver</h2>
+<p><ol><ul>service apache2 start</ul>
+<ul>service nginx start</ul></ol></p>
+<h2>Meterpreter Reverse TCP</h2>
+<p><ol><ul>
+  In Armitage, double click meterpreter_reverse_tcp</ul>
+  <ul>scroll down to LPORT option and change port value to 444</ul>
+  <ul>select multi/handler option in output field</ul>
+  <ul>Launch</ul>
+</ol></p>
+<h2>Attack</h2>
+<p>Send a link to the victim in order to open the malicious file</p>
+<h2>Meterpreter shell</h2>
+<p><ol><ul>In Armitage, right-click on the target host and navigate to Meterpreter 1 --> Interact --> Meterpreter Shell.</ul>
+<ul>sysinfo</ul>
+</ol></p>
+<h2>Browse files</h2>
+<p>In Armitage, right-click on the target host and navigate to Meterpreter 1 --> Explore --> Browse Files</p>
+<p>You can observe the files present in the Download folder of the target system</p>
+<p>You can do all kinds of actions, like uploading a file, making a directory, and listing all drives present in the target system.</p>
+<h2>Create screenshot</h2>
+<p>In Armitage, right-click on the target host and navigate to Meterpreter 1 --> Explore --> Screenshot</p>
+<h2>Escalate privileges</h2>
+<p>You can also escalate privileges in the target system using the Escalate Privileges option and further steal tokens, dump hashes, or perform other activities.</p>
