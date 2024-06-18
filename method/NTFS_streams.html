@@ -1,0 +1,22 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>NTFS streams</h1>
+<h2>Hide malicious files</h2>
+<p>Hiding files in NTFS streams only works with NTFS filesystems. </p>
+<p>What's the use ? Attackers may hide malicious files in the target system and keep them invisible from the legitimate users by using NTFS streams, and may remotely execute them whenever required.</p>
+  <p>How does it work?</p>
+  <p><ol><ul>
+    Open dosbox (cmd)
+  </ul>
+  <ul>Create c:\magic</ul>
+    <ul>Create a text file (readme.txt) using Notepad</ul>
+    <ul>Copy calc.exe from c:\Windows\System32 to c:\magic</ul>
+    <ul>Command: "type c:\magic\calc.exe > c:\magic\readme.txt:calc.exe"</ul>
+    <ul>Now, calc.exe will be hidden in readme.txt (the size of readme.txt will not be altered)</ul>
+    <ul>Delete calc.exe from the c:\magic folder</ul>
+    <ul>Command: "mklink backdoor.exe readme.txt:calc.exe"</ul>
+    <ul>You need Administrator rights to do this</ul>
+    <ul>Command: "backdoor.exe" will run the calculator program</ul>
+  </ol></p>
