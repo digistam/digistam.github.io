@@ -141,14 +141,19 @@ PORT      STATE  SERVICE<br>
         <ul>recon-ng</ul>
         <ul>workspaces create mynewdomain</ul>
         <ul>marketplace install all</ul>
-        <ul>db insert domains</ul>
-        <ul><i>insert all domains from /home/myusername/Desktop/mynewdomain.xml</i></ul>
+        <ul>db insert domains  --> or should it be db insert hosts ?</ul>
+        <ul><i>insert all domains (hosts ?) from /home/myusername/Desktop/mynewdomain.xml</i></ul>
         <ul>show domains</ul>
         <ul>modules load recon/domains-hosts/brute-hosts</ul>
         <ul>run</ul>
+        <ul>modules load recon/domains-hosts/hackertarget</ul>
+        <ul>run</ul>
         <ul>show hosts</ul>
+        <ul>modules load recon/hosts-hosts/resolve</ul>
+        <ul>run</ul>
         <ul>modules load recon/hosts-hosts/reverse_resolve</ul>
         <ul>run</ul>
+        <ul>show hosts</ul>
         <ul>show hosts</ul>
         <ul>back</ul>
     </ol></p>
