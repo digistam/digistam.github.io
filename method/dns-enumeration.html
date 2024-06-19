@@ -135,7 +135,7 @@ PORT      STATE  SERVICE<br>
         <ul>db_export -f xml /home/myusername/Desktop/mynewdomain.xml</ul>       
     </ol></p>
 <h2>Recon-NG</h2>
-<p><a target=_blank href=https://medium.com/hacker-toolbelt/my-recon-ng-cheat-sheet-efdfebb82929>cheat sheet</a>
+<p>
     <ol>
         <ul>sudo su</ul>
         <ul>recon-ng</ul>
@@ -163,12 +163,9 @@ PORT      STATE  SERVICE<br>
     <h2>Report</h2>
     <p><ol>
         <ul>modules load reporting</ul>
-        <ul>modules load reporting/html</ul>
-        <ul>options set FILENAME</ul>
-        <ul>/home/myusername/Desktop/mynewdomain_hosts.html</ul>
-        <ul>options set CREATOR</ul>
-        <ul>My name</ul>
-        <ul>options set CUSTOMER</ul>
-        <ul>Name of customer</ul>
+        <ul>modules load reporting/csv</ul>
+        <ul>options set FILENAME /home/myusername/Desktop/mynewdomain_hosts.csv</ul>
+        <ul>options set HEADERS True</ul>
+        <ul>options set TABLE hosts</ul>
         <ul>run</ul>
     </ol></p>
