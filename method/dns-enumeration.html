@@ -120,7 +120,47 @@ PORT      STATE  SERVICE<br>
 35500/tcp closed unknown
 </code>
 <p>Using multiple tools is necessary!</p>
+    <h1>Metasploit and Recon-NG</h1>
+    <p>I found out the method below to get a broad overview of active IPs and FQDN related to a domain (tld)</p>
 <h2>Metasploit</h2>
-<p>Metasploit module enum_dns failed, can't be used at this moment</p>
+    <p><ol>
+        <ul>sudo su</ul>
+<ul>service postgresql start</ul>
+        <ul>msfconsole</ul>
+        <ul>db_status</ul>
+        <ul>workspace -a mynewdomain</ul>
+        <ul>db_nmap -sn [tld] -> copy IP address</ul>
+        <ul>db_nmap -sn [IP address]/24</ul>
+        <ul>hosts</ul>
+        <ul>db_export -f xml /home/myusername/Desktop/mynewdomain.xml</ul>       
+    </ol></p>
 <h2>Recon-NG</h2>
-<p>Didn't find a suitable module for DNS enumeration</p>
+<p>
+    <ol>
+        <ul>sudo su</ul>
+        <ul>recon-ng</ul>
+        <ul>workspaces create mynewdomain</ul>
+        <ul>marketplace install all</ul>
+        <ul>db insert domains</ul>
+        <ul><i>insert all domains from /home/myusername/Desktop/mynewdomain.xml</i></ul>
+        <ul>show domains</ul>
+        <ul>modules load recon/domains-hosts/brute-hosts</ul>
+        <ul>run</ul>
+        <ul>show hosts</ul>
+        <ul>modules load recon/hosts-hosts/reverse_resolve</ul>
+        <ul>run</ul>
+        <ul>show hosts</ul>
+        <ul>back</ul>
+    </ol></p>
+    <h2>Report</h2>
+    <p><ol>
+        <ul>modules load reporting</ul>
+        <ul>modules load reporting/html</ul>
+        <ul>options set FILENAME</ul>
+        <ul>/home/myusername/Desktop/mynewdomain_hosts.html</ul>
+        <ul>options set CREATOR</ul>
+        <ul>My name</ul>
+        <ul>options set CUSTOMER</ul>
+        <ul>Name of customer</ul>
+        <ul>run</ul>
+    </ol></p>
