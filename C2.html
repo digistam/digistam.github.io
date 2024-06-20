@@ -1,0 +1,407 @@
+<p>A successful cyberattack is about more 
+than just getting your foot into the 
+door of an unsuspecting organization. 
+To be of any real benefit, the attacker 
+needs to maintain persistence within
+the target environment, communicate
+with infected or compromised devices 
+inside the network, and potentially 
+exfiltrate sensitive data. The key to 
+accomplishing all these tasks is a 
+robust Command and Control 
+Infrastructure or “C2”. What is C2?
+In this post, we’ll answer that 
+question and look at how adversaries 
+use these covert channels of 
+communication channels to carry out
+highly sophisticated attacks. We’ll 
+also look at how to spot and defend
+against C2-based attacks.</p>
+
+<h2>What is C2?</h2>
+
+<p>Command and Control Infrastructure, 
+  also known as C2 or C&C, is the set 
+  of tools and techniques that 
+  attackers use to maintain 
+  communication with compromised 
+  devices following initial
+  exploitation. The specific
+  mechanisms vary greatly between 
+  attacks, but C2 generally consists 
+  of one or more covert communication 
+  channels between devices in a 
+  victim organization and a platform
+  that the attacker controls. 
+  These communication channels are
+  used to issue instructions to
+  the compromised devices, download
+  additional malicious payloads, 
+  and pipe stolen data back to the
+  adversary.</p>
+
+<p>C2 comes in many different forms. 
+  At the time of writing, the MITRE 
+  ATT&CK framework lists 16 different
+  command and control techniques,
+  each with a number of sub-techniques 
+  that have been observed in past
+  cyberattacks. A common strategy is
+  to blend in with other types of 
+  legitimate traffic that may be in 
+  use at the target organization, such 
+  as HTTP/HTTPS or DNS. Attackers may
+  take other actions to disguise their 
+  C&C callbacks, such as using 
+  encryption or unusual types of data
+  encoding.</p>
+<p>Command and control platforms may 
+  be fully customized solutions or 
+  off-the-shelf products. Popular
+  platforms used by criminals and 
+  penetration testers alike include 
+  Cobalt Strike, Covenant, 
+  Powershell Empire, and Armitage. </p>
+
+<p>There are a number of terms you 
+  may also hear alongside C2 or C&C:</p>
+<h2>What is a Zombie?</h2>
+
+<p>A Zombie is a computer or other 
+  type of connected device that’s 
+  been infected with some form of 
+  malware and can be remotely 
+  controlled by a malicious party 
+  without the real owner’s knowledge 
+  or consent. While some viruses, 
+  trojans, and other unwanted programs
+  perform specific actions after 
+  infecting a device, many types of 
+  malware exist primarily to open up 
+  a pathway to the attacker’s C2 
+  infrastructure. These “zombie” 
+  machines can then be hijacked to 
+  perform any number of tasks,
+  from relaying spam e-mail to taking 
+  part in large-scale Distributed 
+  Denial of Service Attacks (DDoS). </p>
+<h2>What is a Botnet?</h2>
+
+<p>A botnet is a collection of 
+  zombie machines that are enlisted 
+  for a common illicit purpose. 
+  This could be anything from mining
+  cryptocurrency to knocking a website
+  offline through a Distributed Denial
+  of Service (DDoS) attack. Botnets 
+  are usually united around a common
+  C2 infrastructure. It’s also common
+  for hackers to sell access to
+  botnets to other criminals in a 
+  type of “attack as a service”. </p>
+<h2>What is Beaconing?</h2>
+
+<p>Beaconing refers to the process of 
+  an infected device phoning home to 
+  an attacker’s C2 infrastructure to 
+  check for instructions or additional 
+  payloads, often at regular intervals.
+  To avoid detection, some types of 
+  malware beacon at random intervals, 
+  or may lie dormant for a period of 
+  time before phoning home.</p>
+<h2>What Can Hackers Accomplish with a Command and Control Infrastructure?</h2>
+Most organizations have fairly 
+effective perimeter defenses that 
+make it difficult for an adversary to 
+initiate a connection from the outside
+world into the organization’s network 
+without being detected. However, 
+outbound communication is often not 
+as heavily monitored or restricted.
+This means that malware introduced
+through a different channel – say a
+phishing email or compromised website –
+can often establish a channel of 
+communication in the outbound direction
+that would otherwise be impossible. 
+With this channel open, a hacker can
+carry out additional actions, such as:
+Move Laterally Through a Victim’s Organization</p>
+
+<p>Once an attacker has an initial 
+foothold, they will usually seek to 
+  move laterally throughout the 
+  organization, using their C2 
+  channels to beam back information 
+  about other hosts that may be 
+  vulnerable or misconfigured. 
+  The first machine compromised may 
+  not be a valuable target, but it
+  serves as a launching pad to access
+  more sensitive parts of the network.
+  This process may be repeated 
+  several times until the attacker 
+  gains access to a high-value target 
+  like a file server or domain 
+  controller.</p>
+<h2>Multi-stage Attacks</h2>
+
+<p>The most complex cyberattacks are 
+  often composed of many distinct steps. 
+  Often, the initial infection consists 
+  of a “dropper” or downloader that 
+  calls back to the adversary’s
+  C2 infrastructure and downloads 
+  additional malicious payloads. 
+  This modular architecture allows an
+  attacker to carry out campaigns that
+  are both widely distributed and highly 
+  focused. The dropper may infect 
+  thousands of organizations, allowing 
+  the attacker to be selective and 
+  craft custom second-stage malware for
+  the most lucrative targets. This model
+  also allows an entire decentralized
+  industry of cybercrime. An initial 
+  access group may sell access to a prime
+  target like a bank or hospital to a 
+  ransomware gang, for example.</p>
+<h2>Exfiltrate Data</h2>
+
+<p>C2 channels are often bidirectional,
+  meaning an attacker can download or 
+  “exfiltrate” data from the target
+  environment in addition to sending 
+  instructions to compromised hosts. 
+  The stolen data can be anything from 
+  classified military documents to
+  credit card numbers or personal
+  information, depending on the 
+  victim’s organization. Increasingly,
+  ransomware gangs are using data
+  exfiltration as an added tactic 
+  to extort their targets; even if
+  the organization can recover data 
+  from backups, the criminals will 
+  threaten to release stolen and 
+  potentially embarrassing information.</p>
+<h2>Other Uses</h2>
+
+<p>As stated earlier, botnets are
+  frequently used to launch DDoS 
+  attacks against websites and other 
+  services. Instructions for which 
+  sites to attack are delivered over
+  C2. Other types of instructions
+  can also be issued to zombie 
+  machines over C2. For example, 
+  large crypto mining botnets have
+  been identified. Even more exotic
+  uses have been theorized,
+  ranging from using C2 commands to 
+  disrupt elections ormanipulate 
+  energy markets.</p>
+<h2>Command and Control Models</h2>
+
+<p>Though there’s a wide variety of 
+  options for implementing C2,
+  the architecture between malware
+  and the C2 platform will usually 
+  look something like one of the 
+  following models:</p>
+<h2>Centralized</h2>
+
+<p>A centralized command and 
+  control model functions much 
+  like the traditional client-server 
+  relationship. A malware “client”
+  will phone home to a C2 server
+  and check for instructions.
+  In practice, an attacker’s 
+  server-side infrastructure is
+  often far more complex than a 
+  single server and may include
+  redirectors, load balancers, 
+  and defense measures to detect 
+  security researchers and law 
+  enforcement. Public cloud services 
+  and Content Delivery Networks (CDNs) 
+  are frequently used to host or 
+  mask C2 activity. It’s also 
+  common for hackers to compromise 
+  legitimate websites and use them 
+  to host command and control 
+  servers without the owner’s knowledge.
+C2 activity is often discovered
+  fairly quickly, and the domains
+  and servers associated with a 
+  campaign may be removed within
+  hours of their first use. To combat
+  this, modern malware is often coded 
+  with a list of many different C2 
+  servers to try and reach. The 
+  most sophisticated attacks 
+  introduce additional layers of 
+  obfuscation. Malware has been 
+  observed fetching a list of C2 
+  servers from GPS coordinates
+  embedded in photos and from
+  comments on Instagram.</p>
+<h2>Peer-to-Peer (P2P)</h2>
+
+<p>In a P2P C&C model, command 
+  and control instructions are 
+  delivered in a decentralized 
+  fashion, with members of a botnet
+  relaying messages between one
+  another. Some of the bots may 
+  still function as servers, but 
+  there is no central or “master” 
+  node. This makes it far more 
+  difficult to disrupt than a 
+  centralized model but can also 
+  make it more difficult for the 
+  attacker to issue instructions to 
+  the entire botnet. P2P networks are
+  sometimes used as a fallback 
+  mechanism in case the primary
+  C2 channel is disrupted.</p>
+<h2>Out of Band and Random</h2>
+
+<p>A number of unusual techniques 
+  have been observed for issuing
+  instructions to infected hosts. 
+  Hackers have made extensive use
+  of social media platforms as
+  unconventional C2 platforms because 
+  they are rarely blocked. 
+  A project called Twittor aims to
+  provide a fully functional 
+  command and control platform 
+  using only direct messages on 
+  Twitter. Hackers have also been
+  observed using Gmail, IRC chat 
+  rooms, and even Pinterest to issue
+  C&C messages to compromised hosts.
+  It’s also been theorized that 
+  command and control infrastructure
+  could be entirely random, with an 
+  attacker scanning large swaths of 
+  the Internet in hopes of finding 
+  an infected host.</p>
+<p>
+Command and Control traffic can be
+  notoriously difficult to detect,
+  as attackers go to great lengths
+  to avoid being noticed. There’s a 
+  tremendous opportunity for 
+  defenders, however, as disrupting
+  C2 can prevent a malware infection
+  from turning into a more serious
+  incident like a data breach. In
+  fact, many large-scale cyber 
+  attacks were initially discovered
+  when researchers noticed C2 
+  activity. Here are a few general 
+  techniques for detecting and 
+  stopping command and control 
+  traffic in your own network:</p>
+<h2>Monitor and Filter Outbound Traffic</h2>
+
+<p>Many organizations pay little 
+  attention to traffic exiting their 
+  network, focusing instead on
+  threats contained in incoming 
+  traffic. This lack of awareness
+  facilitates an attacker’s command 
+  and control activities. Carefully 
+  crafted egress firewall rules can 
+  help impede an adversary’s ability
+  to open up covert channels of 
+  communication. For example, limiting
+  outbound DNS requests to only 
+  servers that the organization 
+  controls can reduce the threat of
+  DNS tunneling. Proxies can be 
+  used to inspect outbound web
+  traffic, but users must take care 
+  to configure SSL/TLS inspection, 
+  as hackers have embraced encryption 
+  along with the rest of the web.
+  DNS filtering services can also 
+  be used to help prevent C2 
+  callbacks to suspicious or newly 
+  registered domains.</p>
+<h2>Watch for Beacons</h2>
+
+<p>Beacons can be a tell-tale sign 
+  of command and control activity
+  within your network, but they’re 
+  often difficult to spot. 
+  Most IDS/IPS solutions will pick
+  up on beacons associated with 
+  off-the-shelf frameworks like 
+  Metasploit and Cobalt Strike,
+  but these can easily be customized 
+  by attackers to make detection far
+  more difficult. For deeper network 
+  traffic analysis (NTA), a tool 
+  like RITA can be used. In some
+  cases, threat hunting teams will 
+  go so far as to manually inspect
+  packet dumps using a tool like 
+  Wireshark or tcpdump.</p>
+<h2>Log and Inspect</h2>
+
+<p>Collecting log files from as 
+  many sources as possible is vital
+  when hunting for signs of command 
+  and control traffic. Often, close
+  analysis is needed to distinguish
+  between C2 traffic and legitimate
+  applications. Security Analysts 
+  may need to look for unusual 
+  patterns, examine the payloads of 
+  seemingly benign HTTPS or DNS 
+  requests, and perform other types 
+  of statistical analysis. The 
+  greater volume of information the 
+  analyst or threat hunter has to
+  work with, the better. Remote
+  logging and SIEM solutions 
+  can aid in this task.
+The whole point of maintaining a 
+  command and control infrastructure
+  is to perform some specific action 
+  like accessing important files or
+  infecting more hosts. Hunting for 
+  C&C activity from both a data and
+  network perspective increases the 
+  likelihood of discovering 
+  well-camouflaged cyberattacks. 
+  This is exactly the approach that 
+  Varonis Edge takes, giving you the 
+  deep visibility required to spot 
+  everything from insider threats to 
+  APT groups. Command and Control Infrastructure 
+  is essential to attackers – and
+  represents an opportunity for
+  defenders. Blocking C&C traffic or 
+  dismantling an adversary’s C2
+  infrastructure can halt a 
+  cyberattack in its tracks. 
+  Tackling C2 should never be an 
+  organization’s sole focus and 
+  should be part of a larger 
+  information security program that
+  includes good “cyber hygiene” 
+  practices, security awareness 
+  training for employees, and 
+  well-thought-out policies and
+  procedures. These steps can go a 
+  long way towards mitigating the 
+  threat posed by command and control
+  infrastructure.</p>
+
+ 
