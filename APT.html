@@ -3,4 +3,50 @@
   <a href=index.html>Back to home</a>
 <hr/>
 <h1>APT</h1>
-<p>Advanced Persistent Threat</p>
+<p><a target=_blank href=https://en.wikipedia.org/wiki/Advanced_persistent_threat>Advanced Persistent Threat (APT)</a> is a major security concern for any organization. Recently in the news it was revealed that a member of an “APT” group that utilises the “Conti” ransomware became disgruntled 
+    at the state of their relationship with the group and leaked a large majority of the groups “Tools, Techniques and Procedures” documents. Conti was first discovered in 2020 and is used primarily by the 
+    Russian crime group aliased as “Wizard Spider” (we will assume the leak came from a former member of this group). In addition to the encryption of files seen from historical families of ransomware, 
+    Conti also copies files to the attacker’s server before encryption, allowing the group to threaten data leaks if the ransom isn’t paid. </p>
+    <h2>What is it</h2>
+    <p>An APT is defined as a type of network attack, whereby the attacker gain unauthorized access to a target network and remains there undetected for a long time. <b>Advanced</b>: techniques to exploit underlying vulnerabilities, <b>persistent</b>: external command & conquer (C&C) system continuously extracting data and monitoring the victim's network,
+    <b>threat</b>: human involvement in coordination.</p>
+    <p>APT attacks are highly sophisticated attacks whereby an attacker uses well-crafted malicious code along with a combination of <b>multiple zero-day exploits</b> to gain access to the target network. Attacks involve well planned
+     and coordinated techniques whereby attackers erase evidence of their malicious activities after their objectives have been fulfilled.</p>
+    <h2>Victims</h2>
+    <p>APT attacks are usually performed on organizations related to financial, healthcare, defense, aerospace etc. Main goal is to obtain sensitive information, like:
+    <ol>
+        <ul>classified documents</ul>
+        <ul>user credentials</ul>
+        <ul>employee's or customer's personal information</ul>
+        <ul>network information</ul>
+        <ul>transaction information</ul>
+        <ul>credit card information</ul>
+        <ul>organization's business strategy informaton</ul>
+        <ul>control system access information</ul>
+    </ol></p>
+    <h2>Characteristics</h2>
+    <p><ol>
+        <ul><b>Objectives</b>: repeatedly obtain sensitive information for illegal earnings / spying for political or strategic goals</ul>
+        <ul><b>Timeliness</b>: time taken by attacker from assessing the target system for vulnerabilities to exploiting them to gain and maintain access</ul>
+        <ul><b>Resources</b>: amount of knowledge, tools and techniques required to perform an attack. APT attacks are more sophisticated attacks performed by <a target=_blank href=https://attack.mitre.org/groups/>highly skilled cybercriminals</a> with considerable resources</ul>
+        <ul><b>Risk tolerance</b>: level up to which the attack remains undetected in the target network</ul>
+        <ul><b>Skills and methods</b>: various social engineering techniques to gather information, techniques to prevent detection by security mechanisms and techniques to maintain access for a long time</ul>
+        <ul><b>Actions</b>: technical actions to maintain presence in the victim's network for a long time and extract as much data as possible</ul>
+        <ul><b>Attack originating points</b>: numerous attempts made to gain entry into the network, the attacker needs to conduct exhaustive research to identify vulnerabilities and gatekeeper functions in the target network</ul>
+        <ul><b>Numbers involved in the attack</b>: number of hosts involved in the attack, usually performed by a crime group / organization</ul>
+        <ul><b>Knowledge source</b>: gathering of information through online sources about specific threats which can be further exploited to perform certain attacks</ul>
+        <ul><b>Multi phased</b>: reconnaissance, access, discovery, capture, data exfiltration</ul>
+        <ul><b>Tailored to the vulnerabilities</b>: malicious code is designed and written such that it targets the specific vulnerabilities present in the victim's network</ul>
+        <ul><b>Multiple points of entries</b>: in the initial phase of an APT attack the adversary creates multiple points of entry to maintain access, if one point is detected a different entry point can be used</ul>
+        <ul><b>Evading signature based detection systems</b>: APT attacks are closely related to zero-day exploits, APT attacks can easily bypass security mechanisms </ul>
+        <ul><b>Specific Warning Signs</b>: APT attacks are usually impossible to detect, warning signs are: presence of a backdoor Trojan for maintaining access, unusual file transfers, unusual database activities etc.</ul>
+    </ol></p>
+<h2>APT Lifecycle</h2>
+<p><ol>
+    <ul><b>Preparation</b>: adversary defines target, performs extensive research, organizes a team, build tools and perform tests</ul>
+    <ul><b>Initial Intrusion</b>: sending spear-phishing emails, exploiting vulnerabilities on publicly available servers, sometimes social engineering techniques, malicious code or malware is deployed to initiate an outbound connection</ul>
+    <ul><b>Expansion</b>: the primary objectives of this phase are expanding access to the target network and obtaining credentials. In most cases the objective of an attacker is to access multiple systems using a single compromised system. The attacker wants to obtain administrative login credentials to escalate privileges and gain further access to the systems in the network</ul>
+    <ul><b>Persistence</b>: maintaining access to the target system, evading endpoint security devices like IDS and firewalls, finding locations for installing malware that are not frequently examined, including routers, servers, firewalls, printers etc.</ul>
+    <ul><b>Search and exfiltration</b>: gaining access to a resource that can be used for performing further attacks or using that resource for financial gain</ul>
+    <ul><b>Cleanup</b>: prevent detection and remove evidence of compromise / make the system appear as it was before they gained access</ul>
+</ol></p>
