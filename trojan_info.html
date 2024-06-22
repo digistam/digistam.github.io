@@ -64,3 +64,45 @@ download and execute additional malware, execute shell commands, read and write 
 <h2>Backdoor Trojans</h2>
 <p>A backdoor is a program that can bypass the standard system authentication or conventional system mechanisms like IDS and firewalls, without being detected. In these types of breaches, hackers leverage backdoor programs to access the victim's computer or network.
 The difference with other types of malware is that the installation of the backdoor is performed without the user's knowledge.</p>
+    <p>Backdoor Trojans are often used to group victim computers to form a botnet or zombie network that can be used to perform criminal activities. Often,
+     Backdoor Trojans are initially used in the second (point of entry) or third (command and control C&C) stage of the targeted attack process. </p>
+    <p>The Backdoor Trojan has a user interface, client component, which can be used by the attacker to issue command to the server component residing in the compromised machine.
+     A traditional backdoor does NOT have a GUI!</p>
+    <h2>Example: <a target=_blank href=https://www.f-secure.com/v-descs/backdoor-w32-poisonivy.shtml>PoisonIvy</a></h2>
+    <p>PoisonIvy gives the attacker almost complete control over the infected computer. The PoisonIvy remote administration tool is
+     created and controlled by a <a target=_blank href=https://www.securityweek.com/poison-ivy-kit-enables-easy-malware-customization-attackers/>PoisonIvy management program or kit</a>. The PoisonIvy kit consists 
+    of a graphical user interface and the backdoors are small (< 10kb). Once the backdoor is executed, it copies itself to either the
+     Windows folder or the Windows\system32 folder. The filename and locations of the backdoor are defined by the creator of the backdoor 
+    when using the PoisonIvy kit to create the server program. Some variants of PoisonIvy can copy themselves into an alternative 
+    data stream. </p>
+    <p>Everytime the computer is booted up, the backdoor is started because of a <b>registry entry</b>. The server automatically connects 
+    to a client using an address defined when the server part was created. The communication between the server and client programs is 
+    <b>encrypted</b> and <b>compressed</b>. PoisonIvy can be configured to inject itself into a <b>browser process</b> before making an 
+    outgoing connection to bypass firewalls.</p>
+    <p><ol>
+        <ul>File modification, deletion and transfer to and from the infected system</ul>
+        <ul>Windows registry can be viewed and edited</ul>
+        <ul>Currently running processes can be viewed, suspended and killed</ul>
+        <ul>Current network connections can be viewed and shut down</ul>
+        <ul>Services can be viewed and controlled (stopped/started)</ul>
+        <ul>Installed devices can be viewed, entries can be deleted or programs can be uninstalled</ul>
+        <ul>The list of installed applications can be viewed, entries can be deleted or programs can be uninstalled</ul>
+        <ul>Accesses Windows command shell on the infected computer</ul>
+        <ul>Steals information by taking screenshots of the desktop and recording audio / webcam</ul>
+        <ul>Accesses saved passwords and password hashes</ul>
+    </ol></p>
+<p>Other Backdoor Trojans:
+  <ol>
+    <ul><a target=_blank href=https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/kovter-an-evolving-malware-gone-fileless>Kovter</a></ul>
+    <ul><a target=_blank href=https://malpedia.caad.fkie.fraunhofer.de/details/ps1.powerstats>POWERSTATS v3</a></ul>
+    <ul><a target=_blank href=https://news.sophos.com/en-us/2019/04/25/extrapulsar-backdoor-based-on-leaked-nsa-code-what-you-need-to-know/>ExtraPulsar</a></ul>
+    <ul><a target=_blank href=https://guillaumeorlando.github.io/RogueRobin-malware-analysis-eng>RogueRobin</a></ul>
+    <ul><a target=_blank href=https://malpedia.caad.fkie.fraunhofer.de/details/win.servhelper>ServHelper</a></ul>
+    <ul><a target=_blank href=https://research.checkpoint.com/2019/speakup-a-new-undetected-backdoor-linux-trojan/>SpeakUp linux backdoor</a></ul>
+    <ul><a target=_blank href=https://interaktiv.br.de/winnti/english/>Winnti backdoor</a></ul>
+    <ul><a target=_blank href=https://symantec-enterprise-blogs.security.com/threat-intelligence/daxin-backdoor-espionage>Daxin</a></ul>
+    <ul><a target=_blank href=https://malpedia.caad.fkie.fraunhofer.de/details/win.sysjoker>SysJoker</a></ul>
+    <ul><a target=_blank href=https://malpedia.caad.fkie.fraunhofer.de/details/win.portdoor>PortDoor</a></ul>
+    <ul><a target=_blank href=https://www.enigmasoftware.com/nl/tomirisbackdoortrojan-verwijdering/>Tomiris</a></ul>
+    <ul><a target=_blank href=https://malpedia.caad.fkie.fraunhofer.de/details/win.goldenspy>GoldenSpy</a> (<a target=_blank href=https://malpedia.caad.fkie.fraunhofer.de/details/win.ghost_rat>more information</a>)</ul>
+  </ol></p>
