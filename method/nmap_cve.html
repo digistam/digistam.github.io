@@ -1,0 +1,80 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=index.html>Back to home</a>
+<hr/>
+<h1>Detect CVEs using Nmap</h1>
+  <p>source: <a target=_blank href=https://securitytrails.com/blog/nmap-vulnerability-scan>SecurityTrails</a></p>
+<p><a target=_blank href=https://www.cve.org>CVE</a> stands for Common Vulnerabilities and Exposures. It is a publicly available and free-to-use list or dictionary of standardized identifiers for 
+  common software vulnerabilities and exposures. The use of CVE IDs or CVE Identifiers, which are assigned by CVE Numbering Authorities (CNAs) from around the world, ensures confidence among parties when 
+  discussing or sharing information about a unique software or firmware vulnerbility. CVE provides a baseline for tool evaluation and enables data exchange for cybersecurity automation. In short, products and services 
+  compatible with CVE provide better coverage, easier interoperability and enhanced security.</p>
+  <p><ol>
+    <ul>One identifier for one vulnerability or exposure</ul>
+    <ul>One standardized description for each vulnerability or exposure</ul>
+    <ul>A dictionary rather than a database</ul>
+    <ul>A method for disparate databases and tools to speak the same language</ul>
+    <ul>The way to interoperability and better security coverage</ul>
+    <ul>A basis for evaluation among services, tools and databases</ul>
+    <ul>Free for the public to download and use</ul>
+    <ul>Industry-endorsed via the CVE Numbering Authorities, CVE Board and the numerous products and services that include CVE</ul>
+  </ol>
+  <p>In plain English, that simply means it's a way to organize and categorize software vulnerabilities. This information can be highly useful for security researchers and penetration testers in their daily tasks. 
+    Something we really love about the tool is its ability to expand its core features by using Nmap scripts. You might be wondering can Nmap find vulnerabilities. 
+    Yes it can! By combining these Nmap commands with a few NSE scripts, we're able to fetch the most popular CVEs from any target. Two of the most popular vulnerability/CVE detection scripts found on Nmap NSE 
+    are <b>nmap-vulners</b> and <b>vulscan</b>, which will enable you to detect relevant CVE information from <b>remote</b> or <b>local</b> hosts. Along with those two, the entire "vuln" category is an absolute 
+    treasure trove — a truly useful resource when using Nmap as a vulnerability scan engine.</p>
+
+  <h2>Nmap vulscan</h2>
+<p>Vulscan queries its own local CVE databases, hosted on the client performing the scan. These local databases include the following files:</p> 
+<p><ol>
+  <ul>scipvuldb.csv</ul>
+  <ul>cve.csv</ul>
+  <ul>securityfocus.csv</ul>
+  <ul>xforce.csv</ul>
+  <ul>exploitdb.csv</ul>
+  <ul>openvas.csv</ul>
+  <ul>securitytracker.csv</ul>
+  <ul>osvdb.csv</ul>
+</ol></p>
+<p>In order to use this NSE script, we'll need to clone its github repo</p>
+  <p><ol>
+    <ul>cd /usr/share/nmap/scripts</ul>
+    <ul>sudo git clone https://github.com/scipag/vulscan scipag_vulscan</ul>
+    <ul>sudo ln -s `pwd`/scipag_vulscan /usr/share/nmap/scripts/vulscan</ul>
+  </ol></p>
+<p>Command: <i>nmap -sV --script=vulscan/vulscan.nse ethicalhacker.com</i></p>
+  <hr>
+<h2>Nmap-vulners</h2>
+<p>Nmap-vulners is one of the most famous vulnerability scanners in use. Let's explore how to install this tool, as well as how to perform a simple CVE scan.</p>
+<p><ol>
+  <ul>cd /usr/share/nmap/scripts/</ul>
+  <ul>sudo git clone https://github.com/vulnersCom/nmap-vulners.git</ul>
+</ol></p>
+<p>
+Command: <i>nmap --script nmap-vulners/ -sV 11.22.33.44</i>
+</p>
+<p>If you want to target specific posts, you simply need to add -p80 at the end, and replace "80" with the port you want to scan. And of course, replace 11.22.33.44 with your desired IP or TLD.</p>
+<h2>Combine</h2>
+<p>Command: <i>nmap --script nmap-vulners/,vulscan/ -sV yourwebsite.com</i></p>
+<h2>Nmap vuln</h2>
+<p>The way NSE scripts are defined is based on a list of predefined categories where each script belongs. These categories include:</p>
+  <p><ol>
+    <ul>auth</ul>
+    <ul>brute</ul>
+    <ul>default</ul>
+    <ul>discover</ul>
+    <ul>dos</ul>
+    <ul>exploit</ul>
+    <ul>external</ul>
+    <ul>fuzzer</ul>
+    <ul>intrusive</ul>
+    <ul>malware</ul>
+    <ul>safe</ul>
+    <ul>version</ul>
+    <ul>vuln</ul>
+  </ol></p>
+  <p>Nmap script <b>vuln</b> is the one we’ll be using to launch our next scan against vulnerable subdomains. The syntax is the same as that of the previous NSE scripts, with 'vuln' added after '--script', 
+    as you can see here:</p>
+<p>Command: nmap -Pn --script vuln 192.168.1.105</p>
+<p>Command: nmap -Pn --script vuln testphp.vulnweb.com -p 8443</p>
+<p>Here, we launched a CVE scan against port 8443, but you can query other ports or the entire website as well</p>
