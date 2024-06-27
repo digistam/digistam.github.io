@@ -231,3 +231,84 @@ information. GlitchPOS has become the most notorious financial Trojan, spread ac
 <p>Once spread over the system, defacement trojans can destroy or change the entire content of a database. Most dangerous when targetting websites, as they physically change the underlying HTML format. </p>
 <p><b>Resource editors</b> allow to view, edit, extract and replace strings, bitmaps, logos, icons etc. from any Windows program. They allow viewing and editing or nearly any aspect of a compiled Windows program, from 
 menus to dialog boxes and icons etc. They employ user-styled applications (UCAs) to deface Windows applications</p>
+    <p><b>Restorator</b></p>
+    <p><a target=_blank href=https://www.bome.com>Restorator</a> is a utility for editing Windows resources in applications 
+    and their components (.exe, .dll, .res, .rc, .dcr). It can change, add or remove rersources such as text, images, 
+    icons, sounds, videos, versions, dialogs and menus in nearly all Windows programs.</p>
+    <p><ol>
+        <ul>Translate (localization)</ul>
+        <ul>Customize look and feel</ul>
+        <ul>Replace logos and icons (branding)</ul>
+        <ul>Enhance control over resource files in the software development process</ul>
+        <ul>Hack into the inner workings of applications on the computer</ul>
+    </ol></p>
+<h2>Service Protocol Trojans</h2>
+<p>These Trojans can take advantage of vulnerable service protocols such as VNC, HTTP/HTTPS and ICMP to attack a victim's machine</p>
+<h2>VNC Trojan</h2>
+<p>A VNC Trojan starts a VNC server daemon in the infected system (victim) and attacks using a VNC viewer. VNC is a utility and 
+hard te detect by antivirus software.</p>
+<p>Trojans with VNC capacibility:
+  <ol>
+    <ul><a target=_blank href=https://thehackernews.com/2024/04/vultur-android-banking-trojan-returns.html>Vultur</a></ul>
+    <ul><a target=_blank href=https://www.techtarget.com/searchsecurity/definition/Dridex-malware>Dridex</a></ul>
+    <ul><a target=_blank href=https://threats.kaspersky.com/en/threat/Trojan-Banker.Win32.Neverquest/>Neverquest</a></ul>
+    <ul><a target=_blank href=https://malpedia.caad.fkie.fraunhofer.de/details/win.gozi>Gozi</a></ul>
+  </ol></p>
+    <h2>HTTP/HTTPS Trojans</h2>
+    <p>HTTP/HTTPS Trojans can bypass any firewall and work in reverse as opposed to a straight HTTP tunnel. They use 
+    web based interfaces and port 80. The execution of these Trojans take place on the internal host and spawns a child 
+    program at a predetermined time. The child program is <b>a user to the firewall</b> so the firewall allows the program 
+    to access the internet. However, this child program executes a local shell, connects to the webserver that the attacker 
+    owns on the internet through an apparently legitimate HTTP request and sends it a ready signal. The attacker 
+    converts all the traffic into a Base64 like structure and gives it as a value for a cgi string to avoid detection.</p>
+    <h2>Example CGI string</h2>
+    <p>(Slave) GET/cgi-bin/order?M5mAejTqZdgY0dgIO4Gh7eeeM HTTP/1.0</p>
+    <p>(Master) g5mA1fbknz</p>
+    <p>The GET of the internal host (Slave) is the command prompt of the shell; the answer is an encoded "ls" command from the attacker 
+    on the external server (Master(.</p>
+    <p>The Slave tries to connect to the Master daily at a specified time. If the administrator sees connections to the attacker's 
+    server and connects it to his server, he just sees a broken web server because there is a token (password) in the 
+    encoded cgi GET request.</p>
+    <p>Usage is easy: edit <a target=_blank href=https://github.com/DtxdF/rwwwshell>rwwwshell.pl</a> for the correct values, execute "rwwwshell.pl slave" on the slave and run rwwwshell.pl on the Master just before the slave
+    tries to connect. </p>
+<p><b>SHTTPD</b> is a small HTTP server that can be embedded inside any program. It can be wrapped with a genuine program (like the game chess.exe). 
+When executed, it will turn a computer into an unvisible web server.</p>
+    <p>Example: an attacker connects to the victim using web browser http://10.0.0.5:443 and infects the victim's computer 
+    with chess.exe, with Shhtpd running in the background and listening on port 443 (SSL). </p>
+    <h2>HTTP RAT</h2>
+    <p><ol>
+        <ul>Uses web interfaces and port 80</ul>
+        <ul>Reverse http tunneling</ul>
+        <ul>More dangerous as they work nearly ubiquitously where the internet can be accessed</ul>
+        <ul>Displays ads and records personal data/keystrokes</ul>
+        <ul>Downloads unsolicited files and disables programs/system</ul>
+        <ul>Floods internet connection and distributes threats</ul>
+        <ul>Tracks browsing activities and hijacks internet browser</ul>
+        <ul>Makes fraudulent claims about spyware detection and removel</ul>
+    </ol></p>
+    <h2>ICMP Trojans</h2>
+    <p>ICMP is connectionless and provides error messages to unicast addresses. An attacker can hide the data using covert 
+    channel methods in a protocol that is undetectable. The concept of ICMP tunneling allows <b>one protocol to be carried 
+    over another protocol</b>. ICMP tunneling uses ICMP echo request and reply to carry a payload and stealthily access or 
+    control the victim's machine.</p>
+    <h1>Mobile Trojans</h1>
+    <p>Mobile Trojans target mobile phones, which amount is rapidly increasing. The attacker tricks the victim into installing a malicious application.</p>
+    <h2>BasBanke</h2>
+    <p><a target=_blank href=https://securelist.com/basbanke-trend-setting-brazilian-banking-trojan/90365/>BasBanke</a> runs on Android and 
+    was first detected during the Brazilian elections in 2018. It's a banking trojan and when it infects a device, it will perform 
+    keystroke logging, screen recording, SMS interception and theft of credit card and financial information. To trick users into 
+    downloading this Trojan, the Trojan creators advertise it with <b>WhatsApp</b> and <b>Facebook messages</b>. The most 
+    widely spread and downloaded malicious version of BasBanke is the fake CleanDroid Android app. Cleandroid projects itself 
+    as a mobile junk cleaning and memory boosting app, however it is actually a banking Trojan.</p>
+    <p>Other Mobile Trojans:
+  <ol>
+    <ul><a target=_blank href=https://blog.checkpoint.com/security/agent-smith-android-malware-mobile-phone-hack-virus-google/>Agent Smith</a></ul>
+    <ul><a target=_blank href=https://threats.kaspersky.com/en/threat/Trojan.AndroidOS.Hiddad/>Hiddad</a></ul>
+    <ul><a target=_blank href=https://gbhackers.com/androrat-remote-access-trojan/>AndroRat</a></ul>
+    <ul><a target=_blank href=https://securelist.com/the-rotexy-mobile-trojan-banker-and-ransomware/88893/>Rotexy</a></ul>
+    <ul><a target=_blank href=https://securityintelligence.com/news/gplayed-android-trojan-imitates-google-apps-to-spy-on-and-steal-data-from-victims/>GPlayed</a></ul>
+    <ul><a target=_blank href=https://securelist.com/the-rise-of-mobile-banker-asacub/87591/>Asacub</a></ul>
+    <ul><a target=_blank href=https://malpedia.caad.fkie.fraunhofer.de/details/apk.gustuff>Gustuff</a></ul>
+    <ul><a target=_blank href=https://www.zimperium.com/blog/grifthorse-android-trojan-steals-millions-from-over-10-million-victims-globally/>GriftHorse</a></ul>
+      <ul><a target=_blank href=https://thehackernews.com/2024/04/vultur-android-banking-trojan-returns.html>Vultur</a></ul>
+  </ol></p>
