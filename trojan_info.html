@@ -346,6 +346,16 @@ When executed, it will turn a computer into an unvisible web server.</p>
     <ul><a target=_blank href=https://digital.nhs.uk/cyber-alerts/2018/cc-2337>Bushido Botnet</a></ul>
     </ol></p>
 
+<h2>Command Shell Trojans</h2>
+    <p>Provides remote control of a command shell on a victim's machine. A Trojan server is installed on the victim's machine, 
+    which opens a port, allowing the attacker to connect. The client is installed on the victim's machine.</p>
+<p>
+  <ol>
+    <ul><a target=_blank href=https://certifiedethicalhackerceh.blogspot.com/2012/02/how-netcat-trojan-works.html>Netcat</a></ul>
+    <ul><a target=_blank href=https://ophtek.com/dnsmessenger-is-a-new-method-of-cyber-attack/>DNS Messenger</a></ul>
+          <ul><a target=_blank href=https://github.com/byt3bl33d3r/gcat>GCat</a></ul>
+    </ol></p>
+
 
     
 <h1>IoT Trojans</h1>
@@ -376,3 +386,38 @@ and co-ordinate them to mount a DDoS attack against a chosen victim.</p>
       <ul><a target=_blank href=https://blog.netlab.360.com/ttint-an-iot-remote-control-trojan-spread-through-2-0-day-vulnerabilities/>Ttint</a></ul>
             <ul><a target=_blank href=https://www.nozominetworks.com/blog/dark-nexus-iot-botnet-analyzing-and-detecting-its-network-activity>Dark Nexus</a></ul>
   </ol></p>
+<h1>Construction of a Trojan</h1>
+<p><ol>
+    <li>A new Trojan packet is created with tools like Trojan Horse Construction Kit, <a target=_blank href=https://github.com/trustedsec/social-engineer-toolkit>Social Engineering Toolkit (SET)</a> and Beast. 
+New Trojans have a higher chance of succeeding in compromising the target system, as the security mechanisms might fail to detect them.
+These Trojans can be transferred to a victim's machine using a <b>dropper</b> or <b>downloader</b>.</li>
+<li>Employ a dropper or downloader to install the malicious code on the target system. The dropper appears to users as a legitimate 
+application or a well-known or trusted file. Downloaders are malware transporters that do not contain the actual malware file but they contain a link 
+from where the Trojan can be downloaded. When a downloader is executed, it connects back to the attacker's server and downloads the Trojan. Droppers can 
+easily evade firewalls, but a downloader can be detected with the help of network analyzer tools.</li>
+    <li>Employ a <b>wrapper</b> such as <a target=_blank href=https://www.un4seen.com/petite/>petite.exe</a>, <a target=_blank href=https://null-byte.wonderhowto.com/how-to/bypass-antivirus-software-by-obfuscating-your-payloads-with-graffiti-0215787/>Graffiti.exe</a>, <a target=_blank href=https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-it-pro/internet-explorer-11/ie11-ieak/iexpress-wizard-for-win-server>IExpress Wizard</a> or 
+        <a target=_blank href=https://packetstormsecurity.com/files/14593/elitewrap.zip.html>eLiTeWrap</a> to help bind 
+    the Trojan executable to legitimate files to install it on the target system</li>
+    <li>Employ a crypter such as <a target=_blank href=https://www.bitcrypter.com/>BitCrypter</a> to encrypt the Trojan to evade detection by firewalls/IDS</li>
+<li>Propagate the Trojan by implementing various methods such as sending it over (c)overt channels, exploit kits, emails, instant messenges, 
+trying to trick victim's into downloading and executing it</li>
+    <li>Deploy the Trojan on the victim's machine by executing the dropper of downloader</li>
+    <li>Execute the damage routine. Most malware contains a damage routine that delivers payloads.</li>
+</ol></p>
+    <h2>Creating a Trojan</h2>
+    <p><ol>
+        <ul>DarkHorse Trojan Virus Maker (<a target=_blank href=https://any.run/report/d506a4b38dc7a62934d56d0bdb8825e4d64f887a285cd6964ced25ca7f1a7ced/d31e76f7-9dea-4f16-b639-f786ecd9f9d3>background info</a>)</ul>
+        <ul>Senna Spy Trojan Generator</ul>
+        <ul>Batch Trojan Generator</ul>
+        <ul>Umbra Loader - Botnet Trojan Maker</ul>
+    </ol></p>
+    <h2>Employing a Dropper or Downloader</h2>
+    <p><ol>
+        <ul>Droppers are programs that are used to camouflage malware payloads and consist of one or more types of malware features that can make it undetectable by antivirus software. 
+        The dropper is executed by simply loading its own code into the memory, and the malware payload is then extracted and written into the file system. 
+        Emotet, Dridex, Gymdrop and Anatsa are well-known droppers.</ul>
+        <ul>A downloader is a program that can download and install harmful programs such as malware. Downloaders are
+        spread as camouflaged files attached in emails. When the victim opens the attached infected file, the downloader 
+        tries to contact the remote server for directly fetching other malicious programs. <a target=_blank href=https://cyware.com/news/godzilla-loader-one-of-the-newest-kids-on-the-malware-downloader-block-0d0df53d>Godzilla downloader</a>, Trojan.downloader, <a target=_blank href=https://www.broadcom.com/support/security-center/attacksignatures/detail?asid=29217>W97M.Downloader</a> and 
+        ISB.Downloader!gen309 are some well-known downloaders.</ul>
+    </ol></p>
