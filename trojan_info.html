@@ -421,3 +421,64 @@ trying to trick victim's into downloading and executing it</li>
         tries to contact the remote server for directly fetching other malicious programs. <a target=_blank href=https://cyware.com/news/godzilla-loader-one-of-the-newest-kids-on-the-malware-downloader-block-0d0df53d>Godzilla downloader</a>, Trojan.downloader, <a target=_blank href=https://www.broadcom.com/support/security-center/attacksignatures/detail?asid=29217>W97M.Downloader</a> and 
         ISB.Downloader!gen309 are some well-known downloaders.</ul>
     </ol></p>
+<h2>Employing a Wrapper</h2>
+<p><ol>
+    <ul>Wrappers bind the executable with .exe applications that appear genuine such as games or office applications</ul>
+    <ul>When the user runs the wrapped .exe it first installs the Trojan in the background and then runs the wrapping application in the foreground</ul>
+    <ul>Wrappers are a type of glueware</ul>
+</ol></p>
+    <h2>Employing a Crypter</h2>
+    <p>A crypter is software that encrypts the original binary code of the .exe file. Attackers use crypters to hide viruses, spyware, 
+    keyloggers, RATs etc. to maken them invisible by antivirus software.</p>
+    <h2>Propagating and deploying a Trojan</h2>
+    <p>After creating a Trojan and employing dropper/downloader, wrapper and crypter, the attacker must transfer the package and
+    deploy it on the target machine.</p>
+    <p><ol>
+        <ul><b>E-mail</b> -> as soon as the victim clicks the malicious link in an email the client connects directly to the Trojan server</ul>
+        <ul><b>Covert channels</b> -> illegal hidden path used to transfer data from a network, relying on a tunnel created with protocols as DNS, SSH, ICMP and HTTP/S, evading anti-virus software </ul>
+        <ul><b>proxy servers</b> -> a Trojan proxy is usually a standalone application that allow to use the victim's computer as a proxy to connect to the target machine. Thousands of machines on the internet are infected with proxy servers.</ul>
+        <ul><b>USB/flash drives</b> -> sometime, attackers drop a USB drive and wait for a random victim to pick it up. Once the USB drive is picked up and inserted in a machine, the Trojan is propagated on the system by drop or download method.</ul>
+    </ol></p>
+    <h2>Evading anti-virus software</h2>
+    <p><ol>
+        <ul>break the Trojan apart into multiple pieces and zip them as a single file</ul>
+        <ul>write a new Trojan and embed it into an application (antivirus will not recognize new Trojans)</ul>
+        <ul>change the Trojan's syntax: convert an .exe to VB script, change .exe extension to ".doc, .exe", ".ppt, .exe" or ".pdf.exe" (Windows will hide known extensions by default, hence it shows it as .doc, .ppt, .pdf etc.)</ul>
+        <ul>Change the content of the Trojan using a hex editor</ul>
+        <ul>Change the checksum and encrypt the file</ul>
+        <ul>never use Trojans downloaded from the web (easily detected by antivirus)</ul>
+        <ul>use binder and splitter tools that can change the first few bytes of the Trojan</ul>
+        <ul>perform code obfuscation or morphing to prevent the antivirus from differentiating between malicious and harmless programs</ul>
+    </ol></p>
+    <h1>Exploit kits</h1>
+    <p>Exploit kits or crimeware toolkits are used to exploit security loopholes found in software applications such as Adobe Reader and Adobe 
+    Flash Player, by distributing malware such as spyware, viruses, Trojans, worms, bots, backdoors, buffer overflow scripts etc.</p>
+    <p>Exploit kits come with pre-written exploit code and are easy to use for an attacker how is not an IT or security expert. 
+    An user-friendly interface helps to target browsers, programs that are accessible using browsers, zero-day vulnerabilities and 
+    exploits updated with new patches instantly. Exploit kits are used against users running insecure or outdated software applications on their systems.</p>
+    <h2>Flow</h2>
+    <p><ol>
+        <ul>The victim visits a legitimate website that is hosted on the compromised web server</ul>
+        <ul>The victim is redirected through various intermediary servers</ul>
+        <ul>The victim unknowingly lands on an exploit kit server hosting the exploit pack landing page</ul>
+        <ul>The exploit kit gathers information on the victim, based on which it determines the exploit and delivers it to the victim's system</ul>
+        <ul>If the exploit succeeds, a malware program is downloaded and executed on the victim's system</ul>
+    </ol></p>
+    <h2>Example: BotenaGo Exploit Kit</h2>
+    <p>Written in the Go scripting language, contains over 30 variants of exploits and is capable of attaking millions of IoT and 
+    routing devices worldwide. <a target=_blank href=https://duo.com/decipher/botenago-malware-source-code-appears-on-github>BotenaGo</a> was first discovered in 2021 and observed as Mirai botnet malware by antivirus software. 
+    Attackers initiate the exploitation process by placing a backdoor in the victim device through port 31412 by sending a GET request 
+    and listens for the victim's IP as the response through port 19412. BotenaGo is succesfully being used by attackers in distributing 
+    DDoS functionalities by spreading payloads to victim devices.</p>
+
+        <p>Other exploit kits:
+  <ol>
+    <ul><a target=_blank href=https://www.malwarebytes.com/blog/news/2019/08/say-hello-to-lord-exploit-kit>Lord</a></ul>
+    <ul><a target=_blank href=https://www.malwarebytes.com/blog/news/2018/12/underminer-exploit-kit-improves-latest-iteration>Underminer Exploit Kit</a></ul>
+    <ul><a target=_blank href=https://resources.prodaft.com/rig-exploit-kit-report>RIG Exploit Kit</a></ul>
+    <ul><a target=_blank href=https://decoded.avast.io/janvojtesek/magnitude-exploit-kit-still-alive-and-kicking/>Magnitude</a></ul>
+    <ul><a target=_blank href=https://unit42.paloaltonetworks.com/unit42-understanding-angler-exploit-kit-part-1-exploit-kit-fundamentals/>Angler</a></ul>
+    <ul><a target=_blank href=https://cyware.com/news/neutrino-exploit-kit-a-walk-through-into-the-exploit-kits-campaigns-distributing-various-ransomware-cb14cdb8>Neutrino</a></ul>
+    <ul><a target=_blank href=https://www.malwarebytes.com/blog/news/2017/11/terror-exploit-kit-goes-https-all-the-way>Terror</a></ul>
+    <ul><a target=_blank href=https://blog.talosintelligence.com/sundown-ek/>Sundown</a></ul>
+  </ol></p>
