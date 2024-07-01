@@ -21,6 +21,103 @@ other files; however infection of external machines is only possible with the as
         <ul>Infecting other files</ul>
         <ul>Transforms itself</ul>
         <ul>Encrypt itself</ul>
-        
+        <ul>Alters data</ul>
+        <ul>Corrupts files and programs</ul>
+        <ul>Replicates itself</ul>
     </ol></p>
-    
+    <h2>Purpose of Creating Viruses</h2>
+    <p><ol>
+        <ul>Inflict damage on competitors</ul>
+        <ul>Realize financial benefits</ul>
+        <ul>Vandalize intellectual property</ul>
+        <ul>Play pranks</ul>
+        <ul>Conduct research</ul>
+        <ul>Engage in cyberterrorism</ul>
+        <ul>Distribute political messages</ul>
+        <ul>Damage network or computers</ul>
+        <ul>Gain remote access to the victim's computer</ul>
+    </ol></p>
+    <h2>Indications of Virus Attack</h2>
+    <p><ol>
+        <ul>Processes require more resources and time, resulting in degraded performance</ul>
+        <ul>Computer beeps with no display</ul>
+        <ul>Drive label changes and OS does not load</ul>
+        <ul>Constant antivirus alerts</ul>
+        <ul>Computer freezes frequently or encounters an error such as BSOD</ul>
+        <ul>Files and folders are missing</ul>
+        <ul>Suspicious hard drive activity</ul>
+        <ul>Browser window "freezes"</ul>
+        <ul>Lack of storage space</ul>
+        <ul>Unwanted advertisements and pop-up windows</ul>
+    </ol></p>
+    <h2>Stages of Virus Lifecycle</h2>
+    <p><ol>
+        <ul><b>Design</b>: development of virus code using programming languages or construction kits</ul>
+        <ul><b>Replication</b>: the virus replicates for a period within the target system and then spreads itself</ul>
+        <ul><b>Launch</b>: the virus is activated when the user performs specific actions such as running an infected program</ul>
+        <ul><b>Detection</b>: the virus is identified as a threat infecting target system</ul>
+        <ul><b>Incorporation</b>: antivirus software developers assimilate defenses against the virus</ul>
+        <ul><b>Execution of the damage routine</b>: users install antivirus updates and eliminate the virus threats</ul>
+    </ol></p>
+    <h1>Working of Viruses</h1>
+    <h2>Infection Phase</h2>
+    <p>Programs modified by a virus infection can enable virus functionalities to run on the system. The virus infects the target system after it is triggered and becomes active upon the 
+    execution of infected programs, because the program code leads to the virus code. The two most important factors in the infection phase of a virus are:</p>
+    <p><b>Method of infection</b></p>
+    <p><b>Method of spreading</b></p>
+    <p><ol>
+        <ul>a virus loads itself into memory and checks for an executable on the disk</ul>
+        <ul>the virus appends malicious code to a legitimate program without the permission or knowledge of the user</ul>
+        <ul>the user is unaware of the replacement and launches the infected program</ul>
+        <ul>the execution of the infected program also infects other programs in the system</ul>
+        <ul>the above cycle continues until the user realizes that there is an anomaly in the system</ul>
+    </ol></p>
+<p>Apparently, the user unknowingly triggers and executes the virus for it to function. Potential targets for virus infections are:</p>
+<p><ol>
+    <ul>Source code</ul>
+    <ul>Batch files</ul>
+    <ul>Script files</ul>
+</ol></p>
+    <p>Boot sector viruses execute their code before the target PC is booted.</p>
+    <p>Most popular methods by which a virus spreads are:</p>
+    <p><ol>
+        <ul><b>Infected files</b>: a virus can infect a variety of files</ul>
+        <ul><b>File-sharing services</b>: file servers</ul>
+        <ul><b>DVDs and other storage media</b>: infected storage media</ul>
+        <ul><b>Malicious attachments and downloads</b>: malicious attachment sent via email or downloaded from untrusted sources</ul>
+    </ol></p>
+    <h2>Attack Phase</h2>
+    <p><ol>
+        <ul>Delete files and alter the content of data files, slowing down the system</ul>
+        <ul>Perform tasks not related to applications, such as playing music and creating animations</ul>
+        <ul>Viruses execute upon triggering specific events</ul>
+        <ul>Some viruses execute and corrupt via built-in bug programs after being stored in the host's memory</ul>
+        <ul>The latest and most advanced viruses conceal their presence, attacking only after thoroughly spreading through the host</ul>
+    </ol></p>
+    <h2>How does a computer get infected by viruses</h2>
+    <p><ol>
+        <ul><b>Downloads</b>: viruses are incorporated in popular software programs</ul>
+        <ul><b>Email attachments</b></ul>
+        <ul><b>Pirated software</b>: cracked versions of commercial software</ul>
+        <ul><b>Failing to install security software</b>: new viruses</ul>
+        <ul><b>Updating software</b>: if patches are not regularly installed, virus might exploit vulnerabilities</ul>
+        <ul><b>Browser</b>: incorrectly configured browser could result in automatic running of scripts</ul>
+        <ul><b>Firewall</b>: disabling</ul>
+        <ul><b>Pop-ups</b>: when a user clicks any suspicious pop-up by mistake, a virus behind the pop-up can enter the system</ul>
+        <ul><b>Removable media</b>: virus-infected removable media (CD/DVD, USB drive, card reader)</ul>
+        <ul><b>Network access</b>: connecting to untrusted Wi-Fi network, leaving Bluetooth on, permitting file sharing program that is accessed openly</ul>
+        <ul><b>Backup and restore</b>: a backup of an infected file</ul>
+        <ul><b>Malicious online ads</b>: malvertising</ul>
+        <ul><b>Social media</b>: click on social media sites, including malicious links shared by contacts</ul>
+    </ol></p>
+
+    <h1>Types of viruses</h1>
+    <h2>System or Boot Sector Viruses</h2>
+    <p>Most common targets for a virus are the system sectors, which include the master boot record (MBR) and the DOS boot record system sectors. An OS executes code in these areas while booting. 
+    Every disk has some sort of system sector. MBRs are most virus-prone zones because if the MBR is corrupted, all data will be lost. The DOS boot sector also executes during system booting. This
+    is a crucial point of attack for viruses. The system sector consists of only 512 bytes of disk space. Therefore, system sector viruses conceal their code in some other disk space. Primary carriers 
+    of system or boot sector viruses are email attachments and removable media (USB drives). Such viruses reside in memory. Some sector viruses also spread through infected files; these are known as <b>multipartite viruses</b></p>
+    <p>A boot sector virus moves MBR to another location on the hard disk and copies itself to the original location of MBR. When the system boots, first, the virus code executes and then control passes
+    to the original MBR.</p>
+    <p>System sector viruses create the illusion that there is no virus on the system. One way to deal with this virus is to avoid the use of Windows OS and switch to Linux or Mac. Windows is prone to these attacks.
+    Another approach is to periodically perform antivirus checks.</p>
