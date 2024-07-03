@@ -112,6 +112,7 @@ other files; however infection of external machines is only possible with the as
     </ol></p>
 
     <h1>Types of viruses</h1>
+    
     <h2>System or Boot Sector Viruses</h2>
     <p>Most common targets for a virus are the system sectors, which include the master boot record (MBR) and the DOS boot record system sectors. An OS executes code in these areas while booting. 
     Every disk has some sort of system sector. MBRs are most virus-prone zones because if the MBR is corrupted, all data will be lost. The DOS boot sector also executes during system booting. This
@@ -121,5 +122,104 @@ other files; however infection of external machines is only possible with the as
     to the original MBR.</p>
     <p>System sector viruses create the illusion that there is no virus on the system. One way to deal with this virus is to avoid the use of Windows OS and switch to Linux or Mac. Windows is prone to these attacks.
     Another approach is to periodically perform antivirus checks.</p>
+    
     <h2>File Viruses</h2>
     <p>File viruses infect files executed or interpreted in the system, such as COM, EXE, SYS, OVL, OBJ, PRG, MNU and BAT files. File viruses can be direct-action (non-resident) or memory-resident viruses.</p>
+    <p>File viruses insert their code into the original file and infect executable files. Such viruses are numerous, albeit rare. During program execution, the virus executes along with program files to infect more files.
+    File viruses hide their presence using stealth techniques to reside in a computer's memory in the same way as system sector viruses. If a user attempts to read the file, the virus intercepts the request and the 
+    user gets back his original file. File viruses can infect many file types, as a wide variety of infection techniques exist.</p>
+
+    <h2>Multipartite Viruses</h2>
+    <p>A multipartite virus (multipart virus, hybrid virus) combines the approach of file infectors and boot record infectors and attempts to simultanously attack both the boot sector and the executable or program files. 
+    When the virus infects the boot sector, it will, in turn affect the system files and vice versa. This type of virus re-infects a system repeatedly if it is not rooted out entirely from the target machine.</p>
+
+    <h2>Macro Viruses</h2>
+    <p>Macro viruses infects Microsoft Word or similar applications by automatically performing a sequence of actions after triggering an application. Most macro viruses are written using the macro language 
+    Visual Basic for Applications (VBA), and they infect templates or convert infected documents into template files while maintaining their appearance of common document files. Macro viruses are somewhat less harmful 
+    than other viruses. They usually spread via email. Pure data files do not allow the spreading of viruses, but sometimes, the average user easily overlooks the line between a data file and an executable file. 
+    Virus writers can exploit universal programs with macro capacibility such as Microsoft Word, Excel, PowerPoint, Help files etc.</p>
+
+    <h2>Cluster Viruses</h2>
+    <p>Cluster viruses infect files without changing the file or planting additional files. They save the virus code to the hard drive and overwrite the pointer in the directory entry, directing the disk read pointer 
+    to the virus code instead of the actual program. Only one copy of the virus exists on disk. A cluster virus, example Dir-2, first launches itself when any program starts on the computer system and control is then passed 
+    to the actual program. If the victim boots from a clean usb drive and then runs a utility such as CHKDSK, the utility reports a serious problem with the cross-linked file on the disk. Such utilities usually offer 
+    to correct the problem. If the offer is accepted, the virus infects all the executable files and results in the loss of original content or all files might appear to be of the same size.</p>
+
+    <h2>Stealth Viruses / Tunneling Viruses</h2>
+    <p>These viruses hide from antivirus programs by actively altering and corrupting the service call interrupts while running. A stealth virus hides from antivirus software by hiding the original size of the file or 
+    temporarily placing a copy of itself in some other system drive, thus replacing the infected file with uninfected file that is stored on the hard drive. This virus also resides in memory. To avoid detection, these viruses 
+    always take over system functions and use them to hide their presence. One of the carriers of stealth viruses is the rootkit. Installing a rootkit results in such a virus attack because a Trojan installs the rootkit 
+    and is thus capable of hiding any malware.</p>
+
+    <h2>Virus Removal</h2>
+    <p><ol>
+        <ul>Always perform a cold boot (boot from write-protected CD or DVD)</ul>
+        <ul>Never use DOS commands such as CHKDSK / FDISK to fix the virus</ul>
+        <ul>Unse antivirus software</ul>
+    </ol></p>
+
+    <h2>Encryption Viruses</h2>
+    <p>Encryption viruses or cryptolocker viruses penetrate the target system via freeware, shareware, codecs, fake ads, torrents, email spam etc. This type of virus consits of an encrypted copy of the virus and 
+    a decryption module. The decryption module remains constant, whereas the encryption makes use of different keys. An encryption key consists of a decryption module and an encrypted copy of the code, which enciphers 
+    the virus. When the attacker injects the virus into the target machine, the decryptor will first execute and decrypt the virus body. Then, the virus body executes and replicates or becomes resident in the target 
+    machine. The replication process is successfully accomplished using the encryptor. Each virus infected file uses a different key for encryption. These viruses employ XOR on each byte with a randomized key. 
+    The decryption technique employed is "x", or each byte with a randomized key is generated and saved by the root virus. Encryption viruses block access to target machines or provide victims with limited access to 
+    the system. They use encryption to hide from virus scanners. The virus scanner cannot detect the encryption virus using signatures, but it can detect the decryption module.</p>
+
+    <h2>Sparse Infector Viruses</h2>
+    <p>Viruses typically hide from antivirus programs. Sparse infector viruses infect less often and try to minimalize their probability of discovery. These viruses infect only occasionally upon satisfying 
+    certain conditions or infect only those files whose lengths fall within a narrow range. Two approaches:</p>
+    <p><ol>
+        <ul>Replicates only occasionally (example: every tenth program executed or on a particular day of the week (wakeup call))</ul>
+        <ul>Determines which file to infect based on certain conditions (example: infects target files with a maximum size of 128kb)</ul>
+    </ol></p>
+
+    <h2>Polymorphic Viruses</h2>
+    <p>Such viruses infect a file with an encrypted copy of a polymorphic code already decoded by a decryption module. Polymorphic viruses modify their code for each replication to avoid detection. They accomplish this 
+    by changing the encryption module and the instruction sequence. Polymorphic mechanisms use random number generators in their implementation. A polymorphic virus consits of three components:</p>
+    <p><ol>
+        <ul>encrypted virus code</ul>
+        <ul>decryptor routine</ul>
+        <ul>mutation engine</ul>
+    </ol></p>
+
+    <h2>Metamorphic Viruses</h2>
+    <p>Metamorphic viruses are programmed such that they rewrite themselves completely each time they infect a new executable file. Metamorphic code reprograms itself. </p>
+
+    <h2>Overwriting File or Cavity Viruses</h2>
+    <p>Some programs have empty spaces in them. Cavity viruses, also known as space fillers, overwrite a part of the host file with a constant (usually nulls), without increasing the length of the file while preserving its 
+    functionality. Maintaining a constant file size when infecting allows the virus to avoid detection. Cavity viruses are rarely found due to unavailability of hosts and code complexity.</p>
+    <p>A new design of a Windows file, called the Portable Executable (PE) improves the loading speed of programs. However, it leaves a particular gap in the file while it is being executed, which can be used by the
+    cavity virus.</p>
+
+    <h2>Companion / Camouflage Viruses</h2>
+    <p>The companion virus stores itself with the same filename as the target program file. Companion viruses use DOS to run COM files before the execution of EXE file. The virus installs an identical COM file and 
+    infects EXE files. DOS will execute COM, then EXE and then BAT files with the same root name, if they are all in the same directory.</p>
+
+    <h2>Shell Viruses</h2>
+    <p>Shell virus code forms a shell around the target host program's code, making itself the original program with the host code as its sub-routine. Nearly all boot program viruses are shell viruses.</p>
+
+    <h2>File Extension Viruses</h2>
+    <p>File extension viruses change the extensions of files (example BAD.TXT.VBS). If you have forgotten that extensions are turned off in Windows, you might think that this is a text file and open it.</p>
+    <p><ol>
+        <ul>Turn off 'Hide file extensions'</ul>
+        <ul>Scan all the files in the system using robust antivirus software</ul>
+    </ol></p>
+
+    <h2>FAT Viruses</h2>
+    <p>These viruses attack the File Allocation Table (FAT) and destroy the index, making it impossible to locate files. FAT viruses often manifest in the form of corrupted files, with users noting that files 
+    are missing or inaccessible. The FAT architecture can also by changed (FAT32 -> FAT12)</p>
+
+    <h2>Logic Bomb Viruses</h2>
+    <p>A logic bomb is triggered by a response to an event, such as the launching of an application or when a specific date/time is reached, where it involves logic te execute the trigger. When a logical bomb 
+    is programmed to execute on a specific date (example: Christmas) it is referred to as a <b>time bomb</b>.</p>
+
+    <h2>Web Scripting Viruses</h2>
+    <p>These viruses breaches the web browser security. This allows to inject client-side scripting into the web page. A typical version of web scripting viruses is DDoS. There are two types of web scripting viruses:</p>
+    <p><ol>
+        <ul>Non-persistent (attacks without your knowledge)</ul>
+        <ul>Persistent: cookies are directly stolen and the attacker can hijack the session</ul>
+    </ol></p>
+
+    <h2>E-mail Viruses</h2>
+    <p>Email viruses perform a wide variety of activities, from creating pop-ups to crashing systems or stealing personal data. </p>
