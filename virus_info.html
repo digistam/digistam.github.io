@@ -223,3 +223,28 @@ other files; however infection of external machines is only possible with the as
 
     <h2>E-mail Viruses</h2>
     <p>Email viruses perform a wide variety of activities, from creating pop-ups to crashing systems or stealing personal data. </p>
+
+    <h2>Armored Viruses</h2>
+    <p>Armored viruses are viruses that are designed to confuse or trick deployed antivirus systems to prevent them from detecting the actual source of the infection. They trick antivirus programs by showing some 
+    other location even though they are actually on the system itself. Basic techniques:</p>
+    <p><ol>
+        <ul>Anti-dissassembly: uses specially crafted code or data in a program to produce an incorrect program listing by dissassembly analysis tools</ul>
+        <ul>Anti-debugging: used to ensure the program is not running under the debugger</ul>
+        <ul>Anti-heuristics: prevent heuristic analysis and rely on the program's ability to protect itself from programmer and debugger intervention</ul>
+        <ul>Anti-emulation: avoid dynamic analysis by fingerprinting the emulated system environment</ul>
+        <ul>Anti-goat: use heuristic rules to detect possible goat files such as a virus that cannot infect a file if it is too small or if it contains a large amount of do-nothing instructions</ul>
+    </ol></p>
+
+    <h2>Add-on Viruses</h2>
+    <p>These viruses append their code to the host code without making any changes to the latter or relocate the host code to insert their code at the beginning.</p>
+
+    <h2>Intrusic Viruses</h2>
+    <p>Overwrite the host code completely or partly with the viral code</p>
+
+    <h2>Direct Action or Transcient Viruses</h2>
+    <p>Transfer all controls of the host code to where it resides in the memory. Transcient virus executes only upon the execution of its attached program and terminates upon the termination of its attached program. 
+    At the time of execution the virus may spread to other programs. It operates only for a short while and goes direct to disk to search for programs to infect.</p>
+
+    <h2>Terminate and Stay Resident (TSR) Viruses</h2>
+    <p>These viruses remains permanently in the target machine's memory during an entire work session, even after the target hosts program is executed and terminated. If the TSR virus infects the system, 
+    the user needs to reboot the system to remove the virus without a trace.</p>
