@@ -1,0 +1,137 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=index.html>Back to home</a>
+<hr/>
+source: CEH v. 12
+
+<h1>Fileless Malware</h1>
+<p>Fileless malware, also called non-malware, infects legitimate software, applications and other protocols existing in the system to perform malicious activities. It generally resides in the system's RAM. It injects 
+malicious code into running processes such as Microsoft Word, Flash, Adobe PDF reader, javascript, PowerShell, .NET, malicious macros, Windows Management Instrumentation (WMI).</p>
+<p>Fileless malware does not depend on files and leaves no traces. These malware is used to steal critical data from the system, install other types of malware, inject malicious scripts that automatically execute with 
+every system restart to continue the attack.</p>
+<p>Reasons to use fileless malware:</p>
+<p><ol>
+  <ul>Stealth (fileless malware exploits legitimate system tools hence it is difficult to detect, block or prevent)</ul>
+  <ul>LOL (Living-off-the-land; system tools exploited by fileless malware are already installed)</ul>
+  <ul>Trustworthy (system tools used by fileless malware are most frequently used and trusted tools, not blocked by security tools)</ul>
+</ol></p>
+  <h2>Fileless Techniques</h2>
+  <p><ol>
+    <ul>Phishing emails -> emails embedded with malicious links or downloads which, when clicked, inject and run malicious code in the victim's memory</ul>
+    <ul>Legitimate applications (Word, Javascript etc.)</ul>
+    <ul>Native applications (PowerShell, WMI etc.)</ul>
+    <ul>Infection through lateral movement (infecting other systems connected to the network)</ul>
+    <ul>Malicious websites (fraudulent websites that appear legitimate, when visited it automatically scans the victim's system to detect vulnerabilities in plugins)</ul>
+    <ul>Registry manipulation (bypass UAC, application whitelisting etc.)</ul>
+    <ul>Memory code injection (inject malicious code and maintain persistence in the process memory of the running process)</ul>
+    <ul>Script-based injection (often scripts are used in which the binaries or shell code is obfuscated and encoded)</ul>
+  </ol></p>
+  <h2>Categories</h2>
+  <p>Fileless malware can be categorized based on their point of entry, how the malware creates an entry point into the target system. Fileless malware enters the target system through an exploit or compromised 
+  hardware of by the normal execution of applications or scripts.</p>
+  <p><ol>
+    <ul>Type 1: No File Activity Performed</ul>
+    <ul>Type 2: Indirect File Activity</ul>
+    <ul>Type 3: Required Files to Operate</ul>
+  </ol></p>
+  <p>Classification of fileless malware threats based on their point of entry:</p>
+  <p><ol>
+    <ul>Exploits</ul>
+    <ul>Hardware</ul>
+    <ul>Execution and Injection</ul>
+  </ol></p>
+  <h1>How does Fileless Malware work</h1>
+  <p>A fileless malware attack generally consists of several stages</p>
+  <h2>Point of Entry</h2>
+  <p><ol>
+    <ul>Memory Exploits -> Fileless malware uses a variety of techniques to inject and execute itself in the process memory of a legitimate system process. It exploits the memory and privileges of whitelisted system tools
+    such as Windows Management Instrumentation (WMI), PowerShell, Command.exe, PsExec etc.</ul>
+    <ul>Malicious Website -> exploit-hosting websites that appear to be legitimate business pages, when the user visits the page the exploit kit starts scanning for vulnerabilities such as outdated Flash or Java plugins. If 
+    successful, it invokes Windows native tools such as PowerShell to download and execute the payload directly in the memory without writing any files to disk</ul>
+    <ul>Phishing Email / Malicious Documents -> malicious macros in the form of VBScript or Javascript in a document</ul>
+  </ol></p>
+  <h2>Code Execution</h2>
+  <p><ol>
+    <ul>Code Injection -> various code injection techniques such as process hollowing and reflective DLL injection, which directly load the shellcode into the memory without writing any file to the disk</ul>
+    <ul>Script-based Injection -> fileless malware often comes embedded in a document as an email attachment, once the document is opened the malicious script runs in the memory. All operations occur in memory, which makes it
+    difficult for traditional anti-malware solutions to detect them</ul>
+  </ol></p>
+  <h2>Persistence</h2>
+  <p>In general, fileless malware is not persistent in nature. As it is memory-based, restarting the system would remove the malicious code from memory and stop the infection. However, malicious scripts can be stored in 
+  various Windows built-in tools and utilities such as Windows registry, WMI, Windows Task Scheduler and be set to run even after a system reboot</p>
+  <h2>Achieving Objectives</h2>
+    <p>By maintaining persistence, attackers bypass security solutions and achieve a variety of objectives, such as data exfiltration, credential stealing, reconnaissance, cyberspying on the target systems and network.</p>
+
+  <h1>Methods</h1>
+  <h2>Launching Fileless Malware through Document Exploits</h2>
+  <p><ol>
+    <ul>The victim is tricked into downloading / running a malicious document</ul>
+    <ul>The document runs a malicious macro</ul>
+    <ul>The malicious macro launches VBA or JavaScript</ul>
+    <ul>The malicious script exploits PowerShell to run additional code (payload) to spread the infection to other running processes or systems</ul>
+  </ol></p>
+
+    <h2>Launching Fileless Malware through In-Memory Exploits</h2>
+  <p><ol>
+    <ul>Attackers inject malicious payload inside running memory (RAM) that targets legitimate processes without leaving any footprints</ul>
+    <ul>Attackers employ a reflective DLL method to load a malicious script into a host-side process</ul>
+    <ul>EternalBlue is a type of in-memory exploit that can leverage the flaws in the Windows file sharing protocol known as Server Message Block (SMB 1)</ul>
+    <ul>Tools like Mimikatz are used to access details from memory</ul>
+  </ol></p>
+
+   <h2>Launching Fileless Malware through Script-based Injection</h2>
+  <p><ol>
+    <ul>Scripts are used whereby binaries and shellcode are embedded, obfuscated and compiled to avoid file creation on the disk</ul>
+    <ul>Scripts are usually very flexible and can be executed from any files or directly from memory</ul>
+    <ul>Many classical fileless threats such as KOVET, POWMET, FAREIT have used malicious scripts to spread malware</ul>
+  </ol></p>
+
+      <h2>Launching Fileless Malware by Exploiting System Admin Tools</h2>
+  <p><ol>
+    <ul>Attackers use default system tools like Certutil and Windows Management Interface Command (WMIC) utilities to steal information</ul>
+    <ul>Also command line tools such as Regsvr32 and runddl32 are used to run malicious DLLs</ul>
+  </ol></p>
+
+      <h2>Launching Fileless Malware through Phishing</h2>
+  <p><ol>
+    <ul>Attackers commonly use social engineering techniques such as phishing to spread fileless malware to target systems</ul>
+    <ul>Attackers send spam emails embedded with malicious links to the victim</ul>
+    <ul>When the victim clicks the link, he will be directed to a fraudulent website that automatically loads Flash and triggers the exploit</ul>
+    <ul>Furthermore, the fileless malware scans the target system for vulnerabilities in system tools such as PowerShell, WMI and browser Java plugins</ul>
+    <ul>The AutoStart registry key is created for storing the malicious script in the victim's system to maintain persistence</ul>
+    <ul>Once the malicious payload is injected, it steals critical information, performs data exfiltration and sends all the data to the attacker</ul>
+  </ol></p>
+
+  <h1>Maintaining Persistence with Fileless Techniques</h1>
+  <p>Unlike other malware, fileless malware does not use disk files to spread its infection or maintain persistence. Attackers adopt unique methods such as developing load points to restart infected payloads to 
+  maintain the persistence of fileless malware. Attackers save the malicious payload inside the registry that holds data for configurations, application files and settings. Attackers can also exploit the 
+  Windows task scheduler to activate scripts and run them at a specific time. Attackers can also maintain persistence by exploiting WMI. Malicious scripts are stored inside the WMI repositoy and they can later run them 
+  using WMI utilities.</p>
+
+  <h1>Fileless Malware</h1>
+  <p><ol>
+    <ul><a target=_blank href=https://malpedia.caad.fkie.fraunhofer.de/details/win.lemonduck>LemonDuck</a> -> Python based fileless malware, two variants: LemonDuck and <a target=_blank href=https://cybotsai.com/lemon-duck-attack/>LemonCat</a></ul>
+    <ul><a target=_blank href=https://threatpost.com/thousands-of-pcs-affected-by-nodersok-divergent-malware/148733/>Divergent</a></ul>
+    <ul><a target=_blank href=https://www.infosecinstitute.com/resources/malware-analysis/bazarbackdoor-malware-what-it-is-how-it-works-and-how-to-prevent-it-malware-spotlight/>BazarBackdoor</a></ul>
+    <ul><a target=_blank href=https://www.microsoft.com/en-us/security/blog/2020/03/23/latest-astaroth-living-off-the-land-attacks-are-even-more-invisible-but-not-less-observable/>Astaroth Backdoor</a></ul>
+    <ul><a target=_blank href=https://threatpost.com/thousands-of-pcs-affected-by-nodersok-divergent-malware/148733/>Nodersok</a></ul>
+    <ul><a target=_blank href=https://www.avertium.com/blog/vaporworm-threat-malware>Vaporworm</a></ul>
+    <ul><a target=_blank href=https://www.malwarebytes.com/blog/detections/backdoor-njrat>njRat Backdoor</a></ul>
+    <ul><a target=_blank href=https://www.cybereason.com/blog/research/the-sodinokibi-ransomware-attack>Sodinokibi Ransomware</a></ul>
+    <ul><a target=_blank href=https://cyberwarzone.com/fileless-malware-poweliks-and-kovter/>Kovter and Poweliks</a></ul>
+    <ul><a target=_blank href=https://threatresearch.ext.hp.com/dridex-threat-analysis-july-2019-variant/>Dridex</a></ul>
+    <ul><a target=_blank href=https://malpedia.caad.fkie.fraunhofer.de/details/win.hancitor>Hancitor / Chanitor</a></ul>
+    <ul><a target=_blank href=https://www.trendmicro.com/en_us/research/17/f/analyzing-fileless-code-injecting-sorebrect-ransomware.html>Sorebrect Ransomware</a></ul>
+  </ol></p>
+
+  <h2>Fileless Malware Obfuscation Techniques to Bypass Antivirus</h2>
+  <p><ol>
+    <ul>Inserting characters (inserting comma's, semicolons etc. between malicious commands and strings to make well-known commands more difficult to detect. These special characters are considered as whitespace characters in commandline arguments)</ul>
+    <ul>Inserting Parentheses</ul>
+    <ul>Inserting Caret Symbol (^ is a reserved character used in shell commands for escaping, attackers use this feature to escape malicious commands at execution time -> p^o^w^e^r^s^h^e^l^l^.^e^x^e)</ul>
+    <ul>Inserting Double Quotes (Pow""er""Shell"".ex""e)</ul>
+    <ul>Using Custom Environment Variables (in Windows environment variables are dynamic objects that store modifiable values used by applications at run time -> set a=Power &&set b=Shell)</ul>
+    <ul>Using Pre-assigned Environment Variables (retrieving specific characters from pre-assigned environment variables such as "%CommonProgramFiles%" which contains a default value "C:\Program Files\Common Files". Specific characters from this 
+    value can be accessed through indexing and used to execute malicious commands -> "%CommonProgramFiles:~3,1%owerShell.exe" retrieves a single character 'P' at index 3 which is concatenated with "owerShell.exe" and executes 
+    the malicious command</ul>
+  </ol></p>
