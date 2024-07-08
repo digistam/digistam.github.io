@@ -1,0 +1,164 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>Footprinting</h1>
+<h2>Definition</h2>
+<p>The footprinting methodology is a procedure for collecting information about a target (organization) from all available sources. It's the first step in the evaluation of the security posture of the (IT infrastructure of the)
+target.</p>
+<h2>Footprinting concepts</h2>
+<p>An essential aspect of footprinting is identifying the level of risk associated with the organization's publicly accessible information. Footprinting, the first step in ethical hacking, refers to the process of 
+collecting information about a target. Using footprinting, you can find a number of opportunities to penetrate and assess the target organization's network. After completing the footprinting process in a methodological 
+manner, you will obtain the blueprint of the security profile of the target. There is no single methodology for footprinting, as information can be traced in a number of ways.</p>
+<h2>Types of footprinting</h2>
+<p><ol>
+  <ul>Passive Footprinting -> search engines, social networking etc.</ul>
+  <ul>Active Footprinting -> direct interaction with the target (may leave traces)</ul>
+</ol></p>
+  <h2>Information obtained in Footprinting</h2>
+  <p><ol>
+    <ul>Organization Information</ul>
+    <ul>Network Information</ul>
+    <ul>System Information</ul>
+  </ol></p>
+  <h2>Footprinting Threats</h2>
+  <p><ol>
+    <ul>Social Engineering</ul>
+    <ul>System and Network Attacks</ul>
+    <ul>Information Leakage</ul>
+    <ul>Privacy Loss</ul>
+    <ul>Corporate Espionage</ul>
+    <ul>Business Loss</ul>
+  </ol></p>
+  
+  <h1>Footprinting Methodologies</h1>
+
+  <h1>Footprinting through Search Engines</h1>
+  <p>Search engines are the main sources of key information about a target. Search engines use crawlers to continuously scan active websites and add retrieved results in the database of the search engine. When a user queries  
+  the search engine index, it returns a list of Search Engine Results Pages (SERPs). As an ethical hacker, if you find any deleted pages / information about the target in SERPs or the search engine cache, you can request the search 
+  engine to remove the pages / information from its indexed cache. </p>
+
+  <h2>Footprinting using advanced Google Hacking Techniques</h2>
+  <p>Google hacking refers to the use of advanced Google search operators for creating complex search queries to extract sensitive or hidden information. Attackers can use the Google Hacking Database (GHDB), a database of 
+  queries, to identify sensitive data. Advanced search operator: operator:search_term</p>
+  <p><ol>
+    <ul>site:</ul>
+    <ul>allinurl:</ul>
+    <ul>inurl:</ul>
+    <ul>allintitle:</ul>
+    <ul>intitle:</ul>
+    <ul>inanchor:</ul>
+    <ul>allinanchor:</ul>
+    <ul>cache:</ul>
+    <ul>link:</ul>
+    <ul>related:</ul>
+    <ul>info:</ul>
+    <ul>location:</ul>
+    <ul>filetype:</ul>
+  </ol></p>
+
+  <h2>What can a hacker do with Google Hacking</h2>
+  <p><ol>
+    <ul>Error messages that contain sensitive information</ul>
+    <ul>Files containing passwords</ul>
+    <ul>Sensitive directories</ul>
+    <ul>Pages containing logon portals</ul>
+    <ul>Pages containing network or vulnerability data, such as IDS, Firewall logs and configurations</ul>
+    <ul>Advisories and server vulnerabilities</ul>
+    <ul>Software version information</ul>
+    <ul>Web application source code</ul>
+    <ul>Connected IoT devices and their control panels, if unprotected</ul>
+    <ul>Hidden web pages such as intranet and VPN services</ul>
+  </ol></p>
+  <h2>Example: Google Advanced Operator syntax</h2>
+  <p>[intitle:intranet inurl:intranet+intext:"human resources"]</p>
+  <h2>Google Hacking Database</h2>
+  <p><a target=_blank href=https://www.exploit-db.com/google-hacking-database>The Google Hacking Database</a> (GHDB) is an authorative source for querying the ever-widening scope of the Google search engine. The Exploit Database
+  is a CVE compliant archive of public exploits and corresponding vulnerable software, developed for use by penetration testers and vulnerability researchers.</p>
+
+  <h2>GHDB Categories</h2>
+  <p><ol>
+    <ul>Footholds</ul>
+    <ul><a target=_blank href=https://www.exploit-db.com/google-hacking-database?category=2>Files Containing Usernames</a></ul>
+    <ul>Sensitive Directories</ul>
+    <ul>Web Server Detection</ul>
+    <ul>Vulnerable Files</ul>
+    <ul>Vulnerable Servers</ul>
+    <ul>Error Messages</ul>
+    <ul>Files Containing Juicy Info</ul>
+    <ul>Sensitive Online Shopping Info</ul>
+    <ul>Network or Vulnerability Data</ul>
+    <ul>Pages Containing Login Portals</ul>
+    <ul>Various Online Devices</ul>
+    <ul>Advisories and Vulnerabilities</ul>
+  </ol></p>
+
+  <h2>SearchSploit</h2>
+  <p><a target=_blank href=https://www.exploit-db.com/searchsploit>SearchSploit</a> is a command-line search tool for Exploit-DB that allows taking a copy of the Exploit database for remote use. Particularly useful for security assessments of segregated or air-gapped networks without 
+  internet access.</p>
+
+  <h2>VPN Footprinting through Google Hacking Database</h2>
+  <p>Google hacking operators or Google dorks can be used for footprinting virtual private networks (VPNs). They provide information such as pages containing login portals and directories with keys of VPN servers.</p>
+
+  <h2>Google Advanced Search</h2>
+  <p><a target=_blank href=https://www.google.com/advanced_search>Google advanced search</a> helps to perform complex web searching. </p>
+  <h2>Google Advanced Image Search</h2>
+  <p><a target=_blank href=https://www.google.com/advanced_image_search>Google advanced images search</a></p>
+  <p><a target=_blank href=https://www.google.com/advanced_image_search>Reverse image search</a> can also be done.</p>
+  <h2>Gathering Information from Video Search Engines</h2>
+  <p><ol>
+    <ul>YouTube</ul>
+    <ul>Google videos</ul>
+    <ul>Yahoo videos</ul>
+    <ul>Bing videos</ul>
+  </ol></p>
+  <p>After searching for videos related to the target using video search engines, an attacker can further analyze the video content to gather hidden information such as time/date and thumb of video. Using video analysis 
+  tools such as <a target=_blank href=https://mattw.io/youtube-metadata>YouTube Metadata</a>, YouTube DataViewer, EZGif, VideoReverser.com, an attacker can reverse a video or convert a video into text and other formats to extract critical information about the target.</p>
+
+  <h2>Gather Information from Meta Search Engines</h2>
+  <p>Meta Search Engines use other search engines to produce their own results in a short timespan. They don't have their own database and provide privacy to the search engine user by hiding the user's IP address.</p>
+  <p><ol>
+    <ul>StartPage</ul>
+    <ul>MetaGer</ul>
+    <ul>eTools.ch</ul>
+  </ol></p>
+
+  <h2>Gathering information from File Transfer Protocol (FTP) Search Engines</h2>
+  <p>Many industries, institutions, companies, universities etc. use FTP servers to store large file archives and other software shared among their employees. FTP search engines such as NAPALM FTP Indexer, 
+  FreewareWeb FTP File Search and Globalfilesearch.com can be used to search for critical files and dirs. Some of the important Google dorks to find FTP servers:</p>
+  <p><ol>
+    <ul>site:.in|.com|.net intitle:"index of" ftp</ul>
+    <ul>inurl:/web-ftp.cgi</ul>
+    <ul>"index of" /ftp/logs</ul>
+  </ol></p>
+
+  <h2>Gathering Information from IoT Search Engines</h2>
+  <p>Internet of Things (IoT) search engines crawl the internet for IoT devices that are publicly available.</p>
+  <p><ol>
+    <ul>Shodan</ul>
+    <ul>Censys</ul>
+    <ul>Thingful</ul>
+  </ol></p>
+
+  <h1>Footprinting through Web Services</h1>
+  <p><ol>
+    <ul>People search services</ul>
+    <ul>social networking sites</ul>
+    <ul>financial services</ul>
+    <ul>job sites</ul>
+    <ul>etc.</ul>
+  </ol></p>
+
+  <h2>Finding a Company's Top Level Domains (TLDs) and sub domains</h2>
+  <p>A public website is designed to show the presence of an organization on the internet. A sub-domain is available to only a few people. Sub-domains are often created to test new technologies before employing them 
+  on the main website. Generally, these sub-domains are in testing stage and insecure. A Google search operator can be used: <i></i>site:microsoft.com -inurl:www</i></p>
+
+  <h2>Tools to search sub domains</h2>
+  <p><ol>
+    <ul><a target=_blank href=https://www.netcraft.com>Netcraft</a></ul>
+    <ul><a target=_blank href=https://github.com/aboul3la/Sublist3r>Sublist3r</a></ul>
+    <ul><a target=_blank href=https://pentest-tools.com>Pentest-Tools</a></ul>
+  </ol></p>
+
+  <h2>People Search on Social Networking Sites</h2>
+  
