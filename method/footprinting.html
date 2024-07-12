@@ -279,4 +279,87 @@ manner, you will obtain the blueprint of the security profile of the target. The
         <ul><i>python infoga.py --info m4110k@protonmail.com --breach -v 3 --report ../m4110k.txt</i> -> will retrieve email account information for a specified email address</ul>
         <ul><a target=_blank href=http://www.emailtrackerpro.com>eMailTrackerPro</a></ul>
     </ol></p>
-    <h1></h1>
+    <h1>Whois Lookup</h1>
+<p>Whois is a query and response protocol used for querying databases that store the registered users or assignees of an internet resource, such as a domain namen, an IP address block or an autonomous system.
+This protocol listens to requests on port 43 (TCP). Two types of data models exist to store and lookup Whois information.</p>
+    <p><ol>
+        <ul>Thick Whois -> stores the complete Whois information from all the registrars for a particular set of data</ul>
+        <ul>Thin Whois -> stores only the name of the Whois server of the registrar of a domain, which in turn holds complete details on the data being looked up</ul>
+    </ol></p>
+    
+<h1>IP Geolocation Information</h1>
+<p>IP geolocation helps to obtain information like:</p>
+<p><ol>
+    <ul>country</ul>
+    <ul>region/state</ul>
+    <ul>city</ul>
+    <ul>latitude / longitude</ul>
+    <ul>ZIP / postal code</ul>
+    <ul>time zone</ul>
+    <ul>connection speed</ul>
+    <ul>ISP</ul>
+    <ul>Domain name</ul>
+    <ul>area code</ul>
+    <ul>weather station code</ul>
+    <ul>etc.</ul>
+</ol></p>
+    <h2>IP Geolocation Lookup Tools</h2>
+    <p><ol>
+        <ul><a target=_blank href=https://www.ip2location.com>IP2Location</a></ul>
+    </ol></p>
+
+    <h1>DNS Footprinting</h1>
+    <h2>Extracting DNS Information</h2>
+    <p><ol>
+        <ul>A -> host's IP address</ul>
+        <ul>MX -> domain's mail server</ul>
+        <ul>NS -> host's name server</ul>
+        <ul>CNAME -> canonical naming allows aliases to host</ul>
+        <ul>SOA -> indicative authority for a domain</ul>
+        <ul>SRV -> service records</ul>
+        <ul>PTR -> maps IP address to hostname</ul>
+        <ul>RP -> responsible person</ul>
+        <ul>HINFO -> host information record includes CPU type and OS</ul>
+        <ul>TXT -> unstructured text records</ul>
+    </ol></p>
+
+    <h2>DNS Interrogation Tools</h2>
+    <p><ol>
+        <ul><a target=_blank href=https://securitytrails.com>SecurityTrails</a></ul>
+    </ol></p>
+    <h2>Reverse DNS lookup</h2>
+    <p><ol>
+        <ul><a target=_blank href=https://github.com/darkoperator/dnsrecon>DNSRecon</a></ul>
+        <ul><i>dnsrecon -r 162.241.216.1-162.241.216.255</i> -> specifies range of IP addresses for reverse lookup by brute force</ul>
+        <ul><a target=_blank href=https://mxtoolbox.com>MXToolbox</a></ul>
+    </ol></p>
+
+    <h1>Network Footprinting</h1>
+    <p>The next step after retrieving DNS information is to gather network-related information.</p>
+    <h2>Locate the network range</h2>
+    <p><ol>
+        <ul>Arin</ul>
+    </ol></p>
+    <h2>Traceroute</h2>
+    <p>Finding the route of the target host on the network is necessary to test against man-in-the-middle and other attacks. Traceroute uses the ICMP protocol and Time-to-Live (TTL) field of the IP header to find the 
+    path of the target host in the network.</p>
+    <p><ol>
+        <ul>Windows: <b>ICMP Traceroute</b> -> <i>tracert 216.239.36.10</i></ul>
+        <ul>Linux: <b>TCP Traceroute</b> -> <i>tcptraceroute www.google.com</i>, layer 4 traceroute, useful because many devices in any network are generally configured to block ICMP traceroute messages</ul>
+        <ul>Linux: <b>UDP Traceroute</b> -> <i>traceroute www.google.com</i></ul>
+    </ol></p>
+    <p>Tools:</p>
+    <p><ol>
+        <ul><a target=_blank href=https://www.pathanalyzer.com>Path Analyzer Pro</a></ul>
+        <ul><a target=_blank href=http://www.visualroute.com>VisualRoute</a></ul>
+        <ul>Traceroute NG</ul>
+        <ul>PingPlotter</ul>
+    </ol></p>
+
+    <h1>Footpringing through Social Engineering</h1>
+    <p><ol>
+        <ul>Eavesdropping</ul>
+        <ul>Shoulder surfing</ul>
+        <ul>Dumpster diving</ul>
+        <ul>Impersonation</ul>
+    </ol></p>
