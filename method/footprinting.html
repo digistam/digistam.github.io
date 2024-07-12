@@ -235,4 +235,48 @@ manner, you will obtain the blueprint of the security profile of the target. The
     <p>The Netcraft tool can gather website information such as IP address, registered name and address of domain owner, domain name, host of the site and OS details. Other, additional tools:</p>
     <p><ol>
         <ul><a target=_blank href=https://portswigger.net>Burp Suite</a> -> integrated platform for security testing of web applications </ul>
+        <ul>exam the HTML source code with the webbrowser's Development Tools</ul>
+        <ul>exam the cookies</ul>
     </ol></p>
+    <h2>Website footprinting with web spiders</h2>
+    <p><ol>
+        <ul>User directed spidering -> <a target=_blank href=http://www.webextractor.com>Web data extractor</a>, ParseHub, SpiderFoot</ul>
+        <ul>Mirroring entire website -> <a target=_blank href=https://www.httrack.com>HTTrack</a>, <a target=_blank href=https://archive.org>archive.org</a></ul>
+        <ul><a target=_blank href=https://github.com/s0md3v/Photon>Photon.py</a> can be used to retrieve archived URLs from archive.org</ul>
+        <ul><i>photon.py -u <URL> -l 3 -t 200 --wayback</i></ul>
+    </ol></p>
+    <h2>Other techniques for website footprinting</h2>
+    <p><ol>
+        <ul>Extract website links with <a target=_blank href=https://www.octoparse.com>Octoparse</a></ul>
+        <ul>Gathering wordlist from target website with <a target=_blank href=https://www.kali.org/tools/cewl/>cewl</a></ul>
+        <ul>Extract metadata of public documents with <a target=_blank href=https://exiftool.org/>exiftool</a></ul>
+        <ul>Monitor web pages for updates and changes with <a target=_blank href=https://www.aignes.com>website-watcher</a></ul>
+        <ul>search for web pages posting patterns and revision numbers</ul>
+        <ul>examine the copyright notice</ul>
+        <ul>Monitor website traffic with <a target=_blank href=https://clicky.com>Clicky</a>, <a target=_blank href=https://opentracker.net>OpenTracker</a>, <a target=_blank href=https://analytics.google.com>Google Analytics</a>, 
+        <a target=_blank href=https://www.web-stat.com>Web-Stat</a></ul>
+    </ol></p>
+
+    <h1>Email Footprinting</h1>
+
+    <h2>Tracking Email Communications</h2>
+    <p><ol>
+        <ul>Recipient's System IP address</ul>
+        <ul>Geolocation</ul>
+        <ul>Email Received and Read</ul>
+        <ul>Read duration</ul>
+        <ul>Proxy detection</ul>
+        <ul>Links</ul>
+        <ul>Operating System and Browser information</ul>
+        <ul>Forward Email</ul>
+        <ul>Device Type</ul>
+        <ul>Path travelled</ul>
+    </ol></p>
+    <h2>Email Tracking Tools</h2>
+    <p><ol>
+        <ul><a target=_blank href=https://github.com/GiJ03/Infoga>Infoga</a></ul>
+        <ul><i>python infoga.py --domain microsoft.com --source all --breach -v2 --report ../microsoft.txt</i> -> will retrieve all the publicly available email addresses related to the domain microsoft.com along with email account information</ul>
+        <ul><i>python infoga.py --info m4110k@protonmail.com --breach -v 3 --report ../m4110k.txt</i> -> will retrieve email account information for a specified email address</ul>
+        <ul><a target=_blank href=http://www.emailtrackerpro.com>eMailTrackerPro</a></ul>
+    </ol></p>
+    <h1></h1>
