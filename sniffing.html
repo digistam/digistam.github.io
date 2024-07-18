@@ -3,4 +3,45 @@
   <a href=index.html>Back to home</a>
 <hr/>
 <h1>Sniffing</h1>
-<p></p> 
+<h2>Network Sniffing</h2>
+    <p>Packet sniffing is the process of monitoring and capturing all data packets passing through a given network using a software application or hardware device.
+    Sniffing is straightforward in hub-based networks. However, most networks today work on switches. Difference between hub and switch is that a hub transmits line 
+    data to each port of the machine and has no line mapping, whereas a switch looks at the MAC address associated with each frame passing through it and sends the
+    data to the required port. An attacker needs to manipulate the functionality of the switch to see all the traffic passing through it.</p> 
+    <p>A packet sniffing program (sniffer) can capture data packets only from within a given subnet and cannot sniff packets from another network. Many enterprises' switches 
+    are open and a packet sniffer placed on a network in <b>promiscuos mode</b> can therefore capture and analyze all the network traffic. Sniffing programs turn off the
+    filter employed by Ethernet network interface cards (NICs) to prevent the host machine from seeing other stations' traffic. Thus, sniffing programs can monitor
+    all traffic (passwords in cleartext, email traffic etc.).</p>
+
+    <h2>How a sniffer works</h2>
+    <p>Most common is networking through an Ethernet connection. A computer connected to a LAN has two addresses: MAC and IP. A MAC address uniquely identifies each node in a network 
+    and is stored on the NIC. The Ethernet protocol uses the MAC address to transfer data. The <b>data link layer</b> of the OSI model uses an Ethernet header with the MAC address of the 
+    destination machine instead of the IP address. The <b>network layer</b> is responsible for mapping IP network addresses to the MAC addresses as required by the data link protocol. It 
+    initially looks for the MAC address of the destination machine in a table (<b>Address Resolution Protocol - ARP - cache). If there is no entry for the IP address, an ARP broadcast 
+    of a requested packet goes out to all machines on the local sub-network. The machine with the particular address responds to the source machine with its MAC address. The source
+    machine's ARP cache adds this MAC address to the table. The source machine, in all its communications with the destination machine, then uses this MAC address.</b></p>
+
+    <p>Two basic types of Ethernet environments:</p>
+    <p><ol>
+        <ul>Shared Ethernet -> all other machines receive packets meant for one machine, passive and difficult to detect</ul>
+        <ul>Switched Ethernet -> the host connects to a switch instead of a hub, the switch maintains a table that tracks each computer's MAC address, a switch does not broadcast to all computers</ul>
+    </ol></p>
+    <p>Although a switch is more secure than a hub, sniffing the network is possible using the following methods:</p>
+    <p><ol>
+        <ul>ARP Spoofing</ul>
+        <ul>MAC Flooding</ul>
+    </ol></p>
+    <h2>ARP Spoofing</h2>
+    <p>ARP is stateless. A machine can send an ARP reply even without asking for it; it can also accept such a reply. When a machine wants to sniff the traffic originating from another system, 
+    it can ARP spoof the gateway of the network. The ARP cache of the target machine will have an incorrect entry for the gateway. Thus, all the traffic destined to pass through the gateway 
+    will now pass through the machine that spoofed the gateway MAC address.</p>
+    <h2>MAC Flooding</h2>
+    <p>Switches maintain a translation table that maps various MAC addresses to physical ports on the switch. As a result, they can intelligently route packets from one host to another. 
+    However, switches have a limited memory. MAC flooding makes use of this limitation to bombard switches with fake MAC addresses until the switches can no longer keep up. Once this happens to a switch, 
+    it will enter fail-open mode, wherein it starts acting as a hub by broadcasting packets to all the ports on the switch. Macof is a utility that comes with the dsniff suit and helps the attacker to 
+    perform MAC flooding.</p>
+<p>Once a switch turns into a hub, it starts <b>broadcasting</b> all packets it receives to all the computers in the network. By default, promiscuous mode is turned off in network machines; therefore 
+the NICs accept only those packets that are addressed to a user's machine and discard the packets sent to the other machines. A sniffer turns the NIC of a system to promiscuous mode so that it 
+listens to all the data transmitted on its segment. A sniffer can constantly monitor all the network traffic to a computer through the NIC by decoding the information encapsulated in the data packets.
+Attackers configure the NIC in their machines to run in <b>promiscuous mode</b> so that the card starts accepting all the packets. Thus, the attacker can view all the packets that are being transmitted 
+in the network.</p>
