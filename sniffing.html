@@ -45,3 +45,54 @@ the NICs accept only those packets that are addressed to a user's machine and di
 listens to all the data transmitted on its segment. A sniffer can constantly monitor all the network traffic to a computer through the NIC by decoding the information encapsulated in the data packets.
 Attackers configure the NIC in their machines to run in <b>promiscuous mode</b> so that the card starts accepting all the packets. Thus, the attacker can view all the packets that are being transmitted 
 in the network.</p>
+<h2>Types of Sniffing</h2>
+<p><ol>
+    <ul>Passive sniffing</ul>
+    <ul>Active sniffing</ul>
+</ol></p>
+    <h2>Passive sniffing</h2>
+    <p>Passive sniffing involves sending no packets. It simply captures and monitors the packets flowing in the network. A packet sniffer alone is not preferred for an attack because it works only in a 
+    common collision domain (sector of the network that's not bridged or switched -> connected through a hub). A network that uses hubs to connect systems uses passive sniffing.</p>
+    <p>Attackers use the following passive sniffing methods to gain control over a target network:</p>
+    <p><ol>
+        <ul>Compromising physical security -> walk into the organization and plug the laptop into the network to capture sensitive information</ul>
+        <ul>Using a Trojan horse -> most Trojans have in-built sniffing capability</ul>
+    </ol></p>
+    <p>A switch eliminates the risk of <b>passive sniffing</b>, but is still vulnerable for <b>active sniffing</b>!</p>
+
+    <h2>Active sniffing</h2>
+    <p>Active sniffing searches for traffic on a switched LAN by actively injecting traffic into it. Active sniffing refers to sniffing through a switch. In active sniffing the switched Ethernet does not transmit 
+    information to all the systems connected through LAN as it does in a hub-based network. Active sniffing involves sending out multiple network probes to identify access points. It is easy to detect these sniffer programs and highly difficult to perform this type of sniffing. However, attackers can 
+    actively inject ARP traffic into a LAN to sniff around and capture the traffic. Switches maintain their own ARP cache in <b>Content Addressable Memory (CAM)</b>. CAM is a special type of memory that maintains 
+    a record of which host is connected to which port. Different active sniffing techniques:</p>
+
+    <p><ol>
+        <ul>MAC flooding</ul>
+        <ul>DNS poisoning</ul>
+        <ul>ARP poisoning</ul>
+        <ul>DHCP attacks</ul>
+        <ul>Switch port stealing</ul>
+        <ul>Spoofing attack</ul>
+    </ol></p>
+
+    <h2>Procedure hacking the network using sniffers</h2>
+
+    <p><b>Step 1</b>: an attacker who decides to hack a network first discovers the appropriate switch to access the network and connects a system or laptop to one of the ports on the switch</p>
+    <p><b>Step 2</b>: an attacker who succeeds in connecting to the network tries to determine network information such as the topology of the network by using network discovery tools</p>
+    <p><b>Step 3</b>: by analyzing the network topology, the attacker identifies the victim's machine to target his attacks</p>
+    <p><b>Step 4</b>: an attacker who identifies a target machine uses ARP spoofing techniques to send fake (spoofed) Address Resolution Protocol (ARP) messages</p>
+    <p><b>Step 5</b>: the previous step helps the attacker to divert all the traffic from the victim's computer to the attacker's computer (typical <b>Man-in-the-Middle (MITM)</b> type of attack)</p>
+    <p><b>Step 6</b>: now, the attacker can see all the data packets sent and received by the victim, the attacker can now extract sensitive information from the packets, such as passwords, usernames, 
+    credit card details, PINs etc.</p>
+
+    <h2>Protocols vulnerable to sniffing</h2>
+    <p><ol>
+        <ul>Telnet and Rlogin</ul>
+        <ul>HTTP</ul>
+        <ul>SNMP</ul>
+        <ul>SMTP</ul>
+        <ul>NNTP</ul>
+        <ul>POP</ul>
+        <ul>FTP</ul>
+        <ul>IMAP</ul>
+    </ol></p>
