@@ -1,4 +1,8 @@
-    <h2>Virus Detection Methods</h2>
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>Virus Detection Methods</h1>
     <p>Best methods for virus detection:</p>
     <p><ol>
         <ul>Scanning</ul>
@@ -7,3 +11,26 @@
         <ul>Code Emulation</ul>
         <ul>Heuristic Analysis</ul>
     </ol></p>
+<h2>Scanning</h2>
+<p>A virus scanner is an essential software for detecting viruses. Run antivirus tools continuously and update on a regular base.</p>
+<p>Once a virus is detected in the wild, antivirus vendors across the globe identify its signature strings (characteristics). The vendors start writing scanning programs that look for the virus'
+signature strings. The resulting new scanners search memory files and system sectors for the signature strings and declare presence of the virus once it finds a match. Only known and 
+predefined viruses can be detected.</p>
+<p>Some scanners set up a virtual computer in a machine's RAM and test the programs by executing them in this virtual space. This technique, <b>heuristic scanning</b> can also check and 
+remove messages that might contain a computer virus or other unwanted content.</p>
+
+    <h2>Integrity Checking</h2>
+    <p>Integrity checking products perform their functions by reading and recording integrated data to develop a signature or baseline for those files and system sectors. A disadvantage is 
+    that it cannot differentiate file corruption caused by a bug from that caused by a virus.</p>
+
+    <h2>Interception</h2>
+    <p>The primary objective of an interceptor is to deflect logic bombs and Trojans. Some viruses can disable the monitoring program.</p>
+
+    <h2>Code Emulation</h2>
+    <p>Using code emulation, antivirus software executes a virtual machine to mimic CPU and memory activities. Virus code is executed on the virtual machine instead of the real processor.
+    Code emulation deals with encrypted and polymorphic viruses. A drawback is that it is too slow if the decryption loop is very long.</p>
+
+    <h2>Heuristic Analysis</h2>
+    <p>This method helps in detecting new or unknown viruses that are usually variants of an already existing virus family. Heuristic analysis can be static or dynamic. In static analysis, 
+    the antivirus tool analyzes the file format and code structure to determine if the code is viral. In dynamic analysis, the antivirus tool performs code emulation of the suspicious
+    code to determine if the code is viral. A drawback of heuristic analysis is that it is prone to too many false positives.</p>
