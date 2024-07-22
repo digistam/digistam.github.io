@@ -42,4 +42,27 @@ This RAT can be used to control Botnets.</p>
     <ul>The connection is persistent, so the victim can start, stop, reboot etc. and the connection will stay</ul>
   </ol></p>
 
-  
+  <h2>Hide a Trojan using Crypters</h2>
+    <p>One method to bypass AVs is to <b>crypt</b> a malicious file using Fully Undetectable Crypters (<b>FUDs</b>).</p>
+    <p>First, upload the file mentioned above to <a target=_blank href=https://www.virustotal.com>VirusTotal</a>. Analysis will show that 64 out of 74 
+    vendors recognize it as malware.</p>
+    <p>Now, crypt the file with SwayzCryptor. Check the boxes for Start Up, Mutex, Disable UAC and Encrypt.</p>
+    <p>Save the file and upload it to <a target=_blank href=https://www.virustotal.com>VirusTotal</a>. Analysis will show that 46 out of 74 vendors 
+    recognize it as malware.</p>
+    <p>However the file is crypted, it still functions just as well as the original file !</p>
+    <p>Crypters available on GitHub:</p>
+    <p><ol>
+        <ul><a target=_blank href=https://github.com/Mekasniz/Muck-Crypter-FUD-AES-Algoritm>Muck-Crypter-FUD-AES-Algoritm</a></ul>
+        <ul><a target=_blank href=https://github.com/Mekasniz/Crypter-FUD>Crypter-FUD</a></ul>
+        <ul><a target=_blank href=https://github.com/dragonfirev2/Sun-Crypter>Sun Crypter</a></ul>
+        <ul><a target=_blank href=https://github.com/topics/crypter-fud?o=desc&s=updated>several other gems</a></ul>
+    </ol></p>
+
+    <h2>Create a Trojan Server using Theef RAT Trojan</h2>
+    <p>Theef has two important files: </p>
+    <p><ol>
+        <ul>Server210.exe -> to be executed on victim pc</ul>
+        <ul>Client210.exe -> to be executed on attacker pc</ul>
+    </ol></p>
+    <p>With client210.exe, the attacker has full control on the victim pc. You can perform various actions, such as capture screen, log keys, view processes, 
+    view task manager, use webcam, use microphone etc.</p>
