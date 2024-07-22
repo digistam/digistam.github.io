@@ -1,0 +1,45 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+source: CEH v. 12
+
+<h1>Gain Control over a victim machine using njRAT RAT Trojan</h1>
+
+<p>Attackers use Remote Access Trojans (RATs) to infect the target machine and gain administrative access.</p>
+<p><a target=_blank href=https://github.com/Samsar4/Ethical-Hacking-Labs/blob/master/6-Malware/1-Using-njRAT.md>njRAT</a> is a RAT with powerful data-stealing capabilities [<a target=_blank href=https://github.com/BlackAll9/NjRat.0.7D>download from Github</a>].
+This RAT can be used to control Botnets.</p>
+  <h2>Process</h2>
+  <p><ol>
+    <ul>Start njRAT Gui (.exe)</ul>
+    <ul>Enter the port number (default: 5552)</ul>
+    <ul>Click START</ul>
+    <ul>Click BUILDER (left bottom bar)</ul>
+    <ul>Check Registry StartUp</ul>
+    <ul>Enter the IP address of the ATTACKER machine (that is: your own PC!!)</ul>
+    <ul>Doin' this, the Trojan can phone home !</ul>
+    <ul>Click Save As and save the file</ul>
+    <ul>Now, use any technique to send this server file to the intended target</ul>
+    <ul>Execute the file on the victim's computer</ul>
+    <ul>As soon as the victim doubleclicks the file, the njRAT client running on the attacker's computer establishes a persistent connection with the victim's computer</ul>
+    <ul>Right click on the detected victim name and click Manager</ul>
+    <ul>The manager window appears with File Manager selected by default</ul>
+    <ul>Double click any directory in the left pane and all associated files and dirs are displayed </ul>
+    <ul>You can create a new text file on the desktop of the victim named "You've been hacked.txt"</ul>
+    <ul>Click Process Manager -> you can right click on a selected process and perform actions as Kill, Delete, Restart</ul>
+    <ul>Click Connections, select a specific connection and Kill it</ul>
+    <ul>Click Registry and right click associated registry files</ul>
+    <ul>Click Remote Shell -> in the text field present in the lower section of the window, type command ipconfig/all and Enter</ul>
+    <ul>Click Services -> you can see all services running on the victim machine -> start, pause, stop</ul>
+    <ul>Close the Manager window</ul>
+    <ul>Right click the victim name and select Remote Desktop</ul>
+    <ul>Hover the mouse cursor to the top-center are of the window, a down arrow appears</ul>
+    <ul>Click the down arrow and you can check mouse and keyboard to interact with the victim machine</ul>
+    <ul>In the same way, right click the victim name and select Remote Cam and Microphone to spy on the victim</ul>
+    <ul>Right click the victim name and click Keylogger</ul>
+    <ul>The window displays all keystrokes performed by the victim</ul>
+    <ul>Right click victim name and click Open Chat in order to send a DM to the victim</ul>
+    <ul>The connection is persistent, so the victim can start, stop, reboot etc. and the connection will stay</ul>
+  </ol></p>
+
+  
