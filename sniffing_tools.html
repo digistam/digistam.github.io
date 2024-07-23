@@ -3,6 +3,67 @@
   <a href=index.html>Back to home</a>
 <hr/>
 <h1>Sniffing Tools</h1>
-<h2>Network Sniffing</h2>
-    <p>Packet sniffing is the process of monitoring and capturing all data packets passing through a given network using a software application or hardware device.
-    Sniffing is straigh
+<h2>Wireshark</h2>
+    <p><a target=_blank href=https://www.wireshark.org/>Wireshark</a> lets you capture and interactively 
+        browse the traffic running on a computer network. This tool uses WinPcap to capture packets on its own 
+        supported networks. It captures live network data from Ethernet, IEEE 802.11, PPP/HDLC, ATM, 
+        Bluetooth, USB, Token Ring, Frame Relay and FDDI networks. The captured files can be programmatically edited 
+        via the command line. A set of filters for customized data display can be refined using a display filter. </p>
+
+    
+<h2>Follow TCP Stream in Wireshark</h2>
+<p>Wireshark displays data from the TCP port with a feature known as "Follow TCP stream".
+The tool sees TCP data in the same way as that of the application layer. Use this tool to find
+passwords in a telnet session or to interpret a data stream.</p>
+<p>To see the TCP stream, select a TCP packet in the packet list of a stream / connection an then 
+select the <b>Follow</b> > <b>TCP Stream</b> menu item from the Wireshark <b>Analyze</b> menu. Wireshark displays all the 
+data from the TCP stream by setting an appropriate display filter. The tool displays the streaming
+content in the same sequence as it appeared on the network. It displays the captured data in ASCII, 
+EBCDIC, hex dump, C array or raw format. Attackers can capture network traffic and gain the 
+credentials of a target machine. They attempt to capture its remote interface and monitor the 
+traffic generated from a user's browsing activities to extract confidential user information.</p>
+
+    <h2>Display Filters in Wireshark</h2>
+    <p>Wireshark features display filters that filter traffic on the target network by protocol 
+    type, IP address, port etc. Display filters are used to change the view of packets in the captured files. 
+    To set up a filter, type the protocol name, such as arp, http, tcp, udp, dns and ip in the filter box of 
+    Wireshark. Wireshark can use multiple filters at a time.</p>
+    <p><ol>
+        <ul>Display Filtering by Protocol:</ul> 
+        <ul>arp, http, tcp, udp, dns, ip</ul>
+        <ul>Monitoring Specific Ports:</ul>
+        <ul>tcp.port==23</ul>
+        <ul>ip.addr==192.168.1.100 machine</ul>
+        <ul>ip.addr==192.168.1.100 && tcp.port==23</ul>
+        <ul>Filtering by Multiple IP addresses:</ul>
+        <ul>ip.addr==10.0.0.4 or ip.addr == 10.0.0.5</ul>
+        <ul>Filtering by IP address:</ul>
+        <ul>ip.addr == 10.0.0.4</ul>
+        <ul>Other Filters:</ul>
+        <ul>ip.dst == 10.0.1.50 && frame.pkt_len > 400</ul>
+        <ul>ip.addr == 10.0.1.12 && icmp && frame.number > 15 && frame.number < 30</ul>
+        <ul>ip.src == 205.153.63.30 or ip.dst == 205.153.63.30</ul>
+        <ul>More filters in <a target=_blank href=https://wiki.wireshark.org>Wireshark wiki</a></ul>
+    </ol></p>
+
+    <h2>Riverbed Packet Analyzer Plus</h2>
+    <p><a target=_blank href=https://www.riverbed.com>Riverbed Packet Analyzer Plus</a> performs the real-time 
+    network packet analysis and reporting of large trace files using in intuitive GUI.</p>
+
+    <h2>Capsa Portable Network Analyzer</h2>
+    <p><a target=_blank href=https://www.colasoft.com>Capsa</a> is a portable network performance analysis and 
+    diagnostics tool</p>
+
+    <h2>Omnipeek</h2>
+    <p><a target=_blank href=https://www.liveaction.com>OmniPeek</a> provides real-time visibility and expert analysis.</p>
+
+    <h1>Packet Sniffing Tools for Mobile Phones</h1>
+
+    <h2>Sniffer Wicap</h2>
+    <p><a target=_blank href=https://happymod.com/sniffer-wicap-2-root-mod/com.evbadroid.wicap/original.html>Sniffer Wicap</a>
+    is a tool for ROOT ARM droids and works on rooted Android mobile phones</p>
+
+    <h2>FaceNiff</h2>
+    <p><a target=_blank href=https://download.happymod.com/faceniff-demo-mod/net.ponury.faceniff/download.html>FaceNiff</a> is an Android app 
+    that can sniff and intercept web session profiles over a Wi-Fi connection to a mobile. It works on 
+    rooted Android phones.</p>
