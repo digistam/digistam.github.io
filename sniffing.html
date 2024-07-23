@@ -392,3 +392,86 @@ in the network.</p>
         <ul>DoS: IRDP spoofing allows remote attackers to add wrong route entries into the victim's routing table. The wrong 
         address causes DoS</ul>
     </ol></p>
+
+    <h2>VLAN Hopping</h2>
+    <p>Virtual local area network (VLAN) hopping is a technique used to target network resources 
+    present on a VLAN. The main purpose behind a VLAN hopping attack is to gain access to the traffic 
+    flowing in other VLANs present in the same network, which is otherwise inaccessible. Networks usually 
+    have poor VLAN implementation or have misconfigurations that allow attackers to perform this type of attack.
+    Attackers perform VLAN hopping attacks to steal sensitive information such as passwords; modify, corrupt or delete 
+    data; install malicious codes or programs or spread viruses, Trojans and worms throughout the network.</p>
+    <p><ol>
+        <ul>Switch Spoofing -> a rogue switch is connected to the network by tricking a legitimate switch and 
+        thereby creating a trunk link between them</ul>
+        <ul>Double Tagging -> the attacker adds and modifies tags in the Ethernet frame, thereby allowing the flow of 
+        traffic through any VLAN in the network</ul>
+    </ol></p>
+
+    <h2>STP Attack</h2>
+    <p>In a Spanning Tree Protocol (SPT) attack, attackers connect a rogue switch into the network to 
+    change the operation of the SPT protocol and sniff all the network traffic. </p>
+
+    <h2>Sniffing Technique: DNS Poisoning</h2>
+    <p>DNS is the protocol that translates a domain name into an IP address. The protocol uses DNS tables 
+    that contain the domain name and its equivalent IP address stored in a distributed large database. In DNS 
+    poisoning, also known as DNS spoofing, the attacker tricks a DNS server into believing that it has received 
+    authentic information when, in reality, it has not received any. The attacker tries to redirect the victim to 
+    a malicious server instead of the legitimate server. The attacker does this by manipulating the DNS table 
+    entries in the DNS. This results in substitution of a false IP address at the DNS level, where web addresses 
+    are converted into numeric IP addresses.</p>
+    <p><ol>
+        <ul>Intranet DNS Spoofing</ul>
+        <ul>Internet DNS Spoofing</ul>
+        <ul>Proxy Server DNS Poisoning</ul>
+        <ul>DNS Cache Poisoning</ul>
+    </ol></p>
+
+    <h2>Intranet DNS Spoofing</h2>
+    <p>Intranet DNS spoofing attack on a switched LAN with the help of the ARP poisoning technique. To 
+    perform this attack, the attacker must be connected to the LAN and be able to sniff the traffic or packets. 
+    An attacker who succeeds in sniffing the ID of the DNS request from the internet can send a malicious reply 
+    to the sender before the actual DNS server.</p>
+
+    <h2>Internet DNS Spoofing</h2>
+    <p>Also known as remote DNS poisoning. To perform this attack, the attacker sets up a rogue 
+    DNS server with a static IP address. Attackers perform Internet DNS spoofing with the help of Trojans 
+    when the victim's system connects to the Internet. This is a MITM attack in which the attacker changes 
+    the primary DNS entries of the victim's computer.</p>
+
+    <h2>Proxy Server DNS Poisoning</h2>
+<p>The attacker sets up a proxy server on his own system. The attacker also configures a fraudulent DNS and 
+makes its IP address a primary DNS entry in the proxy server. The attacker changes the proxy server settings 
+of the victim with the help of a Trojan. The proxy serves as a primary DNS and redirects the victim's 
+traffic to the fake website, where the attacker can sniff the confidential information of the victim and then
+redirect the request to the real website.</p>
+
+    <h2>DNS Cache poisoning</h2>
+    <p>Adding forged DNS records in the DNS resolver cache so that a DNS query is redirected to a 
+    malicious site. The DNS system uses cache memory to hold the recently resolved domain names. The attacker 
+    populates it with recently used domain names and their respective IP address entries. When a user 
+    request is received, the DNS resolver first checks the DNS cache; if the system finds the domain name 
+    that the user requested in the cache, the resolver will quickly send its respective IP address. It 
+    reduces time and traffic.</p>
+    <p>Attackers target and make changes or add entries to this DNS cache. If the DNS resolver cannot validate 
+    that the DNS responses have come from an authoritative source, it will cache the incorrect entries 
+    locally and serve them to users who make the same request. The attacker replaces the user-requested 
+    IP address with the fake IP address and, when the user requests that domain name, the DNS resolver 
+    checks the entry in the DNS cache and picks the matched (poised) entry. Then, it redirects the victim to 
+    the attacker's fake server instead of the intended server.</p>
+
+    <h2>SAD DNS Attack</h2>
+    <p>SAD DNS is a new variant of DNS cache poisoning, in which an attacker injects harmful DNS records 
+    into a DNS cache to divert all traffic toward their own server. Attackers attempt to mislead client browsers 
+    to fake websites infected with malicious files, instead of the legitimate website. Attackers exploit 
+    side channels; flaws such as dnsmasq, unbound and BIN in the latest OSes; and obsolete DNS software used 
+    to resolve DNS queries to perform SAD DNS attacks.</p>
+
+    <h2>DNS Poisoning Tools</h2>
+    <p><ol>
+        <ul><a target=_blank href=https://github.com/Trackbool/DerpNSpoof>DerpNSpoof</a></ul>
+        <ul>DNS Spoof</ul>
+        <ul>DNS-poison</ul>
+        <ul><a target=_blank href=https://www.ettercap-project.org/>Ettercap</a></ul>
+        <ul>Evilgrade</ul>
+        <ul>DNS Poisoning Tool</ul>
+    </ol></p>
