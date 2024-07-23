@@ -232,3 +232,163 @@ in the network.</p>
         the switch's CAM table</p>
     <p>Now, a connection is established between Machine A and Machine C</p>
     <p>The system will forward all the packets directed towards Machine B to Machine C (the attacker)</p>
+
+    <h2>Sniffing Technique: DHCP Attacks</h2>
+    <p>A DHCP attack is an active sniffing techique used by the attacker to steal and manipulate 
+    sensitive data. DHCP is a client - server protocol that provides an IP address to an IP host. 
+    The DHCP server also provides configuration-related information such as the default gateway and 
+    subnet mask. When a DHCP client boots up, it participates in traffic broadcasting. DHCP servers 
+    maintain IP configuration in a database such as valid TCP/IP configuration parameters, valid IP 
+    addresses and duration of the lease offered by the server. It provides a lease offer to the client.</p>
+
+    <h2>How does it work</h2>
+    <p><ol>
+        <ul>The clients boots up and broadcasts a DHCPDISCOVER / SOLICIT request asking for DHCP configuration information</ul>
+        <ul>A DHCP-relay agent captures the request and unicasts it to the DHCP servers in the network</ul>
+        <ul>A DHCP server unicasts DHCPOFFER / ADVERTISE which contains MAC addresses of both client and server</ul>
+        <ul>The relay agent broadcasts DHCPOFFER / ADVERTISE in the client's subnet</ul>
+        <ul>The client broadcasts DHCPREQUEST / REQUEST asking the DHCP server to provide the DHCP configuration information</ul>
+        <ul>The DHCP server sends a unicast DHCPACK / REPLY message to the client with IP configuration and information</ul>
+    </ol></p>
+
+    <h2>DHCP Request / Reply messages</h2>
+    <p>A device that already has an IP address can use the simple request / reply exchange to obtain 
+    other configuration parameters from a DHCP server. When a client receives an offer from the server, it 
+    immediately responds with sending back a DHCP request packet. Devices that are not using DHCP to acquire 
+    IP addresses can still utilize DHCP's other configuration capabilities.</p>
+    <p>DHCP has two functionalities: delivering host-specific configuration parameters and allocating 
+    network addresses to hosts. DHCP messages have the same format as that of Bootstrap Protocol (BOOTP) 
+    and maintain its compatibility with BOOTP relay agents, eliminating the need to change the BOOTP 
+    client's initialization software to interoperate with DHCP servers.</p>
+
+    <h2>DHCP Starvation Attack</h2>
+    <p>In a DHCP Starvation Attack an attacker floods the DHCP server by sending numerous DHCP 
+    requests and uses all of the available IP addresses that the DHCP server an issue. As a result, 
+    the server cannot issue any more IP addresses, leading to a DoS attack. An attacker broadcasts 
+    DHCP requests with spoofed MAC addresses with the help of tools as <a target=_blank href=https://github.com/tomac/yersinia>Yersinia</a>, 
+        <a target=_blank href=https://github.com/r-richter/hyenae>Hyenae</a> and <a target=_blank href=https://gobbler.sourceforge.net/>Gobbler</a>.</p>
+
+    <h2>Rogue DHCP Server Attack</h2>
+    <p>In addition to DHCP starvation attacks, an attacker can perform MITM attacks such as sniffing.
+    An attacker who succeeds in exhausting the DHCP server's IP address space can set up a rogue 
+    DHCP server on the network, which is not under control of the network admin. The rogue server 
+    impersonates a legitimate server and offers IP addresses and other network information. Although 
+    both rogue and actual DHCP servers respond to requests, the client accepts the response that comes 
+    first (rogue server). The response from the attacker's rogue DHCP server may assign the IP 
+    address of the client's default gateway. The attacker then captures all the traffic and forwards 
+    it to the default gateway. The rogue server can also direct the client to visit fake websites in an 
+    attempt to gain the credentials. </p>
+    <p>DHCP attack tools:</p>
+    <p><ol>
+        <ul><a target=_blank href=https://github.com/dirkjanm/mitm6>mitm6</a></ul>
+        <ul><a target=_blank href=https://github.com/mschwager/dhcpwn>DHCPwn</a></ul>
+        <ul><a target=_blank href=https://github.com/kamorin/DHCPig>DHCPig</a></ul>
+    </ol></p>
+
+    <h2>Sniffing Technique: ARP Poisoning</h2>
+    <p>The ARP is a stateless TCP/IP protocol that maps IP network addresses to the 
+    hardware address used by a data link protocol. Using this protocol a user can easily 
+    obtain the MAC address of any device on a network. </p>
+    <h2>How does it work</h2>
+    <p><ol>
+        <ul>The source machine generates an ARP request packet containing the MAC address, source IP address and destination IP address and sends it to the server</ul>
+        <ul>On receiving the packet, the switch reads the MAC address of the source and searches for this in the CAM table</ul>
+        <ul>The switch updates all the new entries; if the entry is not found in the table, the switch adds the MAC address and its incoming port to its CAM table and 
+        broadcasts the ARP request packet into the network</ul>
+        <ul>Each device in the network receives the broadcast ARP request and compares the destination IP address in the packet with its own IP address</ul>
+        <ul>Only the system with an IP address that matches replies with an ARP reply packet</ul>
+        <ul>The ARP reply message is then read by the switch, which adds the entry to its MAC table and 
+        forwards the message to the destination machine, that sent the ARP request</ul>
+        <ul>This machine updates the destination machine's IP and MAC address entries into its ARP table and 
+        communication can now take place</ul>
+    </ol></p>
+    <h2>ARP Spoofing Attack</h2>
+    <p>ARP packets can be forged to send data to the attacker's machine. ARP spoofing involves constructing a large 
+    number of forged ARP requests and reply packets to overload a switch. ARP provides no means of verifying the authenticity
+    of the responding device. Attackers use this flaw in ARP to create malformed ARP replies containing 
+    spoofed IP and MAC addresses. Assuming it to be the legitimate ARP reply, the victim's computer blindly 
+    accepts the ARP entry into its ARP table. Once the ARP table is flooded with spoofed ARP replies, the switch 
+    is set in forwarding mode and the attacker intercepts all the data that flows from the victim's machine without the 
+    victim being aware of the attack. This is also known as poisoning. ARP spoofing is an intermediary for 
+    performing attacks such as DoS, MITM and session hijacking.</p>
+    <h2>How does it work</h2>
+    <p>When a legitimate user initiates a session with another user in the same layer 2 broadcast domain, 
+    the switch broadcasts an ARP request using the recipient's IP address, while the sender waits for the recipient 
+    to respond with a MAC address. An attacker eavesdropping on this unprotected layer 2 broadcast domain can respond 
+    to the broadcast ARP request and replies to the sender by spoofing the intended recipient's IP address. The attacker 
+    runs a sniffer and turns the machine's NIC adapter to promiscuous mode.</p>
+
+    <h2>ARP poisoning tools</h2>
+    <p><ol>
+        <ul><a target=_blank href=https://linux.die.net/man/8/arpspoof>arpspoof</a></ul>
+        <ul><i>arpspoof -i [Interface] -t [Target Host]</i></ul>
+        <ul><a target=_blank href=https://github.com/fportantier/habu>Habu</a></ul>
+        <ul><a target=_blank href=https://www.bettercap.org/>BetterCAP</a></ul>
+        <ul><a target=_blank href=https://www.ettercap-project.org/>Ettercap</a></ul>
+        <ul><a target=_blank href=https://www.monkey.org/~dugsong/dsniff/>dsniff</a></ul>
+        <ul><a target=_blank href=https://github.com/byt3bl33d3r/MITMf>MITMf</a></ul>
+        <ul><a target=_blank href=https://arpoison.sourceforge.net/>Arpoison</a></ul>
+    </ol></p>
+
+    <h2>Sniffing Technique: Spoofing Attacks</h2>
+    <p>Besides ARP spoofing, an attacker can also use MAC spoofing, IRDP spoofing, VLAN 
+    hopping and STP attacks to sniff the traffic of a target network. </p>
+
+    <h2>MAC spoofing / duplicating</h2>
+    <p>MAC duplicating refers to spoofing a MAC address with the MAC address of a legitimate 
+    user on the network. If the spoofing is successful the attacker can receive all the 
+    traffic designed for the client. This technique can be used to bypass wireless access points'
+    MAC filtering.</p>
+
+    <h2>MAC spoofing on Windows</h2>
+    <p><ol>
+        <ul>Start > Control Panel > Network and Internet > Network and Sharing Center</ul>
+        <ul>Click Ethernet > Properties </ul>
+        <ul>Click Configure > Advanced</ul>
+        <ul>Under "Property" > Network Address</ul>
+        <ul>Under "Value" >  Type new MAC address > OK</ul>
+        <ul>Enter the MAC address without ":" in between</ul>
+        <ul>Type ipconfig/all or net config rdr in the command prompt to verify the changes</ul>
+        <ul>If the changes are visible, reboot the system</ul>
+        <ul>If changes are not visible, try to change MAC address in the registry</ul>
+    </ol></p>
+    <p><ol>
+        <ul>Press Win + R > regedit</ul>
+        <ul>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4d36e972-e325-11ce-bfc1-08002be10318}</ul>
+        <ul>Four digits sub keys representing network adapters will be found (starting with 0000, 0001)</ul>
+        <ul>Search for the proper DriverDesc key to find the desired interface</ul>
+        <ul>Right-click on the appropriate sub key and add the new string value "NetworkAddress" (REG_SZ) to contain the new MAC address</ul>
+        <ul>Right-click on the NetworkAddress string value on the right side and select Modify</ul>
+        <ul>In the Edit String dialog box, enter the new MAC address in the "Value data" field and click OK</ul>
+        <ul>Disable and re-enable the network interface that was changed or reboot the system</ul>
+    </ol></p>
+
+    <h2>MAC Spoofing Tools</h2>
+    <p><ol>
+        <ul><a target=_blank href=https://technitium.com/tmac/>Technitium MAC Address Changer</a></ul>
+        <ul><a target=_blank href=https://klcconsulting.net>SMAC</a></ul>
+        <ul><a target=_blank href=https://sourceforge.net/projects/spoof-me-now/>Spoof-Me-Now</a></ul>
+    </ol></p>
+
+    <h2>IRDP Spoofing</h2>
+    <p>ICMP Router Discovery Protocol (IRDP) is a routing protocol that allows a host to discover the IP 
+    addresses of active routers on its subnet by listening to router advertisements and solicitation messages
+    on its network. The attacker can add default route entries on a system remotely by spoofing router advertisement 
+    messages. IRDP does not require any authentication. The target host will prefer the default route defined by the
+    attacker over the default route provided by the DHCP server. The attacker accomplishes this by setting 
+    the preference level and lifetime of the route at high values to ensure that the target host will choose it as 
+    the preferred route. The attack succeeds if the attacker launching the attack is on the same network as the victim. 
+    In the case of a Windows system configured as DHCP client, Windows checks the received router advertisements 
+    for entries. If there is only one, then it checks whether the IP source address is within the subnet. If so, 
+    it adds the default route entry; otherwise it ignores the advertisement. An attacker can use this to send spoofed 
+    router advertisement messages so that all the data packets travel through the attacker's system. Thus, the attacker 
+    can sniff the traffic and collect valuable information from the data packets. Attackers can use IRDP spoofing to 
+    launch MITM, DoS and passive sniffing attacks.</p>
+    <p><ol>
+        <ul>Passive Sniffing: in a switched environment, the attacker spoofs IRDP traffic to re-route the outbound traffic 
+        of target hosts through the attacker's machine</ul>
+        <ul>MITM: once sniffing starts, the attacker acts as a proxy between the victim and the destination. The attacker 
+        plays an MITM role and tries to modify the traffic</ul>
+        <ul>DoS: IRDP spoofing allows remote attackers to add wrong route entries into the victim's routing table. The wrong 
+        address causes DoS</ul>
+    </ol></p>
