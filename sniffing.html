@@ -475,3 +475,30 @@ redirect the request to the real website.</p>
         <ul>Evilgrade</ul>
         <ul>DNS Poisoning Tool</ul>
     </ol></p>
+
+    <h1>Detect sniffing</h1>
+
+    <h2>How to detect sniffing</h2>
+    <p>It is not easy to detect a sniffer on the network as it only captures data and runs in 
+    promiscuous mode. There are some techniques:</p>
+    <p><ol>
+        <ul>Ping -> identify the system on the network running in promiscuous mode, send a Ping request with the machine's IP address and incorrect
+        MAC address. The Ethernet adapter will reject it because the MAC address does not match, whereas the suspect machine running the 
+        sniffer will respond to it as it does not reject packets with a different MAC address. Thus, this response will identify 
+        the sniffer in the network</ul>
+        <ul>DNS Method -> monitor the organization's DNS server to identify incoming reverse DNS lookups, for local reverse DNS lookups configure the 
+        detector in promiscuous mode, send an ICMP request to a non-existing IP address and view the response. If the system receives a response, the 
+        user can identify the responding machine as performing reverse DNS lookups on the local machine. A machine generating reverse DNS 
+        lookup traffic will most likely be running a sniffer.</ul>
+        <ul>ARP Method -> this technique sends a non-broadcast ARP to all the nodes in the network. The node that runs in promiscuous mode on the 
+        network will cache the local ARP address. Then, it will broadcast a ping message on the network with the local IP address but a different 
+        MAC address. In this case, only the node that has the MAC address (cached earlier) will be able to respond to your 
+        broadcast ping request.</ul>
+    </ol></p>
+
+    <h2>Promiscuous Detection Tools</h2>
+    <p><ol>
+        <ul>Nmap -> NSE script</ul>
+        <ul><i>nmap --script=sniffer-detect [Target IP / Range]</i></ul>
+        <ul><a target=_blank href=https://www.netscantoolspro.com>NetScanTools Pro</a></ul>
+    </ol></p>
