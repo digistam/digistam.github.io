@@ -1,0 +1,29 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>Active Sniffing Techniques</h1>
+<h2>Perform MAC Flooding with macof</h2>
+<p>MAC flooding is a technique used to compromise the security of network switches that connect network segments or network devices. 
+  Attackers use the MAC flooding technique to force a switch to act as a hub, so they can easily sniff the traffic. macof is a Unix and Linux tool 
+  that is a part of the dsniff collection. It floods the local network with random MAC addresses and IP addresses, causing some switches to fail 
+  and open in repeating mode, thereby facilitating sniffing. This tool floods the switch’s CAM tables (131,000 per minute) by sending forged MAC entries. 
+  When the MAC table fills up, the switch converts to a hub-like operation where an attacker can monitor the data being broadcast.</p>
+  <p><ol>
+    <ul>Start Kali VM</ul>
+    <ul>Start Wireshark</ul>
+    <ul>Start packet capture on eth0 / wlan0</ul>
+    <ul>Open a second (bridged) VM with Wireshark installed</ul>
+    <ul>Start packet capture on the second VM too</ul>
+    <ul>Kali machine: open terminal</ul>
+    <ul>Type: sudo su</ul>
+    <ul>Type: cd -> Enter</ul>
+    <ul>Type: macof -i eth0 -n 10</ul>
+    <ul>This command will start flooding the CAM table with random MAC addresses</ul>
+    <ul>Switch to Wireshark</ul>
+    <ul>Observe the <b>IPv4</b> packets from random IP addresses</ul>
+    <ul>Click on any captures IPv4 packet and expand the Ethernet II node in the packet details section</ul>
+    <ul>Observe the information regarding source and destination MAC addresses</ul>
+    <ul>Switch to Wireshark in the second VM and compare the <b>IPv4</b> packets with the <b>IPv4</b> packets on the Kali machine</ul>
+    <ul>macof has sent the packets with random MAC and IP addresses to ALL active machines in the local network</ul>
+  </ol></p>
