@@ -3,7 +3,7 @@
   <a href=../index.html>Back to home</a>
 <hr/>
 <h1>Active Sniffing Techniques</h1>
-<h2>Perform MAC Flooding with macof</h2>
+<h1>Perform MAC Flooding with macof</h1>
     <p>Attackers use MAC attacks or MAC flooding to force a switch to act as a hub.</p>
     <h2>MAC address</h2>
     <p>A MAC address uniquely identifies each node of a network (Layer 2). A MAC address comprises
@@ -85,3 +85,46 @@
     <ul>Switch to Wireshark in the second VM and compare the <b>IPv4</b> packets with the <b>IPv4</b> packets on the Kali machine</ul>
     <ul>macof has sent the packets with random MAC and IP addresses to ALL active machines in the local network</ul>
   </ol></p>
+
+     <h1>Perform a DHCP Starvation Attack using Yersinia</h1>
+    <p>A DHCP attack is an active sniffing techique used by the attacker to steal and manipulate 
+    sensitive data. DHCP is a client - server protocol that provides an IP address to an IP host. 
+    The DHCP server also provides configuration-related information such as the default gateway and 
+    subnet mask. When a DHCP client boots up, it participates in traffic broadcasting. DHCP servers 
+    maintain IP configuration in a database such as valid TCP/IP configuration parameters, valid IP 
+    addresses and duration of the lease offered by the server. It provides a lease offer to the client.</p>
+
+    <h2>DHCP Starvation Attack</h2>
+    <p>In a DHCP Starvation Attack an attacker floods the DHCP server by sending numerous DHCP 
+    requests and uses all of the available IP addresses that the DHCP server an issue. As a result, 
+    the server cannot issue any more IP addresses, leading to a DoS attack. An attacker broadcasts 
+    DHCP requests with spoofed MAC addresses with the help of tools as <a target=_blank href=https://github.com/tomac/yersinia>Yersinia</a>, 
+        <a target=_blank href=https://github.com/r-richter/hyenae>Hyenae</a> and <a target=_blank href=https://gobbler.sourceforge.net/>Gobbler</a>.</p>
+
+    <h2>Practice with Kali</h2>
+    <p><ol>
+    <ul>Start Kali VM</ul>
+    <ul>Start Wireshark</ul>
+    <ul>Start packet capture on eth0 / wlan0</ul>
+    <ul>Open a second (bridged) VM with Wireshark installed</ul>
+    <ul>Start packet capture on the second VM too</ul>
+    <ul>Kali machine: open terminal</ul>
+    <ul>Type: sudo su</ul>
+    <ul>Type: cd -> Enter</ul>
+    <ul>Type: sudo apt-get install yersinia</ul>
+    <ul>Type: yersinia -I</ul>
+    <ul>This command will start Yersinia GUI</ul>
+        <ul>Press F2 to select DHCP mode</ul>
+        <ul>Press x to list available attack options</ul>
+        <ul>Press 1 to start DHCP starvation attack</ul>
+        <ul>Yersinia starts sending DHCP packets to the network adapter and all active machines in the local network</ul>
+        <ul>After a few seconds, press q to stop the attack and terminate Yersinia</ul>
+    <ul>Switch to Wireshark</ul>
+    <ul>Observe the <b>DHCP</b> packets</ul>
+    <ul>Click on any captured DHCP packet and expand the Ethernet II node in the packet details section</ul>
+    <ul>Observe the information regarding source and destination MAC addresses</ul>
+    <ul>Switch to Wireshark in the second VM and compare the <b>DHCP</b> packets with the <b>DHCP</b> packets on the Kali machine</ul>
+    <ul>Yersinia has sent the packets to ALL active machines in the local network</ul>
+  </ol></p>
+
+    
