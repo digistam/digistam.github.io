@@ -127,4 +127,52 @@
     <ul>Yersinia has sent the packets to ALL active machines in the local network</ul>
   </ol></p>
 
-    
+    <h1>Perform ARP Poisoning using arpspoof</h1>
+
+    <p>The ARP is a stateless TCP/IP protocol that maps IP network addresses to the 
+    hardware address used by a data link protocol. Using this protocol a user can easily 
+    obtain the MAC address of any device on a network. </p>
+    <h2>ARP Spoofing Attack</h2>
+    <p>ARP packets can be forged to send data to the attacker's machine. ARP spoofing involves constructing a large 
+    number of forged ARP requests and reply packets to overload a switch. ARP provides no means of verifying the authenticity
+    of the responding device. Attackers use this flaw in ARP to create malformed ARP replies containing 
+    spoofed IP and MAC addresses. Assuming it to be the legitimate ARP reply, the victim's computer blindly 
+    accepts the ARP entry into its ARP table. Once the ARP table is flooded with spoofed ARP replies, the switch 
+    is set in forwarding mode and the attacker intercepts all the data that flows from the victim's machine without the 
+    victim being aware of the attack. This is also known as poisoning. ARP spoofing is an intermediary for 
+    performing attacks such as DoS, MITM and session hijacking.</p>
+    <h2>How does it work</h2>
+    <p>When a legitimate user initiates a session with another user in the same layer 2 broadcast domain, 
+    the switch broadcasts an ARP request using the recipient's IP address, while the sender waits for the recipient 
+    to respond with a MAC address. An attacker eavesdropping on this unprotected layer 2 broadcast domain can respond 
+    to the broadcast ARP request and replies to the sender by spoofing the intended recipient's IP address. The attacker 
+    runs a sniffer and turns the machine's NIC adapter to promiscuous mode.</p>
+
+       <h2>Practice with Kali</h2>
+    <p><ol>
+        <ul>Step 1: <b>Find the IP address of the access point / gateway </b> -> <b>IP A</b>b</ul>
+        <ul>Step 2: <b>Find the IP address of the victim's computer</b> -> <b>IP B</b></ul>
+        <ul>Step 3: <b>Find the IP address of your own computer</b> -> <b>IP C</b></ul>
+        <ul>Step 4: <b>Start Kali VM</b> -> <b>System D</b></ul>
+        <ul>Step 5: <b>Start other (bridged) VM</b> -> <b>System E</b>
+    <ul>Start Wireshark on both System D and System E</ul>
+    <ul>Start packet capture</ul>
+    <ul>Open terminal in System D</ul>
+    <ul><i>sudo su</i></ul>
+            <ul><i>cd</i> Enter</ul>
+    <ul><i>arpspoof -i eth0 -t [IP A] [IP B]</i> Enter</ul>
+    <ul>This command tells the access point (IP A) that the target system (IP B) has OUR MAC address</ul>
+    <ul>We are informing the access point that we are the target system</ul>
+            <ul>In the terminal we see <i>"... IP B is-at [our MAC address]</i>"
+    <ul>Looking at the packets in Wireshark we will see the alert "duplicate use of [IP B] detected"</ul>
+    <ul>Switch back to the terminal window where arpspoof was running</ul>
+    <ul><i>arpspoof -i eth0 -t [IP B] [IP A]</i> Enter</ul>
+    <ul>This command tells the target system (IP B) that we are the access point (IP A)</ul>
+    <ul>Click on any ARP packet in Wireshark and expand Ethernet II node in the packet details section</ul>                
+    <ul>Observe IP A and IP B</ul>
+    <ul>Using arpspoof, we assigned the MAC address of the host system (IP C) to the target system (IP B) and access point (IP A)</ul>
+  </ol></p>
+
+                <h2>Practice with Bettercap</h2>
+                <p><a target=_blank href=https://www.bettercap.org/>Bettercap</a>, better than Ettercap!</p>
+                <p><a target=_blank href=https://youtube.com/watch?v=xrK6KA9yzQE>Awesome video</a></p>
