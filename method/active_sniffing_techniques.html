@@ -4,12 +4,70 @@
 <hr/>
 <h1>Active Sniffing Techniques</h1>
 <h2>Perform MAC Flooding with macof</h2>
-<p>MAC flooding is a technique used to compromise the security of network switches that connect network segments or network devices. 
-  Attackers use the MAC flooding technique to force a switch to act as a hub, so they can easily sniff the traffic. macof is a Unix and Linux tool 
-  that is a part of the dsniff collection. It floods the local network with random MAC addresses and IP addresses, causing some switches to fail 
-  and open in repeating mode, thereby facilitating sniffing. This tool floods the switch’s CAM tables (131,000 per minute) by sending forged MAC entries. 
-  When the MAC table fills up, the switch converts to a hub-like operation where an attacker can monitor the data being broadcast.</p>
-  <p><ol>
+    <p>Attackers use MAC attacks or MAC flooding to force a switch to act as a hub.</p>
+    <h2>MAC address</h2>
+    <p>A MAC address uniquely identifies each node of a network (Layer 2). A MAC address comprises
+    48 bits, split into two sections of 24 bits. The first section contains the ID number of the 
+    manufacturer (organizationally unique identifier - OUI) and the next six digits (24 bits) indicate 
+    the adapter's serial number. </p>
+    <h2>CAM table</h2>
+    <p>A CAM table is a dynamic table of fixed size. It stores information such as MAC addresses available 
+    on physical ports along with VLAN parameters associated. When a machine sends data to another machine in a 
+    network, the data passes through the switch. The switch searches for the destination MAC address (in 
+    Ethernet frame) in its CAM table, and one the MAC address is found, it forwards data to the machine 
+    through the port with which the MAC address is bound. A CAM table refers to the dynamic form of content 
+    and works with an Ethernet switch. The Ethernet switch maintains connections between ports and the CAM 
+    table keeps track of MAC address locations on the switch. But the table is limited in size. 
+    If the CAM table is flooded with more MAC addresses than it can hold, the switch will turn into
+    a hub. The CAM table does this intentionally to ensure the delivery of data to the intended host.</p>
+
+    <h2>What happens if a CAM table is full </h2>
+    <p>When a CAM table is full, the switch broadcasts all incoming traffic to all ports, 
+    similar to a hub. The MAC flooding attack also fills the CAM table of adjacent switches.</p>
+
+    <h2>MAC Flooding</h2>
+    <p>In a MAC flooding attack the attacker sends numerous fake MAC addresses to the switch.
+    When the CAM table is full, any further requests may force the switch to enter fail-open mode.
+    The attacker then changes the machine's NIC to promiscuous mode to enable the machine to 
+    accept all the traffic entering it.</p>
+
+    <h2>MAC flooding with macof</h2>
+    <p><a target=_blank href=https://medium.com/@S3Curiosity/unleash-macof-an-essential-ethical-hacking-tool-for-network-security-a12445bc0501>macof</a>
+    is a Unix/Linux tool that is part of the <a target=_blank href=https://nl.wikipedia.org/wiki/Dsniff>dsniff</a> collection. 
+    It floods the local network with random MAC and IP addresses, causing some switches to fail and open in 
+    repeating mode, thereby facilitating sniffing. This tool floods the switch's CAM tables (131.000 per minute) 
+    by sending forged MAC entries. When the MAC table fills up and the switch converts to hub-like 
+    operation, an attacker can monitor the data being broadcast.</p>
+
+     <h2>How does it work</h2>
+    <p>Three machines:</p>
+    <p><ol>
+        <ul>Machine A with MAC address A</ul>
+        <ul>Machine B with MAC address B</ul>
+        <ul>Machine C with MAC address C</ul>
+    </ol></p>
+    <p>Machine C is the attacker</p>
+    <p>Machine C spoofs both the IP address and the MAC address of Machine B</p>
+    <p>Machine C runs a sniffer in promiscuous mode</p>
+    <p>Machine A wants to communicate with Machine B and sends an ARP request to the switch, containing:</p>
+    <p><ol>
+        <ul>IP address of Machine B</ul>
+        <ul>IP address of Machine A</ul>
+        <ul>MAC address of Machine A</ul>
+    </ol></p>
+    <p>The switch broadcasts the ARP request to all machines in the network</p?
+    <p>Before Machine B can respond to the ARP request, Machine C responds to the ARP request 
+        by sending an ARP reply containing the spoofed MAC and IP addresses</p>
+    <p>Machine C can achieve this by launching an attack such as DoS on Machine B, which slows 
+        down its response</p>
+    <p>Now the ARP cache in the switch records the spoofed MAC and IP addresses</p>
+    <p>The spoofed MAC address of Machine B and the port connect to Machine C and update 
+        the switch's CAM table</p>
+    <p>Now, a connection is established between Machine A and Machine C</p>
+    <p>The system will forward all the packets directed towards Machine B to Machine C (the attacker)</p>
+    
+<h2>Practice with Kali</h2>
+    <p><ol>
     <ul>Start Kali VM</ul>
     <ul>Start Wireshark</ul>
     <ul>Start packet capture on eth0 / wlan0</ul>
