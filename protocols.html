@@ -17,7 +17,20 @@
   stand-alone protocol or compatible with standard DNS servers. It uses UDP and is implemented by Apple Bonjour and most Linux distro's. The Windows 10 
   implementation was limited to discover printers, but now resolves hostnames as well. Port 5353</p>
     <p>&nbsp;</p>
-    <p>In order to see if any protocols are active on the subnet use <b>Bettercap</b> <i></i>net.sniff on</i></p>
-
+    <p>In order to see if any protocols are active on the subnet use <b>Bettercap</b> <i></i>net.sniff on</i>. You will see all nice goodies like:</p>
+    <p><ol>
+        <ul>192.168.1.0/24 > 192.168.1.218  » [09:48:13] [net.sniff.http.response] ...</ul>
+        <ul>192.168.1.0/24 > 192.168.1.218  » [09:48:13] [net.sniff.http.response] ...</ul>
+        <ul>192.168.1.0/24 > 192.168.1.218  » [09:48:15] [net.sniff.https] ...</ul>
+        <ul>192.168.1.0/24 > 192.168.1.218  » [09:48:15] [net.sniff.https] ...</ul>
+        <ul>192.168.1.0/24 > 192.168.1.218  » [09:48:16] [net.sniff.dns] ...</ul>
+        <ul>192.168.1.0/24 > 192.168.1.218  » [09:48:16] [net.sniff.dns] ...</ul>
+        <ul>192.168.1.0/24 > 192.168.1.218  » [09:48:23] [net.sniff.dns] ...</ul>
+        <ul>192.168.1.0/24 > 192.168.1.218  » [09:48:23] [net.sniff.https] ...</ul>
+        <ul>192.168.1.0/24 > 192.168.1.218  » [09:48:59] [net.sniff.mdns] ...</ul>
+        <ul>192.168.1.0/24 > 192.168.1.218  » [09:48:59] [net.sniff.mdns] ...</ul>
+        <ul>192.168.1.0/24 > 192.168.1.218  » [09:48:59] [net.sniff.mdns] ...</ul>
+    </ol></p>
+    <p>In my humble subnet, I have things goin'on like http, dns, https, mdns</p>
   
   
