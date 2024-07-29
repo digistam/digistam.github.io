@@ -1,0 +1,54 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=index.html>Back to home</a>
+<hr/>
+<h1>Session Hijacking</h1>
+<p>A web server sends a session identification token or key to a web client after succesful authentication. These session tokens differentiate multiple sessions that the server establishes with clients. 
+  Web servers use various mechanisms to generate random tokens and controls to secure the tokens during transmission. Session hijacking is an attack in which an attacker takes over a valid Transmission Control Protocol 
+  (TCP) communication between two computers. Because most types of authentication are performed only at the start of a TCP session, an attacker can gain access to a machine while a session is in progress. Attackers 
+  can sniff all the traffic from established TCP sessions and perform identity theft, information theft, fraud etc.</p>
+  <p>A session hijacking attack exploits a session-token generation mechanism or token security controls so that the attacker can establish an unauthorized connection with a target server. The attacker can guess 
+  or steal a valid session ID, which identifies authenticated users, and use it to establish a session with the server. The web server responds to the attacker's request under the impression that it is 
+  communicating with an authenticated user.</p>
+  <p>Attackers can use session hijacking to launch various kinds of attacks, such as MITM and DoS attacks. In an MITM attack, an attacker places themselves between an authorized client and a server by 
+  performing session hijacking to ensure that information flowing in either direction passes through them. However, the client and server believe they are directly communicating with each other. Attackers can also 
+  sniff sensitive information and disrupt sessions to launch a DoS attack.</p>
+  <h2>Why is Session Hijacking successful </h2>
+  <p><ol>
+    <ul>Absence of account lockout for invalid session IDs -> if a website does not implement account lockout an attacker can make several attempts to connect with varying session IDs embedded in a genuine URL (brute-force)</ul>
+    <ul>Weak session ID generation algorithm or small session IDs -> most websites use linear algorithms to predict variables such as time or IP address for generating session IDs; by studying the sequential pattern and generating multiple requests 
+    an attacker can easily narrow the search space necessary to forge a valid session ID</ul>
+    <ul>Insecure handling of session IDs -> an attacker cna retrieve stored session ID information by misleading the user's browser into visiting another site</ul>
+    <ul>Indefinite session timeout -> session IDs with an indefinite expiration time provides an attacker with unlimited time to guess a valid session ID (remember me - option) after capturing the user's cookie file</ul>
+    <ul>Most computers using TCP / Internet Protocol (IP) are vulnerable</ul>
+    <ul>Most countermeasures do not work without encryption -> easy to sniff if transport security is not set up properly during transmision of session ID cookies</ul>
+  </ol></p>
+
+  <h1>Session Hijacking Process</h1>
+  <p><ol>
+    <ul>An attacker can hijack a genuine user's session by finding an established session and taking it over after user authentication</ul>
+    <ul>After hijacking the session, the attacker can stay connected for hours without suspicion</ul>
+    <ul>During this period, all traffic intended for the user's IP address goes to the attacker's system instead and the attacker can plant backdoors or gain additional access to the system</ul>
+  </ol></p>
+  <h2>Tracking the connection</h2>
+  <p>The attacker uses a network sniffer to track a victim and host or uses a tool such as nmap to scan the network for a target with a TCP sequence that is easy to predict. After identifying a victim, 
+  the attacker captures the sequence and acknowledgement numbers of the victim because TCP checks these numbers. The attacker then uses these numbers to construct packets.</p>
+  <h2>Desynchronizing the connection</h2>
+  <p>A desynchronized state occurs when a connection between a target and host is established, or stable with no data transmission or the server's sequence number is not equal to the client's 
+  acknowledgement number, or vice versa. To desynchronize the connection between the target and host, the attacker must change the sequence number of acknowledgement number (SEQ / ACK) of the server. 
+  For this purpose, the attacker sends null data to the server; consequently the server's SEQ / ACK numbers advance, while the target machine does not register the increment. For example, before desynchronization the 
+  attacker monitors the session without any interference, following which they send a large amount of null data to the server. These data change the ACK number on the server without affecting anything else, thereby 
+  desynchronizing the server and target.</p>
+  <p>Another approach is to send a reset flag to the server to break the connection on the server side. Ideally, this occurs in the early setup stage of the connection. The attacker's goal is to break the connection 
+  on the server side and create a new connection with a different sequence number.</p>
+  <p>The attacker waits for a SYN / ACK packet from the server to the host. On detecting a packet, the attacker immediately sends an RST packet and a SYN packet with identical parameters, such as port number with 
+  a different sequence number, to the server. The server, on receiving the RST packet, closes the connection with the target and initiates another one based on the SYN packet but with a different sequence number 
+  on the same ports. After opening a new connection, the server sends a SYN / ACK packet to the target for acknowledgement. The attacker detects (but does not intercept) this packet and sends an ACK packet to the 
+  server. Now, the server is in established state. The aim is to keep the target conversant and ensure that it switches to the established state on receiving the first SYN/ACK packet from the server. Consequently, 
+  both the server and target are desynchronized but in established state.</p>
+  <p>An attacker can also use a FIN flag, but this will make the server respond with an ACK packet, thus revealing the attack through an ACK storm. The attack is revealed because of a flaw in this method of 
+  hijacking a TCP connection. While receiving an unacceptable packet, the host acknowledges it by sending the expected sequence number. This unacceptable packet generates an ACK packet, thereby creating an endless 
+  loop for every data packet. The mismatch in SEQ / ACK numbers results in excess network traffic with both the server and target attempting to verify the correct sequence. Because these packets carry no data, 
+  retransmission does not occur if the packet is lost. However, because TCP uses IP, the loss of a single packet ends the unwanted conversation between the server and target.</p>
+  <p>An attacker can add a desynchronizing stage to the hijack sequence to deceive the target host. Without desynchronizing, the attacker injects data into the server while keeping their identity hidden by 
+  spoofing an IP address. However, the attacker should ensure that the target host as well.</p>
