@@ -1,0 +1,162 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=index.html>Back to home</a>
+<hr/>
+<h1>DoS / DDoS Concepts</h1>
+<h2>DoS Attack</h2>
+<p>A DoS attack is an attack on a computer or network that reduces, restricts or prevents access to system resources for legitimate users. In a DoS attack, attackers flood a victim's system with nonlegitimate 
+service requests or traffic to overload its resources and bring down the system. The goal of DoS is to keep legitimate users from using the system, rather than gain unauthorized access to a system or to corrupt
+data.</p> 
+  <p><ol>
+    <ul>Flooding the victim's system with more traffic than it can handle</ul>
+    <ul>Flooding a service with more events than it can handle</ul>
+    <ul>Crashing a TCP/IP stack by sending corrupt packets</ul>
+    <ul>Crashing a service by interacting with it in an unexpected manner</ul>
+    <ul>Hanging a system by causing it to go in an infinite loop</ul>
+  </ol></p>
+  <p>DoS attacks may cause:</p>
+  <p><ol>
+    <ul>Consumption or resources</ul>
+    <ul>Consumption of bandwidth, disk space, CPU time or data structures</ul>
+    <ul>Actual physical destruction or alteration of network components</ul>
+    <ul>Destruction of programming and files in a computer system</ul>
+  </ol></p>
+  <p>In general, DoS attacks target network bandwidth or connectivity.</p>
+  <h2>Bandwidth attack</h2>
+  <p>Overflow the network with a high volume of traffic by using existing network resources, depriving legitimate users of these resources.</p>
+  <h2>Connectivity attack</h2>
+  <p>Overflow a system with a large number of connection requests, consuming all available OS resources to prevent the system from processing legitimate user requests.</p>
+
+  <h2>DDoS attack</h2>
+  <p>A DDoS attack is a large scale, coordinated attack on the availability of services on a system or network and is launched indirectly through many compromised computers (botnets) on the Internet.</p>
+  <p>Services under attack belong to the <b>primary victim</b> and the compromised systems used to launch the attack are <b>secondary victims</b>.</p>
+  <p>The primary objective of a DDoS attack is to first gain administrative access on as many systems as possible.</p>
+  <p><ol>
+    <ul>Attackers use a customized attack script to identify potentially vulnerable systems</ul>
+    <ul>After gaining access to target systems (<b>zombie agents</b>), the attacker uploads and runs DDoS software on these systems at the time chosen to launch the attack.</ul>
+    <ul>The attacker initiates the DDoS attack by sending a command to zombie agents using <b>Command and control (C2, C&C) server</b></ul>
+    <ul>These zombie agents send a connection request with the spoofed IP address of the victim to reflector systems</ul>
+    <ul>The reflector systems think that these requests originate from the victim's machine and send a response to the connection request to the victim</ul>
+    <ul>The victim is flooded with unsolicited responses from several reflector computers simultaneously</ul>
+    <ul>This reduces the performance or cause the victim's machine to shut down</ul>
+  </ol></p>
+
+  <h1>Botnets</h1>
+  <p>Bot is short for robot and refers to software applications that run automated tasks over the Internet. Attackers use bots to infect a large number of computers that form a network, or botnet, allowing 
+  them to launch DDoS attacks, generate spam, spread viruses and commit crime.</p>
+  <h2>Organized Crime Syndicates</h2>
+  <p>Cyber criminals tend to operate in organized groups, usually for monetary benefit. Organized groups create and RENT (Malware-as-a-Service) botnets and offer various services ranging from the 
+  development of malware and hacking of bank accounts to the deployment of massive DoS attacks against any target for a price.</p>
+  <p>Cybercrime features a complicated range of players and cyber criminals are paid according to the task they perform or the position they hold. The head of the organization acts as a business entrepreneur and 
+  does not commit any direct crimes. Below the boss is an underboss who sets up a C2 server and crimeware toolkit database to manage the implementation of attacks and provide Trojans. Below this underboss are
+  various campaign managers with their own affiliate networks for implementing attacks and stealing data. Resellers sell the stolen data. </p>
+  <h2>Botnets</h2>
+  <p>Bots are used for benign data collection or data mining activities, such as web spidering, as well as to coordinate DoS attacks. The main purpose of a bot is to collect data. 
+  A botnet (roBOT NETwork) is a group of computers infected by bots; a relatively small botnet of 1000 bots has a combined bandwidth larger than the bandwidth of most corporate systems. Botnets now form 
+  the core of the cybercriminal activity center that links and unites various parts of the cybercriminal world. Cybercriminal service suppliers are a part of a cybercrime network. They offer services such 
+  as malicious code development, bulletproof hosting, creation of browser exploits, encryption and packing.</p>
+  <p>Malicious code is the primary tool used by criminal organizations to commit cybercrimes. Botnet owners order bots and other malicious programs such as Trojans, viruses, worms, keyloggers and specially 
+  crafted applications to attack remote computers. Developers offer malware services on public sites or closed Internet resources. Botnets can be used for:</p>
+  <p><ol>
+    <ul>DDoS attacks</ul>
+    <ul>Spamming</ul>
+    <ul>Sniffing traffic</ul>
+    <ul>Keylogging</ul>
+    <ul>Spreading new malware</ul>
+    <ul>Installing advertisement add ons (click fraud)</ul>
+    <ul>Google AdSense abus</ul>
+    <ul>Attacks on IRC chat networks</ul>
+    <ul>Manipulating online polls and games</ul>
+    <ul>Mass identity theft</ul>
+  </ol></p>
+
+  <h1>Finding Vulnerable Machines</h1>
+  <h2>Random scanning</h2>
+  <p>The infected machine (zombie or attacker's machine) probes IP addresses randomly and checks their vulnerability. When found, it hacks and attempts to infect the machine by installing the same 
+  malicious code installed on it. Malware propagates quickly in this initial stage.</p>
+  <h2>Hit-list scanning</h2>
+  <p>Through scanning, an attacker first collects a list of potentially vulnerable machines and then creates a zombie army. Subsequently, the attacker scans the list to find a vulnerable machine. 
+  When found, malicious code is installed on it and the list is divided in half. The attacker continues to scan one half, whereas the other half is scanned by the newly compromised machine. This 
+  process keeps repeating, causing the number of compromised machines to increase exponentially. This technique ensures the installation of malicious code on all the potentially vulnerable machines 
+  in the hit list within a short time.</p>
+  <h2>Topological Scanning</h2>
+  <p>This technique uses the information obtained from an infected machine to find new vulnerable machines. An infected host checks for URLs in the hard drive of a machine it wants to infect. 
+  Subsequently, it shortlists URLs and targets and checks their vulnerability.</p>
+  <h2>Local Subnet Scanning</h2>
+  <p>In this technique, an infected machine searches for new vulnerable machines in its local network, behind a firewall, by using the information hidden in the local addresses. This technique is used in 
+  combination with other scanning mechanisms.</p>
+  <h2>Permutation Scanning</h2>
+  <p>In this technique, attackers share a common pseudorandom permutation list of IP addresses of all machines. The list is created using a block cipher of 32 bits and a preselected key.
+  If a compromised host is infected during either hit-list scanning or local subnet scanning, the list is scanned from immediately after the point of the compromised host to identify new targets. 
+  If a compromised host is infected during permutation scanning, scanning restarts from a random point. If an already infected machine is encountered, scanning restarts from a new random start point 
+  in the permutation list. The process of scanning stops when the compromised host consecutively encounters a predefined number of already infected machines and fails to find new targets. Thereafter, 
+  a new permutation key is generated to initiate a new scanning phase. Advantages:</p>
+  <p><ol>
+    <ul>Reinfection of a target is avoided</ul>
+    <ul>New targets are scanned at random, ensuring high scanning speed</ul>
+  </ol></p>
+
+  <h2>Propagation of malicious code</h2>
+  <p><ol>
+    <ul>Central Source Propagation -> an attack toolkit is on a central source and a copy is transferred to a newly discovered vulnerable system (HTTP, FTP and RPC protocols)</ul>
+    <ul>Bank Chaining Propagation -> the attacker places an attack toolkit on its own system and a copy is transferred to a newly discovered vulnerable system (Trivial File Transfer Protocol (TFTP))</ul>
+    <ul>Autonomous Propagation -> an external file source transfers the attack toolkit, the attacking host transfers the attack toolkit to a newly discovered vulnerable system at the time it breaks into that system</ul>
+  </ol></p>
+
+  <h1>DoS / DDoS attack techniques</h1>
+  <h2>Volumetric Attacks</h2>
+  <p>These attacks exhaust the bandwidth either within the target network / service or between the target network / service and the rest of the internet to cause traffic blockage, preventing access to legitimate users.
+  The attack magnitude is measured in bits per second (bps). Volumetric DDoS attacks target protocols as Network Time Protocol (NTP), Domain Name System (DNS) and Simple Service Discovery Protocol (SSDP), which are 
+  stateless and do not have built-in congestion avoidance features. </p>
+  <p><ol>
+    <ul>Flood attack -> large volume of traffic:</ul>
+    <ul>UDP flood attack -> UCP packets sent at a very high packet rate, flooding the target, the server has to check repeatedly for nonexistent applications at the ports</ul>
+    <ul>ICMP flood attack -> large volumes of ICMP echo request packets, overwhelming the bandwidth</ul>
+    <ul>Ping of Death (PoD) attack -> an attacker attempts to crash, destabilize or freeze the target system or service by sending malformed or oversized packets using a simple ping command</ul>
+    <ul>Smurf attack -> the attacker spoofs the source IP address with the victim's IP address and sends a large number of ICMP echo request packets to an IP broadcast network, causing all hosts on the network to respond to the received ICMP ECHO requests</ul>
+    <ul>Pulse wave attack -> the attack pattern is periodic (every 10 min for an hour or some days) and the attack is huge (300 Gbps or more), consuming all bandwidth</ul>
+    <ul>Zero-day attack -> targetting vulnerabilities with no patches, blocking all resources and stealing data</ul>
+    <ul>Malformed IP packet flood attack</ul>
+    <ul>Spoofed IP packet flood attack</ul> 
+    <ul>Amplification attack -> messages are transferred to a broadcast IP address</ul>
+  </ol></p>
+  <h2>Protocol Attacks</h2>
+  <p>Consuming types of resources other than bandwidth, such as connection state tables. Protocol DDoS attacks exhaust resources available on the target or on a specific device between the target and the Internet.</p>
+  <p><ol>
+    <ul>SYN flood attack -> a large number of SYN request sent to the target with fake source IP addresses, creating incomplete TCP connections (incomplete three way handshake)</ul>
+    <ul>Fragmentation attack -> destroying victim's ability to reassemble fragmented packets by flooding it with TCP or UDP fragments, usually fragmented packets are uninspected as they pass through network equipment such as routers, firewalls and IDS, reassembly and inspection of large fragmented packets consume excessive resources</ul>
+    <ul>Spoofed session flood attack -> fake or spoofed TCP sessions bypassing firewalls  </ul>
+    <ul>ACK flood attack</ul>
+    <ul>SYN-ACK flood attack -> exploiting the second stage of the three way handshake, exhausting resources</ul>
+    <ul>ACK and PUSH ACK flood attack -> large amount of spoofed ACK and PUSH ACK packets sent to the machine, making it non-functional</ul>
+    <ul>TCP connection flood attack</ul>
+    <ul>TCP state exhaustion attack</ul>
+    <ul>RST attack</ul>
+    <ul>TCP SACK panic attack</ul>
+  </ol></p>
+
+  <h2>Application Layer Attacks</h2>
+  <p>Vulnerabilities in the application layer protocol or in the application itself are exploited to prevent legitimate users from accessing the application. Application resources are consumed by opening connections 
+  and leaving them open until no new connections can be made.</p>
+  <p>Several kinds of DoS attacks rely on software-related exploits such as buffer overflows.</p>
+  <p><ol>
+    <ul>Hypertext Transfer Protocol (HTTP) flood attack -> Layer 7 attack, a time-delayed HTTP header is used to hold on to an HTTP connection and exhausting resources:</ul>
+    <ul>- Single-Session HTTP Flood Attack</ul>
+    <ul>- Single-Request HTTP Flood Attack</ul>
+    <ul>- Recursive HTTP GET Flood Attack</ul>
+    <ul>- Random Recursive GET Flood Attack</ul>
+    <ul>Slowloris attack -> Layer 7 DDoS attack to take down web infrastructure, using perfectly legitimate HTTP traffic; Partial HTTP requests are sent to the web server or application, the target server opens multiple connections and waits for the requests to complete</ul>
+    <ul>UDP application layer flood attack</ul>
+    <ul>DDoS extortion attack</ul>
+  </ol></p>
+
+  <h2>Multi-Vector Attack</h2>
+  <p>Attacker uses combinations of volumetric, protocol and application layer attacks to take down the target system or service, changing quickly from one form of DDoS attack to another.</p>
+
+  <h2>Peer-to-Peer Attack</h2>
+  <p>Exploiting a number of bugs in peer-to-peer servers to initiate a DDoS attack. This is done without botnet.</p>
+
+  <h2>Permanent Denial-of-Service Attack</h2>
+  <p>Also known as phlashing, purely targetting hardware and causing irreversible damage to the hardware. Attacker perform PDoS attacks by using a method known as the "bricking" of a system. In this method, 
+  the attacker sends emails, IRC chats, tweets or videos with fraudulent content for hardware updates to the victim. The hardware updates are modified and corrupted with vulernabilities or defective firmware.
+  When the victim clicks on a link or pop-up windows the victim installs it in their system. Consequently, the attacker attains complete control over the victim's system.</p>
