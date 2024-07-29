@@ -132,7 +132,7 @@ data.</p>
     <ul>TCP connection flood attack</ul>
     <ul>TCP state exhaustion attack</ul>
     <ul>RST attack</ul>
-    <ul>TCP SACK panic attack</ul>
+    <ul>TCP SACK panic attack -> TCP Selective Acknowledgement (SACK) panic attack is a remote attack vector in which attackers attempt to crash the target Linux machine by sending SACK packets with malformed maximum segment size (MSS)</ul>
   </ol></p>
 
   <h2>Application Layer Attacks</h2>
@@ -147,7 +147,7 @@ data.</p>
     <ul>- Random Recursive GET Flood Attack</ul>
     <ul>Slowloris attack -> Layer 7 DDoS attack to take down web infrastructure, using perfectly legitimate HTTP traffic; Partial HTTP requests are sent to the web server or application, the target server opens multiple connections and waits for the requests to complete</ul>
     <ul>UDP application layer flood attack</ul>
-    <ul>DDoS extortion attack</ul>
+    <ul>DDoS extortion attack -> Also known as Ransom DDoS (RDDoS); attackers threaten the target organizations with a DDoS attack and ask for money; either sending a ransom note or initiating a sample DDoS attack using a botnet</ul>
   </ol></p>
 
   <h2>Multi-Vector Attack</h2>
@@ -160,3 +160,51 @@ data.</p>
   <p>Also known as phlashing, purely targetting hardware and causing irreversible damage to the hardware. Attacker perform PDoS attacks by using a method known as the "bricking" of a system. In this method, 
   the attacker sends emails, IRC chats, tweets or videos with fraudulent content for hardware updates to the victim. The hardware updates are modified and corrupted with vulernabilities or defective firmware.
   When the victim clicks on a link or pop-up windows the victim installs it in their system. Consequently, the attacker attains complete control over the victim's system.</p>
+
+    <h2>Distributed Reflection Denial-of-Service (DRDoS) Attack</h2>
+    <p>Also known as a Spoofed attack, involves the use of multiple intermediary and secondary machines that contribute to a DDoS attack against a machine or application. A DRDoS attack exploits the TCP three way 
+    handshake vulnerability. The attacker sends requests to the intermediary hosts, which in turn reflect the attack traffic to the target. </p>
+    <p><ol>
+        <ul>The attacker commands the zombies to send a stream of packets (TCP SYN) with the primary target's IP address as the source IP address to other non-compromised machines (secondary victims or reflectors) to let them establish a connection with the primary target</ul>
+        <ul>The reflectors send a huge volume of traffic (SYN/ACK) to the primary target to establish a new connection with it because they believe the host requested it</ul>
+        <ul>The primary target discards the SYN/ACK packets because it did not send the SYN packet</ul>
+        <ul>Meanwhile, the reflectors wait for the ACK response from the primary target</ul>
+        <ul>Assuming the packet was lost, the reflector machines resend SYN/ACK packets to the primary target, until a time-out occurs</ul>
+    </ol></p>
+
+    <h1>DoS / DDoS Attack Tools</h1>
+    <p><ol>
+        <ul><a target=_blank href=https://sourceforge.net/projects/highorbitioncannon/>High Orbit Ion Cannon (HIOC)</a> -> designed to attack up to 256 target URLs simultaneously</ul>
+        <ul><a target=_blank href=https://sourceforge.net/projects/loic/>Low Orbit Ion Cannon (LOIC)</a> -> application based DoS attacks for target web applications</ul>
+        <ul><a target=_blank href=http://anonhacktivism.blogspot.com>XOIC</a></ul>
+        <ul>HULK</ul>
+        <ul>Metasploit</ul>
+        <ul>Tor's Hammer</ul>
+        <ul>Slowloris</ul>
+        <ul>PyLoris</ul>
+    </ol></p>
+
+    <h2>DoS / DDoC attack tools for mobiles</h2>
+    <p><ol>
+        <ul><a target=_blank href=https://droidinformer.org>LOIC</a></ul>
+        <ul>AnDOSid</ul>
+    </ol></p>
+
+    <h1>DDoS Case Study</h1>
+    <p><ol>
+        <ul>An anonymous hacker hosts a High Orbit Ion Cannon (HOIC) DDoS attack tool on a web server they own or on a compromised web server</ul>
+        <ul>The hacker advertises the HOIC DDoS attack tool on social networking sites or search engines with a malicious download link</ul>
+        <ul>Users who desire to perform the DDoS attack (<b>volunteers</b>) may download the HOIC DDoS tool by clicking the link</ul>
+        <ul>All volunteers connect via an IRC channel to the anonymous hacker and await instructions to proceed further</ul>
+        <ul>The hacker instructs the volunteers to flood the target web server (such as PayPal, MasterCard, PAYBACK) with multiple requests</ul>
+        <ul>The volunteers act accordingly</ul>
+        <ul>Hackers advertise botnets on various blogs, search engines, social networking sites, emails etc. with download links</ul>
+        <ul>Hackers also use fake updates and security alerts to trick the victim into downloading the malware</ul>
+        <ul>The intention is to spread the botnet and increase the size of the attack network</ul>
+    </ol></p>
+
+    <h2>Use of Mobile devices as botnets for launching DDoS attacks</h2>
+    <p>Android devices are passively vulnerable to various malware such as Trojans, bots, RATs etc. which are often found in third-party application stores. These
+    unsecured android devices are becoming the primary targets for attackers to enlarge their botnet network because they are highly vulnerable to malware. The 
+    attacker binds a malicious server to the APK file, encrypts it and removes unwanted features and permissions before distributing the malicious package to an app 
+    store like Google Play Store. Once the victim installs the application, the device is take over and integrated into the attacker's mobile botnet.</p>
