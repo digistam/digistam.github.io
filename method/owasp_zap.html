@@ -5,3 +5,99 @@
 <h1>Automated pentest with Owasp Zap</h1>
 <p>OWASP Zap is a security testing framework much like Burp Suite. It acts as a very robust enumeration tool. It’s used to test web applications. </p>
   
+<h2>What we can do</h2>
+<p><ol>
+    <ul>Automated Scan</ul>
+    <ul>Directory Bruteforce</ul>
+    <ul>Authenticated Scan</ul>
+    <ul>Login Page Bruteforce</ul>
+    <ul>Install ZAP Extensions</ul>
+</ol></p>
+
+<p>ZAP can be used as your go-to tool to start Web Application testing but it should not be your only tool. ZAP is just one of many tools to put under your hacker utility belt.</p>
+
+    <h2>Automated scan</h2>
+    <p><ol>
+        <ul>sudo apt install zaproxy</ul>
+        <ul>sudo owasp-zap</ul>
+        <ul>Click <b>Automated Scan</b> button in the right pane</ul>
+        <ul>Input target url</ul>
+        <ul>The automated scan performs both passive and automated scans to build a sitemap and detect vulnerabilities</ul>
+    </ol></p>
+    <p>On the next page you may see the options to select either to use “traditional spider” or “Ajax spider”.
+        A traditional spider scan is a passive scan that enumerates links and directories of the website. It builds a website index without 
+        brute-forcing. This is much quieter than a brute-force attack and can still net a login page or other juicy details, 
+        but is not as comprehensive as a bruteforce. The Ajax Spider is an add-on that integrates in ZAP a crawler of AJAX rich sites called 
+        Crawljax. You can use it in conjunction with the traditional spider for better results. It uses your web browser and proxy. 
+        The easiest way to use the Ajax Spider is with HTMLUnit. To install HTML Unit use the command:</p>
+    <p><i>sudo apt install libjenkins-htmlunit-core-js-java</i></p>
+    <p>And then select HtmlUnity from the Ajax Spider Dropdown</p>
+    <p>With very minimal setup we were able to do an automated scan that gave us a sitemap and a handful of vulnerabilities.</p>
+
+    <h2>Manual scanning</h2>
+    <p>First, set-up a proxy between Owasp Zap and your browser</p>
+    <p><ol>
+        <ul>Tools > Options > Network > Local servers / Proxies</ul>
+        <ul>Address: IP address of the machine</ul>
+        <ul>Port: 8080</ul>
+        <ul>Tools > Options > Network > Server Certificates</ul>
+        <ul>Root CA certificate must be available</ul>
+        <ul>Click Save and store zap_root_ca.cer somewhere</ul>
+        <ul>Then, open Firefox, navigate to your preferences, and search for certificates and click “View Certificates”</ul>
+        <ul>Then click “Import” and then navigate to the earlier downloaded certificate and open it</ul>
+        <ul>Select both 'Trust' checkboxes and click OK</ul>
+        <ul>Go back to your Firefox preferences and search for “proxy”. Click Settings.</ul>
+        <ul>Manual proxy configuration</ul>
+        <ul>IP: 127.0.0.1</ul>
+        <ul>Port: 8080</ul>
+    </ol></p>
+    <p>Without your Zap application being authenticated, it can’t scan pages that are only accessible when you’ve logged in. 
+        Lets set up the OWASP ZAP application to scan these pages, using your logged in session.</p> 
+
+    <h2>Install Damn Vulnerable Web Application (DVWA)</h2>
+    <p><ol>
+        <ul>cd /var/www/html</ul>
+        <ul>sudo git clone https://github.com/digininja/DVWA.git</ul>
+        <ul>sudo mv DVWA dvwa</ul>
+        <ul>chmod -R 777 dvwa</ul>
+        <ul>cd dvwa/config</ul>
+        <ul>ls</ul>
+        <ul>we can see the config.inc.php.dist file</ul>
+        <ul>sudo cp config.inc.php.dist config.inc.php</ul>
+        <ul>sudo nano config.inc.php</ul>
+        <ul>change user to 'user' and password to 'pass'</ul>
+        <ul>Save it</ul>
+        <ul>service mysql restart</ul>
+        <ul>sudo mysql -u root -p</ul>
+        <ul>enter password: root</ul>
+        <ul>create user 'user'@'127.0.0.1' identified by 'pass';</ul>
+        <ul>grant all privileges on dvwa.* to 'user'@'127.0.0.1' identified by 'pass';</ul>
+        <ul>exit</ul>
+        <ul>cd /etc/php; ls</ul>
+        <ul>cd [PHP version]/apache2</ul>
+        <ul>sudo nano php.ini</ul>
+        <ul>change the allow_url_fopen and allow_url_include values</ul>
+        <ul>allow_url_fopen = On</ul>
+        <ul>allow_url_include = On</ul>
+        <ul>Save and exit</ul>
+        <ul>service apache2 start</ul>
+        <ul>Open http://localhost/dvwa in the browser</ul>
+        <ul>login with user and pass</ul>
+        <ul>click on “Create/Reset Database”</ul>
+        <ul>Log in with 'admin' and 'password'</ul>
+    </ol>
+<p>Once you’ve logged in, navigate to the DVWA Security tab and set the Security level to Low and then hit submit</p>
+
+    <h2>Get Authentication token</h2>
+    <p>We’re going to pass our authentication token into ZAP so that we can use the tool to scan authenticated webpages</p>
+    <p><ol>
+        <ul>In the logging in DVWA browser tab open Developers tools</ul>
+        <ul>Enter inspect element and take note of your PHPSESSION cookie</ul>
+        <ul>Copy cookie value</ul>
+        <ul>In Owasp Zap click the + symbol (New Tab button) in the lower pane and select <b>HTTP Sessions</b></ul>
+        <ul>Set the authenticated session as active</ul>
+    </ol></p>
+    <p>Now re-scan the application. You’ll see it’s able to pick up a lot more. 
+        This is because its able to see all of the sections of DVWA that was previously behind the login page.</p>
+
+    <p><a target=_blank href=https://medium.com/@ms3.sooraj.sivadas/automated-penetration-testing-useing-owasp-zap-fe88abaf8e38>[More Information]</a></p>
