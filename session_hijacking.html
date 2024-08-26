@@ -56,4 +56,34 @@
   loop for every data packet. The mismatch in SEQ / ACK numbers results in excess network traffic with both the server and target attempting to verify the correct sequence. Because these packets carry no data, 
   retransmission does not occur if the packet is lost. However, because TCP uses IP, the loss of a single packet ends the unwanted conversation between the server and target.</p>
   <p>An attacker can add a desynchronizing stage to the hijack sequence to deceive the target host. Without desynchronizing, the attacker injects data into the server while keeping their identity hidden by 
-  spoofing an IP address. However, the attacker should ensure that the target host as well.</p>
+  spoofing an IP address. However, the attacker should ensure that the server responds to the target host as well.</p>
+    <h2>Injecting the attacker's packet</h2>
+    <p>Once the attacker has interrupted the connection between the server and target, they can either inject data into the network or actively participate as the MITM, passing data from the target to the server 
+    and vice-versa while reading and injecting data at will.</p>
+    <h1>Packet Analysis of a local session hijack</h1>
+    <p>TCP is used for transmitting data by many systems that establish LAN or INTERNET connections. To establish a connection between two systems and for the succesful transmission of data, the two systems 
+    should perform a three-way handshake. Session hijacking involves the exploitation of this three-way handshake method to take control over the session. Three activities:</p>
+    <p><ol>
+        <ul>Tracking of a session</ul>
+        <ul>Desynchronization of the session</ul>
+        <ul>Injection of commands during the session</ul>
+    </ol></p>
+    <p>By sniffing network traffic, an attacker can monitor or track a session. Desynchronization of the session is easy if the <b>next sequence number (NSN)</b> is known. A session can be hijacked by using 
+    the NSN before the client uses it.</p>
+    <p>Two possibilities:</p>
+    <p><ol>
+        <ul>Sniff the traffic, find an <b>ACK</b> packet and then determine the NSN based on the ACK -> local session hijacking</ul>
+        <ul>Transmit data with guessed sequence numbers (not reliable!)</ul>
+    </ol></p>
+    <h1>Types of Session Hijacking</h1>
+    <p><ol>
+        <ul>Passive Session Hijacking -> observing with sniffers, password sniffing</ul>
+        <ul>Active Session Hijacking -> MITM, guessing the sequence number before the target responds to the server</ul>
+    </ol></p>
+    <h1>Session Hijacking in OSI Model</h1>
+    <p><ol>
+        <ul>Network-Level Hijacking -> data flow across all web applications</ul>
+        <ul>Application-Level Hijacking -> gaining control over HTTP user session by obtaining the session IDs</ul>
+    </ol></p>
+    <p>In general, both occur together, depending on the system being attacked</p>
+    
