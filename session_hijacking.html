@@ -87,3 +87,94 @@
     </ol></p>
     <p>In general, both occur together, depending on the system being attacked</p>
     
+    <h1>Blind Hijacking</h1>
+    <p>In <b>blink hijacking</b> an attacker predicts the sequence numbers that a victim host sends to create a connection that appears to originate from the host or a blind spoof. To understand blind hijacking, 
+    it is important to understand <b>sequence-number prediction</b>. All bytes in a TCP connection are numbered, beginning at a randomly chosen initial sequence number (ISN). The SYN packets consume one sequence number, 
+        so actual data will begin at ISN+1. The sequence number is the byte number of the first byte of data in the TCP packet sent (also called a TCP segment). The acknowledgement number is the sequence number of 
+        the next byte the receiver expects to receive. The receiver ack'ing sequence number x acknowledges receipt of all data bytes less than (but not including) byte number x. The sequence number is always valid. 
+        The acknowledgement number is only valid when the ACK flag is one. The only time the ACK flag is not set, that is, the only time there is not a valid acknowledgement number in the TCP header, 
+        is during the first packet of connection set-up.</p>
+        <p>TCP sequence numbers, which are unique per byte in a TCP session, provide flow control and data integrity. TCP segments provide the <b>initial sequence number (ISN)</b> as a part of each segment header.
+        As part of the handshake process, each participant needs to state the ISN, and bytes are numbered sequentially from that point.</p>
+        <p><b>Blind session hijacking</b> relies on the attacker's ability to predict or guess sequence numbers. An attacker is unable to spoof a trusted host on a different network. The attacker is also unable to resort to 
+        <b>Address Resolution Protocol (ARP) cache poisoning</b> because routers do not broadcast ARP across the internet. Because the attacker is unable to observe the replies, he must anticipate the responses from the 
+        victim and prevent the host from sending a TCP/RST packet to the victim. The attacker predicts sequence numbers that the remote host expects from the victim and then hijacks the communication. This method is 
+        useful when exploiting trust relationships between users and remote machines.</p>
+        <p>In a spoofing attack, an attacker pretends to be another user or machine (victim) to gain access. Instead of taking over an existing active session, the attacker initiates a new session using the victim's 
+        stolen credentials. IP spoofing forces the attacker to forecast the NSN. When an attacker uses blind hijacking to send a command, they cannot view the response.</p>
+        <p>In the case of IP spoofing without a session hijack, guessing the sequence number is unnecessary because no currently open session exists with that IP address. In a session hijack, the traffic returns to the 
+        attacker only if <b>source routing</b> is used.</p>
+        <h2>Source routing</h2>
+        <p>Source routing is a process that allows the sender to specify the route to be taken by an IP packet to the destination. The attacker performs source routing and then sniffs the traffic as it passes by the 
+        attacker. In session spoofing, <b>captured authentication credentials</b> are used to establish a session.</p>
+        <p>Session hijacking is the process of taking over an existing active session. An attacker relies on a legitimate user to make a connection and authenticate. Session hijacking is more difficult than IP 
+        address spoofing. In session hijacking, an attacker would seek to insert himself into a session that a legitimate user already had set up with \\Mail. The attacker waits until the legitimate user 
+        establishes a session, displace the legitimate user from the established session (using for example a DoS attack) and then pick up the session as though he was the legitimate user. Subsequently, the 
+        attacker would send a scripted set of packets to \\Mail and observe the responses. The attacker needs to know the sequence number in use when he hijacked the session. To calculate the sequence number, 
+        he must know the ISN and the number of packets involved in the exchange process.</p>
+        <p>Succesful session hijacking is difficult without the use of known tools and is only possible when several factors are under the attacker's control.</p>
+        <p>Hijacking of non-encrypted TCP communications requires the presence of non-encrypted session-oriented traffic, the ability to recognize TCP sequence numbers from which the next sequence number (NSN) 
+        can be predicted, and the ability to spoof a host's MAC or IP address to receive communications that are not destined for the attacker's host. If the attacker is on the local segment, he can sniff 
+        and predict the ISN+1 number and route the traffic back to him by poisoning the ARP caches on the two legitimate hosts participating in the session.</p>
+    <h1>Application-Level Session Hijacking</h1>
+    <p>In application-level session hijacking, an attacker steals or predicts a valid session token to gain unauthorized access to a web server or create a new unauthorized session. Usually, network-level and 
+    application-level session hijacking occur together because a succesful network-level session hijack provides an attacker with ample information to perform application-level session hijacking. Application-level 
+    session hijacking relies on HTTP sessions.</p>
+    <h2>Techniques</h2>
+    <p><ol>
+        <ul>Stealing</ul>
+        <ul>Guessing</ul>
+        <ul>Brute forcing</ul>
+    </ol></p>
+    <p>A session token can be compromised in various ways:</p>
+    <p><ol>
+        <ul>Session sniffing</ul>
+        <ul>Predictable session token</ul>
+        <ul>MITM attack</ul>
+        <ul>Man-in-the-browser attack</ul>
+        <ul>Cross-site scripting (XSS) attack</ul>
+        <ul>Cross-site request forgery attack</ul>
+        <ul>Session replay attack</ul>
+        <ul>Session fixation attack</ul>
+        <ul>CRIME attack</ul>
+        <ul>Forbidden attack</ul>
+        <ul>Session donation attack</ul>
+        <ul>PetitPotam hijacking</ul>
+    </ol></p>
+
+    <h2>Sniffing session IDs</h2>
+    <p>An attacker uses packet sniffing tools such as Wireshark and Riverbed Packet Analyzer Plus to intercept the HTTP traffic between victim and web server. The intercepted data is used to identify valuable information 
+    such as session IDs and passwords.</p>
+    <h2>Predicting session token</h2>
+    <p>Session predicting enables an attacker to bypass the authentication schema of an application. Usually, attackers can predict session IDs generated by weak algorithms. Attackers analyze a variable section of session IDs 
+    to determine the existence of a pattern. This analysis is performed either manually or by using various cryptanalytical tools.</p>
+    <p>Attackers can identify session IDs generated in the following ways:</p>
+    <p><ol>
+        <ul>Embedding in the URL (GET request)</ul>
+        <ul>Embedding in a form as a hidden field (POST command)</ul>
+        <ul>Embedding in cookies on the client's local machine</ul>
+    </ol></p>
+
+    <h2>Man-in-the-Browser / Manipulator-in-the-Middle attack</h2>
+    <p>Using different techniques, attackers split a TCP connection into two: a client-to-attacker connection and an attacker-to-server connection.</p>
+    <p>A man-in-the-browser / manipulator-in-the-browser attack is similar to a MITM attack. The difference is that a man-in-the-browser uses a Trojan horse to intercept and manipulates calls between a browser 
+    and its security mechanisms or libraries. The Trojan can modify web pages and transaction content or insert additional transactions. The main objective is financial theft by manipulating transactions made 
+    using Internet banking systems.</p>
+    <p>A man-in-the-browser attack can succeed even in the presence of security mechanisms such as SSL, PKI and 2FA.</p>
+    <p><ol>
+        <ul>The Trojan infects the computer's software (OS or application)</ul>
+        <ul>The Trojan installs malicious code (extension files) and saves it in the browser configuration</ul>
+        <ul>After the user restarts the browser, the malicious code in the form of extension files is loaded</ul>
+        <ul>The extension files register a handler for every visit to a webpage</ul>
+        <ul>When a page is loaded, the extension matches its URL with a list of known sites targeted for attack</ul>
+        <ul>The user logs in securely to the website</ul>
+        <ul>The extension registers a button event handler when a specific page load is detected with a specific pattern and compares it with its targeted list</ul>
+        <ul>When the user clicks on the button, the extension uses the DOM interface and extracts all the data from all form fields and modifies the values</ul>
+        <ul>The browser sends the form and modifies values to the server</ul>
+        <ul>The server receives the modified values but cannot distinguish between the original and modified values</ul>
+        <ul>After the server performs the transaction, a receipt is generated</ul>
+        <ul>Now, the browser receives the receipt for the modified transaction</ul>
+        <ul>The browser displays the receipt with the original values</ul>
+    </ol></p>
+
+    <h2>Client-side Attacks</h2>
