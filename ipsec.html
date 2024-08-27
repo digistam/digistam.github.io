@@ -15,3 +15,34 @@ data confidentiality (encryption) and replay protection. It is widely used to im
         <ul>Oakley -> a protocol that uses the Diffie-Hellman algorithm to create a master key and a key that is specific to each session in IPsec data transfer</ul>
         <ul>IPsec Policy Agent -> a service included in Windows OS that enforces IPsec policies for all the network communications initiated from that system</ul>
     </ol></p>
+<h1>IPsec process</h1>
+<p><ol>
+    <ul>A consumer sends a message to a service provider</ul>
+    <ul>The consumer's IPsec driver attempts to match the outgoing packet's address or the packet type against the IP filter</ul>
+    <ul>The IPsec driver notifies ISAKMP to initiate security negotations with the service provider</ul>
+    <ul>The service provider's ISAKMP receives the security negotiation request</ul>
+    <ul>Both principles initiate a key exchange, establishing an ISAKMP Security Association (SA) and a shared secret key</ul>
+    <ul>Both principles discuss the security level for the information exchange, establishing both IPsec SAs and keys</ul>
+    <ul>The consumer's IPsec driver transfers packets to the appropriate connection type for transmission to the service provider</ul>
+    <ul>The provider receives the packets and transfers them to the IPsec driver</ul>
+    <ul>The provider's IPsec uses the inbound SA and key to check the digital signature and begin decryption</ul>
+    <ul>The provider's IPsec driver transfers decrypted packets to the OSI transport layer for further processing</ul>
+</ol></p>
+
+    <h1>IPsec modes</h1>
+    <p>The configuration of IPsec involves two different modes: the tunnel mode and transport mode.</p>
+    <p><ol>
+        <ul>Transport Mode -> also: ESP, IPsec encrypts only the payload of the IP packet, leaving the header untouched. It authenticates two connected computers and provides the option of encrypting data transfer. It is compatible with NAT; therefore it can be used to provide VPN services for networks utilizing NAT</ul>
+        <ul>Tunnel Mode -> also: AH, the IPsec encrypts both the payload and header</ul>
+    </ol></p>
+
+    <h1>IPsec Architecture</h1>
+    <p>IPsec offers security services at the network layer. This provides the freedom to select the required security protocols as well as the algorithms used for services. 
+    IPsec uses two traffic security protocols, AH and ESP, as well as cryptographic key management protocols and procedures.</p>
+    <p><ol>
+        <ul>Authentication Header (AH): offers integrity and data origin authentication, with optional anti-replay features</ul>
+        <ul>Encapsulating Security Payload (ESP): offers all the services offered by AH as well as confidentiality</ul>
+        <ul>IPsec Domain of Interpretation (DOI): defines the payload formats, types of exchange and naming conventions, instantiates ISAKMP for use with IP</ul>
+        <ul>Internet Security Association and Key Management Protocol (ISAKMP): key protocol, establishes required security for various communications over the internet</ul>
+        <ul>Policy: define when and how to secure data, as well as security methods</ul>
+    </ol></p>
