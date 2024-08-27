@@ -3,4 +3,15 @@
   <a href=index.html>Back to home</a>
 <hr/>
 <h1>IPsec</h1>
-<p></p>
+<p>Internet Protocol Security (IPsec) is a set of protocols that the Internet Engineering Task Force (IETF) developed to support the secure exchange of packets at the IP layer.
+It ensures interoperable cryptographically based security for IPv4 and IPv6, and it supports network-level peer authentication, data origing authentication, data integrity, 
+data confidentiality (encryption) and replay protection. It is widely used to implement VPNs and for remote user access through dial-up connections to private networks.</p>
+    <p>IPsec policies can be assigned through the Group Policy configuration of Active Directory domains etc.</p>
+    <h2>Components</h2>
+    <p><ol>
+        <ul>IPsec driver</ul>
+        <ul>Internet Key Exchange (IKE)</ul>
+        <ul>Internet Security Association and Key Management Protocol (ISAKMP)</ul>
+        <ul>Oakley -> a protocol that uses the Diffie-Hellman algorithm to create a master key and a key that is specific to each session in IPsec data transfer</ul>
+        <ul>IPsec Policy Agent -> a service included in Windows OS that enforces IPsec policies for all the network communications initiated from that system</ul>
+    </ol></p>
