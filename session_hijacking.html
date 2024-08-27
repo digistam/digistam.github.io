@@ -226,3 +226,147 @@
         <ul>Entrance phase -> the attacker waits for the victim to log in to the target web server and then enters the victim's session</ul>
     </ol></p>
     <p>Because the session ID is set by the attacker before the user logged in, the user can be said to have logged into the attacker's session.</p>
+
+    <h2>Proxy Servers</h2>
+    <p>An attacker lures the victim to click on a fake link which redirects the user to the attacker's server. The attacker forwards the request to the legitimate server on behalf of the victim and 
+    serves as a proxy for the entire transaction. Acting as a proxy, the attacker captures the session information during the interaction between the legitimate server and user.</p>
+
+    <h2>CRIME Attack</h2>
+    <p><b>Compression Ratio Info-Leak Made Easy (CRIME)</b> is a client-side attack that exploits vulnerabilities in the data-compression feature of protocols such as SSL/TLS, SPDY, HTTPS. The 
+    possibility of mitigation against HTTPS compression is low, which makes this vulnerability even more dangerous than other compression vulnerabilities.</p>
+    <p>When two hosts on the internet establish a connection using HTTPS, a TLS session is established and the data is transmitted in encrypted form. When a user logs into a web application, 
+    authentication data is stored in a cookie. Whenever the browser sends an HTTPS request to the web application, the stored cookie is used for authentication. In this attack, the attacker
+    attempts to access the authentication cookie to hijack the victim's session.</p>
+    <p>In HTTPS, cookies are compressed using a lossless data compression algorithm (DEFLATE) and then encrypted. To perform a CRIME attack, an attacker must use social engineering techniques to 
+    trick the victim into clicking on a malicious link. When the victim clicks on a link, it either injects malicious code into the victim's system or redirects the victim to a malicious website.
+    If the victim has already established an HTTPS connection with a secured web application, the attacker sniffs the victim's HTTPS traffic using techniques such as ARP spoofing. Through sniffing, 
+    the attacker captures the cookie value from the HTTPS messages and sends multiple HTTPS requests to the web application with that cookie prepended with a few random characters. 
+    Subsequently, the attacker monitors the traffic between the victim and web application to obtain the compressed and encrypted value of the cookie. After capturing the cookie, the attacker 
+    analyzes the cookie length and predicts the actual value of the authentication cookie. After obtaining the authentication cookie, the attacker impersonates the victim and hijacks the 
+    victim's session with the secure web application to steal confidential information such as passwords, social security numbers and credit card numbers. Attackers use tools such as <b>CrimeCheck</b>
+    to detect whether a web server has TLS or HTTP compression enabled.</p>
+
+    <h2>Forbidden Attack</h2>
+    <p>A forbidden attack is a type of MITM attack that can be executed when a <b>cryptgraphic nonce</b>b is reused while establishing an HTTPS session with a server. According to TLS specs these 
+    arbitrary pieces of data must be used once. This attack exploits the vulnerability that the TLS implementation incorrectly reuses the same nonce when data is encrypted using the Advanced Encryption 
+    Standard-Galois/Counter Mode (AES-GCM) during the TLS handshake. Attackers exploit this vulnerability to perform an MITM attack by generating cryptographic keys used for authentication. 
+    Repeating the same nonce during the TLS handshake allows an attacker to monitor and hijack the connection.</p>
+    <p><ol>
+        <ul>The attacker monitors the connection between victim and web server and sniffs the nonce from the TLS handshake messages</ul>
+        <ul>The attacker generates authentication keys using the nonce and hijacks the connection</ul>
+        <ul>All the traffic between the victim and web server flows through the attacker's machine</ul>
+        <ul>The attacker injects JavaScript code or web fields into the transmission towards the victim</ul>
+        <ul>The victim reveals sensitive information such as bank account numbers, passwords and social security numbers to the attacker</ul>
+    </ol></p>
+
+    <h2>Session Donation Attack</h2>
+    <p>In a session donation attack, the attacker donates their own session ID to the target user. In this attack, the attacker first obtains a valid session ID by logging into a service and later 
+    feeds the same session ID to the target user. This session ID links a target user to the attacker's account page without disclosing any information to the victim. When the target user clicks on the link 
+    and enters the details (name, password etc.) in a form, the entered details are linked to the attacker's account. To initiate this attack, the attacker can send their session ID using techniques 
+    like cross-site cooking, MITM attack and session fixation.</p>
+    <p><ol>
+        <ul>The attacker logs into a service, establishes a legitimate connection with the target web server, and deletes the stored information</ul>
+        <ul>The target web server issues a session ID</ul>
+        <ul>The attacker donates the session ID to the victim and lures the victim to click on it to access the website</ul>
+        <ul>The victim clicks the link, believing it is a legitimate link sent by the bank; This opens the server's page in the victim's browser; The victim enters their information and saves it</ul>
+        <ul>The attacker can now login as himself and acquire the victim's information</ul>
+    </ol></p>
+
+    <h2>PetitPotam Hijacking</h2>
+    <p>A domain controller (DC) is forced by an attcker to initiate authentication to the attacker's server. For this purpose, the attacker uses Microsoft's Encrypting File System Remote Protocol (MS-EFSRPC) 
+    Api call for authentication session hijacking. The attacker's SMB server manipulates the session to make the domain controller believe that the attacker is a legitimate user to receive the domain
+    controller's NTLM hash. This requires the attacker to possess valid credentials of a legitimate user who is a part of the network.</p>
+    <p>Then, the attacker relays the NTLM authentication shared by the domain controller to the Active Directory Certificate Services (AD CS) and generates a certificate. Using the certificate, the 
+    attacker acquires administrative privileges and takes full control over the AD server and subsequently the entire network managed by the domain controller.</p>
+    <p><ol>
+        <ul>Attacker uses the already captured NTLM credentials to authenticate with the target server</ul>
+        <ul>The attacker uses the EfsRpcOpenFileRaw command from MS-EFSRPC API to coerce the target server to perform NTLM authentication of another system</ul>
+        <ul>The attacker initiates NTLM replay attack to gain remote access to the target AD CS</ul>
+        <ul>Finally, the attacker creates an AD certificate to gain administrator privileges to the target AD server</ul>
+    </ol></p>
+
+    <h1>Network-Level Session Hijacking</h1>
+    <p>Attackers especially focus on network-level session hijacking because it does not require host access. Network level hijacking relies on hijacking transport and internet protocols used by web 
+    applications in the application layer.</p>
+    <p><ol>
+        <ul>Blind hijacking</ul>
+        <ul>UDP hijacking</ul>
+        <ul>TCP/IP hijacking</ul>
+        <ul>RST hijacking</ul>
+        <ul>MITM: packet sniffer</ul>
+        <ul>IP spoofing: source routed packets</ul>
+    </ol></p>
+    <p>When two parties establish a connection using TCP, they perform a three-way handshake. Initially, the client-side connection is in the closed state and the server-side in the listening state. 
+    The client initiates the connection by sending the initial sequence number (ISN) and setting the SYN flag. The client is now in the SYN-SENT state.</p>
+    <p>When the server receives this packet, it acknowledges the client sequence number and sends its own ISN with the SYN flag set. The server's state is now SYN-RECEIVED. On receipt of this packet, 
+    the client acknowledges the server sequence number by incrementing it and setting the ACK flag. The client is now in the established state. At this point, the two machines have established a 
+    session and can communicate. </p>
+    <p>On receiving the client's acknowledgement, the server enters the established state and sends an acknowledgement, incrementing the client's sequence number. The connection can be closed either 
+    by using the FIN or RST flag or through a time out.</p>
+    <p>For the three parties to communicate, the following information is required:</p>
+    <p><ol>
+        <ul>IP address</ul>
+        <ul>Port numbers</ul>
+        <ul>Sequence numbers</ul>
+    </ol></p>
+    <p>It is easy to determine IP address and port numbers, which are available in the IP packets which do not change throughout the session. However, the sequence numbers change. Therefore, the attacker 
+    must successfully guess the sequence numbers for a blind hijack. If the attacker can fool the server into receiving their spoofed packets and executing them, the attacker is successful in hijacking
+    the session.</p>
+    <p><ol>
+        <ul>The attacker initiates a connection with the server and sends a packet to the server with the SYN flag set</ul>
+        <ul>The server receives this packet and sends a packet with the SYN + ACK flag and an initial sequence number (ISN) for the server</ul>
+        <ul>The attacker sets the ACK flag acknowledging the receipt of the packet and increments the sequence number by 1</ul>
+        <ul>The two machines have successfully established a session</ul>
+    </ol></p>
+    <p>If the attacker can anticipate the <b>next sequence number</b> and ACK number that the victim will send, he can spoof the victim's address and start communicating with the server.</p>
+
+    <h2>TCP/IP Hijacking</h2>
+    <p>In TCP/IP hijacking, an attacker intercepts an established connection between two communicating parties by using spoofed packets and then pretends to be one of those parties. In this approach, 
+    the attacker uses spoofed packets to redirect the TCP traffic to their own machine. Once this is successful, the victim's connection hangs and the attacker is able to communicate with the host's
+    machine on behalf of the victim. To launch a TCP/IP hijacking attack, both the victim and attacker must be on the same network. The target server and the victim machines can be located anywhere. By 
+    using this technique, an attacker can easily attack systems that use one-time passwords.</p>
+    <p><ol>
+        <ul>The hacker sniffs the communication between the victim and host to obtain the victim's ISN</ul>
+        <ul>By using the ISN, the attacker sends a spoofed packet from the victim's IP address to the host system</ul>
+        <ul>The host machine responds to the victim, assuming that the packet arrived from it; this increments the sequence number</ul>
+        <ul>The attacker sniffs the victim's connection and uses the victim's IP address to send a spoofed packet with the predicted sequence number</ul>
+        <ul>The receiver processes the spoofed packet, increments the sequence number and sends an acknowledgement to the victim's IP address</ul>
+        <ul>The victim machine is unaware of the spoofed packet; therefore it ignores the receiver machine's ACK packet and turns off sequence number count</ul>
+        <ul>Consequently, the receiver receives packets with the incorrect sequence number</ul>
+        <ul>The attacker forces the victim's connection with the receiver machine into a desynchronized state</ul>
+        <ul>The attacker tracks sequence numbers and continuously spoofs packets that originate from the victim's IP address</ul>
+        <ul>The attacker continues to communicate with the receiver machine, while the victim's connection hangs</ul>
+    </ol></p>
+
+    <h2>IP Spoofing: Source Routed Packets</h2>
+    <p>Source routed packets are useful in gaining unauthorized access to a computer with the help of a trusted hosts's IP address. This type of hijack allows attackers to create their own acceptable 
+    packets to insert into a TCP session. First, an attacker spoofs a trusted host's IP address so that the server managing a session with the host accepts the packets from the attacker. The packets 
+    are source routed; therefore the sender specifies the path for packets from the source to the destination IP. By using this source-routing technique, attackers fool the server into believing that it is 
+    communicating with the user.</p>
+    <p>After spoofing the IP address successfully, the hijacker alters the sequence and acknowledgement numbers. Once these numbers are changed, the attacker injects forged packets into the TCP session 
+    before the client can respond. This leads to a desynchronized state because there the sequence and ACK numbers are not synchronized. The original packets are lost, and the server receives a packet 
+    with the new ISN. These packets are source routed to a patched destination IP address specified by the attacker.</p>
+
+    <h2>RST Hijacking</h2>
+    <p>RST Hijacking involves injecting an authentic-looking reset (RST) packet by using a spoofed source IP address and predicting the acknowledgement number. The hacker can reset the victim's 
+    connection if it uses an accurate acknowledgement number. The victim believes that the source has sent the reset packet and resets the connection. RST hijacking can be performed using packet-crafting 
+    tools such as Colasoft Packet Builder and TCP/IP analysis tools such as tcpdump.</p>
+
+    <h2>Blind hijacking</h2>
+    <p>An attacker can inject malicious data or commands into intercepted communications in a TCP session, even if the victim disables source routing. For this purpose, the attacker must correctly guess 
+    the next ISN of a computer attempting to establish a connection. The attacker can not view the response. To be able to view the response, an MITM attack is a much better option.</p>
+
+    <h2>UDP hijacking</h2>
+    <p>UDP does not use packet sequencing or synchronizing. Therefore, a UDP session can be attacked more easily than a TCP session. Because UDP is connectionless, it is easy to modify data without 
+    the victim noticing. The server's reply can be easily restricted if sniffing is used. An MITM attack in UDP hijacking can minimize the task of the attacker because it can stop the server's reply from 
+    reaching the client in the first place.</p>
+
+    <h2>MITM attack using forged ICMP and ARP spoofing</h2>
+    <p>An MITM attack uses a packet sniffer to intercept communication between a client and server. The attacker changes the default gateway of the client's machine and attempts to reroute packets.
+    The packets between the client and server are routed through the hijacker's host by using the following two techniques:</p>
+    <p><ol>
+        <ul>Forged Internet Control Message Protocol (ICMP) -> an attacker can use ICMP to send messages to fool the client and server; in this technique ICMP packets are forged to redirect traffic between 
+        the client and host through the hijacker's host</ul>
+        <ul>Address Resolution Protocol (ARP) spoofing -> this technique involves fooling the host by broadcasting the ARP request and changing its ARP tables by sending forged ARP replies</ul>
+    </ol></p>
+    <p>In both techniques, an attacker routes the packets in transit between the client and server through their machine.</p>
