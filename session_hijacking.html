@@ -178,3 +178,51 @@
     </ol></p>
 
     <h2>Client-side Attacks</h2>
+    <p>Client-side attacks target vulnerabilities in client applications that interact with a malicious server or process malicious data. An attacker can exploit an application by sending an email with 
+    a malicious link or otherwise tricking a user into visiting a malicious website. Vulnerable clients-side applications include unprotected websites, Java Runtime Environment (JRE) and browsers. Browsers are the 
+    major target.</p>
+    <p><ol>
+        <ul>Cross-site scripting (XSS) -> injecting malicious client-side scripts into web pages viewed by other users</ul>
+        <ul>Malicious JavaScript codes -> capturing session tokens in the background and send them to the attacker</ul>
+        <ul>Trojans -> change proxy settings in the user's browser to send all sessions through an attacker's machine</ul>
+    </ol></p>
+
+    <h2>Cross-site Request Forgery Attack (CSRF)</h2>
+    <p>An attacker creates a host form, containing malicious information, and sends it to the authorized user. The user fills the form and sends it to the web server. Because the data originates from a trusted 
+    user, the web server accepts the data. Unlike an XSS attack, which exploits the trust a user has for a particular website, CSRF exploits the trust that a website has on a user's browser.</p>
+    <p><ol>
+        <ul>The attacker hosts a web page with a form that appears legitimate; the page already contains the attacker's request</ul>
+        <ul>A user, believing the form to be the original, enters a login and password</ul>
+        <ul>Once the user completes the form, that page is submitted to the real site</ul>
+        <ul>The real site's server accepts the form, assuming that it was sent by the user based on the authentication credentials</ul>
+        <ul>In this manner, the server accepts the attacker's request</ul>
+    </ol></p>
+
+    <h2>Session Replay Attacks</h2>
+    <p>The attacker captures the authentication token of a user by listening to a conversation between the user and server. Once the authentication token is captured, the attacker replays the authentication 
+    request to the server with the captured authentication token to dodge the server.</p>
+    <p><ol>
+        <ul>The user establishes a connection with the web server</ul>
+        <ul>The server asks the user for authentication information as identity proof</ul>
+        <ul>The user sends authentication tokens to the server</ul>
+        <ul>An attacker captures the authentication token of the user by eavesdropping on the conversation between user and server</ul>
+        <ul>Once the authentication token is captured, the attacker replays the request to the server with the captured authentication token and gains unauthorized access to the server.</ul>
+    </ol></p>
+
+    <h2>Session Fixation</h2>
+    <p>Web session security prevents an attacker from intercepting, brute forcing or predicting the session ID. However, it is always possible for an attacker to issue a session ID to the user's browser, 
+    forcing it to use the chosen session ID. This is called a session fixation attack, because an attacker fixes the user's session ID in advance, instead of generating it randomly at the time of login.</p>
+    <p>Web applications allow the user to authenticate themselves using an existing session ID. In this attack, the attacker provides a legitimate web-application session ID and lures the victim to use it.
+    If the victim's browser uses that session ID, the attacker can hijack the user-validated session because the attacker is already aware of the session ID used by the victim.</p>
+    <p><ol>
+        <ul>Session token in the URL argument</ul>
+        <ul>Session token in a hidden form field</ul>
+        <ul>Session ID in a cookie</ul>
+    </ol></p>
+    <p>A session fixation attack has the following three phases:</p>
+    <p><ol>
+        <ul>Session set-up phase -> the attacker obtains a session ID</ul>
+        <ul>Fixation phase -> the attacker introduces the session ID to the victim's browser</ul>
+        <ul>Entrance phase -> the attacker waits for the victim to log in to the target web server and then enters the victim's session</ul>
+    </ol></p>
+    <p>Because the session ID is set by the attacker before the user logged in, the user can be said to have logged into the attacker's session.</p>
