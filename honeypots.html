@@ -3,4 +3,34 @@
   <a href=index.html>Back to home</a>
 <hr/>
 <h1>IDS / IPS / FIREWALL / HONEYPOT</h1>
-<h2>Network Sniffing</h2>
+<h2>Intrusion Detection System (IDS)</h2>
+    <p>An intrusion detection system (IDS) is software or hardware used to monitor, detect and protect networks or systems from malicious activities; it alerts the concerned security personnel 
+    immediately upon detecting intrusions.</p>
+    <p>IDS monitors inbound AND outboud traffic of the network and check for suspicious activities continuously to detect a security breach. Specifically, they check traffic for signatures that match 
+    known intrusion patterns and raise an alarm when a match is detected.</p>
+    <p><ol>
+        <ul>Passive IDS -> detects intrusions</ul>
+        <ul>Active IDS -> detects AND prevents intrusions</ul>
+    </ol></p>
+    <p>Main function:</p>
+    <p><ol>
+        <ul>IDS gathers and analyzes information from within a computer or network to identify possible violations of the security policy, incl. unauthorized access as well as misuse</ul>
+        <ul>IDS is a packet sniffer which intercepts packets travelling via various communication media (TCP/IP)</ul>
+        <ul>The packets are analyzed after they are captured</ul>
+        <ul>An IDS evaluates traffic for suspected intrusions and raises an alarm upon detecting such intrusions</ul>
+    </ol></p>
+    <p>One of the most common places to deploy an IDS is near the Firewall. Depending on the traffic to be monitored, an IDS is placed outside / inside the firewall. When placed inside, the IDS will be ideal if it is
+    near a DMZ. Before deploying the IDS, it is essential to analyze the network topology and understand how traffic flows to and from the resources that the attacker can use to gain access to the network.</p>
+    <p>The primary purpose of the IDS is to provide real-time monitoring and detection of intrusions.</p>
+    <p><ol>
+        <ul>IDS have sensors to detect malicious signatures in data packets</ul>
+        <ul>If the signatures matches, the IDS performs predefined actions such as terminating the connection, blocking the IP address, dropping the packet and / or raise an alarm</ul>
+        <ul>When signatures matches, anomaly detection will be skipped; otherwise the sensor may analyze traffic patterns for an anomaly</ul>
+        <ul>When the packet passes all the tests, the IDS will forward it to the network</ul>
+    </ol></p>
+    <p>An IDS uses three methods to detect intrusions:</p>
+    <p><ol>
+        <ul>Signature recognition</ul>
+        <ul>Anomaly detection -> involves a database of anomalies</ul>
+        <ul>Protocol anomaly detection -> identifies particular flaws in vendors' deployment of the TCP/IP protocol</ul>
+    </ol></p>
