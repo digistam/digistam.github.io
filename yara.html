@@ -3,3 +3,20 @@
 <hr/>
 <h1>YARA Rules</h1>
 <p><a target=_blank href=https://yara.readthedocs.io>YARA</a> is a malware research tool that allows security analysts to detect and classify malware or other malicious codes through a rule-based approach.</p>
+<p>YARA is also a multi-platform tool that runs on Windows, macOS en Linux. This tool allows security analysts to create "rules" or descriptions of malware families in the form of text or binary patterns.
+The created rules analyze specific patterns in the file and alert security analysts if the file is harmful. The description or rule comprises a Boolean expression and strings that establish the logic behind it.</p>
+<p>Security analysts can also write YARA rules for examining a private database or malicious binaries across an organization to detect intrusions. A rule is comprised of three parts:</p>
+<p><ol>
+    <ul><b>Condition</b> -> when will the result be TRUE against a file, which can be investigated; boolean expressions that allow defining the matching or result</ul>
+    <ul><b>Strings</b> -> provides meaning to the condition section by defining all the strings that need to be searched within the files; hexadecimal strings, text strings, regex</ul>
+    <ul><b>Metadata</b> -> general information which can be used by a security analyst to identify the files gathered by a specific rule</ul>
+</ol></p>
+<h2>YARA Tools</h2>
+<p><ol>
+    <ul><a target=_blank href=https://github.com/Neo23x0/yarGen>yarGen</a></ul>
+    <ul>YaraRET</ul>
+    <ul>Koodous</ul>
+    <ul>AutoYara</ul>
+    <ul>Halogen</ul>
+    <ul>Yabin</ul>
+</ol></p>
