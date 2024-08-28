@@ -215,3 +215,25 @@
     <p>A honeypot is a computer system on the internet intented to attract and trap those who attempt unauthorized or illicit utilization of the host system to penetrate an organization's 
     network. It is a fake proxy run to frame attacker by logging traffic through it and then sending complaints to the victim's ISPs. It has no authorized activity or production value and 
     any traffic to it is likely a probe, attack or compromise.</p>
+    <p>Whenever there is any interaction with a honeypot, it is most likely to be malicious. Honeypots are unique, they do not solve a specific problem. Instead, they are higly flexible tools 
+    with many different security applications. Honeypots help in preventing attacks, detecting attacks, information gathering and research. A honeypot can log port access attempts or monitor an 
+    attacker's keystrokes; these could be early warnings of a more concerted attack. It requires a considerable amount of effort to maintain a honeypot.</p>
+    <p><ol>
+        <ul><b>Low-interaction Honeypots</b> -> limited number of services and applications of a target system or network; if the attacker does something that the emulation does not expect, the honeypot will 
+        simply generate an error (examples: KFSensor, Specter, Honeytrap)</ul>
+        <ul><b>Medium-interaction Honeypots</b> -> simulates a real OS as well as applications and services (examples: HoneyPy, Kojoney2, Cowrie)</ul>
+        <ul><b>High-interaction Honeypots</b> -> does not emulate anything, runs actual vulnerable services or software on production systems with real OS and applications; can be completely compromised by 
+        attackers to gain full access to the system in a controlled are; capture complete information about an attack vector such as attack techniques, tools and intent</ul>
+        <ul><b>Pure Honeypots</b> -> emulates real production network of target organization; cause attackers to devote their time and resources toward attacking the critical production system</ul>
+    </ol></p>
+    <p>Types of honeypots:</p>
+    <p><ol>
+        <ul>Production honeypots -> organizations</ul>
+        <ul>Research honeypots -> high-interaction; research institutes, governments, military organizations</ul>
+        <ul>Malware honeypots -> traps malware campaigns</ul>
+        <ul>Database honeypots -> traps SQL injection and database enumeration with fake databases </ul>
+        <ul>Spam honeypots -> targets spammers with mail servers</ul>
+        <ul>Email honeypots -> Email traps; fake email addresses used to attract fake and malicious emails</ul>
+        <ul>Spider honeypots -> spider traps, trap web crawlers and spiders</ul>
+        <ul>Honeynets -> networks of honeypots; emulating fake website</ul>
+    </ol></p>
