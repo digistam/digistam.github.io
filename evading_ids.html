@@ -284,3 +284,58 @@ the remote system and store it at the specified location.</p>
 </ol></p>
     <p>With the malicious payload or program in action, it can create specific jobs such as schedule tasks, which are set to be executed in a queue. As these jobs run at a system level, they cna be 
     considered as trusted jobs and are allowed to bypass security solutions such as firewalls.</p>
+
+    <h1>Evading NAC and Endpoint Security</h1>
+    <h2>NAC and Endpoint Security Evasion Techniques</h2>
+    <p>NAC is a security protocol used to block unauthorized or unknown devices/hosts trying to access internal services. Attackers often try to bypass NACs using different techniques to perform malicious 
+    activities on the target network.</p>
+    <p><ol>
+      <ul>VLAN hopping</ul>
+      <ul>Using a pre-authenticated device</ul>
+    </ol></p>
+    <p>Endpoint security provides an extra layer of security for end-user devices such as desktops, laptops, tables, printers against malware and other cyber threats. 
+      Some endpoint security bypassing techniques are as follows:</p>
+    <p><ol>
+      <ul>Ghostwriting</ul>
+      <ul>Using application whitelisting</ul>
+      <ul>XLM weaponization</ul>
+      <ul>Dechaining macros</ul>
+      <ul>Clearing memory hooks</ul>
+      <ul>Using metasploit templates</ul>
+      <ul>Bypassing Symantec Endpoint Protection</ul>
+      <ul>Hosting phishing sites</ul>
+      <ul>Passing encoded commands</ul>
+      <ul>Fast flux DNS method</ul>
+      <ul>Timing-based evasion</ul>
+      <ul>Signed binary proxy execution</ul>
+    </ol></p>
+
+    <h2>VLAN hopping</h2>
+    <p>Attackers use VLAN hopping to gain access to a network through Dynamic Trunking Protocol (DTP). To set up a trunk with the switch, the DTP packets are forwarded by attackers by setting the 
+    switch mode to 'dynamic auto' or 'dynamic desirable'. The established trunk creates a way for attackers to access all VLANs.</p>
+    <p><ol>
+      <ul>Frogger (Github.com) -> ./frogger.sh</ul>
+    </ol></p>
+
+    <h2>Bypassing NAC using pre-authenticated device</h2>
+    <p>Attackers can gain access to an authenticated device and use that device to bypass NAC. Attackers place their device (like Raspberry PI) between the pre-authenticated device and the authentication 
+    server to ensure that the traffic flows through their device.</p>
+    <p><ol>
+      <ul>nac_bypass_setup.sh (Github.com)</ul>
+      <ul>NACkered (Github.com)</ul>
+      <ul>Silentbridge (Github.com)</ul>
+      <ul>Fenrir (Github.com)</ul>
+      <ul>BITM (Github.com)</ul>
+    </ol></p>
+
+    <h2>Bypassing Endpoint Security using Ghostwriting</h2>
+    <p>Ghostwriting is a bypass technique that involves modifying the structure of the malware code without effecting its functionality.</p>
+    <p><ol>
+      <ul>Ghostwriting.sh (Github.com)</ul>
+    </ol></p>
+
+    <h2>Bypassing Endpoint Security using Application Whitelisting</h2>
+    <p>Application whitelisting is a security feature in Windows systems to defend against insecure or malicious application execution. It contains the list of signed applications that are allowed to 
+    run in the system. While executing a legitimate and signed application, it looks for the required DLLs in the current location where the executable is saved and then searches in other locations.</p>
+    <p>Attackers perform DLL hijacking to place a malicious DLL with a legitimate name that the application is looking for in the same directory where the executable resides. Attackers also use rundll32.exe, 
+    regsvr32.exe and PowerShell to evade application whitelisting of the endpoint security solution.</p>
