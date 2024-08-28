@@ -3,14 +3,14 @@
   <a href=index.html>Back to home</a>
 <hr/>
 <h1>IDS / IPS / FIREWALL / HONEYPOT</h1>
-<h2>Intrusion Detection System (IDS)</h2>
+<h1>Intrusion Detection System (IDS)</h1>
     <p>An intrusion detection system (IDS) is software or hardware used to monitor, detect and protect networks or systems from malicious activities; it alerts the concerned security personnel 
     immediately upon detecting intrusions.</p>
     <p>IDS monitors inbound AND outboud traffic of the network and check for suspicious activities continuously to detect a security breach. Specifically, they check traffic for signatures that match 
     known intrusion patterns and raise an alarm when a match is detected.</p>
     <p><ol>
         <ul>Passive IDS -> detects intrusions</ul>
-        <ul>Active IDS -> detects AND prevents intrusions</ul>
+        <ul>Active IDS -> detects AND prevents intrusions (see: IPS)</ul>
     </ol></p>
     <p>Main function:</p>
     <p><ol>
@@ -34,3 +34,184 @@
         <ul>Anomaly detection -> involves a database of anomalies</ul>
         <ul>Protocol anomaly detection -> identifies particular flaws in vendors' deployment of the TCP/IP protocol</ul>
     </ol></p>
+
+    <h2>General indications of intrusions</h2>
+    <p><ol>
+        <ul><b>File System Intrusions</b></ul>
+        <ul>System files record the activities of the system. Any modification or deletion of the file attribures or the file itself is a sign that the system has been a target of an attack</ul>
+        <ul><b>Network Intrusions</b></ul>
+        <ul>Sudden increase in bandwidth consumption, repeated probes of the available services on your machines, repeated login attempts</ul>
+        <ul><b>System Intrusions</b></ul>
+        <ul>Sudden changes in logs, incomplete logs, slow system performance, reboots and crashes</ul>
+    </ol></p>
+
+    <h2>Types of Intrusion Detection Systems</h2>
+    <p><ol>
+        <ul><b>Network-Based Intrusion Detection Systems (NIDS)</b></ul>
+        <ul>NIDS check every packet entering the network for the presence of anomalies and incorrect data; it detects malicious activity such as DoS attacks, port scans or attempts to break into computers</ul>
+        <ul><b>Host-Based Intrusion Detection Systems (HIDS)</b></ul>
+        <ul>HIDS analyze each system's behavior and can be installed on any system ranging from a desktop PC to a server; more versatile than NIDS</ul>
+    </ol></p>
+
+    <h2>Types of IDS Alerts</h2>
+    <p><ol>
+        <ul>True Positive (Attack - Alert)</ul>
+        <ul>False Positive (No attack - Alert)</ul>
+        <ul>False Negative (Attack - No Alert)</ul>
+        <ul>True Negative (No attack - No Alert)</ul>
+    </ol></p>
+
+    <h1>Intrusion Prevention System (IPS)</h1>
+    <p>IPS are considered as active IDS, as they are capable of not only detecting intrusions but also preventing them. IPS continue monitor systems that often sit behind firewalls as an additional layer of 
+    protection. An IPS takes actions based on certain rules and policies configured into it. The IPS can identify, log and prevent the occurrence of any intrusion or attack in the network. IPS can also be 
+    employed to detect critical issues in corporate security policies, such as notorious insider threats, malicious network guests etc.</p>    
+    <p>Like IDS, IPS are also classified in Host-Based IPS and Network-Based IPS.</p>
+    <p>Unlike IDS, IPS can block as well as drop illegal packets in the network; IPS can be used to monitor activities occurring in a single organization; IPS can prevent the occurrence of direct attacks in 
+    the network by controlling the amount of network traffic.</p>
+
+    <h1>Firewall</h1>
+    <p>A firewall is a software- or handware-based system located at the network gateway that protects the resources of a private network from unauthorized access by users on other networks.</p>
+    <p>A firewall placed at the network level and working closely with the router filters all the network packets to determine whether to forward them toward their destinations. Always install firewalls away from 
+    the rest of the network, so that none of the incoming requests can gain diret access to a private network resource. If appropriately configured, the firewall protects systems on one side of it from systems 
+    on the other side.</p>
+    <p><ol>
+        <ul>A firewall is an intrusion detection mechanism that is designed by an organization's security policy; it's settings can change</ul>
+        <ul>Firewall can be configured to restrict incoming traffic to POP and SMTP to enable email access; certain firewalls block specific email services to avoid spam</ul>
+        <ul>A firewall can be configured to check inbound traffic at a checkpoint, where a security audit is performed; it can also act as an active phone tap tool for identifying an intruder's attempt 
+        to dial into modems in a secured network</ul>
+        <ul>The firewall verifies the incoming and outgoing traffic against its rules and acts as a router to move data between networks</ul>
+        <ul>Unauthorized attempts can be identified by embedding an alarm that is triggered when an unauthorized user attempts to log in</ul>
+    </ol></p>
+
+    <h2>Firewall Architecture</h2>
+    <p><ol>
+        <ul><b>Bastion Host</b></ul>
+        <ul>Designed to defend the network against attacks; mediator between inside and outside networks; two interfaces: public interface connected to the internet, private interface connected to the intranet</ul>
+        <ul><b>Screened Subnet</b></ul>
+        <ul>A screened subnet (DMZ) is a protected network created with a two- or three-homed firewall behind a screening firewall; the advantage of screening a subnet away from the intranet is that public requests 
+        can be responded to without allowing traffic into the intranet</ul>
+        <ul><b>Multi-homed firewall</b></ul>
+        <ul>A multi-homed firewall is a node with multiple NICs that connects to two or more networks</ul>
+    </ol></p>
+
+    <h2>Demilitarized Zone (DMZ)</h2>
+    <p>Area that hosts computer(s) or a small sub-network placed as a neutral zone between a particular company's internal network and an untrusted external network to prevent outsider access to a company's private data. 
+    The DMZ serves as a buffer between the secure internal network and the insecure internet, as it adds a layer of security to the corporate LAN, thus preventing direct access to other parts of the network. 
+    A DMZ is created using a firewall with three or more network interfaces that are assigned specific roles, such as an internal trusted network, a DMZ network, or an external untrusted network (internet). 
+    Any service such as email, web or FTP that provides access to external users can be placed in the DMZ. However, web servers that communicate with database servers cannot reside in the DMZ, as they could give 
+    outside users direct access to sensitive information.</p>
+
+    <h2>Types of firewalls</h2>
+    <p><ol>
+        <ul>Hardware Firewall -> security and speed, more expensive and difficult to configure</ul>
+        <ul>Software Firewall -> more useful for individual homw users and suitable for mobile users, relative simple configuration, difficult to uninstall and consumes system resources</ul>
+    </ol></p>
+
+    <h2>Firewall Technologies</h2>
+    <p><ol>
+        <ul>Packet Filtering</ul>
+        <ul>Circuit-Level Gateways</ul>
+        <ul>Application-Level Firewall</ul>
+        <ul>Stateful Multilayer Inspection</ul>
+        <ul>Application Proxies</ul>
+        <ul>Virtual Private Network</ul>
+        <ul>Network Address Translation</ul>
+    </ol></p>
+
+    <h2>Packet Filtering</h2>
+    <p>Each packet is compared with a set of criteria before it is forwarded. Depending on the packet and the criteria, the firewall can drop the packet and transmit it or send a message to the originator. 
+    The rules can include the source and the destination IP address, the source and the destination port number, and the protocol used. It works at the internet layer of the TCP/IP model or the network 
+    layer of the OSI model. Packet filtering firewalls focus on individual packets, analyze their header information, and determine which way they need to be directed. Traditional packet filters make this 
+    decision according to the following information in a packet:</p>
+    <p><ol>
+        <ul>Source IP address</ul>
+        <ul>Destination IP address</ul>
+        <ul>Source TCP/UDP port</ul>
+        <ul>Destination TCP/UDP port</ul>
+        <ul>TCP flag bits (SYN, ACK etc.)</ul>
+        <ul>Protocol in use</ul>
+        <ul>Direction</ul>
+        <ul>Interface</ul>
+    </ol></p>
+
+    <h2>Circuit-Level Gateway Firewall</h2>
+    <p>Works at the Session Layer (OSI) or Transport Layer (TCP/IP). It forwards data between networks without verification and blocks incoming packets from the host but allows the traffic to pass 
+    through itself. Information passed to remote computers through a circuit-level gateway will appear to have originated from the gateway, as the incoming traffic carries the IP address of the proxy
+    (circuit-level gateway). Such firewalls monitor requests to create sessions and determine if those sessions will be allowed.</p>
+    <p>A circuit-level gateway gives controlled access to network services and host requests. To determine whether a requested session is valid, it checks the TCP handshake between packets. Circuit proxy 
+    firewalls allow or prevent data streams; they do not filter individual packets. They are relatively inexpensive and hide the information about the private network that they protect.</p>
+
+    <h2>Application-Level Firewall</h2>
+    <p>Application-based proxy firewalls focus on the application layer rather than just the packets. Application-level gateways (proxies) can filter packets at the application layer of the OSI model 
+    (or the application layer of TCP/IP). Incoming and outgoing traffic is restricted to services supported by the proxy; all other service requests are denied. The need for an application-level 
+    firewall arises from the tremendous amount of voice, video and collaborative traffic in the data-link layer and network layer, which may be used for unauthorized access to internal and external 
+    networks. Application-level gateways configured as web proxies prohibit FTP, gopher, telnet or other traffic. They examine traffic and filter application-specific commands such as HTTP: post and get.</p>
+    <p>Traditional firewalls are unable to filter such types of traffic. They can inspect, find and verify malicious traffic that is missed by stateful inspection firewalls to make decisions as to 
+    whether to allow access, and they improve the overall security of the application layer. For example, worms that send malicious code in legitimate procotols cannot be detected by stateful firewalls, 
+    as proxy firewalls focus on packet headers in the network layer. However, deep packet inspection firewalls can find such attacks with the help of informative signatures added inside packets.</p>
+    <p><ol>
+        <ul>Active application-level firewalls -> examine all incoming requests against known vulnerabilities</ul>
+        <ul>Passive application-level firewalls -> check all incoming requests agains known vulnerabilities, but do not actively reject or deny those requests </ul>
+    </ol></p>
+
+    <h2>Stateful Multilayer Inspection Firewall</h2>
+    <p>Combines aspects of the three mentioned types of firewalls (packet filtering, circuit-level gateway and application-level firewalls); using stateful packet filtering, you can overcome the 
+    limitation of packet firewalls, which can only filter the IP address, port, protocol etc. This multilayer firewall can perform deep packet inspection; can remember the packets that passed through 
+    it earlier and make decisions about future packets accordingly</p>
+
+    <h2>Application Proxy</h2>
+    <p>An application-level proxy works as a proxy server and filters connections for specific services. It filters connections based on the services and protocols when acting as a proxy. For example, 
+    an FTP proxy will only allow FTP traffic to pass through while all other services and protocols will be blocked. It is a type of server that acts as an interface between the user workstation and the 
+    internet. Also known as an application-level gateway, as it renews the connections and act as a gateway to the services.</p>
+    <p>Advantages:</p>
+    <p><ol>
+        <ul>Proxy services are useful for loggin because they can understand application protocols and effectively allow logging</ul>
+        <ul>Proxy services reduce the load on network links as they are capable of caching copies of frequently requested data and allow it to be directly loaded from the system instead of the network</ul>
+        <ul>Proxy systems perform user-level authentication, as they are involved in the connection</ul>
+        <ul>Proxy systems automatically protect weak or faulty IP implementations as they sit between the client and the internet and generate new IP packets for the client</ul>
+    </ol></p>
+
+    <h2>Network Address Translation (NAT)</h2>
+    <p>NAT separates IP address into two sets and enables the LAN to use these addresses for internal and external traffic. The NAT helps hide an internal network layout and force connections to go through 
+    a choke point. It also works with a router similarly to packet filtering.</p>
+    <p>Advantages:</p>
+    <p><ol>
+        <ul>Network address translation helps to enforce the firewall's control over outbound connections</ul>
+        <ul>It restricts incoming traffic and allows only packets that are part of a current interaction initiated from the inside</ul>
+        <ul>It helps hide the internal network's configuration and thus lowers the success rate of attacks on the network or system</ul>
+    </ol></p>
+
+    <h2>Virtual Private Network</h2>
+    <p>A VPN is a network that provides secure access to the private network through the internet. VPNs are used for connecting wide area networks (WAN). They allow computers on one network to 
+    connect to computers on another network. Used for secure transmission of sensitive information over an untrusted network via encapsulation and encryption.</p>
+    <p>Advantages:</p>
+    <p><ol>
+        <ul>A VPN hides all the traffic that flows over it, ensures encryption and protects data from snooping</ul>
+        <ul>It provides remote access for protocols while avoiding attackers from the internet at large</ul>
+    </ol></p>
+    <p>Disadvantages:</p>
+    <p><ol>
+        <ul>As the VPN runs on a public network, the user will be vulnerable to an attack on the destination network</ul>
+    </ol></p>
+
+    <h2>Firewall limitations</h2>
+    <p><ol>
+        <ul>Firewalls can restrict users from accessing valuable services such as FTP, Telnet, NIS etc. and can sometimes restrict internet access as well</ul>
+        <ul>Firewall can't prevent internal attacks (backdoor) like a disgruntled employee who cooperates with external attacker</ul>
+        <ul>Firewall focuses its security at a single point</ul>
+        <ul>Bottleneck could occur if all the connections pass through the firewall</ul>
+        <ul>Firewall cannot protect network from social engineering and data-driven attacks whereby the attacker sends malicious links and emails to employees inside the network</ul>
+        <ul>If external devices such as laptops are already infected and connected to the network, the firewall cannot protect</ul>
+        <ul>The firewall is unable to protect agains zero day viruses</ul>
+        <ul>A firewall cannot do anything if the network design and config is faulty</ul>
+        <ul>A firewall is not an alternative to antivirus or antimalware</ul>
+        <ul>A firewall does not block attacks from a higher level of the protocol stack</ul>
+        <ul>A firewall does not prevent attacks originating from common ports and applications</ul>
+        <ul>A firewall does not prevent attacks from dial-in connections</ul>
+        <ul>A firewall is unable to understand tunneled traffic</ul>
+    </ol></p>
+
+    <h2>Honeypot</h2>
+    <p>A honeypot is a computer system on the internet intented to attract and trap those who attempt unauthorized or illicit utilization of the host system to penetrate an organization's 
+    network. It is a fake proxy run to frame attacker by logging traffic through it and then sending complaints to the victim's ISPs. It has no authorized activity or production value and 
+    any traffic to it is likely a probe, attack or compromise.</p>
