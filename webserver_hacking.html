@@ -2,4 +2,75 @@
   <a href=index.html>Back to home</a>
 <hr/>
 <h1>Hacking web servers</h1>
-<p></p>
+<p>Web servers are a critical component of web infrastructure. A single vulnerability in web server configuration may lead to a security breach on websites. 
+Web server security is critical to the normal functioning of an organization.</p>
+<h2>Web server</h2>
+<p>A web server is a computer system that stores, processes and delivers web pages to global clients via Hypertext Transfer Protocol (HTTP). Depending on the HTTP request, 
+the web server collects the requested information / content from the data storage or application servers and responds to the client's request with an appropriate HTTP response. If the 
+web server can't find the requested information, it will generate an error message.</p>
+<p>Components:</p>
+<p><ol>
+ <ul>Document Root -> root file directory that stores critical HTML files related to web pages of a domain name, which will be sent in response to requests</ul>
+ <ul>example: /var/www/html</ul>
+ <ul>Server Root -> top-level root directory under the directory tree in which the server's configuration, error and log files are stored</ul>
+ <ul>Virtual Document Tree -> provides storage on a different machine or disk after the original disk becomes full, case sensitive and can be used to provide object-level security</ul>
+ <ul>Virtual Hosting -> technique of hosting multiple domains or websites on the same server, sharing of resources (name-based hosting, IP - based hosting, Port-based hosting)</ul>
+ <ul>Web Proxy -> a proxy server is located between web client and web server, all requests from clients are passed on to the web server through the proxies; used to prevent IP blocking and maintain anonymity</ul>
+</ol></p>
+<h2>Open Source Web Server Architecture</h2>
+<p>Open source web server architecture typically uses Linux, Apache, MySQL and PHP, often called the LAMP software bundle, as the principal components.</p>
+<p><ol>
+ <ul>Linux is the operating system (OS) of the web server and provides a secure platform</ul>
+ <ul>Apache is the component of the web server that handles each HTTP request and response</ul>
+ <ul>MySQL is a relational database used to store the content and configuration information of the web server</ul>
+ <ul>PHP is the application layer technology used to generate dynamic web content</ul>
+</ol></p>
+<h2>IIS Web Server Architecture</h2>
+<p>The Internet Information Service (IIS) is a web server application developed by Microsoft for Windows. IIS for Windows Server is a flexible, secure and easy-to-manage web server for hosting anything on the web.
+It supports HTTP, HTTPS, FTP, FTPS, SMTP and NNTP (Network News Transfer Protocol).</p>
+<ul>IIS has several components, including a protocol listener such as HTTP.sys and services such as the World Wide Web Publishing Service (WWW Service) and Windows Process Activation Service (WAS). Each 
+component functions in application and web server roles. These functions may include listening to requests, managing processes and reading configuration files.</ul>
+
+<h2>Web Server Security Issues</h2>
+<p>A web server is a hardware / software application that hosts websites and makes them accessible over the internet. A web server, along with a browser, successfully implements client-server model architecture. 
+The server plays the role of server and the browser acts as client. To host websites, a web server stores the web pages of websites and delivers a particular web page upon request. Each web server has a domain 
+name and an IP address associated with that domain name. A web server can host more than one website. Any computer can act as a web server if it has specific server software (web server program) installed and 
+is connected to the internet.</p>
+<p>Apache, Microsoft IIS, Nginx, Google and Tomcat are some of the most widely used web server software. An attacker usually targets vulnerabilities in the software component and configuration errors to compromise 
+web servers.</p>
+<p>Organizations can defend most network-level and OS-level attacks by adopting network security measures such as firewalls, intrusion detections systems (IDSs) and intrusion prevention systems (IPSs) and by 
+following security standards and guidelines. This forces attackers to turn their attention to web server and web application level attacks because a web server that hosts web applications is accessible from 
+anywhere over the internet. This makes web servers an attractive target. Poorly configured web servers can create vulnerabilities in even the most carefully designed firewall systems. Attackers can exploit 
+poorly configured web servers with known vulnerabilities to compromise the security of web applications. Furthermore, web servers with known vulnerabilities can harm the security of an organization.</p>
+
+<h2>Levels of organizational security</h2>
+<p>Stack 7: custom web applications (business logic flaws)</p>
+<p>Stack 6: third-party components (open source / commercial)</p>
+<p>Stack 5: web server (apache / nginx / microsoft IIS)</p>
+<p>Stack 4: database (oracle / mysql / mssql)</p>
+<p>Stack 3: operating system (windows / linux / macOS)</p>
+<p>Stack 2: network (router / switch)</p>
+<p>Stack 1: security (IPS / IDS)</p>
+
+<h2>Common goals behind web server hacking</h2>
+<p>Attackers perform web server attacks with certain goals in mind:</p>
+<p><ol>
+ <ul>Stealing credit card details or other sensitive credentials using phishing</ul>
+ <ul>Integrating the server into a botnet to perform DoS or DDoS</ul>
+ <ul>Compromising a database</ul>
+ <ul>Obtaining closed source applications</ul>
+ <ul>Hiding and redirecting traffic</ul>
+ <ul>Escalating privileges</ul>
+ <ul>Pure curiosity</ul>
+ <ul>Completing a self-set intellectual challenge</ul>
+ <ul>Damaging target organization's reputation</ul>
+</ol></p>
+<h2>Dangerous Security Flaws Affecting Web Server Security</h2>
+<p>A web server configured by poorly trained system administrators may have security vulnerabilities. Inadequate knowledge, negligence, laziness and inattentiveness toward security can pose the
+greates threats to web server security.</p>
+<p><ol>
+ <ul>Failing to update the web server with the latest patches</ul>
+ <ul>Using the same system administrator credentials everywhere</ul>
+ <ul>Allowing unrestricted internal and outbound traffic</ul>
+ <ul>Running unhardened applications and servers</ul>
+</ol></p>
