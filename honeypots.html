@@ -237,3 +237,27 @@
         <ul>Spider honeypots -> spider traps, trap web crawlers and spiders</ul>
         <ul>Honeynets -> networks of honeypots; emulating fake website</ul>
     </ol></p>
+    <p>Ports that show a particular service running but deny a three-way handshake connection indicate the presence of a honeypot. Once a honeypot is detected, attackers try to bypass them so that they can 
+    focus on targeting the actual network. Attackers can defeat honeypots by using multi-proxies (TORs) and hiding their conversation using encryption and steganography techniques. Tools to detect honeypots include:</p>
+    <p><ol>
+        <ul>Send-safe Honeypot Hunter (send-safe.com)</ul>
+        <ul>kippo_detect (github.com)</ul>
+    </ol></p>
+
+    <h2>Detecting and Defeating Honeypots</h2>
+    <p><ol>
+        <ul>Detecting the presence of Layer 7 Tar Pits -> Tar pits are security entities that are similar to honeypots; they react slowly to incoming SMPT commands by attackers/spammers; attackers can identify the presence 
+        of Layer 7 tar pits by looking at the latency of the response from the service</ul>
+        <ul>Detecting the presence of Layer 4 Tar Pits -> Layer 4 tar pits manipulate the TCP/IP stack and are effectively employed to slow down the spreading of worms, backdoors etc. In these tar pits, the iptables 
+        accept the incoming TCP/IP connection and spontaneously switch to a zero-window size, blocking the attacker from sending further data; Layer 4 tar pits such as Labrea can be identified by the attacker by analyzing 
+        the TCP window size</ul>
+        <ul>Detecting the presence of Layer 2 Tar Pits -> used to block the network penetration of the attacker; can be detected by looking at the responses with the unique MAC address 0:0:f:ff:ff:ff which acts as
+        a kind of black hole</ul>
+        <ul>Detecting Honeypots running on VMWare -> analyzing MAC address (IEEE standard, MAC addresses assigned to VMWare Inc.)</ul>
+        <ul>Detecting the presence of Honeyd Honeypot -> Honeyd is a widely used honeypot daemon; attacker can identify the presence of honeyd honeypot by performing time-based TCP fingerprinting methods (SYN proxy behavior)</ul>
+        <ul>Detecting the presence of User-Mode Linux (UML) Honeypot -> analyzing files as /proc/mounts, /proc/interrupts, /proc/cmdline which contain UML information</ul>
+        <ul>Detecting the presence of Sebek-based Honeypots -> analyzing congestion in network, Sebek logs everything that is accessed via reading() call </ul>
+        <ul>Detecting presence of Snort_inline Honeypot -> analyzing outgoing packets</ul>
+        <ul>Detecting presence of Fake AP -> send only beacon frames but do not produce any fake traffic</ul>
+        <ul>Detecting presence of Bait and Switch Honeypots -> looking at specific TCP/IP parameters such as Round-Trip Time (RTT), TTL and TCP timestamp</ul>
+    </ol></p>
