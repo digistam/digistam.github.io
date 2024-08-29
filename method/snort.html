@@ -14,3 +14,29 @@ checks for signatures that match known intrusion patterns and signals an alarm w
         <ul>Packet logger </ul>
         <ul>Network intrusion preventing system</ul>
     </ol></p>
+    <h2>Snort Rules</h2>
+    <p>Snort's rule engine allows custom rules to meet the needs of the network. Snort rules help in differentiating between normal Internet activities and malicious activities.
+    Snort uses the popular libpcap library (Linux) or Winpcap (Windows), the same library that tcpdump uses to perform its packet sniffing. Snort users can write their own rules. However, each rule must describe:</p>
+    <p><ol>
+        <ul>Any violation of the security policy of the company that might be a threat to the security of the network</ul>
+        <ul>All well-known and frequent attemps to exploit the vulnerabilities in the network</ul>
+        <ul>The conditions in which a user thinks that a network packet is unusual</ul>
+    </ol></p>
+    <p>Snort rules should be robust and flexible. The system should maintain a hard check on the activities taking place on the network and notify the administrator of any potential intrusion attempt. The system must be 
+    sufficiently compatible to act immediately and take necessary remedial measures according to the nature of the intrusion.</p>
+    <p>No written rule must extend beyond a single line; rules should be short, precise and easy to understand; Each rule should be divided into two logical sections: rule header and rule options.</p>
+    <h2>Rule header</h2>
+    <p>The rule header stores a complete set of rules to identify a packet and determines the action to be performed or rule to be applied. It contains information that defines the who, where and what of a packet, 
+    as well as what to do with the packet with all the attributes indicated in the rule should show up. The first item in a rule is the rule action, which tells Snort 'what to do' when it finds a packet that matches 
+    the criteria (alert, log, pass, activate, dynamic).</p>
+    <p>Snort supports TCP, UDP and ICMP.</p>
+    <h2>Direction operator</h2>
+    <p>The direction operator indicates the direction of interest for the traffic, traffic can flow either in a single direction or bidirectionally.</p>
+    <p>Example: log !192.168.1.0/24 any <> 192.168.1.0/24 23</p>
+    <h2>IP Address</h2>
+    <p>Identify the IP address and port that the rule applies to; use keyword 'any' to define the IP address; use numeric IP addresses qualified with a CIDR netmask</p>
+    <p>Example: alert tcp !192.168.1.0/24 any -> 192.168.1.0/24 111 (content: "|00 01 86 a5|""; msg: "external mountd access";)</p>
+    <h2>Port Numbers</h2>
+    <p>Port numbers can be listed in different ways, including the use of 'any' ports, static port definitions, port ranges and by negation. Port ranges are indicated by the range operator ":"; The 
+    direction operator "->" indicates the direction of the traffic to which the rule applies. There is also a bidirectional operator "<>"</p>
+    <p>Example: log tcp any -> 192.168.1.0/24 !6000:6010</p>
