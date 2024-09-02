@@ -74,3 +74,58 @@ greates threats to web server security.</p>
  <ul>Allowing unrestricted internal and outbound traffic</ul>
  <ul>Running unhardened applications and servers</ul>
 </ol></p>
+<h2>Impact of Web Server Attacks</h2>
+<p><ol>
+ <ul>Compromise of user accounts</ul>
+ <ul>Website defacement</ul>
+ <ul>Secondary attacks from the website</ul>
+ <ul>Root access to other applications or server</ul>
+ <ul>Data tampering</ul>
+ <ul>Data theft</ul>
+ <ul>Damage reputation of the company</ul>
+</ol></p>
+<h2>Why are Web Servers Compromised</h2>
+<p><ol>
+ <ul>Webmaster's perspective -> LAN can be exposed, threats in the form of viruses, Trojans, attackers or compromise of data</ul>
+ <ul>Network administrator's perspective -> poorly configured web sever causes potential holes in LAN security</ul>
+ <ul>End user's perspective -> active content like ActiveX and Java make it possible for harmful applications, such as viruses, to invade a system</ul>
+</ol></p>
+<h2>Causes of compromise</h2>
+<p><ol>
+ <ul>Improper file and directory permissions</ul>
+ <ul>Installing the server with default settings</ul>
+ <ul>Unnecessary services enabled, incl. content management and remote administration</ul>
+ <ul>Security conflicts with business' ease of use requirements</ul>
+ <ul>Lack of proper security policy, procedures and maintenance</ul>
+ <ul>Improper authentication with external systems</ul>
+ <ul>Default accounts with default or no passwords</ul>
+ <ul>Unnecessary default, backup or sample files</ul>
+ <ul>Misconfigurations in web server, OS and web applications</ul>
+ <ul>Bugs in server software, OS and web applications</ul>
+ <ul>Misconfigures Secure Socket Layers (SSL) certificates and encryption settings</ul>
+ <ul>Administrative or debugging functions that are enabled or accessible on web servers</ul>
+ <ul>Use of self-signed certificates and default certificates</ul>
+ <ul>Not using dedicated server for web services</ul>
+</ol></p>
+
+<h1>Web Server Attacks</h1>
+<h2>DNS Server Hijacking</h2>
+<p>The Domain Name System (DNS) resolves a domain name to its corresponding IP address. A user queries the DNS server with a domain name, and the DNS server responds with the corresponding IP address. 
+In DNS server hijacking, an attacker compromises a DNS server and changes its mapping settings to redirect toward a rogue DNS server.</p>
+<h2>DNS Amplification Attack</h2>
+<p>Recursive DNS query is a method of requesting DNS mapping. The query goes through DNS servers recursively until it fails to find the specified domain name to IP address mapping.</p>
+<p><ol>
+ <ul>1) users who desire to resolve a domain name to its corresponding IP address send a DNS query to the primary DNS server specified in its Transmission Control Protocol (TCP)/IP properties</ul>
+ <ul>2-7) if the requested DNS mapping does not exist on the user's primary DNS server, the server forwards the request to the root server; The root server forwards the request to the .com namespace, where
+ the user can find DNS mappings; This process repeats recursively until the DNS mapping is resolved</ul>
+ <ul>8) ultimately, when the system finds the primary DNS server for the requested DNS mapping, it generates a cache for the IP address in the user's primary DNS server</ul>
+</ol></p>
+<p>Attackers exploit recursive DNS queries to perform a DNS amplification attack that results in DDoS attacks on the victim's DNS server</p>
+<p><ol>
+ <ul>1) the attacker instructs compromised hosts (bots) to make DNS queries in the network</ul>
+ <ul>2) all the compromised hosts spoof the victim's IP address and send DNS query requests to the primary DNS server configured in the victim's TCP/IP settings</ul>
+ <ul>3-8) if the required DNS mapping does not exist on the victim's primary DNS server, the server forwards the requests to the root server; The root server forwards the request to the .com or 
+ respective top-level domain (TLD) namespaces; This process repeats recursively until the victim's primary DNS server resolves the DNS mapping request</ul>
+ <ul>9) after the primary DNS server finds the DNS mapping for the victim's request, it sends a DNS mapping response to the victim's IP address; This response goes to the victim because bots use the 
+ victim's IP address; The replies to copious DNS mapping requests from the bots result in DDoS on the victim's DNS server</ul>
+</ol></p>
