@@ -163,3 +163,76 @@ request forgery (CSRF) and Structured Query Language (SQL) injection are example
 header that elicits two responses from the server. The attacker alters a single request to appear as two requests by adding header response data into the input field. The web server, in turn, responds to 
 each request. The attacker can pass malicious data to a vulnerable application, and the application includes the data in an HTTP response header. The attacker can control the first response to redirect 
 the user to a malicious website, whereas the web browser will discard other responses.</p>
+
+<h2>Web Cache Poisoning Attack</h2>
+<p>Web cache poisoning damages the reliability of an intermediate web cache source. In this attack, an attacker swaps cached content for a random URL with infected content. Users of the web cache source 
+may unknowingly use the poisoned content instead of the true and secured content when requesting the required URL through the web cache. An attacker forces the web server's cache to flush its actual cache content 
+and sends a specially crafted request to store in the cache. In this case, all the users of that web server cache will receive malicious content until the servers flush the web cache. Web cache poisoning 
+attacks are possible if the web server and application have HTTP response-splitting flaws.</p>
+
+<h2>SSH Brute Force Attack</h2>
+<p>Attackers use SSH protocols to create an encrypted SSH tunnel between two hosts to transfer unencrypted data over an insecure network. Usually, SSH runs on TPC port 22. To perform an attack on SSH, 
+an attacker scans the entire SSH server using bots (port scan op port 22) to identify possible vulnerabilities. With the help of a brute-force attack, the attacker obtains login credentials to gain 
+unauthorized access to an SSH tunnel. An attacker who obtains the login credentials of SSH can use the same SSH tunnels to transmit malware and other means of exploitation to victims without being detected. 
+Attackers use tools such as nmap and ncrack on a Linux platform to perform an SSH brute-force attack. </p>
+
+<h2>Web Server Password Cracking</h2>
+<p>An attacker attempts to exploit weaknesses to hack well-chosen passwords. The most common passwords found are <i>password, root, administrator, admin, demo, test, guest, qwerty, pet names</i> and so on. Main targets:</p>
+<p><ol>
+ <ul>SMTP and FTP servers</ul>
+ <ul>Web shares</ul>
+ <ul>SSH tunnels</ul>
+ <ul>Web form authentication</ul>
+ </ol></p>
+ <p>Attackers use different methods such as social engineering, spoofing, phishing, Trojan horse, virus, wiretapping, keystroke logging to perform web server password cracking. In many hacking attempts, the 
+ attacker starts with password cracking to prove to the web server that they are a valid user.</p>
+
+ <h2>Web Server Password Cracking Techniques</h2>
+ <p>Password cracking is the most common method of gaining unauthorized access to a web server by exploiting flawed and weak authentication mechanisms. Once the password is cracked, an attacker can use the 
+ password to launch further attacks.</p>
+ <p><ol>
+  <ul>Guessing (human behavior)</ul>
+  <ul>Dictionary attack</ul>
+  <ul>Brute force attack</ul>
+  <ul>Hybrid attack -> both dictionary attack and brute force attack, using symbols and numbers</ul>
+ </ol></p>
+
+ <h2>Other Web Server Attacks</h2>
+ <h2>DoS / DDoS Attacks</h2>
+ <p>Flooding targets with copious fake requests so that the target stops functioning and becomes unavailable to legit users. DoS / DDoS often targets high-profile web servers such as bank servers, credit card payment 
+ gateways and even root name servers. Targets:</p>
+ <p><ol>
+  <ul>Network bandwidth</ul>
+  <ul>Server memory</ul>
+  <ul>Application exception handling mechanism</ul>
+  <ul>CPU usage</ul>
+  <ul>Hard disk space</ul>
+  <ul>Database space</ul>
+ </ol></p>
+ <h2>MITM Attack</h2>
+ <p>An attacker intercepts or modifies the messages exchanged between user and web server by eavesdropping or intruding into a connection. This allows an attacker to steal sensitive user information, such as 
+ online banking detals, transferred over the internet to the web server. </p>
+ <h2>Phishing attacks</h2>
+ <p>Attackers send emails containing malicious links and trick users into clicking it. Clicking the link will redirect the user to a fake website that appears similar to the legit website. The website 
+ prompts the user to enter sensitive information, such as usernames and passwords.</p>
+
+ <h2>Web Application Attacks</h2>
+ <p>Even if web servers are configured securely or are secured with network security measures such as firewalls, a poorly coded application deployed on the web server may provide a path for an attacker to 
+ compromise the web server's security. If web developers do not adpot secure coding practices, attackers may be able to exploit vulnerabilities and compromise web applications and web server security.</p>
+ <p><ol>
+  <ul>Server-Side Request Forgery (SSRF) Attack: unsafe use of functions in an application in public web servers send crafted requests to the internal or backend servers; the backend server believes that the request 
+  is made by the web server because they are on the same network and responds with the data stored in it</ul>
+  <ul>Parameter/Form Tampering: manipulating paramters exchanged between client and server to modify application data such as user credentials and permissions as well as price and quantity of products (web shop form)</ul>
+  <ul>Cookie Tampering: tampering of cookies sent from client to server</ul>
+  <ul>Unvalidated Input and File Injection Attacks</ul>
+  <ul>Session Hijacking</ul>
+  <ul>SQL Injection Attacks: injecting malicious code into the strings, which are later on passed to the SQL server</ul>
+  <ul>Directory Traversal</ul>
+  <ul>DoS Attack</ul>
+  <ul>Cross-Site Scripting (XSS) Attacks: injecting HTML tags or scripts into a target website</ul>
+  <ul>Buffer Overflow Attacks</ul>
+  <ul>Cross-Site Request Forgery (CSFR) Attack: exploiting trust of authenticated user</ul>
+  <ul>Command Injection Attacks: altering content of the web page by using HTML code and by identifying form field that lack valid constraints</ul>
+  <ul>Source Code Disclosure: result of typographical errors in scripts or misconfiguration, such as failure to grant executable permissions to a script or directory; source-code disclosure can allow attackers to 
+  access sensitive information about database credentials and secret keys to compromise the web server</ul>
+ </ol></p>
