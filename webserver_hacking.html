@@ -129,3 +129,37 @@ In DNS server hijacking, an attacker compromises a DNS server and changes its ma
  <ul>9) after the primary DNS server finds the DNS mapping for the victim's request, it sends a DNS mapping response to the victim's IP address; This response goes to the victim because bots use the 
  victim's IP address; The replies to copious DNS mapping requests from the bots result in DDoS on the victim's DNS server</ul>
 </ol></p>
+<h2>Directory Traversal Attacks</h2>
+<p>An attacker may be able to perform a directory traversal attack owing to a vulnerability in the code of a web application. In addition, poorly patched or configured web server software can make the 
+web server vulnerable to a directory traversal attack. Directory traversal is the exploitation of HTTP through which attackers can access restricted directories and execute commands outside the web
+server's root directory by manipulating a Uniform Resource Locator (URL). In directory traversal attacks, attackers use the dot-dot-slash (../) sequence to access restricted directories outside the 
+web server's root directory. Attacker can use the trial-and-error method to navigate outside the web server's root directory and access sensitive information in the system. The attacker usually 
+performs this attack with the help of a browser. A web server is vulnerable to this attack if it accepts input data from a browser without proper validation.</p>
+<h2>Website Defacement</h2>
+<p>Website defacement refers to unauthorized changes made to the content of a single web page or an entire website, resulting in changes to the visual appearance of the web page or website. Hackers break 
+into web servers and alter the hosted website by injecting code to add images, popups, or text to a page in such a manner that the visual appearance of the page changes. In some cases, the attacker may 
+replace the entire website instead of just changing a single page. Defaced pages expose visitors to propaganda or misleading information until the unauthorized changes are discovered and corrected. 
+Attackers use a variety of methods, such as MySQL injection, to access a website to deface it. In addition to changing the visual appearance of the target website, attackers deface websites for infecting 
+the computers of visitors by making the website vulnerable to virus attacks. Thus, website defacement not only embarrasses the target organization by changing the appearance of its website but is also 
+intended to harm its visitors.</p>
+<h2>Web Server Misconfiguration</h2>
+<p><ol>
+ <ul>Verbose debug/error messages</ul>
+ <ul>Anonymous or default users/passwords</ul>
+ <ul>Sample configuration and script files</ul>
+ <ul>Remote administration functions</ul>
+ <ul>Unncessary services enabled</ul>
+ <ul>Misconfigured/default SSL certificates</ul>
+</ol></p>
+<p>Administrators who configure web servers improperly may leave serious loopholes in the web server, thereby providing an attacker the chance to exploit the misconfigured web server to compromise its 
+security and obtain sensitive information. The vulnerabilities of improperly configured web servers may be related to configuration, applications, files, scripts or web pages. An attacker searches for 
+such vulnerable web servers to launch attacks. The misconfiguration of a web server provides the attacker a path to enter the target network of an organization. These loopholes in the server can also help 
+an attacker bypass user authentication. Once detected, these problems can be easily exploited and may result in the total compromise of a website hosted on the target web server.</p>
+
+<h2>HTTP Response-Splitting Attack</h2>
+<p>An HTTP response-splitting attack is a web-based attack in which the attacker tricks the server by injecting new lines into response headers, along with arbitrary code. It involves adding header response 
+data into the input field so that the server splits the response into two responses. This type of attack exploits vulnerabilities in input validation. Cross-site scripting (XSS), cross-site 
+request forgery (CSRF) and Structured Query Language (SQL) injection are examples of this type of attack. In this attack, the attacker controls the input parameter and cleverly constructs a request 
+header that elicits two responses from the server. The attacker alters a single request to appear as two requests by adding header response data into the input field. The web server, in turn, responds to 
+each request. The attacker can pass malicious data to a vulnerable application, and the application includes the data in an HTTP response header. The attacker can control the first response to redirect 
+the user to a malicious website, whereas the web browser will discard other responses.</p>
