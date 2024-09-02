@@ -1,1 +1,95 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>Web Server Attack Methodology</h1>
+  <p>A web server attack typically involves preplanned activities called an <b>attack methodology</b> that an attacker follows to reach the goal of breaching the target web server's security. Attackers 
+  hack a web server in multiple stages. At each stage, the attacker attempts to gather information about loopholes and to gain unauthorized access to the web server.</p>
+  <p><ol>
+    <ul>Information Gathering</ul>
+    <ul>Web Server Footprinting</ul>
+    <ul>Website Mirroring</ul>
+    <ul>Vulnerability Scanning</ul>
+    <ul>Session Hijacking</ul>
+    <ul>Web Server Password Hacking</ul>
+  </ol></p>
+<h1>Information Gathering</h1>
+<p>Information gathering is the first and one of the most important steps toward hacking a target web server. An attacker collects as much information as possible about the target server by using various 
+tools and techniques. The information obtained helps the attacker in assessing the security posture of the web server. Attackers may search the internet, newsgroups, bulletin boards etc. for gathering information 
+about the target organization. Whois Lookups can extract information such as the target's domain name, IP address and autonomous system number.</p>
+<p><ol>
+  <ul><a target=_blank href=https://who.is>who.is</a></ul>
+  <ul><a target=_blank href=https://whois.domaintools.com>Whois Lookup</a></ul>
+  <ul><a target=_blank href=https://whois.com>Whois</a></ul>
+  <ul><a target=_blank href=https://centralops.net>CentralOps Domain Dossier</a></ul>
+  <ul><a target=_blank href=https://pentest-tools.com>Pentest subdomains</a></ul>
+  <ul><a target=_blank href=https://www.tamos.com>Tamos SmartWhois</a></ul>
+</ol></p>
 
+  <h2>Information Gathering from Robots.txt File</h2>
+  <p>A website owner creates a robots.txt file to list the files or directories a web crawler should index for providing search results. Poorly written robots.txt files can cause the complete indexing of website 
+  files and directories. If confidential files and directories are indexed, an attacker may easily obtain information such as passwords, email addresses, hidden links and membership areas. If the owner of the 
+  target website writes the robots.txt file without allowing the indexing of restricted pages for providing search results, an attacker can still view the robots.txt file of the site to discover restricted files 
+  and then view them to gather information. An attacker types URL/robots.txt in the address bar of a browser to view the target website's robots.txt file. An attacker can also download the robots.txt file of a 
+  target website using the Wget tool.</p>
+
+  <h1>Web Server Footprinting / Banner Grabbing</h1>
+  <p>By performing web server footprinting, an attacker can gather valuable system-level data such as account details, OSs, software versions, server names and database schema details. The Telnet utility can be 
+  used to footprint a web server and gather information such as server name, server type, OSs and applications running. Furthermore, footprinting details such as ID Serve, httprecon and Netcraft can be used to 
+  perform web server footprinting. These footprinting tools can extract information from the target server. Here, we examine the features and types of information these tools can collect from the target server.</p>
+
+  <h2>Web Server Footprinting Tools</h2>
+  <p><a target=_blank href=http://netcat.sourceforge.net>Netcat</a> is a networking utility that reads and writes data across network connections by using the TCP/IP protocol. It is a reliable back-end tool 
+  used directly or driven by other programs and scripts. It is also a network debugging and exploration tool. The following command is used to perform banner grabbing to get server type and version:</p>
+  <p><i>nc -vv www.moviescope.com 80</i></p>
+  <p><i>GET / HTTP/1.0</i></p>
+
+  <p>Telnet is a client - server network protocol that is widely used on the internet or LANs. It provides login sessions for a user on the internet. A single terminal attached to another computer emulates 
+  the session by using Telnet. The primary security issues with Telnet: it does not encrypt data sent through the connections; it lacks an authorization scheme. Telnet enables to perform a banner-grabbing 
+  attack. It probes HTTP servers to determine the server field in the HTTP response header:</p>
+  <p><i>telnet www.moviescope.com 80</i></p>
+  <p><i>GET / HTTP/1.0</i></p>
+
+  <h2>httprecon</h2>
+  <p><a target=_blank href=https://www.computec.ch>httprecon</a> is a tool for advanced web server fingerprinting. It performs bannergrabbing attacks, status code enumeration, header ordering analysis on the 
+  target web server and provides accurate web server fingerprinting information.</p>
+
+  <h2>ID Serve</h2>
+  <p><a target=_blank href=https://www.grc.com>ID Serve</a> is a simple internet server identification utility with:</p>
+  <p><ol>
+    <ul>HTTP Server Identification (make, model, version)</ul>
+    <ul>Non-HTTP Server Identificaton</ul>
+    <ul>Reverse DNS Lookup</ul>
+  </ol></p>
+
+  <h2>Enumerating Web Server Information using Nmap</h2>
+  <p>Nmap with the Nmap Scripting Engine (NSE) can extract a large amound of valuable information from the target web server. </p>
+  <p>Discover virtual domains with hostmap:<br/>nmap --script hostmap <host></p>
+  <p>Detect a vulnerable server that uses the TRACE method:<br/>nmap --script http-trace -p80 <host></p>
+  <p>Harvest email accounts with http-google-email:<br/>nmap --script http-google-email <host></p>
+  <p>Enumerate users with http-userdir-enum:<br/>nmap -p80 --script http-userdir -enum <host></p>
+  <p>Detect HTTP TRACE:<br/>nmap -p80 --script http-trace <host></p>
+  <p>Check if the web server is protected by a web application firewall (waf) or IPS:<br/>nmap -p80 --script http-waf-detect --script-arts="http-waf-detect.uri=/testphp.vulnweb.com/artists.php,
+    http-waf-detect.detectBodyChanges" www.modsecurity.org</p>
+    <p>Enumerate common web applications:<br/>nmap --script http-enum -p80 <host></p>
+    <p>Obtain robots.txt<br/>nmap -p80 --script http-robots.txt <host></p>
+    <h2>Additional Nmap commands to extract web server information</h2>
+    <p><ol>
+      <ul>namp -sV -O -p <host></ul>
+      <ul>nmap -sV --script http-enum <host></ul>
+      <ul>nmap <host> -p80 --script = http-frontpage-login</ul>
+      <ul>nmap --script http-passwd --script-args http-passwd.root =/<host></ul>
+    </ol></p>
+
+  <h1>Website Mirroring</h1>
+  <p>Website mirroring copies an entire website and its content onto a local drive. The mirrored website reveals the complete profile of the site's directory structure, file structure, external links, images, 
+  web pages and so on. With a mirrored target website, an attacker can easily map the website's directories and gain valuable information. It's also possible to gain valuable information by searching the 
+  comments and other items in the HTML source code of downloaded web pages.</p>
+  <p><ol>
+    <ul>WebCopier Pro (maximumsoft.com)</ul>
+    <ul>HTTrack Web Site Copier (httrack.com)</ul>
+    <ul>Website Ripper Copier (tensons.com)</ul>
+    <ul>Cyotek WebCopy (cyotek.com)</ul>
+    <ul>Portable Offline Browser (metaproducts.com)</ul>
+    <ul>Offline Explorer Enterprise (metaproducts.com)</ul>
+  </ol></p>
