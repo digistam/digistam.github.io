@@ -3,4 +3,58 @@
   <a href=index.html>Back to home</a>
 <hr/>
 <h1>Metasploit</h1>
-<p></p>
+<p><a target=_blank href=https://www.metasploit.com>The Metasploit Framework</a> is a penetration testing toolkit, exploit development platform and research tool that includes hundreds of working remote exploits for 
+various platforms. It performs full automated exploitation of web servers by abusing known vulnerabilities and leveraging weak passwords via Telnet, SSH, HTTP and SNMP.</p>
+    <p>An attacker may use the following features of Metasploit to perform a web server attack:</p>
+    <p><ol>
+        <ul>Closed-loop vulnerability validation</ul>
+        <ul>Phishing simulations</ul>
+        <ul>Social engineering</ul>
+        <ul>Manual brute forcing</ul>
+        <ul>Manual exploitation</ul>
+        <ul>Evade-leading defensive solutions</ul>
+    </ol></p>
+    <p>Metasploit enables pen testers to perform the following:</p>
+    <p><ol>
+        <ul>Quickly complete pen-test assignments by automating repetitive tasks and leveraging multi-level attacks</ul>
+        <ul>Assess the security of web applications, network and endpoint systems, as well as email users</ul>
+        <ul>Tunnel any traffic through compromised targets to pivot deep into a network</ul>
+        <ul>Customize the content and template of executive, audit and technical reports</ul>
+    </ol></p>
+    <h2>Metasploit Architecture</h2>
+    <p>The Metasploit Framework is an open-source exploitation framework that provides security researchers and pen testers with a uniform model for the rapid development of exploits, payloads, encoders, no 
+    operation (NOP) generators and reconnaissance tools. The framework reuses large chunks of code that a user would otherwise have to copy or re-implememnt on a per-exploit basis. The framwork is modular in 
+    architecture and encourages the reuse of code across various projects. The framework can be broken down into a few different pieces, the lowest level of which is the framework core. The framework core is 
+    responsible for implementing all the required interfaces that allow interaction with exploit modules, sessions and plugins. It supports vulnerability research, exploit development and the creation of 
+    custom security tools.</p>
+
+    <h2>Metasploit Modules</h2>
+    <h2>Metasploit Exploit Module</h2>
+    <p>Basic module in Metasploit used to encapsulate a single exploit, using which users target many platforms. This module has simplified meta-information fields. Using the Mixins feature, users can also 
+    dynamically modify exploit behavior, perform brute-force attack and attempts passive exploits.</p>
+    <p><ol>
+        <ul>Configure an active exploit</ul>
+        <ul>Verify the exploit options</ul>
+        <ul>Select a target</ul>
+        <ul>Select a payload</ul>
+        <ul>Launch the exploit</ul>
+    </ol></p>
+    <h2>Metasploit Payload Module</h2>
+    <p>An exploit carries a payload in its backpack when it breaks into a system and then leaves the backpack there. The following three types of payload modules are provided by the Metasploit Framework:</p>
+    <p><ol>
+        <ul>Singles -> self contained and completely standalone</ul>
+        <ul>Stagers -> sets up a network connection between the attacker and victim</ul>
+        <ul>Stages -> downloaded by stager modules</ul>
+    </ol></p>
+    <p>A Metasploit payload module can upload and download files from the system, take screenshots and collect password hashes. It can even take over the screen, mouse and keyboard to control a computer 
+    remotely. The payload Module establishes a communication channel between the Metasploit framework and victim host. It combines arbitrary code that is executed as the result of an exploit succeeding. 
+    To generate payloads, a payload is first selected using the command <i>use windows/shell_reverse_tcp</i></p>
+
+    <h2>Metasploit Auxiliary Module</h2>
+    <p>Auxiliary modules can be used to perform arbitrary, one-off actions such as port scanning, DoS and even fuzzing. It includes tools and modules that assess the security of the target as well as 
+    auxiliary modules such as scanners, DoS modules and fuzzers. Use <i>show auxiliary</i> to list all the available auxiliary modules in Metasploit. All modules in Metasploit other than the ones used to 
+    exploit are auxiliary modules. Metasploit uses auxiliary modules as an extension for various purposes other than exploitation. These modules are stored in in the modules/auxiliary/ directory of the 
+    framework's main directory. The <i>run</i> command or the <i>exploit</i> command can be used to run an auxiliary module.</p>
+
+    <h2>Metasploit NOPS module</h2>
+    <p>NOPS generate no-operation instructions used for blocking out buffers.</p>
