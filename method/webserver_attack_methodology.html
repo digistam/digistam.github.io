@@ -63,7 +63,7 @@ about the target organization. Whois Lookups can extract information such as the
   </ol></p>
 
   <h2>Enumerating Web Server Information using Nmap</h2>
-  <p>Nmap with the Nmap Scripting Engine (NSE) can extract a large amound of valuable information from the target web server. </p>
+  <p>Nmap with the <a target=_blank href=https://nmap.org/book/nse.html>Nmap Scripting Engine (NSE)</a> can extract a large amound of valuable information from the target web server. </p>
   <p>Discover virtual domains with hostmap:<br/>nmap --script hostmap <host></p>
   <p>Detect a vulnerable server that uses the TRACE method:<br/>nmap --script http-trace -p80 <host></p>
   <p>Harvest email accounts with http-google-email:<br/>nmap --script http-google-email <host></p>
@@ -86,10 +86,86 @@ about the target organization. Whois Lookups can extract information such as the
   web pages and so on. With a mirrored target website, an attacker can easily map the website's directories and gain valuable information. It's also possible to gain valuable information by searching the 
   comments and other items in the HTML source code of downloaded web pages.</p>
   <p><ol>
-    <ul>WebCopier Pro (maximumsoft.com)</ul>
-    <ul>HTTrack Web Site Copier (httrack.com)</ul>
-    <ul>Website Ripper Copier (tensons.com)</ul>
-    <ul>Cyotek WebCopy (cyotek.com)</ul>
-    <ul>Portable Offline Browser (metaproducts.com)</ul>
-    <ul>Offline Explorer Enterprise (metaproducts.com)</ul>
+    <ul><a target=_blank href=https://www.maximumsoft.com/downloads/index.htm>WebCopier Pro</a> (trial version)</ul>
+    <ul><a target=_blank href=https://www.httrack.com/page/2/en/index.html>HTTrack Web Site Copier</a> (free)</ul>
+    <ul><a target=_blank href=https://www.tensons.com/>Website Ripper Copier</a></ul>
+    <ul><a target=_blank href=https://www.cyotek.com/cyotek-webcopy>Cyotek WebCopy</a></ul>
+    <ul><a target=_blank href=https://metaproducts.com/products/portable-offline-browser>Portable Offline Browser</a></ul>
+    <ul><a target=_blank href=https://metaproducts.com/products/offline-explorer>Offline Explorer Enterprise</a></ul>
   </ol></p>
+
+    <h2>Finding Default Credentials of Web Server</h2>
+    <p>Admins and security personnel use administrative interfaces to securely configure, manage and monitor web application servers. Many web server administrative interfaces are publicly accessible and located 
+    in the root directory. Often, these administrative interface credentials are not properly configured and remain set to <b>default</b>. Attackers attempt to identify the running application interface of the 
+    target web server by performing <b>port scanning</b>. Once the running administrative interface is identified, the attacker uses the following techniques to identify the default login credentials:</p>
+    <p><ol>
+        <ul>Consult the administrative interface documentation and identify the default passwords</ul>
+        <ul>Use Metasploit's built-in database to scan the server</ul>
+        <ul>Use online resources such as <a target=_blank href=https://open-sez.me>Open Sez Me</a> and <a target=_blank href=https://cirt.net/passwords>cirt.net</a> to identify the default passwords</ul>
+        <ul>Attempt password-guessing and brute-forcing attacks</ul>
+        <ul><a target=_blank href=https://www.fortypoundhead.com>fortypoundhead.com</a></ul>
+        <ul><a target=_blank href=https://www.defaultpassword.us>defaultpassword.us</a></ul>
+        <ul><a target=_blank href=https://default-password.info>default-password.info</a></ul>
+        <ul><a target=_blank href=https://www.routerpasswords.com>routerpasswords.com</a></ul>
+    </ol></p>
+
+    <h2>Finding Default Content of Web Server</h2>
+    <p>Most servers of web applications have default contents and functionalities that allow attackers to launch attacks. The following are some default contents and functionalities that an attacker attempts 
+    to identify in web servers:</p>
+    <p><ol>
+        <ul>Administrators debug and test functionality -> main target for attackers</ul>
+        <ul>Sample functionality to demonstrate common tasks</ul>
+        <ul>Publicly accessible powerful functions</ul>
+        <ul>Server installation manuals</ul>
+    </ol></p>
+    <p>Tools such as <a target=_blank href=https://cirt.net>Nikto2</a> can be used to identify default contents.</p>
+
+    <h2>Finding Directory Listings of Web Server</h2>
+    <p>When a web server receives a request for a directory, rather than a file, the web server responds to the request:</p>
+    <p><ol>
+        <ul>Return Default Resource within the directory (index.html)</ul>
+        <ul>Return error (403)</ul>
+        <ul>Return listing of directory content</ul>
+    </ol></p>
+    <p>Directory listings occasionally possess vulnerabilities that allow attackers to compromise web applications:</p>
+    <p><ol>
+        <ul>Improper access controls</ul>
+        <ul>Unintentional access to the web root of servers</ul>
+    </ol></p>
+    <p>Attackers use tools such as <a target=_blank href=https://github.com/Nekmo/dirhunt>DirHunt</a> and Sitechecker to find directory listings of the target web server.</p>
+
+    <h1>Vulnerability Scanning</h1>
+    <p>Vulnerability scanning is performed to identify vulnerabilities and misconfigurations in a target web server or network. In this phase, attackers use sniffing techniques to obtain data on the 
+    network traffic to determine active systems, network services and applications.</p>
+    <p><ol>
+        <ul><a target=_blank href=https://acunetix.com>Acunetix Web Vulnerability Scanner</a></ul>
+        <ul><a target=_blank href=https://www.microfocus.com>Fortify WebInspect</a></ul>
+        <ul><a target=_blank href=https://www.tenable.com>Tenable.io</a></ul>
+        <ul><a target=_blank href=https://www.immuniweb.com>ImmuniWeb</a></ul>
+        <ul><a target=_blank href=https://www.invicti.com>Invicti</a></ul>
+    </ol></p>
+
+    <h2>Finding Exploitable Vulnerabilities</h2>
+    <p>Attackers search on exploit sites such as <a target=_blank href=https://packetstormsecurity.com>Packet Storm</a> and <a target=_blank href=https://www.exploit-db.com>Exploit Database</a> for 
+    exploitable vulnerabilities. Exploiting these vulnerabilities allows attackers to execute a command or binary on a target machine to gain higher privileges etc.</p>
+
+    <h2>Session Hijacking</h2>
+    <p><ol>
+        <ul><a target=_blank href=https://portswigger.net>Burp Suite</a></ul>
+        <ul><a target=_blank href=https://sourceforge.net/projects/jhijack/>JHijack</a></ul>
+        <ul>Ettercap</ul>
+        <ul>Bettercap</ul>
+        <ul><a target=_blank href=https://github.com/DisK0nn3cT/CookieCatcher>CookieCatcher</a></ul>
+        <ul><a target=_blank href=https://github.com/CookieCadger/CookieCadger>CookieCadcer</a></ul>
+    </ol></p>
+
+    <h1>Web Server Password Hacking</h1>
+    <p><ol>
+        <ul><a target=_blank href=https://hashcat.net>hashcat</a></ul>
+        <ul><a target=_blank href=https://github.com/vanhauser-thc/thc-hydra>THC Hydra</a></ul>
+        <ul><a target=_blank href=https://nmap.org/ncrack/>NCrack</a> (Nmap)</ul>
+        <ul><a target=_blank href=https://nmap.org/nsedoc/scripts/http-brute.html>Nmap Brute Force nse script</a></ul>
+        <ul><a target=_blank href=https://project-rainbowcrack.com>Rainbow Crack</a></ul>
+        <ul><a target=_blank href=http://www.edge-security.com>Wfuzz</a></ul>
+        <ul><a target=_blank href=https://www.wireshark.org>Wireshark</a></ul>
+    </ol></p>
