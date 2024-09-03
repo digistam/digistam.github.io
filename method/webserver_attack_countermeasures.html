@@ -83,4 +83,14 @@ should either be encrypted or restricted to secure the web server. </p>
 <p>Attackers attempt to hide their identity by spoofing the IP address of a legitimate user. By processing the security log file, either using the 'deny this IP address' rule in the firewall ruleset file or 
 by creating a 'routed blackhole' command, the target system can defend against web server attacks.</p>
 
-
+<h2>Server Certificates</h2>
+<p>Server certificates guarantee security and are signed by a trusted authority. However, an attacker may compromise certified servers using forged certificates to intercept secure communications by 
+performing MITM attacks. There are various techniques to avoid such MITM attacks:</p>
+<p><ol>
+    <ul>Use the direct validation of certificates</ul>
+    <ul>Use a novel protocol that does not depend on third parties for certificate validation</ul>
+    <ul>Allow domains to directly and securely examine their certificates by using previously established user authentication credentials</ul>
+    <ul>Use a robust cryptographic construction that enhances server identity validation and resolves the limitations of third-party solutions</ul>
+    <ul>Ensure that the certificate data ranges are valid and that certificates are used for their intended purpose</ul>
+    <ul>Ensure that the certificate has not been revoked and that the certificate's public key is valid all the way to a trusted root authority</ul>
+</ol></p>
