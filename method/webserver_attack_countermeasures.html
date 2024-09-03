@@ -20,4 +20,45 @@ An attacker who compromises one segment of the network will not be able to compr
 <p><ol>
   <ul>Block all unnecessary ports, ICMP traffic and unnecessary protocols such as NetBIOS and SMB</ul>
   <ul>Harden the TCP/IP stack and consistently apply the latest software patches and updates to system software</ul>
+    <ul>If insecure protocols such as Telnet, POP3, SMTP and FTP are used, then take appropriate measures to provide secure authentication and communication, for example, by using IPsec policies</ul>
+    <ul>If remote access is needed, ensure that remote connections are secured properly by using tunneling and encryption protocols</ul>
+    <ul>Disable Web Distributed Authoring and Versioning (WebDAV) if it is not used by the application, or keep it secure if it is required</ul>
+    <ul>Use secure protocols such as Transport Layer Security (TLS)/SSL for communicating with the web server</ul>
+    <ul>Ensure that unidentified FTP servers operate in an innocuous part of the directory tree that is different from the web server's tree</ul>
+    <ul>Ensure that the HTTP service banner is properly configured to cover the details of the host device like OS version and type</ul>
+    <ul>Isolate the supporting servers such as LDAP servers from the local subnet to filter out the traffic through a firewall before entering the local network</ul>
+    <ul>Ensure that all the file transfer applications through the web server are done through FTPS for better data encryption and protection</ul>
+</ol></p>
+<p><ol>
+    <ul>Remove all unused modules and application extensions</ul>
+    <ul>Disable unused default user accounts created during the installation of an OS</ul>
+    <ul>When creating a new web root directory, grant the appropriate (least possible) NTFS permissions to anonymous users of the IIS web server to access the web content</ul>
+    <ul>Eliminate unnecessary database users and stored procedures and follow the principle of least privilege for the database application to defend against SQL query poisoning</ul>
+    <ul>Use secure web permissions, NTFS permissions and .NET Framework access control mechanisms, including URL authorization</ul>
+    <ul>Slow down brute-force and dictionary attacks with strong password policies and implement audits and alerts for login failures</ul>
+    <ul>Run processes using least privileged accounts as well as least privileged services and user accounts</ul>
+    <ul>Limit the administrator or root-level access to the minimum number of users and maintain a record of the same</ul>
+    <ul>Maintain logs of all user activity in an encrypted form on the web server or in a separate machine on the intranet</ul>
+    <ul>Disable all noninteractive accounts that should exist but do not require an interactive login</ul>
+    <ul>Use secure VPN networks such as OpenVPN while accessing multi-server platforms or accessing data from cross-server network models, which helps use one account for multiple server access</ul>
+    <ul>Enable the Separation of Duties (SoD) feature on the server config settings</ul>
+    <ul>Force users to periodically change passwords for their accounts by creating a password expiry policy</ul>
+    <ul>Enable the user account locking feature by setting a limit on the number of failed login attempts</ul>
+    <ul>Implement 2FA or MFA as an additional layer of security for user accounts</ul>
+</ol></p>
+<h2>Files and Directories</h2>
+<p><ol>
+    <ul>Eliminate unnecessary files within .jar files</ul>
+    <ul>Eliminate sensitive configuration information within the byte code</ul>
+    <ul>Avoid mapping virtual directories between two different servers or over a network</ul>
+    <ul>Monitor and check all network services logs, website access logs, database server logs (e.g., Microsoft SQL Server, MySQL, and Oracle), and OS logs frequently</ul>
+    <ul>Disable the serving of directory listings</ul>
+    <ul>Eliminate non-web files such as archive files, backup files, text files, and header/include files</ul>
+    <ul>Disable the serving of certain file types by creating a resource map</ul>
+    <ul>Ensure that web applications or website files and scripts are stored in a partition or drive separate from that of the OS, logs, and any other system files</ul>
+    <ul>Run the web server within a sandbox directory for preventing access to system files</ul>
+    <ul>Avoid all non-web file types from being referenced in a URL</ul>
+    <ul>Run the web server processes with the least required privileges and give access only to the necessary directories</ul>
+    <ul>Exclude meta characters while processing user inputs to ensure proper filtering of inputs</ul>
+    <ul>Employ file integrity checkers to verify web content and intrusion detection</ul>
 </ol></p>
