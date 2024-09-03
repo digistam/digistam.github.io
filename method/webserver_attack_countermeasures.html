@@ -1,1 +1,23 @@
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>Web Server Attack Countermeasures</h1>
+<h2>Place Web Servers in separate secure server security segment on network</h2>
+<p>An ideal web hosting network should be designed with three segments:</p>
+<p><ol>
+  <ul>Internet segment</ul>
+  <ul>Secure server security segment (<b>DMZ</b>b)</ul>
+  <ul>Internal network</ul>
+</ol></p>
+<p>The first step in securing web servers is to place them separately in the DMZ, which is isolated from the public network and from the internal webhosting network.
+Placing web servers in a separate segment adds security barriers between the web servers and the internal network as well as between the web servers and the outside public network. This separation allows the 
+administrator to place firewalls and apply access control based on security rules for the internal network as well as for internet traffic toward the DMZ. Such a webhosting network can prevent attacks 
+on the web server by outside attackers or malicious insiders.</p>
+<p>Network segmentation divides a network into different segments, each having its own hub or switch. It allows protection by enforcing firewalls and security rules depending on the level of security desired.
+An attacker who compromises one segment of the network will not be able to compromise the security of other segments of the network.</p>
 
+<h2>Protocols and accounts</h2>
+<p><ol>
+  <ul>Block all unnecessary ports, ICMP traffic and unnecessary protocols such as NetBIOS and SMB</ul>
+  <ul>Harden the TCP/IP stack and consistently apply the latest software patches and updates to system software</ul>
+</ol></p>
