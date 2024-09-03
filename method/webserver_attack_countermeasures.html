@@ -69,3 +69,18 @@ An attacker who compromises one segment of the network will not be able to compr
 attacker to gain access, launch phishing attacks or send spam emails. The victim remains unaware of the web server attack until the server is blacklisted on spam mails or until the attacker 
 redirects the visitor of a target site hosted on the web server to some other site. Thus, a web server attack is difficult to detect unless such malicious events occur. By the time these events occur, 
 it may be too late to react because the attacker would have already succeeded. A mechanism to detect a web server hacking attempt in its early stages is required to prevent harm to the web server.</p>
+<p>When an attacker installs a backdoor on a web server, the size of files infected with the backdoor automatically increases. A <b>website change detection system (WDS)</b> is a script that runs on the server 
+to detect changes made to any executable file or the presence of any new file on the web server, such as HTML , JavaScript (JS), PHP, Active Server Pages (ASP), Perl and Python files. It works by 
+periodically comparing the hash values of the files on the server with their respective master hash values to detect any changes to the codebase. If it detects any change on the server, it alerts the 
+user to take necessary action. Thus, WDS helps in detecting web server hacking attempts in the early stages of an attack. For example, <a target=_blank href=https://directorymonitor.com/>DirectoryMonitor</a> is
+an automated tool that goes through entire web folders, detects any changes made to the codebase and alerts the user through an email.</p>
+
+<h1>Defend against web server attacks</h1>
+<h2>Ports</h2>
+<p>Monitor all ports on the web server regularly to prevent unnecessary traffic toward the target web server. If traffic is not monitored, the target web server will be vulnerable to malware attacks. 
+Do not allow public access to port 80 for HTTP or to port 443 for HTTPS; traffic to these ports should be limited. If port 80 is kept open, the server will be vulnerable to DoS attacks. Intranet traffic 
+should either be encrypted or restricted to secure the web server. </p>
+<p>Attackers attempt to hide their identity by spoofing the IP address of a legitimate user. By processing the security log file, either using the 'deny this IP address' rule in the firewall ruleset file or 
+by creating a 'routed blackhole' command, the target system can defend against web server attacks.</p>
+
+
