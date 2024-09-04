@@ -94,3 +94,78 @@ performing MITM attacks. There are various techniques to avoid such MITM attacks
     <ul>Ensure that the certificate data ranges are valid and that certificates are used for their intended purpose</ul>
     <ul>Ensure that the certificate has not been revoked and that the certificate's public key is valid all the way to a trusted root authority</ul>
 </ol></p>
+<h2>Machine.config</h2>
+<p>The machine.config file provides a mechanism of securing information by changing machine-level settings. It affects all other applications. The machine.config file includes machine settings for the 
+.Net framework, which affect the security. The following can be performed with the machine.config file:</p>
+<p><ol>
+    <ul>Ensure that protected resources are mapped to HttpForbiddenHandler and that unused HttpModules are removed</ul>
+    <ul>Ensure that tracking is disabled <trace enable="false"/> and debug compiles are turned off</ul>
+    <ul>Verify that ASP.NET errors are not rverted to the client</ul>
+    <ul>Verify session state settings</ul>
+</ol></p>
+<h2>Code Access Security</h2>
+<p><ol>
+    <ul>Implement secure coding practices to avoid source-code disclosure and input validation attacks</ul>
+    <ul>Restrict code access security policy settings to ensure that there are no permissions to execute code downloaded from the internet / intranet</ul>
+    <ul>Configure IIS to reject URLs with "../" to prevent path traversal, lockdown system commands and utilities with restrictive access control lists (ACLs), and install new patches and updates</ul>
+    <ul>If targets do not implement code access security in their web servers, then there is a possibility of execution of malicious code</ul>
+</ol></p>
+<h2>Measures to defend against web server attacks</h2>
+<p><ol>
+    <ul>Apply restricted ACLs and block remote registry administration</ul>
+    <ul>Secure the SAM (stand-alone servers only)</ul>
+    <ul>Ensure that security-related settings are configured appropriately and that access to the metabase file is restricted with hardened NTFS permissions.</ul>
+    <ul>Remove unnecessary Internet Server Application Programming Interface (ISAPI) filters from the web server.</ul>
+    <ul>Remove all unnecessary file shares, including the default administration shares, if they are not required.</ul>
+    <ul>Secure the shares with restricted NTFS permissions</ul>
+    <ul>Relocate sites and virtual directories to non-system partitions and use IIS web permissions to restrict access.</ul>
+    <ul>Remove all unnecessary IIS script mappings for optional file extensions to avoid exploitation of any bugs in the ISAPI extensions that handle these types of files.</ul>
+    <ul>Enable a minimum level of auditing on the web server and use NTFS permissions to protect log files.</ul>
+    <ul>Use a dedicated machine as a web server</ul>
+        <ul>Create URL mappings to internal servers cautiously</ul>
+        <ul>Do not install the IIS server on a domain controller</ul>
+            <ul>Use server-side session ID tracking and match connections with timestamps, IP addresses, etc.</ul>
+    <ul>If a database server such as Microsoft SQL Server is to be used as a backend database, install it on a separate server.</ul>
+    <ul>Use security tools provided with web server software and scanners that automate and simplify the process of securing a web server.</ul>
+    <ul>Physically protect the web server machine in a secure machine room</ul>
+        <ul>Do not connect an IIS Server to the Internet until it is fully hardened</ul>
+            <ul>Do not allow anyone to locally log in to the machine except the administrator</ul>
+    <ul>Configure a separate anonymous user account for each application if multiple web applications are hosted.</ul>
+    <ul>Limit the server functionality to support only the web technologies to be used</ul>
+        <ul>Screen and filter incoming traffic requests</ul>
+            <ul>Store website files and scripts on a separate partition or drive</ul>
+                <ul>Use an effective anti-bot mitigation service such as DataDome to detect botnets in real time</ul>
+</ol></p>
+
+<h2>Defend against HTTP Response-Splitting and Web Cache Poisoning</h2>
+<p>While setting cookies, remove carriage returns (CRs) and linefeeds (LFs) before inserting data into an HTTP response header. Best practice is to use third-party products to test
+for the existence of security holes and defend against CRLF injection. Ensure that data application engines are up to date.</p>
+<p>The UDP source port randomization technique defends servers against blind response forgery. Limit the number of simultaneous recursive queries and increase the TTL of legitimate records.</p>
+<p><ol>
+    <ul>Server Admin -> use the latest web server software; regularly update / patch OS and web server; run web vulnerability scanner</ul>
+    <ul>Application Developers -> restrict web application's access to unique IPs; disallow CR (%0d or \r) and LF (%0a or \n) characters; comply with RFC2616 specs for HTTP/1.1; parse all user inputs or other forms of encoding before using them in HTTP headers</ul>
+    <ul>Proxy Servers -> avoid sharing incoming TCP connections among different clients; use different TCP connections with the proxy for different virtual hosts; implement "maintain request host header" correctly</ul>
+</ol></p>
+
+<h2>Defend against DNS Hijacking</h2>
+<p><ol>
+    <ul>Choose a registrar accredited by the Internet Corporation for Assigned Names and Numbers (ICANN) and encourage the to set REGISTRAR-LOCK on the domain name</ul>
+    <ul>Safeguard the registrant's account information</ul>
+    <ul>Include DNS hijacking in incident response and business continuity planning</ul>
+    <ul>Use DNS monitoring tools / services to monitor the IP address of the DNS server and set alerts</ul>
+    <ul>Avoid downloading audio and video codecs and other downloaders from untrusted websites</ul>
+    <ul>Install an antivirus program and update it regularly</ul>
+    <ul>Change the default router password</ul>
+    <ul>Restrict zone transfers and use script blockers in the browser</ul>
+    <ul>Domain Name System Security Extensions (DNSSEC) adds an extra layer to DNS that prevents it from being hacked</ul>
+    <ul>Strong password policies and user management: The use of strong passwords further enhances security.</ul>
+<ul>Better service-level agreements (SLAs) from DNS service providers: When signing up for DNS servers with DNS service providers, learn who to contact when an issue occurs, how to receive good-quality reception and support, and whether the DNS server’s infrastructure is hardened against attacks.</ul>
+<ul>Configuring a master–slave DNS within your network: Use a master–slave DNS and configure the master without Internet access. Maintain two slave servers so that even if an attacker hacks a slave, it will update only when it receives an update from the master.</ul>
+<ul>Constant monitoring of DNS servers: The constant monitoring of DNS servers ensures that a domain name returns the correct IP address.</ul>
+<ul>Ensure router safety: Change the default username and password of the router. Keep the firmware up-to-date for ensuring safety from new vulnerabilities.</ul>
+<ul>Use VPN service: Establish virtual private network (VPN)-encrypted tunnels for secure private communication over the Internet. This feature protects messages from eavesdropping and unauthorized access.</ul>
+<ul>Use firewall protection services to safeguard the original DNS resolvers and filter out the rogue DNS resolver traffic.</ul>
+<ul>Maintain proper protection systems such as MFA and hardware security to ensure controlled access to the DNS server.</ul>
+<ul>Install script blocker extensions in the browser</ul>
+    <ul>Use only secured and reputed VPN networks instead of free VPN services, which can track your activities and record them for future use.</ul>
+</ol></p>
