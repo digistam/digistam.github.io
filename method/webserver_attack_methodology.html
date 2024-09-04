@@ -69,11 +69,11 @@ about the target organization. Whois Lookups can extract information such as the
   <p>Harvest email accounts with http-google-email:<br/>nmap --script http-google-email <host></p>
   <p>Enumerate users with http-userdir-enum:<br/>nmap -p80 --script http-userdir -enum <host><br/>
   nmap -sV --script=http-enum www.goodshopping.com</p>
-    <ul>Next step is to discover the hostnames that resolve the targeted domain:<br/>
+    <p>Next step is to discover the hostnames that resolve the targeted domain:<br/>
         nmap --script hostmap-bfk -script-args hostmap-bfk.prefix=hostmap- www.goodshopping.com<br/>
         This script will detect a vulnerable server that uses the <a target=_blank href=https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/TRACE>TRACE method</a> by sending an HTTP TRACE 
         request that shows if the message is enabled or not.
-    </ul>
+    </p>
   <p>Detect HTTP TRACE:<br/>nmap -p80 --script http-trace <host></p>
       <p>nmap --script http-trace -d www.goodshopping.com
   <p>Check if the web server is protected by a web application firewall (waf) or IPS:<br/>nmap -p80 --script http-waf-detect --script-arts="http-waf-detect.uri=/testphp.vulnweb.com/artists.php,
