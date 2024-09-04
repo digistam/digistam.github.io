@@ -1,0 +1,57 @@
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>Footprinting web server</h1>
+<p>Footprinting is an essential task for any pentester. Before proceeding to hack or exploit a webserver, the pentester must know the type and version of the webserver as most 
+of the attacks and exploits are specific to type and version of the server being used by the target. By performing web server footprinting it is possible to gather valuable system-level data 
+such as account details, OS, software versions, server names and database schema details.</p>
+<h2>Ghost Eye</h2>
+<p><a target=_blank href=https://github.com/BullsEye0/ghost_eye>Ghost Eye</a> is an information gathering tool written in Python3. Input is a domain or IP. Ghost Eye gathers information such as Whois lookup,
+DNS lookup, EtherApe, Nmap port scan, HTTP header grabber, Clickjacking test, Robots.txt scanner, Link grabber, IP location finder and traceroute.</p>
+<p><ol>
+  <ul>pip3 install -r requirements.txt</ul>
+  <ul>python3 ghost_eye.py</ul>
+  <ul>Perform Whois Lookup: 3</ul>
+  <ul>Enter a domain and view the results</ul>
+  <ul>Perform DNS Lookup: 2</ul>
+  <ul>Perform Clickjacking test: 6</ul>
+  <ul>By performing this test, GhostEye will provide the complete architecture of the web server and also reveal whether the domain is vulnerable to <a target=_blank href=https://www.imperva.com/learn/application-security/clickjacking/>ClickJacking</a> attacks or not</ul>
+  <ul>You can also use Nmap port scan, HTTP header grabber, link grabber etc.</ul>
+</ol></p>
+<h2>Perform web server reconnaissance using Skipfish</h2>
+<p><a target=_blank href=https://github.com/spinkham/skipfish>Skipfish</a> is an active web application (deployed on a webserver) security reconnaissance tool. It prepares an interactive sitemap for the targeted site by carrying out a recursive crawl and dictionary-based probes.
+The resulting map is then annotated with the output from a number of active security checks.</p>
+<p><ol>
+  <ul>Start <a target=_blank href=https://wampserver.aviatechno.net/>Wampserver64</a> on a 'victim' system</ul>
+  <ul>From the 'attacker' system:</ul>
+  <ul>skipfish -o /home/attacker/test -S /usr/share/skipfish/dictionaries/complete.wl http://[IP Address of victim system]:8080</ul>
+  <ul>On receiving this command, Skipfish performs a heavy brute-force attack on the web server by using the complete.wl dictionary file, creates a directory named test in the root location and stores the result in index.html inside this location</ul>
+  <ul>On completion of the scan, Skipfish generates a report and stores it in the test directory</ul>
+  <ul>Open the report index.html in a web browser and examine the vulnerabilities found</ul>
+</ol></p>
+<h2>Footprint a web server using the httprecon tool</h2>
+<p><a target=_blank href=https://github.com/scipag/httprecon-nse>httprecon</a> is a tool for advanced web server fingerprinting. This tool performs banner-grabbing attacks, status code enumeration and header
+ordering analysis on its target web server.</p>
+<p><ol>
+  <ul>Run httprecon.exe as administrator</ul>
+  <ul>Enter website url and port (80) and click Analyze</ul>
+  <ul>A footprint of the website appears</ul>
+  <ul>The Get existing tab shows the server (nginx)</ul>
+  <ul>When attackers obtain this information, they research the vulnerabilities present in nginx and try to exploit them</ul>
+  <ul>Click the GET long request tab, which lists all GET requests</ul>
+  <ul>Click the Fingerprint Details tab</ul>
+  <ul>The details show name of the protocol the website is using and its version</ul>
+  <ul>By obtaining this information, attackers can manipulate HTTP vulnerabilities in order to perform malicious activities such as sniffing over the HTTP channel which might result in revealing sensitive data such as user credentials</ul>
+</ol></p>
+<h2>Footprint a web server using Netcat and Telnet</h2>
+<p><ol>
+  <ul>nc -vv www.moviescope.com 80</ul>
+  <ul>netcat will display the hosting information of the provided domain</ul>
+  <ul>GET / HTTP/1.0</ul>
+  <ul>Netcat will perform the banner grabbing and gather information such as content type, last modified data, accept ranges, ETag and server information </ul>
+</ol></p>
+<p><ol><ul>The same can be done with Telnet</ul>
+<ul>telnet www.moviescope.com 80</ul>
+  <ul>GET / HTTP/1.0</ul>
+  <ul>Telnet will perform banner grabbing and gather information such as content type, <b>last modified date</b>, accept ranges, ETag and server information</ul>
+</ol></p>
