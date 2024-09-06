@@ -3,3 +3,110 @@
 <hr/>
 <h1>Hacking web applications</h1>
 <p>Everyone connected via the internet is using various web applications for different purposes, including oneline shopping, email, chats and social networking.</p>
+<p>Web applications are becoming increasingly vulnerable to more sophisticated threats and attack vectors.</p>
+<h2>Web Application Concepts</h2>
+<p>Web applications are software programs that run on web browsers and act as the interface between users and web servers through web pages. They enable users to request, submit, and 
+retrieve data to/from a database over the internet by interacting with a GUI. Based on browser-supported programming languages such as JavaScript, HTML and CSS, web applications work in 
+combination with other programming languages such as SQL to access data from the databases. Web applications are developed as dynamic web pages, and they allow users to communicate with 
+servers using server-side scripts. They allow users to perform specific tasks such as searching, sending emails, connecting with friends, online shopping, tracking and tracing. </p>
+<p>Whenever users need to access services, they can request them by submitting the Uniform Resource Identifier (URI) or Uniform Resource Locator (URL) of the web application in a browser.</p>
+<p>Web applications offer a multitude of features, are secure and relatively easy to develop. They offer better services than many computer-based software applications and are easy to install, 
+maintain and update. </p>
+<p><ol>
+ <ul>Independent of operating system, development and maintenance is easy and cost-effective</ul>
+ <ul>accessible anytime and anywhere using only a computer with internet connection</ul>
+ <ul>user interface is customizable and easy to update</ul>
+ <ul>users can access them on any internet connected device</ul>
+ <ul>dedicated, monitored and managed by experienced server administrators store all web application data, developers can increase workload capacity</ul>
+ <ul>multiple locations of servers increase physical security and reduce the burden of monitoring thousands of desktops using the program</ul>
+ <ul>flexible core technologies like JSP, Servlets, ASP, SQL server, .NET and scripting languages</ul>
+</ol></p>
+<p>Web applications are vulnerable to various attacks such as SQL injection, XSS and session hijacking.</p>
+<h2>How do web applications work</h2>
+<p>Main function is to fetch user-requested data from a database. </p>
+<p><ol>
+ <ul>The user enters the website name or URL in the browser and the request is sent to the web server</ul>
+ <ul>The web server checks the file extension</ul>
+ <ul>If the file extension is HTM(L) the web server processes the request and sends the file to the user's browser</ul>
+ <ul>If the file extension is from a file that needs to be processed at server side (php, asp, cfm etc.) the web application server processes the request</ul>
+ <ul>The web server passes the request to the web application server</ul>
+ <ul>The web application server accesses the database to perform the requested task</ul>
+ <ul>After processing the request, the web application server sends the results to the web server, which in turn sends it to the user's browser</ul>
+</ol></p>
+<h2>Web Application Architecture</h2>
+<p>Web applications run on web browsers and use a set of <b>server-side scripts</b> (Java, C#, Ruby, PHP etc.) and <b>client-side scripts</b> (HTML, JavaScript etc.)</p>
+<p>There are three layers:</p>
+<p><ol>
+ <ul>Client layer (presentation layer)</ul>
+ <ul>Business logic layer</ul>
+ <ul>Database layer</ul>
+</ol></p>
+<p>The <b>client</b> or <b>presentation layer</b> includes all physical devices present on the client side (laptops, smartphones, tablets, computers etc.). All these devices have operating systems and 
+compatible browsers, which enable users to send requests for required web applications.</p>
+<p>The <b>Business logic layer</b> consists of two layers: web-server logic layer and business logic layer. The web-server logic layer contains various components such as firewall, an HTTP request parser, 
+a proxy caching server, an authentication and login handler, a resource handler and a hardware component (server). The <b>Business logic layer</b> includes the functional logic of the web application, 
+which is implemented using technologies such as .NET, Java and middleware. It defines the flow of data, according to which the developer builds the application using programming languages. </p>
+<p>The database layer consists of cloud services, a B2B layer that holds all the commercial transaction and a database server that supplies an organization's production data in a structured form (MS SQL Server, 
+MySQL server etc.)</p>
+<h1>Web Services</h1>
+<p>A web service is an application or software that is deployed over the internet. It uses a standard message protocol such as SOAP to enable communication between applications developed on different 
+platforms. For instance, Java-based services can interact with PHP applications. These web-based applications are integrated with SOAP, UDDI, WSDL and REST across the network. </p>
+<h2>Web Service Architecture</h2>
+<p>Three roles:</p>
+<p><ol>
+ <ul>Service Provider -> platform from where services are provided</ul>
+ <ul>Service Requester -> application or client that is seeking a service or trying to establish communication with a server; in general the web browser is the requester and invokes the service on behalf of the user</ul>
+ <ul>Service Registry -> place where the provider loads service descriptions; the requester discovers the service and retrieves binding data from the service descriptions</ul>
+</ol></p>
+<p>Three operations:</p>
+<p><ol>
+ <ul>Publish -> service descriptions are published to allow the requester discover services</ul>
+ <ul>Find -> the requester tries to obtain the service descriptions</ul>
+ <ul>Bind -> the requester calls and establishes communication with the service during run time</ul>
+</ol></p>
+<h2>Two artifacts:</h2>
+<p><ol>
+ <ul>Service -> software module offered by the service provider over the internet</ul>
+ <ul>Service Description -> interface details and service implementation details; can be stored in registry and invoked by requester</ul>
+</ol></p>
+<h2>Web Services Characteristics</h2>
+<p><ol>
+ <ul>XML - based (more recent: JSON based)</ul>
+ <ul>Coarse-grained service -> sometimes containing massive amounts of information is offered; a coarse-grained service is a combination of multiple fine-grained services</ul>
+ <ul>Loosely coupled -> loosely coupled approach for interconnecting systems; interaction between systems can occur via web API by sending XML (JSON) messages</ul>
+ <ul>Asynchronous and synchronous support -> synchronous services are called by users who wait for a response whereas asynchronous services are called by users who do not wait for a response; RPC based messages and document - 
+ based messages are often used for synchronous and asynchronous web services; synchronous and asynchronous endpoints are implemented using servlets, SOAP/XML and HTTP</ul>
+ <ul>RPC support -> web services support remote procedures calls (RPC) similar to traditional applications</ul>
+</ol></p>
+<h2>Types of web services</h2>
+<p><ol>
+ <ul>SOAP web services -> Simple Object Access Protocol, defines XML format; XML is used to transfer data between service provider and requester</ul>
+ <ul>RESTful web services -> REpresentational State Transfer web services are designed to make the services more productive; using underlying HTTP concepts to define the services; more an architectural approach rather than 
+ a protocol like SOAP</ul> 
+</ol></p>
+ <h2>Components of Web Service Architecture</h2>
+<p><ol>
+ <ul>UDDI -> Universal Description, Discovery and Integration; directory service that lists all the services available</ul>
+ <ul>WSDL -> Web Services Description Language; XML based language that describes and traces web services</ul>
+ <ul>WS-Security -> Web Services Security; plays important role in securing web services; extension of SOAP and aims to maintain the integrity and confidentiality of SOAP messages as well as to authenticate users</ul>
+</ol></p>
+<h1>Vulnerability Stack</h1>
+<p><ol>
+ <ul>Layer 7 -> Custom Web Applicatons -> business logic flaws / technical vulnerabilities</ul>
+ <ul>Layer 6 -> Third-party components -> open source / commercial</ul>
+ <ul>Layer 5 -> Web Server -> Apache / Nginx / IIS</ul>
+ <ul>Layer 4 -> Database -> Oracls / MySQL / MS SQL</ul>
+ <ul>Layer 3 -> Operating System -> Windows / Linux / MacOS</ul>
+ <ul>Layer 2 -> Network -> Router / switch</ul>
+ <ul>Layer 1 -> Security -> IPS / IDS</ul>
+</ol></p>
+<p>Attackers exploit the vulnerabilities of one or more elements among the seven levels to gain unrestricted access to an application or the entire network.</p>
+<p><ol>
+ <ul>Layer 7 -> performing input validation attacks such as XSS</ul>
+ <ul>Layer 6 -> third-party components integrate with the website to achieve certain functionality (example: payment gateway of bank on a webshop); attackers exploit redirections</ul>
+ <ul>Layer 5 -> attackers exploit web servers by searching for known vulnerabilities</ul>
+ <ul>Layer 4 -> attackers exploit database using tools like sqlmap</ul>
+ <ul>Layer 3 -> attackers scan operating systems for open ports and vulnerabilities and develop malware / backdoors to exploit them</ul>
+ <ul>Layer 2 -> attackers flood switches to exhaust CAM tables and focus on sniffing data</ul>
+ <ul>Layer 1 -> attackers adopt evasion techniques to circumvent IDS / IPS </ul>
+</ol></p>
