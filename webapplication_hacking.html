@@ -110,3 +110,54 @@ platforms. For instance, Java-based services can interact with PHP applications.
  <ul>Layer 2 -> attackers flood switches to exhaust CAM tables and focus on sniffing data</ul>
  <ul>Layer 1 -> attackers adopt evasion techniques to circumvent IDS / IPS </ul>
 </ol></p>
+<h1>Web Application Threats</h1>
+<p>According to <a target=_blank href=https://owasp.org>OWASP</a> the latest top 10 security risks are: </p>
+<p><ol>
+ <ul>A01 - Broken Access Control </ul>
+ <ul>A02 - Cryptographic Failures</ul>
+ <ul>A03 - Injection</ul>
+ <ul>A04 - Insecure Design</ul>
+ <ul>A05 - Security Misconfiguration</ul>
+ <ul>A06 - Vulnerable and Outdated Components</ul>
+ <ul>A07 - Identification and Authentication Failures</ul>
+ <ul>A08 - Software and Data Integrity Failures</ul>
+ <ul>A09 - Security Logging and Monitoring Failures</ul>
+ <ul>A10 - Server-Side Request Forgery (SSRF)</ul>
+</ol></p>
+<h2>A01 - Broken Access Control</h2>
+<p>Access control refers to how a web application grants access to create, update and delete any record / content or function to some privileged users while restricting access to other users. Broken access control 
+is a method by which an attacker identifies a flaw related to access control, bypasses the authentication and compromises the network. Access control weaknesses are common because of the lack of automated detection 
+and effective functional testing by application developers; They allow attackers to act as users or administrators with privileged functions and create, access, update or delete any record. </p>
+<p><ol>
+ <ul>Abusing least privileges or denying it by default -> everyone gains access to the roles, users or abilities</ul>
+ <ul>Evading filtering of access controls by changing URL, API request, HTML page or application state via parameter tampering, force browsing or any attack tool</ul>
+ <ul>Gaining permission to read or modify someone's account through their unique identifier</ul>
+ <ul>Gaining access to the APIs without access controls for PUT, POST and DELETE</ul>
+ <ul>Escalating privileges, where a user can act as an administrator after logging in</ul>
+</ol></p>
+<h2>A02 - Cryptographic Failures / Sensitive Data Exposure</h2>
+<p>If users do not maintin proper security of their storage locations, the application may be at risk as attackers can access the storage and misuse the information. Some cryptographic encryption methods have 
+inherent weaknesses that allow attackers to exploit and steal data. Developers can avoid attacks using algorithms to encrypt sensitive data. At the same time, cryptograpic keys have to be stored securely.</p>
+<h2>A03 - Injection Flaws</h2>
+<p>Web application vulnerabilities that allow untrusted data to be interpreted and executed as part of a command or query. </p>
+<p><ol>
+ <ul>SQL Injection -> non-validated input vulnerabilities to pass SQL commands through a web application for execution by a backend database</ul>
+ <ul>Command Injection -> injecting malicious command in application</ul>
+ <ul>LDAP Injection -> attack method in which websites that construct LDAP statements from user-supplied input are exploited</ul>
+ <ul>Cross-Site Scripting (XSS) -> XSS allows attackers to inject and execute scripts in the victim's browser, which can hijack user sessions, deface websites or redirect the user to malicious sites</ul>
+</ol></p>
+<h2>SQL Injection</h2>
+<p>SLQ Injection attacks use a series of malicious SQL queries or SQL statements to directly manipulate the database. SQL Injection attacks work because the application does not properly validate the input 
+before passing it to an SQL statement.</p>
+<p><ol>
+ <ul>SELECT * FROM tablename WHERE UserID = 2302 (normal)</ul>
+ <ul>SELECT * FROM tablename WHERE UserID = 2302 OR 1=1 (simple SQL injection attack)</ul>
+</ol></p>
+<p>The expression "OR 1=1" evaluates to the value "TRUE", often allowing the enumeration of all User ID values from the database. Attackers carry out SQL injection attacks from the web browsers's address bar, 
+form fields, queries, searches and so on. It allows:</p>
+<p><ol>
+ <ul>Log into the application without supplying valid credentials</ul>
+ <ul>Perform queries against data in the database, often even data to which the application would not normally have access</ul>
+ <ul>Modify database contents or drop the database altogether</ul>
+ <ul>Use the trust relationships established between the web application components to access other databases</ul>
+</ol></p>
