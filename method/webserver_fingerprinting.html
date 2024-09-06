@@ -1,0 +1,18 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>Web Server Fingerprinting</h1>
+  <h2>Uniscan Web Server Fingerprinting</h2>
+  <p><ol>
+    <ul>sudo apt-get install uniscan</ul>
+    <ul>sudo uniscan -h</ul>
+    <ul>sudo uniscan -u http://domain.tld</ul>
+    <ul>sudo uniscan -u http://domain.tld -q (scan for directories)</ul>
+    <ul>sudo uniscan -u http://145.131.16.105:80 -q </ul>
+    <ul>sudo uniscan -u http://145.131.16.105:80 -we (-w and -e are used to enable file check -> robots.txt and sitemap.xml)</ul>
+    <ul>sudo uniscan -u http://domain.tld -we</ul>
+    <ul>sudo uniscan -u http://domain.tld -d (dynamic testing)</ul>
+    <ul>uniscan starts performing dynamic tests, obtaining information about email IDs, source code disclosures, external hosts, backdoors etc.</ul>
+    <ul>reports will be stored in /usr/share/unicscan/report</ul>
+  </ol>
