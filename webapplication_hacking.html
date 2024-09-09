@@ -202,8 +202,35 @@ processes only the first filter; only the query <b>(&(USER=certifiedhacker)(&))<
 <p>An important defense method against such attacks is to filter all inputs to the LDAP; otherwise vulnerabilities in LDAP allow the execution of unauthorized queries or modifications of its content. 
 When the attacker modifies the LDAP statements, the process runs with the same permissions as the component of the web application that executed the command.</p>
 
-<h2>Serveri-Side JS Injection</h2>
+<h2>Server-Side JS Injection</h2>
 <p>Server-side JavaScript injections are vulnerabilities that manifest when an application integrates user-controllable values into a string that the code interpreter dynamically validates. Attackers 
 exploit improper validation of user data and pass random values to alter the code that will be compiled and executed by the server.</p>
 <p>Attackers can launch a DoS attack by passing commands to the eval() function: <b>While (1)</b></p>
 <p>The command forces the server's event loop to use the complete processor time and restricts it from evaluating additional inputs until the process is reinitiated.</p>
+
+<h2>Server-Side Includes Injection</h2>
+<p>Server-side includes is an application feature that helps designers to auto-generate the content of the web page without manual involvement. # directives allow developers to perform this activity. These 
+directives can be files, CGI variables, shell commands etc. After evaluating all the directives, HTML is delivered to the requester.</p>
+<p>Attackers launch server-side injection attacks to take control over web applications integrated with SSI directives -> <b><!_ #exec cmd="cat/etc/passwd" --></b></p>
+
+<h2>Server-side Template Injection</h2>
+<p>While creating dynamic pages, designers or developers use template engines to segregate programming logic from data presentation. Server-side template injection occurs when users are allowed to insert 
+unsafe inputs into a server-side template. When this vulnerability exists, attackers can inject malicious template directives to run arbitrary code and gain complete control over the target web server. 
+This injection is similar to XSS but is often employed to target server internals and achieve remote code execution, making every vulnerable application a primary target. Template injection manifests via 
+designers' code errors and deliberate template disclosure while showcasing rich features of applications, blogs etc.</p>
+
+<h2>Log Injection</h2>
+<p>Attackers launch log injection attacks by exploiting unsanitized or unvalidated inputs to application logs. Applications usually store a large number of logs such as access logs, transaction logs, 
+monitor logs, error logs etc. If an application or its administrator fails to log users' events or actions in a secure manner, attackers could insert fake entries or records to corrupt the log file. 
+Attackers use this technique to insert misleading information in the log file for covering their tracks.</p>
+
+<h2>HTML Injection</h2>
+<p>HTML injection attack is initiated by injecting HTML code via vulnerable form inputs of a web page. It is different from JavaScript and VB script injection attacks. When the HTML code is injected, 
+it allows the attacker to create a malicious form that appears to be genuine to the end users. It requests users to re-enter their credentials.</p>
+
+<h2>CRLF Injection</h2>
+<p>Carriage return line feed (CRLF) injection attack, attackers inject carriage return (\r) and line feed (\n) characters into the user's input to trick the web server, web application or user into 
+believing that the current object is terminated and a new object has been initiated (HTTP request smuggling).</p>
+
+<h2>JNDI Injection</h2>
+<p>Java Naming and Directory Interface (JNDI) is a Java-based API that takes a single parameter as input and searches for the requested object based on the specified name.</p>
