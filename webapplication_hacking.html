@@ -413,3 +413,23 @@ of the users</p>
 <h2>Pass-the-Cookie Attack</h2>
 <p>Allows attackers to access a web application without providing user credentials. Attackers steal cookies from the target user's browser and inject those cookies into their session to bypass the 
 authentication at the target server</p>
+<h2>Directory Traversal</h2>
+<p>When access is provided outside a defined application, there exists the possibility of unintended information disclosure or modification. Complex applications are configured with multiple directories
+that exist as application components and data. An application can traverse these directories to locate and execute the legitimate portions of an application. A directory traversal / forceful browsing 
+attack occurs when the attacker is able to browser the directories and files outside the normal application access. Such an attack exposes the directory structure of an application and often the underlying 
+web server and operating system. Directory traversal allows attackers to access restricted directories, including application source code, configuration and critical system files, and execute commands outside 
+the web server's root directory. With this level of access to web application architecture, an attacker can</p>
+<p><ol>
+ <ul>Enumerate the contents of files and directories</ul>
+ <ul>Access pages that otherwise require authentication (and possibly payment)</ul>
+ <ul>Gain secret knowledge of the application and its construction</ul>
+ <ul>Discover user IDs and passwords stored in hidden files</ul>
+ <ul>Locate source code and other interesting files left on the server</ul>
+ <ul>View sensitive data such as customer information</ul>
+</ol></p>
+<p>Example:</p>
+<p><ol>
+ <ul>"../" goes back to several directories</ul>
+ <ul>http://www.targetsite.com/../../../sitebackup.zip</ul>
+ <ul>http://www.targetsite.com/../../../../etc/passwd</ul>
+</ol></p>
