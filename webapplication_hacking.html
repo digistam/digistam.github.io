@@ -247,3 +247,29 @@ believing that the current object is terminated and a new object has been initia
 <h2>A05 - Security Misconfigurations</h2>
 <p>Unvalidated Inputs -> input from a client is not validated before being processed by web applications and backend servers.</p>
 <p>Parameter / Form Tampering -> manipulation of parameters exchanged between client and server. This information is actually stored in cookies, hidden form fields or URL query strings. </p>
+<p>Improper Error Handling -> insights in source code</p>
+<p><ol>
+ <ul>Null pointer exceptions</ul>
+ <ul>System call failure</ul>
+ <ul>Database unavailable</ul>
+ <ul>Network timeout</ul>
+ <ul>Database information</ul>
+ <ul>Web application logical flow</ul>
+ <ul>Application environment</ul>
+</ol></p>
+<h2>Insufficient Transport Layer Protection</h2>
+<p>When an application fails to protect sensitive traffic flowing in a network. It supports weak algorithms and uses expired or invalid certificates. Developers should use SSL/TLS authentication 
+for authentication on the websites; otherwise an attacker can monitor the network traffic.</p>
+<h2>Improper Restriction of XML External Entity (XXE)</h2>
+<p>Many older or poorly configured XML processors evaluate externel entity references within XML documents. External entities can disclose internal files using the file URI handler, internal SMB 
+file shares on unpatched Windows servers, internal port scanning, remote code execution and DoS attacks such as the billion laughs attack.</p>
+<p><ol>
+ <ul>Missing security hardening</ul>
+ <ul>Server software flaws</ul>
+ <ul>Enabling unnecessary services</ul>
+ <ul>Improper authentication</ul>
+ <ul>Unpatched security flaws</ul>
+ <ul>Server configuration problems</ul>
+ <ul>Default accounts with default credentials</ul>
+ <ul>Legacy software</ul>
+</ol></p>
