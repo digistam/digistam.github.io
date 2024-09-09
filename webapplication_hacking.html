@@ -196,3 +196,14 @@ for searching Directory Services to obtain direct access to databases behind an 
  <ul>Privilege escalation</ul>
  <ul>Information alteration</ul>
 </ol></p>
+<p>To test if an application is vulnerable to LDAP code injection, send a query to the server that generates an invalid input. If the LDAP server returns an error, it can be exploited with code injection 
+techniques. If an attacker enters a valid username "certifiedhacker" and injects <b>certifiedhacker)(&))</b> then the URL string becomes <b>(&(USER=certifiedhacker)(&)(PASS=blah))</b>. The LDAP server
+processes only the first filter; only the query <b>(&(USER=certifiedhacker)(&))</b> is processed. This query is always TRUE and the attacker logs into the system without a valid password.</p>
+<p>An important defense method against such attacks is to filter all inputs to the LDAP; otherwise vulnerabilities in LDAP allow the execution of unauthorized queries or modifications of its content. 
+When the attacker modifies the LDAP statements, the process runs with the same permissions as the component of the web application that executed the command.</p>
+
+<h2>Serveri-Side JS Injection</h2>
+<p>Server-side JavaScript injections are vulnerabilities that manifest when an application integrates user-controllable values into a string that the code interpreter dynamically validates. Attackers 
+exploit improper validation of user data and pass random values to alter the code that will be compiled and executed by the server.</p>
+<p>Attackers can launch a DoS attack by passing commands to the eval() function: <b>While (1)</b></p>
+<p>The command forces the server's event loop to use the complete processor time and restricts it from evaluating additional inputs until the process is reinitiated.</p>
