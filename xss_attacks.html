@@ -1,1 +1,33 @@
+  <a href=index.html>Back to home</a>
+<hr/>
+<h1>Cross-Site Scripting (XSS) Attacks</h1>
+<p>Cross-site scripting (XSS or CSS) attacks exploit vulnerabilities in dynamically generated web pages, which enables malicious attackers to inject client-side script into web pages viewed by other users. 
+  Such attacks occur when invalidated input data is included in dynamic content that is sent to a user's web browser for rendering. Attackers inject malicious JavaScript, VBScript, ActiveX, HTML or Flash for 
+  execution on a victim's system by hiding it within legitimate requests. XSS:</p>
+<p><ol>
+  <ul>Malicious script execution</ul>
+  <ul>Redirecting to a malicious server</ul>
+  <ul>Exploiting user privileges</ul>
+  <ul>Ads in hidden IFRAMES and pop-ups</ul>
+  <ul>Data manipulation</ul>
+  <ul>Session hijacking</ul>
+  <ul>Brute-force password cracking</ul>
+  <ul>Data theft</ul>
+  <ul>Intranet probing</ul>
+  <ul>Keylogging and remote monitoring</ul>
+</ol></p>
+<h2>How XSS Attacks work</h2>
+<p>A web page consists of texts and HTML markup created by the server and obtained by the client browser. Servers can control the client's interpretation about the statically generated pages, but they 
+cannot completely control the client's interpretation of the output of the page generated dynamically by the servers. If the dynamic data inserted by the web server contains special characters, the 
+user's web browser will mistake them for HTML markup, as it treats some characters as special to distinguish text from markup.</p>
+<h2>Cross-Site Scripting Attack Scenario: Attack via Email</h2>
+<p>The attacker crafts an email that contains a link to the malicious script and sends it to the victim, luring the victim into clicking the link:</p>
+<p><ahref=http://bank.com/registration.cgi?clientprofile=<script>maliciouscode</script>>Click here</ahref</a></p>
+<p>When the user clicks the link, the URL is sent to bank.com with the malicious code. The legitimate server hosting bank.com sends a page back to the user including the value of clientprofile and the 
+malicious code is executed on the client machine. The malicious code asks the victim to enter profile information. After the user enters all the necessary personal details and clicks Submit, the 
+attacker receives the information. </p>
+<h2>XSS Attack in Blog Posting</h2>
+<p>Malicious script added to the comment field of the Blog: <script>onload=window.location='http://www.certifiedhacker.com'</script></p>
 
+<h2>XSS Attack in Comment Field</h2>
+<p>Malicious script added to comment field of a website: <script>alert("Hello World")</script></p>
