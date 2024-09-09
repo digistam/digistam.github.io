@@ -273,3 +273,21 @@ file shares on unpatched Windows servers, internal port scanning, remote code ex
  <ul>Default accounts with default credentials</ul>
  <ul>Legacy software</ul>
 </ol></p>
+<h2>XML External Entity (XXE)</h2>
+<p>An XML External Entity attack is a Server-side Request Forgery (SSRF) attack whereby an application can parse XML input from an unreliable source because of the misconfigured XML parser.
+In this attack, an attacker sends a malicious XML input containing a reference to an external entity to the victim's web application. When this malicious input is processed by a weakly 
+configured XML parser of the target web application, it enable the attacker to access protected files and services from servers or connected networks.</p>
+
+<h2>A06 - Vulnerable and Outdated Components/Using Components with Known Vulnerabilities</h2>
+<p>Components such as libraries and frameworks that are used in most web applications always execute with full privileges, and flaws in any component can have severe consequences. Attackers can 
+identify weak components or dependencies by scanning or by performing manual analysis. Attackers search for any vulnerabilities on exploit sites. If a vulnerable component is identified, the 
+attacker customizes the exploit as required and executes the attack. Succesful exploitation allows the attacker to cause serious data loss or take over control of the servers. </p>
+
+<h2>A07 - Identification and Authentication Failures / Broken Authentication</h2>
+<p>To impersonate users, an attacker exploits vulnerabilities in the authentication or session management functions such as exposed accounts, session IDs, logout, password management, timeouts, remember me, 
+secret question, account update and others.</p>
+<p><ol>
+ <ul>If <b>Session IDs are exposed in the URL</b> the web application is vulnerable to session fixation attacks</ul>
+ <ul>Attackers can identify passwords stored in databases because of weak hashing algorithms; attackers can gain access to the web application's password database if user passwords are not encrypted</ul>
+ <ul>If the <b>session timeout</b> is long and the session IDs are not changed after every login, attackers may hijack a session and take control of it with the same privileges as the victim</ul>
+</ol></p>
