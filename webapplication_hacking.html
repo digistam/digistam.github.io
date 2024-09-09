@@ -302,3 +302,114 @@ category include the inclusion of functionalities from an untrusted control sphe
  <ul>Denial of Service</ul>
  <ul>Data theft</ul>
 </ol></p>
+<h2>Insecure Deserialization</h2>
+<p>Data is stored in the form of data structures (graph, trees, array etc.), data serialization and deserialization is an effective process for linearizing and de-linearizing data objects to transport them 
+to other networks or systems. </p>
+<p><b>Serialization</b>: an object 'employee' consists of data such as name, age, city, empID. Due to the process of serialization, the object data will be converted into the following linear format for 
+transportation to different systems or different nodes: <Employee><Name>Rinni</Name><Age>26</Age><City>Nevada</City><empID>2201</empID></Employee></p>
+<p><b>Deserialization</b>: reverse process of serialization, whereby the object data is recreated from the linear serialized data. Due to the process of deserialization, the serialized Employee object 
+given in the example will be reconverted into the object data</p>
+<p>The process of serialization and deserialization is effectively used in communication between networks, and its widespread usage attracts attackers to exploit the flaws in this process. Attackers inject 
+malicious code into serialized linear formatted data and forward the malicious serialized data to the victim:</p>
+<p><Employee><Name>Rinni</Name><Age>26</Age><City>Nevada</City><empID>2201</empID>MALICIOUS PROCEDURE</Employee></p>
+<p>Due to insecure deserialization, the injected malicious code will be undetected and remain present in the final execution of the deserialization code. This results in the execution of malicious procedures 
+along with the execution of serialized data. This could have a severe impact on the system, as it would authorize the attacker to execute and run systems remotely.</p>
+<h2>A09 - Security Logging and Monitoring Failures / Insufficient Logging and Monitoring</h2>
+<p>Insufficient logging and monitoring refer to scenarios in which the detection software either fails to record a malicious event of ignores important details about the event.</p>
+<p><ol>
+ <ul>Logs that do not provide information about overall logins, failed login attempts and important transactions</ul>
+ <ul>Warnings and error messages that provide vague and insufficient log information</ul>
+ <ul>Inappropriate monitoring of applications and API logs</ul>
+ <ul>Local storage of logs</ul>
+ <ul>Improper or no implementation of response escalation processes</ul>
+ <ul>Dynamic application security testing (DAST) tools such as OWASP ZAP that fail to generate alerts</ul>
+ <ul>Web applications that are not capable of detecting, escalating or issuing alerts of suspicious activities in real time</ul>
+</ol></p>
+
+<h2>A10 - Server-Side Request Forgery (SSRF)</h2>
+<p>SSRF vulnerabilities evolve from the unsafe use of functions in an application, in public web servers to send crafted requests to internal or backend servers. Internal servers usually employ firewalls to 
+prevent unwanted traffic inflows to the network. Therefore, attackers leverage SSRF vulnerabilities in internet-facing web servers to gain access to backend servers that are protected by a firewall, VPN or ACL. 
+The backend server believes that the request is make by the web server because these servers are on the same network; consequently the backend server responds with the data stored in it.</p>
+<p>SSRF vulnerabilities evolve in the following manner: Generally, server-side requests are initiated to obtain information from an external resource and feed it into an application. For example: https://xyz.com/feed.php?url=externalsite.com/feed/to to 
+obtain a remote feed. If attackers can alter the URL input to the localhost, they can view all the local resources on the server.</p>
+<p>Once the attack is succesful, attackers can perform various activities such as port scanning, network scanning, IP address discovery, reading of web server files, bypassing of host-based authentication, 
+interaction with critical protocols and remote code execution.</p>
+
+<h2>Types of SSRF Attacks</h2>
+<p><ol><ul>Injecting an SSRF payload</ul>
+<ul>Gaining access to internal resources -> file://path/to/file</ul>
+<ul>Gaining access to internal pages -> https://www.certifiedhacker.com/page?url=http://127.0.0.1/admin</ul>
+<ul>Using a URL scheme to access internal files -> https://www.certifiedhacker.com/page?url=file://etc/password</ul>
+ <ul>Using a URL scheme to access internal services -> https://www.certifiedhacker.com/page?url=ftp://attacker.net:11211</ul>
+</ol></p>
+
+<h2>Cross-Site Port Attack (XSPA)</h2>
+<p>This type of SSRF attack allows attackes to scan for the open ports of a server. Attackers use a loopback interface of that server such as localhost or 127.0.0.1; Further, attackers can use scanned ports such as 
+port 21, 22 and 25 along with the loopback interface -> https://www.certifiedhacker.com/page?url=http://localhost:22</p>
+
+<h2>Other Web Application Threats</h2>
+<p>Web application threats are not limited to attacks based on URL and port 80. Despite using ports, protocols and OSI layers, vendors must protect the integrity of mission-critical applications from possible 
+future attacks by being able to deal with all attack methods.</p>
+<h2>Directory Traversal</h2>
+<p>Access to restricted directories; executing commands outside the web server's root directory</p>
+<h2>Unvalidated Redirects and Forwards</h2>
+<p>Attackers lure victims into clicking on unvalidated links that appear to be legitimate. Such redirects may attempt to install malware or trick victims into disclosing passwords or other sensitive information. 
+Unsafe forwards may allow access control bypass, leading to</p>
+<p><ol>
+ <ul>Session Fixation Attack</ul>
+ <ul>Security Management Exploits</ul>
+ <ul>Failure to Restrict URL Access</ul>
+ <ul>Malicious File Execution</ul>
+</ol></p>
+<h2>Watering Hole Attack</h2>
+<p>Unvalidated redirect attack whereby the attacker first identifies the most visited website of the target, determines the vulnerabilities in the website, injects malicious code into the vulnerable web application 
+and then waits for the victim to browse the website. Once the victim tries to access the website, the malicious code executes, infecting the victim.</p>
+<h2>Cross-Site Request Forgery</h2>
+<p>The cross-site request forgery method is a type of attack in which an authenticated user is made to perform certain tasks on the web application that an attacker chooses; a user clicking on a particular
+link sent through an email or chat</p>
+<h2>Cookie / Session Poisoning</h2>
+<p>By changing the information inside a cookie, attackers bypass the authentication process. Once they gain control over a network, they can modify its content, use the system for a malicious attack, or 
+steal information from users's systems</p>
+<h2>Web Service Attacks</h2>
+<p>An attacker injects a malicious script into a web service and can then disclose and modify application data</p>
+<h2>Cookie Snooping</h2>
+<p>Attackers use cookie snooping on victims' systems to analyze the users' surfing habits and sell that information to other attackers or to launch various attacks on the victims' web applications</p>
+<h2>Hidden field manipulation</h2>
+<p>Attackers can alter prices and conclude transactions, designating prices of their choice</p>
+<h2>Obfuscation application</h2>
+<p>Network and host-based intrusion detection systems (IDSs) constantly look for signs of well-known attacks, driving attackers to seek different ways to remain undetected. The most common method of attack 
+obfuscation involves encoding portions of the attack with unicode, utf-8, base64 or URL encoding</p>
+<h2>DoS</h2>
+<p>A DoS attack is an attack on the availability of a service, which reduces, restricts or prevents access to system resources by its legitimate users</p>
+<h2>Buffer overflow</h2>
+<p>A web application's buffer overflow vulnerability occurs when it fails to guard its buffer properly and allows writing beyond its maximum size</p>
+<h2>CAPTCHA Attacks</h2>
+<p>Challenge-response type of test implemented by web applications to check whether the response is generated by a computer. CAPTCHAs are prone to various types of attacks</p>
+<h2>Platform Exploits</h2>
+<p>Users can build web applications with platforms as BEA WebLogic and Cold Fusion. Each platform has various vulnerabilities and exploits associated with it</p>
+<h2>Network Access Attacks</h2>
+<p>Can majorly effect web applications, including a basic level of service</p>
+<h2>DMZ Protocol Attacks</h2>
+<p>Compromise of web application and data; defacement of web sites; access to internal systems incl. databases, backups and source code</p>
+<h2>Web-based Timing Attacks</h2>
+<p>Exploit side-channel leakage and estimate the amount of time take for secret key operations. Attackers perform these attacks to retrieve usernames and passwords for accessing web applications</p>
+<h2>MarioNet Attack</h2>
+<p>Attacker abuses the Service Workers API to inject and run malicious code in the victim's browser to perform various attacks like cryptojacking, DDoS, click fraud and distributed password cracking</p>
+<h2>RC4 NOMORE Attack</h2>
+<p>Rivest Cipher Numerous Occurrence MOnitoring and Recovery Exploit attack is an attack against the RC4 stream cipher. This attack exploits the vulnerabilities present in a web server that uses the RC4 
+encryption algorithm for accessing ancrypted sensitive information. Attackers use RC4 NOMORE to decrypt the web cookies secured by the HTTPS protocol and inject arbitrary packets. After stealing a valid cookie, 
+the attacker impersonates the victim and logs into the website using the victim's credentials to perform malicious activities and unauthorized transactions</p>
+<h2>Clickjacking Attack</h2>
+<p>In clickjacking the attacker loads the target website inside a low opacity iframe. Then, the attacker designs a page such that all the clickable items such as buttons are positioned exactly as on the 
+selected target website. When the victim clicks on the invisible elements, the attacker performs various malicious actions</p>
+<h2>JavaScript hijacking</h2>
+<p>JavaScript hijacking, also known as JSON hijacking, is a vulnerability that enables attackers to capture sensitive information from systems using JavaScript Objects (JSON) as a data carrier. These 
+vulnerabilities arise from flaws in the web browser's same-origin policy that permits a domain to add code from another domain</p>
+<h2>DNS Rebinding Attack</h2>
+<p>DNS rebinding can bypass the same-origin policy's security constraints and communicate with or make arbitrary requests to local domains through a malicious web page</p>
+<h2>Same-Site Attack</h2>
+<p>Occurs when an attacker hosts a malicious website on the subdomain of a legitimate application for tricking users into navigate to a malicious website, from which the attacker can collect sensitive data 
+of the users</p>
+<h2>Pass-the-Cookie Attack</h2>
+<p>Allows attackers to access a web application without providing user credentials. Attackers steal cookies from the target user's browser and inject those cookies into their session to bypass the 
+authentication at the target server</p>
