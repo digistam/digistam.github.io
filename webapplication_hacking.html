@@ -486,3 +486,42 @@ with much of the information required to fingerprint the environment to formulat
  <ul>An attacker injects a malicious script into a web service and can disclose and modify application data</ul>
  <ul>An attacker uses a web service for ordering products and injects a script to reset the quantity and status on the confirmation page to less than what he had originally ordered</ul>
 </ol></p>
+
+<h2>Web Service Footprinting Attack</h2>
+<p>Attackers use the Universal Business Registry (UBR) as a major source to gather information about web services, as it is very useful for both businesses and individuals. It is a public registry that runs on 
+UDDI specifications and SOAP. UBR is like a Whois server in functionality. To register web services on a UDDI server, they generally use one of the following structures:</p>
+<p><ol>
+ <ul>businessEntity -> detailed information about the company, such as name and contact</ul>
+ <ul>businessService -> logical group or single or multiple web services; every businessService structure is a subset of a businessEntity; each businessService outlines the technical and descriptive information about 
+ a businessEntity element's web service</ul>
+ <ul>bindingTemplate -> represents a single web service; subset of businessService and it contains technical information that is required by a client application to bind and interact with a target web service</ul>
+ <ul>technicalModel (tModel) -> takes the form of keyed metadata and represents unique concepts or constructs in UDDI</ul>
+</ol></p>
+<p>Attackers can footprint a web application to obtain any of all of these UDDI information structures</p>
+
+<h2>Web Service XML Poisoning</h2>
+<p>XML poisoning is similar to an SQL injection attack. It has a higher success rate in a web service framework. Attackers insert malicious XML code in SOAP requests to perform XML node manipulation or XML schema 
+poisoning to generate errors in XML parsing logic and break execution logic. </p>
+
+<h2>Hidden Field Manipulation Attack</h2>
+<p>Attackers carry out hidden field manipulation attacks against e-commerce websites, as most of these sites have hidden fields in their price and discount specifications. In every client session, 
+developers use hidden fields to store client information, including product prices and discount rates. When a user makes selections on an HTML page, the selection is typically stored as form field values 
+and sent to the application as an HTTP request (POST or GET). HTML can also store field values a hidden fields, which are not rendered on the screen by the browser but collected and submitted as parameters 
+during form submissions.</p>
+
+<h2>Web-based Timing Attacks</h2>
+<p>A web-based timing attack is a type of side-channel attack performed by attackers to retrieve sensitive information such as passwords from web applications by measuring the response time taken by the server. 
+These attacks exploit side-channel leakage and estimate the amount of time take for secret key operations. Different types of web-based timing attacks include direct timing attacks, cross-site timing attacks and 
+browser-based timing attacks</p>
+<p><ol>
+ <ul>Direct Timing Attack -> measure approximate time take by the server to process a POST request, through which attackers can deduce the existence of a username; similarly attackers perform character by character
+ password examination and exploit the timing information to determine the position where the password comparison failed, then attackers use this data to determine the target user's password</ul>
+ <ul>Cross-site Timing Attack -> crafted request packets sent to website using JavaScript; the attacker then analyzes the time consumed by the user to download the requested file</ul>
+ <ul>Browser-based Timing Attack -> sophisticated side-channel attack; attacker take advantage of side-channel leaks of a browser to estimate the time take by the browser to process the requested resources </ul>
+ <ul>Cache Storage Timing Attack -> the cache API interface (used to load, fetch and delete responses) offers complete cache (memory) to developers; loading resources in the disk takes some amount of time 
+ based on the resource size; if attackers can estimate the time taken by the browser to perform this task, they can measure the corresponding response size</ul>
+</ol></p>
+<p>After estimating of measuring the processing time using the abovementioned techniques, attackers can launch further attacks such as brute-force attacks to obtain complete information.</p>
+
+<h2>MarioNet Attack </h2>
+<p>more information soon ...</p>
