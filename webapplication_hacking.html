@@ -475,3 +475,14 @@ value of a cookie at the client side before the request is sent to the server. A
 on the users' computers and are a standard way of recognizing users. Once the web server is set, it receives all the requests from the cookies. To provide further functionality to the application, cookies 
 support modification and analysis by JavaScript. </p>
 <p>In this attack, the attacker sniffs the user's cookie and then modifies the cookie parameters and submits them to the web server. The server then accepts the attacker's request and processes it. </p>
+
+<h2>Web Service Attack</h2>
+<p>Similar to the way in which a user interacts with a web application through a browser, a web service can interact directly with the web application without the need for an interactive user session or 
+a browser. Web services offer new attack vectors in an application framework. Web services are based on XML protocols such as Web Services Definition Language (WSDL) for describing the connection points, 
+Universal Description, Discover and Integration (UDDI) for the description and discover of web services, and Simple Object Access Protocol (SOAP) for communication between web services, which are vulnerable 
+to various web application threats. These web services have detailed definitions that allow regular users and attackers to understand the construction of the services. Thus, web services provide the attacker 
+with much of the information required to fingerprint the environment to formulate an attack. Some examples:</p>
+<p><ol>
+ <ul>An attacker injects a malicious script into a web service and can disclose and modify application data</ul>
+ <ul>An attacker uses a web service for ordering products and injects a script to reset the quantity and status on the confirmation page to less than what he had originally ordered</ul>
+</ol></p>
