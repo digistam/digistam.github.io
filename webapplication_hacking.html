@@ -433,3 +433,29 @@ the web server's root directory. With this level of access to web application ar
  <ul>http://www.targetsite.com/../../../sitebackup.zip</ul>
  <ul>http://www.targetsite.com/../../../../etc/passwd</ul>
 </ol></p>
+<h2>Unvalidated Redirects and Forwards</h2>
+<p>Unvalidated redirects enable attackers to install malware or trick victims into disclosing passwords or other sensitive information, whereas unsafe forwards may allow access control bypass. An attacker 
+sends links to unvalidated redirects and lures the victim into clicking on them. When te victim clicks the link, thinking that it's a valid site, it redirects the victim to another site. Such redirects lead 
+to install malware and may even trick victims into disclosing passwords or other sensitive information. An attacker targets unsafe forwarding to bypass security checks. </p>
+<p><ol>
+ <ul>Session Fixation Attack -> the attacker tricks or attracts the user to access a legitimate web server using an explicit session ID value</ul>
+ <ul>Security Management Exploits -> some attackers target security management systems, either network or application based, to modify or disable security enforcement</ul>
+ <ul>Failure to Restrict URL Access </ul>
+ <ul>Malicious File Execution -> malicious file execution vulnerabilities are present in most applications, enabling to install a rootkit and take over complete control</ul>
+</ol></p>
+<p>In an <b>unvalidated redirect</b> scenario, a user receives a phishing email from an attacker, luring the user into clicking the link. The link seems to be legitimate because it contains the name of a 
+legitimate website at the beginning of the url. However, the latter part of the link contains a malicious URL to redirect the victim. <b>Unvalidated forwarding</b> allows attackers to access sensitive 
+pages that are generally restricted from viewing -> http://www.certifiedhacker.com/purchase.jsp?fwd=admin.jsp. The server, without proper validation, redirects the attacker to the sensitive admin page, 
+where he/she can access purchase records, registered users and so on. Using this technique, an attacker can succesfully bypass any security checks.</p>
+<p><ol>
+ <ul>Open Redirection -> attackers can add their own parameters to a URL to redirect users from trusted websites to malicious sites where they can steal sensitive data</ul>
+ <ul>Header-Based Open Redirection -> modifying the HTTP location header to redirect users to malicious page without their knowledge; it serves the operation when JavaScript fails to interpret the header</ul>
+ <ul>JavaScript-Based Open Redirection -> injecting JavaScript into a web-page response received from the corresponding web server; this type or open redirects is mostly used in phishing scams, where users are unaware 
+ that they are navigating to a malicious website</ul>
+</ol></p>
+<h2>Watering Hole Attack</h2>
+<p>The attacker identifies the kind of websites frequently surfed by a target company / individual and tests these websites to identify any possible vulnerabilities. Once the attacker identifies the 
+vulnerabilities, he injects a malicious script / code into the web application that can redirect the web page and download malware onto the victim's machine. After infecting the vulnerable web application, 
+the attacker waits for the victim to access the infected web application. This attack is called a watering hole attack, as the attacker waits for the victim to fall into the trap, similar to a lion waiting 
+for its prey to arrive at a watering hole to drink water. When the victim surfs the infected website, the web page redirects him and downloads malware onto his machine.</p>
+
