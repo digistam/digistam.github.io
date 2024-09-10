@@ -458,4 +458,20 @@ where he/she can access purchase records, registered users and so on. Using this
 vulnerabilities, he injects a malicious script / code into the web application that can redirect the web page and download malware onto the victim's machine. After infecting the vulnerable web application, 
 the attacker waits for the victim to access the infected web application. This attack is called a watering hole attack, as the attacker waits for the victim to fall into the trap, similar to a lion waiting 
 for its prey to arrive at a watering hole to drink water. When the victim surfs the infected website, the web page redirects him and downloads malware onto his machine.</p>
-
+<h2>Cookie / Session Poisoning</h2>
+<p>Cookies are generally used to maintain a session between web applications and users; thus cookies need to transmit sensitive credentials frequently. The attacker can modify the cookies' information 
+with ease to escalate access or assume the identity of another users. By modifying the data in a cookie, an attacker can often gain escalated access or maliciously affect the user's session. Many sites offer 
+the ability to <b>Remember me?</b> and store the user's information in a cookie so the user does not have to re-enter the data with every visit to the site. Any private information entered is stored in a 
+cookie. To protect cookies, site developers often encode them. Easily reversible encoding methods such as Base64 and ROT13 give a false sense of security to the users who view cookies. </p>
+<h2>Threats</h2>
+<p>Compromised cookies and sessions can provide an attacker with user credentials, allowing the attacker to access accounts and assume the identity of other users of an application. By assuming another 
+user's online identity, attackers can review the original user's purchase history, order new items, exploit services and access the vulnerable web application. One of the easiest examples involves 
+using the cookie directly for authentication. Another method of cookie / session poisoning uses a proxy to rewrite the session data, displaying the cookie data and / or specifying a new user ID or other 
+session identifiers in the cookie. There are four types of cookies: persistent, non-persistent, secure and non-secure. Persistent cookies are stored on a disk, whereas non-persistent ones are stored 
+in memory. Web applications transfer secure cookies only through SSL connections.</p>
+<h2>How Cookie poisoning works</h2>
+<p>Web applications use cookies to simulate a stateful user browsing experience, depending on the end user and identity of the server side of web application components. Cookie poisoning alters the 
+value of a cookie at the client side before the request is sent to the server. A web server can send a set cookie with the help of any response over the provided string and command. The cookies are stored 
+on the users' computers and are a standard way of recognizing users. Once the web server is set, it receives all the requests from the cookies. To provide further functionality to the application, cookies 
+support modification and analysis by JavaScript. </p>
+<p>In this attack, the attacker sniffs the user's cookie and then modifies the cookie parameters and submits them to the web server. The server then accepts the attacker's request and processes it. </p>
