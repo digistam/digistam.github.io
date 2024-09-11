@@ -1,6 +1,88 @@
  <meta name=”robots” content=”noindex,nofollow”/>
   <a href=index.html>Back to home</a>
 <hr/>
-<h1>Hacking web applications</h1>
-<p>Everyone connected via the internet is using various web applications for different purposes, including oneline shopping, email, chats and social networking.</p>
-<p>Web applic
+<h1>Web Application Hacking Methodology</h1>
+<p>Attackers use the web application hacking methodology to gain knowledge of a particular web application to compromise it succesfully. This methodology allows them to plan each step in detail 
+to increase their chances of successfully hacking the application. Under this methodology, they do the following to collect detailed information about various resources  needed to run or access the 
+web application:</p>
+<p><ol>
+ <ul>Footprint web infrastructure</ul>
+ <ul>Analyze web applications</ul>
+ <ul>Bypass client-side controls</ul>
+ <ul>Attack authentication mechanisms</ul>
+ <ul>Attack authorization schemes</ul>
+ <ul>Attack access controls</ul>
+ <ul>Attack session management mechanisms</ul>
+ <ul>Perform injection attacks</ul>
+ <ul>Attack application logic flaws</ul>
+ <ul>Attack shared environments</ul>
+ <ul>Attack database connectivity</ul>
+ <ul>Attack web application clients</ul>
+ <ul>Attack web services</ul>
+</ol></p>
+<p>If hackers do not use this process and try to exploit the web application directly, their chances of failure increases. </p>
+<h2>Footprint Web Infrastructure</h2>
+<p>Footprinting is the process of gathering complete information about a system and all its related components, as well as how they work. Finding vulnerabilities can help attackers exploit and gain 
+unauthorized access to the web application.</p>
+<p><ol>
+ <ul>Server Discovery -> physical servers using Whois lookup, DNS interrogation, port scanning etc.</ul>
+ <ul>Service Discovery -> nmap, netscantools pro etc.</ul>
+ <ul>Server Identification -> banner grabbing; local identity (location, origin-host); local addresses; self-names</ul>
+ <ul>Hidden Content Discovery -> extract content and functionality that is not directly linked or reachable from main visible content</ul>
+ <ul>Load Balancers Detection -> detecting load balancers with real IP addresses</ul>
+</ol></p>
+<h2>Server Discovery</h2>
+<p><ol>
+ <ul>Whois Lookup -> whois.domaintools.com, netcraft, smartwhois (tamos.com) etc.</ul>
+ <ul>DNS Interrogation -> organizations use DNS interrogation, a distributed database to connect their IP addresses with their respective hostnames and vice versa; find DNS records (network-tools.com), 
+ DNSRecon, Domain Dossier (centralops.net), DNSdumpster.com</ul>
+ <ul>Port scanning -> nmap, netscantools pro, advanced port scanner, hping3</ul>
+</ol></p>
+<h2>Service Discovery</h2>
+<p><ol>
+ <ul>80: World Wide Web standard port</ul>
+ <ul>81: Alternate WWW</ul>
+ <ul>88: Kerberos</ul>
+ <ul>384: Remote Network Server System</ul>
+ <ul>443: SSL (HTTPS)</ul>
+ <ul>514: Remote Shell</ul>
+ <ul>etc.</ul>
+</ol></p>
+
+<h2>Server Identification / Banner Grabbing</h2>
+<p>Banner grabbing is a footprinting technique used by a hacker to obtain sensitive information about a target; telnet moviescope.com 80</p>
+<p>Tools such as Telnet and Netcat are capable of grabbing banners of web servers over only an HTTP connection. Attackers perform the following steps to grab banners over an SSL connection:</p>
+<p><ol>
+ <ul>Install OpenSSL</ul>
+ <ul>Start OpenSSL in terminal</ul>
+ <ul>s_client -host <target website> -port 443</ul>
+ <ul>GET / HTTP/1.0</ul>
+</ol></p>
+
+<h2>Detect Web App Firewalls and Proxies on Target Site</h2>
+<p>The <b>trace</b> command sends a request to the web server, asking it to send back the request. If the web server is behind a proxy the proxy modifies this request by adding extra headers. </p>
+
+<h2>Detect Web Application Firewalls</h2>
+<p>WAFs can be detected by analyzing the HTTP header request. Most firewalls edit HTTP header requests and responses vary. Tools:</p>
+<p><ol>
+ <ul>WAFWOOF (github.com) -> identify and fingerprint WAFs protecting a website by looking at cookies, server cloaking, reponse code, drop action, pre-built-in rules</ul>
+ <ul>SHIELDFY (shieldfy.io)</ul>
+ <ul>nmap</ul>
+</ol></p>
+
+<h2>Hidden Content Discovery</h2>
+<p>Hidden content and functionality not reachable from the main visible content can be discovered to exploit user privileges within the application:</p>
+<p><ol>
+ <ul>Web Spidering / Crawling -> OWASP ZAP, Burp suite etc. </ul>
+ <ul>Attacker-Directed Spidering -> OWASP ZAP</ul>
+</ol></p>
+
+<h2>Detect Load Balancers</h2>
+<p>There are two types of load balancers: DNS load balancers (Layer 4 load balancers) and HTTP load balancers (Layer 7 load balancers). Attackers use various tools such as dig, lbd load balancing detector and 
+Halberd to detect load balancers. For example, if a single host resolves to multiple IP addresses.</p>
+<p><ol>
+ <ul>Using host command -> host <target domain></ul>
+ <ul>Using dig command -> dig <target domain></ul>
+ <ul>Using load balancing detector (lbd) -> lbd <target domain></ul>
+</ol></p>
+<p>After identifying the real IP addresses behind the load balancers, attackers perform further attacks on the target organization.</p>
