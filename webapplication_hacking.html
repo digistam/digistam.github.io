@@ -524,4 +524,51 @@ browser-based timing attacks</p>
 <p>After estimating of measuring the processing time using the abovementioned techniques, attackers can launch further attacks such as brute-force attacks to obtain complete information.</p>
 
 <h2>MarioNet Attack </h2>
-<p>more information soon ...</p>
+<p>Browser-based attack that runs malicious code inside the browser, and the infection persists even after closing or browsing away from the malicious web page through which the infection has spread.
+Most of the latest web browsers support a new API called Service Workers that allows the website to isolate operations that render the web page UI from intensive computational tasks to avoid freezing of the 
+UI when large amounts of data are processed.</p>
+<p>Attackers register and activate the Service Workers API through a website controlled by them. When the victim browses that website, the Service Workers API automatically activates, and it can run 
+persistently in the background even when the user is not actively browsing the website. To keep the Service Workers API alive, attackers abuse the Service Workers SyncManager interface. MarioNet can resist 
+any tab crashes and power failures, increasing the attacker's potential to attack the browser. MarioNet leverages the abilities of JavaScript and depends on previously available HTML5 APIs. 
+It can be used to create a botnet and launch other malicious attacks such as cryptojacking, DDoS, click fraud and distributed password cracking. Furthermore, this attack allows attackers to inject 
+malicious code into high-traffic websites for a short period, retrieve sensitive information such as user credentials and then control the abused browsers from a central server.</p>
+
+<h2>Clickjacking Attack</h2>
+<p>Target website is loaded into iframe element, masked with a web page element that appears legitimate. The iframe is low opacity. All clickable items such as buttons are positioned exactly as on the 
+selected target website.</p>
+<p><ol>
+ <ul>Complete transparent overlay -> transparent, legitimate page is overlaid on previously designed malicious paga</ul>
+ <ul>Cropping -> only selected controls are overlaid</ul>
+ <ul>Hidden overlay -> iframe of 1x1 pixels containing malicious content placed secretly under the mouse cursor</ul>
+ <ul>Click event dropping -> completely hide a malicious page behind a legitimate page, events drop through the legitimate masked page and registers only the malicious page</ul>
+ <ul>Rapid content replacement -> targeted controls covered by opaque overlays that are removed only for a moment for registering a click</ul>
+</ol></p>
+
+<h2>DNS Rebinding Attack</h2>
+<p>Bypass same-origin policy's security constraints, allowing a malicious web page to communicate with or make arbitrary requests to local domains. An attacker creates a malicious website with the 
+domain name certifiedhacker.com and registers it with the DNS server controlled by him. Now, the attacker configures the DNS server to send DNS responses with very short TTL values to avoid caching of the 
+responses. Then, the attacker begins his intended operation with the HTTP server that contains the malicious website http://certifiedhacker.com</p>
+<p>When the victim opens the malicious website, the attacker's DNS server sends the IP address of the HTTP server that hosts the attacker-controlled website http://certifiedhacker.com to get 
+additional resources from http://certifiedhacker.com/secret.html. When the browser runs the JavaScript, it makes a DNS request for the domain (owing to the short TTL configuration), but the attacker-controlled 
+DNS server responds with a new IP. For instance, if the attacker-controlled DNS server responds with the private or internal IP of xyz.com, the victim's browser loads http://xyz.com/secret.html and not 
+http://certifiedhacker.com/secret.html succesfully by bypassing the SOP.</p>
+
+<h2>Same-Site Attack</h2>
+<p>Same-site attacks, also known a related-domain attacks, occur when an attacker targets a subdomain of a trusted organization and attempts to redirect users to an attacker-controlled web page. Subdomains 
+that are misconfigured or left for years without use are often targeted by attackers to perform this attack. Generally, the most familiar domains such as .edu, .com and .org contain several 
+perimeters that make it easy for attackers to capture unused of misconfigured subdomains sharing the legitimate site's top-level domains (TLDs). The TLDs help attackers in hijacking the legitimate 
+websites to create dangling records using extended TLDs (eTLDs). Such websites sharing the same eTLD+1 domain are called same sites, which can be targeted by same-site attackers.</p>
+<p>These attacks work on the notion that identifying external enemies is easier than betraying insider enemies. The victims of these attacks are redirected to an attacker-controlled web page, which has 
+the appearance of a secure, legitimate web page. The vulnerable subdomains cna be compromised through phishing attacks, malware injection, cookie poisoning, abuse of JavaScript APIs etc. 
+Users who utilize dynamic DNS facilities are especially vulnerable to these attacks. Same-site attackers can also obtain cookies because similar sites that use the eTLD+1 domain share cookies.</p>
+<h2>Same-Site Attack Scenario</h2>
+<p>The attacker redirects a user attempting to browse www.certifiedhacker.com to an attacker controlled dangling site, rans.certifiedhacker.com. The malicious link shares a common domain name, which 
+lures the user into believing that the redirected site is the secure or legitimate one. Then, the attacker can perform security policy intrusion, credential sniffing, phishing and malware injection attacks by 
+taking over subdomains.</p>
+
+<h2>Pass-the-Cookie Attack</h2>
+<p>Pass-the-Cookie attacks allow attackers to access a user's web services without providing any identity or performing multi-factor authentication. A pass-the-cookie attack occurs when attackers 
+obtain a clone of a cookie from the user's browser and uses the cookie to establish a session with the target web server. If attackers can retrieve appropriate cookies, they may log in as a valid 
+entity to previously accessed web services, evading all the authentication checkpoints. Attackers may also use a specifically developed program or a phishing attack to obtain these cookies.</p>
+<p>For example, Firefox saves all cookies inside a local SQLite database that attackers may acquire using tools such as <b>firefox_creds</b>. If the captured cookie is a session cookie, the attacker 
+can use malware to implant their own session while browsing the web application. Attackers can also use <b>mimikatz</b> to extract encrypted cookies.</p>
