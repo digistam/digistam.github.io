@@ -86,3 +86,49 @@ Halberd to detect load balancers. For example, if a single host resolves to mult
  <ul>Using load balancing detector (lbd) -> lbd <target domain></ul>
 </ol></p>
 <p>After identifying the real IP addresses behind the load balancers, attackers perform further attacks on the target organization.</p>
+
+<h2>Analyzing Web Applications</h2>
+<p>Once attackers have attempted various possible attacks on a vulnerable web server, they may turn their attention to the web application itself. To hack the web application, first they may need to analyze it 
+to determine its vulnerable areas. Even if it has only a single vulnerability, attackers try to compromise its security by launching an appropriate attack. Attackers define an <b>attack surface</b>:</p>
+<p><ol>
+ <ul>Identify Entry Points for User Input -> gateways for attacks; attackers review generated HTTP requests to identify the user input entry points</ul>
+ <ul>Identify Server-Side Technologies -> ASP, ASP.NET, ColdFusion, JSP JavaServer Pages, PHP, Python, Ruby etc.</ul>
+ <ul>Identify Server-Side Functionality -> referring to ability of executing programs on output web pages</ul>
+ <ul>Identify Files and Directories -> web servers host web applications, misconfigurations may lead to exposure of critical files and directories over the internet</ul>
+ <ul>Identify Web Application Vulnerabilities -> web applications are developed using various technologies and platforms, not following secure coding practices in the development may leave flaws</ul>
+ <ul>Map the Attack Surface</ul>
+</ol></p>
+<p><a target=_blank href=https://www.net-square.com>httprint</a> is a web server fingerprinting tool that relies on web server characteristics to accurately identify web servers; <a target=_blank href=https://github.com/urbanadventurer/WhatWeb>WhatWeb</a>
+scans and identifies web technologies, including CMS, blogging platforms, JavaScript libraries etc.</p>
+<p>After determining the server-side technologies, attackers try to identify the server-side functionality to find potential vulnerabilities. <a target=_blank href=https://www.gnu.org>GNU Wget</a> is employed for 
+retrieving files using HTTP, HTTPS and FTP which are the most widely used internet protocols; <a target=_blank href=https://curl.se>curl</a></p>
+<p>Examine URL: an SSL certified page URL starts with https; if a page contains a .aspx extension, the application is likely written using ASP.NET; if the query string has a parameter named showBy you can assume 
+that the application is using a database and will display the data by that value.</p>
+<p>Attackers use various techniques and tools to enumerate applications, hidden directories and files of the web application hosted on web servers; they use tools like <a target=_blank href=https://github.com/OJ/gobuster>GoBuster</a>, 
+URL Fuzzer and nmap NSE script http-enum to identify files and directories of the target web application:</p>
+<p><ol>
+ <ul>gobuster -u <target URL> -w common.txt</ul>
+ <ul>gobuster -u <target UTL> -w common.txt -s 200 (files and directories with specific status codes)</ul>
+ <ul>nmap -sV --script=http-enum <target domain or IP address></ul>
+</ol></p>
+<p>Attackers use various techniques to gain administrator-level access etc. Attackers use tools like <a target=_blank href=https://www.subgraph.com>Vega</a>, <a target=_blank href=https://wpscan.com>WPScan Vulnerability Database</a>, 
+ <a target=_blank href=https://www.arachni-scanner.com>Arachni</a> and <a target=_blank href=https://sourceforge.net/projects/uniscan/>Uniscan</a> to identify vulnerabilities.</p>
+<p>Vega is a free and open source web security scanner and web security testing platform for testing the security of web applications. Vega helps to find and validate SQL injection, XSS, inadvertently disclosed 
+sensitive information etc.</p>
+<p>Once attackers detect the entry points, server-side technologies and functionalities, they map the attack surface area:</p>
+<p><ol>
+ <ul>Client-Side Validation -> Injection Attack, Authentication Attack</ul>
+ <ul>Database Interaction -> SQL Injection, Data Leakage</ul>
+ <ul>File Upload and Download -> Directory Traversal</ul>
+ <ul>Display of User-Supplied Data -> Cross-Site Scripting</ul>
+ <ul>Dynamic Redirects -> Redirection, Header Injection</ul>
+ <ul>Login -> Username enumeration, Password brute-force</ul>
+ <ul>Session State -> Session Hijacking, Session Fixation</ul>
+ <ul>Injection Attack -> Privilege Escalation, Access Controls</ul>
+ <ul>Cleartext Communication -> Data Theft, Session Hijacking</ul>
+ <ul>Error Message -> Information Leakage</ul>
+ <ul>Email Interaction -> Email Injection</ul>
+ <ul>Application Code -> Buffer Overflows</ul>
+ <ul>Third-Party Application -> Known Vulnerabilities Exploitation</ul>
+ <ul>Web Server Software -> Known Vulnerabilities Exploitation</ul>
+</ol></p>
