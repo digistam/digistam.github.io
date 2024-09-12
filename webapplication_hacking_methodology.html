@@ -220,3 +220,12 @@ corresponding to the authorized user actions. In general, event handlers such as
   <ul>Then, replay the cookie with the same or altered passwords or session identifiers to bypass web application authentication</ul>
   <ul>Trap cookies using tools such as OWASP ZAP and Burp Suite</ul>
  </ol></p>
+ <h2>Bypass Authentication: Bypass SAML-based SSO</h2>
+ <p>The single sign-on (SSO) authentication process permits a user to sign in to an application using a single set of credentials, and the same login session can be used to access multiple applications 
+ irrespective of the domain or platform. For instance, loggin in to a Google account give authentication for Google Drive, Youtube, Gmail etc. This authentication mechanism is performed using the SAML protocol.</p>
+ <p>Security Assertion Markup Language (SAML) is an XML - based infrastructure that serves as an authorization and authentication medium between two peers, such as identity provider (IdP) and service provider 
+ (SP). The service provider entrusts the identity provider with validating users. Then, the identity provider responds with an SAML assertion (confirmation message) after validating any user.</p>
+ <p>With the evolution of the SSO infrastructure, the authentication process has been handed over to third-party identity provider applications to access functions from the service provider application. SAML messages 
+ are encrypted using Base64 encoding. Attacker can easily decrypt these messages and read the content of the messages. Two major fields in SAML messages, signature and assertion, are susceptible to midway 
+ tampering. Signature is used to build a trust relationship between SP and IdP and assertion is used to direct the SP on providing application services to valid users. SAML Raider is a Burp Suite extension 
+ used for SAML infrastructure testing.</p>
