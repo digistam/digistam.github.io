@@ -132,3 +132,91 @@ sensitive information etc.</p>
  <ul>Third-Party Application -> Known Vulnerabilities Exploitation</ul>
  <ul>Web Server Software -> Known Vulnerabilities Exploitation</ul>
 </ol></p>
+<h2>Bypass Client-Side Controls</h2>
+<p>A web application requires client-side controls to restrict user inputs when transmitting data via client components and implementing measures to control the user's interaction with his or her own client.
+A developer uses techniques such as hidden HTML form fields, and browser extensions to allow the transmission of data to the server via the client. Often, web developers assume that that data transmitted 
+from the client to the server is within the user's control, and this assumption can make the application vulnerable to various attacks.</p>
+<p><ol>
+ <ul>Attack Hidden Form Fields -> identify hidden form fields, manipulate tags and fields before transmitting the data to the server</ul>
+ <ul>Attack Browser Extensions -> attempt to intercept the traffic from the browser extensions or decompile the browser extensions to capture user data</ul>
+ <ul>Perform Source Code Review -> identify vulnerabilities that cannot be identified by traditional vulnerability scanning tools</ul>
+ <ul>Evade XSS Filters -> inject unusual characters into the HTML code</ul>
+</ol></p>
+<p>Inserting -script- tags into the code is not allowed in a general context. However, some other HTML tags can permit these unusual injections. Event handlers are employed to run specific scripts
+corresponding to the authorized user actions. In general, event handlers such as <onfocus>, <onerror> and <onclick> can be exploited to evade XSS filters.</p>
+ <p><ol>
+  <ul>Encoding Characters -> a few or all of the characters of HTML elements can be written using ASCII codes to evade filters that search for strings such as <javascript>, 
+  <a href="&#106;avascript:alert()">Click here!</a>; Hexadecimal encoding; Base64 encoding etc.</ul>
+  <ul>Embedding Whitespaces -> attackers can easily evade filters by inserting non-printable characters</ul>
+  <ul>Manipulating Tags -> <scr<script>ipt></ul>
+ </ol></p>
+
+ <h2>Attack Authentication Mechanism</h2>
+ <p>In general, web applications authenticate users through authentication mechanisms such as login functionality. Attackers try to find vulnerabilities such as weak passwords and exploit these 
+ to gain access by network eavesdropping, brute-force attacks, dictionary attacks, cookie replay attacks, credential theft etc. Most authentication mechanisms used by web applications have 
+ design flaws, such as failure to check password strength, insecure transmission of credentials over the internet etc. </p>
+ <p><ol>
+  <ul>Username Enumeration -> using verbose failure messages and predicatable usernames</ul>
+  <ul>Password Attacks </ul>
+  <ul>Session Attacks</ul>
+  <ul>Cookie Exploitation</ul>
+  <ul>Bypass Authentication</ul>
+ </ol></p>
+ <h2>Design Flaws in Authentication Mechanism</h2>
+ <p><ol>
+  <ul>Bad Passwords</ul>
+  <ul>Brute-Forcible Login</ul>
+  <ul>Verbose Failure Messages</ul>
+  <ul>Insecure Transmission of Credentials</ul>
+  <ul>Password Reset Mechanism</ul>
+  <ul>Forgotten Password Mechanism</ul>
+  <ul>Remember Me Functionality</ul>
+  <ul>User Impersonation</ul>
+  <ul>Improper Validation of Credentials</ul>
+  <ul>Predictable Usernames and Passwords</ul>
+  <ul>Insecure Distribution of Credentials</ul>
+  <h2>Implementation Flaws in Authentication Mechanism</h2>
+  <p><ol>
+   <ul>Fail-Open Login Mechanism</ul>
+   <ul>Flaws in Multistage Login Functionality -> three stages: username and password - challenge for certain input digits or memorable characters and value submissions</ul>
+   <ul>Insecure Storage of Credentials</ul>
+  </ol>
+ </ol></p>
+ <h2>Username Enumeration</h2>
+ <p>An attacker tries to login as rini.matthews, which results in the login failure message invalid email or username; in the second attempt the attacker tries to login as rinimatthews which results in a message 
+ stating that the password is incorrect, thus confirming that the username rinimatthews exists. Username enumeration from verbose error messages will fail if the application has an account lockout policy, where 
+ the account is locked after a certain number of failed login attempts. Attackers can use tools such as <a target=_blank href=https://github.com/trimstray/massh-enum>massh-enum</a></p>
+
+ <h2>Password Attacks: Password Functionality Exploits</h2>
+ <p><ol>
+  <ul>Password Changing</ul>
+  <ul>Password Recovery</ul>
+  <ul>Remember Me Exploit</ul>
+ </ol></p>
+ <h2>Password Attacks: Password Guessing</h2>
+ <p><ol>
+  <ul>Password List -> create a list of possible passwords</ul>
+  <ul>Password Dictionary -> compilation of word and number combinations that could be passwords, <a target=_blank href=https://dictionarymaker.sourceforge.net/>DictionaryMaker</a></ul>
+  <ul>Tools -> THC Hydra, Burp Suite, L0phtCrack, ophcrack, RainbowCrack</ul>
+ </ol></p>
+ <h2>Password Attacks: Attack Password Reset Mechanism</h2>
+ <p>Resetting the password is a common function used by the user when he forgets his password and needs to reset it. The user receives a forgot password link via email containing a one time 
+ token and when the link is clicked, the server responds with a password reset page. The attack:</p>
+ <p><ol>
+  <ul>the attacker obtains the target's email address used on the website through techniques such as social engineering and OSINT</ul>
+  <ul>The attacker sends a password reset request link to the victim using the altered Host header</ul>
+  <ul>The attacker waits for the victim to receive the modified email</ul>
+  <ul>Once the victim clicks on the malicious link, the attacker extracts the password reset token; using this token the attacker performs various malicious activities such as cloning web applications to 
+  steal the user's credentials or acting as a proxy</ul>
+ </ol></p>
+ <h2>Session Attacks: Session ID Prediction / Brute-forcing</h2>
+ <p>Every time a user logs in to a particular website, the server assigns a session ID to the user to keep track of all activities. This session ID is valid until the user logs out; the server 
+ provides a new session ID when the user logs in again. Attackers try to exploit this session ID mechanism by guessing the next session ID after collecting some valid ones. </p>
+ <h2>Cookie Exploitation: Cookie Poisoning</h2>
+ <p>Client browsers use cookies to maintain a session state when they employ stateless HTTP protocol IDs for communication. Cookies can contain session-specific data such as user IDS, passwords etc. 
+ They exist as files stored in the client computer's memory or on it's hard disk. </p>
+ <p><ol>
+  <ul>If the cookie contains passwords or session identifiers, steal the cookie using techniques such as script injection and eavesdropping</ul>
+  <ul>Then, replay the cookie with the same or altered passwords or session identifiers to bypass web application authentication</ul>
+  <ul>Trap cookies using tools such as OWASP ZAP and Burp Suite</ul>
+ </ol></p>
