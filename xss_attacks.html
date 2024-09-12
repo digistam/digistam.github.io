@@ -27,7 +27,7 @@ user's web browser will mistake them for HTML markup, as it treats some characte
 malicious code is executed on the client machine. The malicious code asks the victim to enter profile information. After the user enters all the necessary personal details and clicks Submit, the 
 attacker receives the information. </p>
 <h2>XSS Attack in Blog Posting</h2>
-<p>Malicious script added to the comment field of the Blog: <script>_onload_=window.location='http://www.certifiedhacker.com'</script></p>
+<p>Malicious script added to the comment field of the Blog: <_script_>onload=window.location='http://www.certifiedhacker.com'<_/script_></p>
 
 <h2>XSS Attack in Comment Field</h2>
 <p>Malicious script added to comment field of a website: <script>alert("Hello World")</script></p>
