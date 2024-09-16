@@ -389,3 +389,78 @@ corresponding to the authorized user actions. In general, event handlers such as
   <ul>Connection Pool DoS -> examine connection pooling settings of the target application, construct a large malicious SQL query and run multiple queries simultaneously to consume all the connections in the 
   connection pool, causing database queries to fail for legitimate users</ul>
  </ol></p>
+
+ <h2>Connection String Injection</h2>
+ <p>A connection string injection attack occurs when te server uses dynamic string concatenation to build connection strings based on the user input. If the server does not validate the string and does not 
+ allow the malicious text or characters to escape, an attacker can potentially access sensitive data or other resources on the server. For example, an attacker could mount an attack by supplying a semicolon 
+ and appending an additional value. The attacker parses the connection string using the <b>last one wins</b> algorithm and substitutes a legitimate value with a hostile input. Attackers can easily inject 
+ parameters by simply adding a <b>semicolon ;</b> using connection string injection techniques in a delegated authentication environment.</p>
+ <p>In the following example, the system asks the user to give a username and a password for creating a connection string. Here, the attacker enters the <b>password</b> as <b>pwd; Encryption=off</b>. 
+ This means that the attacker has voided the encryption system. When the connection string is populated, the encryption value will be added to the previously configured set of parameters:</p>
+ <p>Before Injection:</p>
+ <p><ol>
+  <ul>Data Source=Server, Port;Network Library=DBMSSCON; Initial Catalog=DataBase; User ID=Username; Password=pwd;</ul>
+ </ol></p>
+ <p>After Injection:</p>
+ <p><ol>
+  <ul>Data Source=Server, Port;Network Library=DBMSSCON; Initial Catalog=DataBase; User ID=Username; Password=pwd; Encryption=off</ul>
+ </ol></p>
+
+ <h2>Connection String Parameter Pollution (CSPP) Attacks</h2>
+ <p>The server uses connection strings to connect applications to database engines. Connection string parameter pollution (CSPP) techniques allow an attacker to specifically exploit the semicolon-delimited
+ database connection strings that are constructed dynamically based on the user inputs from web applications. In CSPP attacks, attackers overwrite parameter values in the connection string to steal 
+ user IDs and hijack web credentials.</p>
+ <p><ol>
+  <ul>Hash Stealing -> replaces the value of the Data Source parameter with that of a <b>Rogue Microsoft SQL Server</b> and sets the values of username, data source and integrated security as follows:<br/>
+  User_Value: ; Data Source = Rogue_Server Password_Value: ; Integrated Security = true<br/>
+  The parameters DataSource and IntegratedSecurity are overwritten and the built-in drivers will use the last set of values instead of the previous one. When the Microsoft SQL Server tries to connect to the 
+  rogue server, the <b>sniffer</b> running in the rogue server sniffs the window's credentials</ul>
+  <ul>Port Scanning</ul>
+  <ul>Hijacking Web Credentials</ul>
+ </ol></p>
+
+ <h2>Connection Pool DoS</h2>
+ <p>Examine the connection pooling settings of the application, construct a large malicious SQL query and run multiple queries simultaneously to consume all the connections in the connection pool, causing
+ database queries to fail for legitimate users. For example, by default in ASP.NET the maximum number of allowed connections in the pool is 100 and the timeout is 30 seconds. Run 100 queries with an 
+ execution time of 30+ seconds withing 30 seconds to cause a connection pool DoS such that no one else would be able to use the database-related parts of the application.</p>
+
+ <h1>Attack Web Application Client</h1>
+ <p>Attacks on the client side occur when the client establishes a connection with the server:</p>
+ <p><ol>
+  <ul>Cross Site Scripting</ul>
+  <ul>HTTP Header Injection</ul>
+  <ul>Request Forgery Attack -> exploit the trust of a website or web application on a user's browser by including a link on a page which takes the user to an authenticated website</ul>
+  <ul>Privacy Attacks -> employing a leaked persistent browser state</ul>
+  <ul>Redirection Attacks -> code and links that resemble a legitimate site that a user wants to visit; however the url redirects to a malicious website</ul>
+  <ul>Frame Injection -> when scripts do not validate their input, attackers inject code through frames; occur in HTML pages with frames</ul>
+  <ul>Session Fixation -> attackers authenticate using a known session ID and use the session ID to hijack a user-validated session</ul>
+  <ul>ActiveX Attacks -> via email or via a link constructed such that the loopholes or remote execution code becomes accessible, allowing the attackers to obtain access privileges equal to those of 
+  authorized users</ul>
+ </ol></p>
+
+<h1>Attack Web Services</h1>
+<p>Web applications often use web services to implement a particular functionality. If web services integrated within the web applications are vulnerable, the applications themselves become 
+vulnerable. Web services work on top of legacy web applications, and any attack on web service will immediately expose an underlying application's business and logic vulnerabilities for various attacks.</p>
+
+ <h1>Web Services Probing Attacks</h1>
+ <p>WSDL files are automated documents consisting of sensitive information about service ports, connections formed between two electronic machines etc. Attackers can use WSDL probing attacks to 
+ obtain information about the vulnerabilities in public and private web services, as well as to perform an SQL attack.</p>
+ <p><ol>
+  <ul>Trap the WSDL document from web service traffic and analyze it to determine the purpose of the application, functional breakdown, entry points and message types</ul>
+  <ul>Create a set of valid requests by selecting a set of operations and formulating the request messages according to the rules of the XML schema that can be submitted to the web service</ul>
+  <ul>Use these requests to include malicious contents in SOAP requests and analyze errors to gain a deeper understanding of potential security weaknesses</ul>
+ </ol></p>
+
+ <h2>Web Service Attacks: SOAP Injection</h2>
+ <p>SOAP is a lightweight and simple XML based protocol designed to exchange structured and type information on the web. The XML envelope element is always the root element of a SOAP message in the 
+ XML schema. SOAP injection includes special characters such as single quotes, double quotes, semicolons etc. The attacker injects malicious query strings in the user input field to bypass web service 
+ authentication mechanisms and access backend databased, works similar to SQL injection attacks.</p>
+ <h2>Web Service Attacks: SOAPAction Spoofing</h2>
+ <p>Every SOAP request message contains an operation that is executed by the application and is included as the first child element in the SOAP body. When SOAP messages are transmitted using HTTP, 
+ an additional HTTP header known as SOAPAction is used. The operation to be executed is included in the SOAPAction header. The header element informs the receiving web service about the operation 
+  present in the SOAP body without the need to perform XML parsing. The attacker can exploit this optimization to manipulate the operations included in the SOAPAction headers. Attackers use tools 
+ such as <a target=_blank href=https://github.com/RUB-NDS/WS-Attacker>WS-Attacker</a> to perform SOAPAction spoofing.</p>
+
+ <h2>Web Service Attacks: WS-Address Spoofing</h2>
+ <p>WS-Address provides additional routing information in the SOAP header to support asynchronous communication. This technique allows the transmission of web service requests and response messages 
+ using different TCP connections. It is essential for long-running service requests where the calculation time of the server-side application exceeds the lifetime of a single TCP connection</p>
