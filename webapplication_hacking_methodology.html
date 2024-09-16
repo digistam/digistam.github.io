@@ -227,5 +227,14 @@ corresponding to the authorized user actions. In general, event handlers such as
  (SP). The service provider entrusts the identity provider with validating users. Then, the identity provider responds with an SAML assertion (confirmation message) after validating any user.</p>
  <p>With the evolution of the SSO infrastructure, the authentication process has been handed over to third-party identity provider applications to access functions from the service provider application. SAML messages 
  are encrypted using Base64 encoding. Attacker can easily decrypt these messages and read the content of the messages. Two major fields in SAML messages, signature and assertion, are susceptible to midway 
- tampering. Signature is used to build a trust relationship between SP and IdP and assertion is used to direct the SP on providing application services to valid users. SAML Raider is a Burp Suite extension 
- used for SAML infrastructure testing.</p>
+ tampering. Signature is used to build a trust relationship between SP and IdP and assertion is used to direct the SP on providing application services to valid users. <a target=_blank href=https://portswigger.net/bappstore/c61cfa893bb14db4b01775554f7b802e>SAML Raider</a> 
+  is a Burp Suite extension used for SAML infrastructure testing.</p>
+
+ <h1>Attack Authorization Schemes</h1>
+ <p>A web application contains an authorization mechanism that restricts access to a specific resource or functionality (for example: Admin page) by authenticated users. The web application always performs user 
+ authorization following authentication. An attacker implements the flawed authorization mechanism in the web application and takes advantage of it to access restricted pages by escalating privileges. The attacker 
+ tries to gain access to information without proper credentials. Thus, the attacker uses various techniques to attack the authorization schemes of the web application.</p>
+ <h2>Authorization Attack</h2>
+ <p>In an authorization attack, the attacker first finds a legitimate account with limited provileges, then logs in as that user, and gradually escalates privileges to access protected resources. 
+ He then manipulates the HTTP request to subvert the application authorization schemes by modifying input fields related to the user ID, username, access group, cost, file names, file identifiers etc. 
+ Attackers use sources such as uniform resource indentifiers, parameter tampering, POST data, HTTP headers, query strings, cookies and hidden tags to perform authorization attacks.</p>
