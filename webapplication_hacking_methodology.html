@@ -463,4 +463,46 @@ vulnerable. Web services work on top of legacy web applications, and any attack 
 
  <h2>Web Service Attacks: WS-Address Spoofing</h2>
  <p>WS-Address provides additional routing information in the SOAP header to support asynchronous communication. This technique allows the transmission of web service requests and response messages 
- using different TCP connections. It is essential for long-running service requests where the calculation time of the server-side application exceeds the lifetime of a single TCP connection</p>
+ using different TCP connections. It is essential for long-running service requests where the calculation time of the server-side application exceeds the lifetime of a single TCP connection. WS-Address 
+ includes an optional FaultTo address element for stating an alternative endpoint that is to be used in case of any complications. As the requester selects the endpoint address using in the ReplyTo and 
+ FaultTo headers, it is not secured properly against tampering by intermediaries. Although the specification asks to perform digital signatures on these header fields, the values mostly depend on the 
+ default setting without any proper security. This causes a vulnerability that can be exploited by the attacker to perform the WS-Address spoofing attack.</p>
+ <p>In the WS-Address spoofing attack, an attacker sends a SOAP message containing fake WS-Address information to the server. The ReplyTo header consists of the address of the endpoint selected by the 
+ attacker instead of the web service client. The endpoint selected by the attacker receives unnecessary traffic via SOAP messages. Furthermore, the attacker may generate a massive amount of traffic, 
+ thus resulting in a DoS attack. Attackers use tools 
+ such as <a target=_blank href=https://github.com/RUB-NDS/WS-Attacker>WS-Attacker</a> to perform WS-Addressing spoofing attacks.</p>
+
+ <h2>Web Service Attacks: XML Injection</h2>
+ <p>Web applications sometimes use XML to store data such as user credentials in XML documents; attackers can parse and view such data using XPath. Attackers identify the XPath and insert an XML 
+ injection or XML schema to bypass the authentication process and gain unrestricted access to the data stored in XML. Attackers inject XML data and tags into user input fields to manipulate XML 
+ schema or populate XML databases with bogus entries. XML injection can be used to bypass authorization, escalate privileges and generate web services DoS attacks.</p>
+
+ <h2>Web Services Parsing Attacks</h2>
+ <p>Parsing attacks exploit vulnerabilities and weaknesses in the processing capabilities of the XML parser to create a DoS attack or generate logical errors in web service request processing.
+ A parsing attack is performed when an attacker succeeds in modifying a file request or string. The attacker changes the values by superimposing one or more operating system commands via the request. 
+ Parsing is possible when the attacker executes .bat or .cmd files.</p>
+ <p><ol>
+  <ul>Recursive Payloads -> the attacker queries for web services with a grammatically correct SOAP document that contains infinite processing loops, resulting in exhaustion of XML parser and CPU resources</ul>
+  <ul>Oversize Payloads -> excessively large payloads to consume all the resources, rendering web services inaccessible to other legitimate users</ul>
+ </ol></p>
+
+ <h1>Web Service Attack Tools</h1>
+ <p><ol>
+  <ul><a target=_blank href=https://www.soapui.org>SoapUI</a> -> probing, SOAP injection, XML injection, web service parsing</ul>
+  <ul><a target=_blank href=https://www.altova.com>XMLSpy</a> -> XML editor en development environment</ul>
+  <ul><a target=_blank href=https://www.metasploit.com>Metasploit</a></ul>
+  <ul>w3af</ul>
+  <ul>Nikto</ul>
+  <ul>Sn1per</ul>
+  <ul>WSSiP</ul>
+  <ul>X Attacker</ul>
+  <ul>timing_attack</ul>
+  <ul>HTTrack</ul>
+  <ul>SQL Injection Scanner</ul>
+  <ul>XSS Scanner</ul>
+  <ul>SQLi Explorer</ul>
+  <ul>HTTP Request Logger</ul>
+  <ul>WebCopier</ul>
+  <ul>WPScan</ul>
+  <ul>TIDoS-Framework</ul>
+ </ol></p>
