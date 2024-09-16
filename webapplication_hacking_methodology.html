@@ -238,3 +238,154 @@ corresponding to the authorized user actions. In general, event handlers such as
  <p>In an authorization attack, the attacker first finds a legitimate account with limited provileges, then logs in as that user, and gradually escalates privileges to access protected resources. 
  He then manipulates the HTTP request to subvert the application authorization schemes by modifying input fields related to the user ID, username, access group, cost, file names, file identifiers etc. 
  Attackers use sources such as uniform resource indentifiers, parameter tampering, POST data, HTTP headers, query strings, cookies and hidden tags to perform authorization attacks.</p>
+
+ <h2>Uniform Resource Identifier</h2>
+ <p>A uniform resource identifier (URI) provides a means to identify a source. It is a global identifier for internet resources accessed remotely or locally. An attacker may use 
+ URIs to access documents / directories that are protected from publishing, inject SQL queries or other unused commands into an application, and/or make a user view a certain site that is connected to another server.</p>
+ <h2>Parameter Tampering</h2>
+ <p>Manipulation of parameters exchanged between server and client to modify the application data, such as price and quantity of products, permissions and user credentials. This information is usually stored in 
+ cookies, URL query strings or hidden form fields, and attackers can use them to increase control and application functionality.</p>
+ <h2>POST data</h2>
+ <p>Often comprises authorization and session information, as the information provided by the client must be associated with the session that provided it. The attacker can exploit vulnerabilities in the post data and 
+ easily manipulate it.</p>
+ <h2>HTTP headers</h2>
+ <p>Web browsers do not allow header modification. Therefore, to modify the header the attacker has to write his own program and perform the HTTP request. He may also use available tools to modify any data sent 
+ from the browser. In general, an authorization HTTP header contains a username and password encoded in Base-64. The attacker can compromise the header by submitting two HTTP requests bound in the same header. 
+ The proxy system executes the first HTTP header and the target system executes the other HTTP header, allowing the attacker to bypass the proxy's access control.</p>
+ <h2>Query String and Cookies</h2>
+ <p>Browsers use cookies to maintain their state in the stateless HTTP protocol as well as to store user preferences, session tokens and other data. Clients can modify the cookies and send them to the 
+ server with URL requests, thereby allowing the attacker to modify the cookie content. Cookie modification depends on the cookie usage, which ranges from session tokens to authorized decision-making arrays.</p>
+ <h2>Hidden Tags</h2>
+ <p>When a user selects anything on an HTML page, the selection is stored as a form field value and sent to the application as an HTTP request (GET or POST). HTML can store field values as hidden fields, which 
+ the browser does not extract to the screen; instead it collects and submits these fields as parameters during form submissions, which the user can manipulate. However, he has to make a choice. Code sent to 
+ browsers does not have any security value; therefore by manipulating the hidden values, the attacker can easily access the page and run it in the browser.</p>
+
+ <h2>Authorization Attack: HTTP request tampering</h2>
+ <p>HTTP headers control information passed from web clients to web servers on HTTP requests and from web servers to web clients on HTTP responses. Each header consists of a single text line with a name and 
+ a value. There are two main ways to send data with HTTP: via the URL or the form. Tampering with HTTP data refers to modifying data of the HTTP request (or response) before the recipient reads it. The 
+ attacker changes the HTTP request without using another user's ID.</p>
+ <p><ol>
+  <ul><b>Query String Tampering</b> -> if the query string is visible in the address bar in the browser, then try to change the string parameter to bypass authorization mechanisms; you can use web spidering 
+  tools such as Burp Suite to scan the web application for POST parameters</ul>
+  <ul><b>HTTP headers</b> -> if the application uses the Referer header for making access control decisions, then try to modify it to access protected application functionalities. In the example ItemID=201 
+  is not accessible as the Admin parameter is set to false, you can change it to true and access protected items</ul>
+ </ol></p>
+
+   <h2>Authorization Attack: Cookie Parameter Tampering</h2>
+  <p>When the user logs into the site, the web application sets the session cookie and stores it in the browser.</p>
+ <p><ol>
+  <ul>Collect some sessions cookies set by the web application and analyze them to determine the cookie generation mechanism</ul>
+  <ul>Trap the session cookie set by the web application, tamper it's parameters using tools such as Burp Suite and replay it to the application to gain unauthorized access to others' profiles</ul>
+  <ul>The tool intercepts every request sent from the browser and allows you to edit the cookie to replace it with the tampered cookie parameters; if the cookie is not secure, you may be able to guess 
+  the parameters</ul>
+ </ol></p>
+
+ <h2>Burp Suite</h2>
+ <p><a target=_blank href=https://portswigger.net>Burp Suite</a> is an integrated platform for performing security testing of web applications. It has various tools that work together to support the 
+ entire testing process, from initial mapping and analysis of an application's attack surface to finding and exploiting security vulnerabilities. </p>
+
+ <h1>Attack Access Controls</h1>
+ <p>Access controls are part of the application's security mechanisms that are logically based on authentication and session management. An attacker walks through a website to identify the following 
+ access controls details of the application:</p>
+ <p><ol>
+  <ul>Individual access to a particular subset of data</ul>
+  <ul>Levels of grant access (employees, managers, supervisors, CEOs etc.)</ul>
+  <ul>Administrator functionality to configure and monitor</ul>
+  <ul>Functionalities that allow escalating privileges</ul>
+ </ol></p>
+ <h2>Exploiting Insecure Access Controls</h2>
+ <p><ol>
+  <ul>Parameter-Based Access Control</ul>
+  <ul>Referer-Based Access Control</ul>
+  <ul>Location-Based Access Control</ul>
+ </ol></p>
+
+ <h2>Access Controls Attack Methods</h2>
+ <p><ol>
+  <ul>Attack with different user accounts</ul>
+  <ul>Attack Multistage Processes</ul>
+  <ul>Attack Static Resources</ul>
+  <ul>Attack Direct Access to Methods</ul>
+  <ul>Attack Restrictions on HTTP Methods</ul>
+ </ol></p>
+
+ <h1>Attack Session Management Mechanism</h1>
+ <p>Web application session management involves exchanging sensitive information between the server and its clients wherever required. If such session management is insecure, the attacker can take advantage 
+ of it to attack the web application through the session management mechanism, which is the key security component in most web applications.</p>
+ <h2>Session Management Attack</h2>
+ <p>Two stages: session token generation and exploitation of session token handling</p>
+ <p><ol>
+  <ul>Session Token Prediction -> when the server uses a deterministic pattern between session IDs</ul>
+  <ul>Session Token Tampering -> once the attacker gain the previous and next session ID, he can tamper with the session data and engage in further malicious activities</ul>
+ </ol></p>
+ <p>Once attackers generate a valid session token, he tries to exploit session token handling as follows:</p>
+ <p><ol>
+  <ul>MITM</ul>
+  <ul>Session Hijacking</ul>
+  <ul>Session Replay</ul>
+ </ol></p>
+ <h2>Attacking Session Token Generation Mechanism</h2>
+ <p>Through session prediction, attackers identify a pattern in the session token exchanged between client and server. This can happen when the web application has weak, predictable session identifiers.</p>
+ <p><ol>
+  <ul>Weak Encoding</ul>
+  <ul>Session Token Prediction</ul>
+ </ol></p>
+ <h2>Attacking Session Tokens Handling Mechanism: Session Token Sniffing</h2>
+ <p><ol>
+  <ul>Sniff the application traffic using a sniffing tool such as Wireshark or an intercepting proxy such as Burp Suite</ul>
+  <ul>If HTTP cookies are being used as the transmission mechanism for session tokens and the secure flag is not set, then try to replay the cookie to gain unauthorized access to the application</ul>
+  <ul>Use session cookies to perform session hijacking, session replay and MITM attacks</ul>
+ </ol></p>
+ <p>Sniffing the valid session token is important in session management attacks.</p>
+
+ <h1>Perform Injection / Input Validation Attacks</h1>
+ <p>Injection attacks are very common in web applications. They exploit the vulnerable input validation mechanism implemented by the web application. There are many types of injection attacks, such as web 
+ script injection, OS command injection, SMTP injection, LDAP injection and XPath injection. Another frequently occurring attack is an SQL injection attack.</p>
+ <p>Injection frequently takes place when a browser sends user-provided data to the interpreter as part of a command or query. For launching an injection attack, attackers supply crafted data that tricks 
+ the interpreter into executing unintended commands or queries. Because of these injection flaws, attackers can easily read, create, update and remove any arbitrary data available to the application. 
+ In some cases, attackers can even bypass a deeply nested firewall environment and take complete control of the application and its underlying system.</p>
+ <h2>Injection Attacks / Input Validation Attacks</h2>
+ <p>To perform injection attacks, supply crafted malicious input that is syntactically correct according to the interpreted language being used to break the application's normal intended operation.</p>
+ <p><ol>
+  <ul>Web Scripts Injection</ul>
+  <ul>OS Commands Injection</ul>
+  <ul>SMTP Injection</ul>
+  <ul>SQL Injection</ul>
+  <ul>LDAP Injection</ul>
+  <ul>XPath Injection</ul>
+  <ul>Buffer Overflow</ul>
+  <ul>File Injection</ul>
+  <ul>Canonicalization</ul>
+ </ol></p>
+
+ <h2>Perform Local File Inclusion (LFI)</h2>
+ <p>LFI enables attackers to add their own files on a server via a web browser. It is often triggered in PHP based websites. Attackers can fetch the /etc/passwd file using:</p>
+ <p>http://xyz.com/page=../../../../../../etc/passwd</p>
+
+ <h2>Attack Application Logic Flaws</h2>
+ <p>In all web applications, a vast amount of logic is applied at every level. Most attackers focus on high-level attacks such as SQL Injection and XSS scripting. Most application flaws arise from the 
+ negligence and false assumptions of developers. </p>
+
+ <h2>Attack Shared Environments</h2>
+ <p>Organizations leverage third-party service providers for hosting and maintaining their web applications and relevant web infrastructure. This leads to many threats and attacks against web 
+ applications. </p>
+ <p><ol>
+  <ul>Attacks on the access mechanism -> The application service provider provides an administrative web interface to the organizations for configuring and managing the web application and its database from 
+  a remote location. This remote access mechanism is vulnerable to various attacks. Check whether the remote access mechanism has any unpatched vulnerabilities or configuration errors that can be exploited; 
+  check whether the access privileges are properly separated between clients</ul>
+  <ul>Attacks between applications -> vulnerabilities existing in one web application may allow attackers to execute malicious scripts and compromise the security of other hosted web applications</ul>
+ </ol></p>
+
+ <h2>Attack Database Connectivity</h2>
+ <p>Database connection strings are used to connect applications to database engines. In these attacks, attackers target a database connection that forms a link between a database server and its client 
+ software. A web application establishes a connection with the database by providing a driver with a connection string that holds the address of a specific database or server and offers instance and user 
+ authentication credentials:</p>
+ <p>Server=sql_box; Database=Common; User ID=uid; Pwd=password</p>
+ <p>Attacking data connectivity cna results in unauthorized control over the database. Database connectivity attacks exploit the way in which applications connect to the database instead of abusing 
+ database queries. For this purpose, use methods such as connection string injection attack, hash stealing, port scanning and hijacking web credentials. Data connectivity attacks are of the following types:</p>
+ <p><ol>
+  <ul>Connection String Injection -> attackers inject parameters in a connection string by appending them with a semicolon</ul>
+  <ul>Connection String Parameter Pollution (CSPP) Attacks -> overwrite parameter values in the connection string</ul>
+  <ul>Connection Pool DoS -> examine connection pooling settings of the target application, construct a large malicious SQL query and run multiple queries simultaneously to consume all the connections in the 
+  connection pool, causing database queries to fail for legitimate users</ul>
+ </ol></p>
