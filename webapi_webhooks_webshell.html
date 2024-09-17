@@ -176,3 +176,93 @@ on the new event occurrence. Here, systems need not known what should be run; th
    <ul>AntiShell Web Shell Hunter (antishell.com)</ul>
    <ul>Astra (getastra.com)</ul>
   </ol></p>
+
+<h1>Secure API Architecture</h1>
+<p>API is a popular technology that acts as a gateway for communication and integrates different applications using the web. To safeguard APIs, a secure API architecture is needed. API architecture is built 
+using an API gateway consisting of firewalls that work as a server to control the traffic and detect all possible attacks. The process of published API is implemented by the API security professional.</p>
+<h2>Layered Security in an API</h2>
+<p><ol>
+ <ul>Layer One -> validate the user whether he is authorized by the company; identify invalid companies</ul>
+ <ul>Layer Two -> middleware used by the API </ul>
+ <ul>Layer Three -> SQL join</ul>
+ <ul>Layer Four -> mapper layer</ul>
+ <ul>Layer Five -> response filter of API verifies the models</ul>
+</ol></p>
+
+<h1>Web Application Security</h1>
+<h2>Web Application Security Testing</h2>
+<p><ol>
+ <ul>Manual Web Application Security Testing</ul>
+ <ul>Automated Web Application Security Testing</ul>
+ <ul>Static Application Security Testing (SAST)</ul>
+ <ul>Dynamic Application Security Testing (DAST)</ul>
+</ol></p>
+
+<h2>Web Application Fuzz Testing</h2>
+<p>Web application fuzz testing (fuzzing) is a blackbox testing method. It is a quality checking and assurance technique used to identify coding errors and security loopholes in web applications.</p>
+<p><ol>
+ <ul>Identify the target system</ul>
+ <ul>Identify inputs</ul>
+ <ul>Generate fuzzed data</ul>
+ <ul>Execute the test using fuzz data</ul>
+ <ul>Monitor system behavior</ul>
+ <ul>Log defects</ul>
+</ol></p>
+<h2>Fuzz Testing Strategies</h2>
+<p><ol>
+ <ul>Mutation-Based</ul>
+ <ul>Generation-Based</ul>
+ <ul>Protocol-Based</ul>
+</ol></p>
+<h2>Fuzz Testing Tools</h2>
+<p><ol>
+ <ul>WSFuzzer (owasp.org)</ul>
+ <ul>WebScarab (owasp.org)</ul>
+ <ul>Burp Suite (portswigger.net)</ul>
+ <ul>HCL AppScan (hcltechsw.com)</ul>
+ <ul>Peach Fuzzer (peach.tech)</ul>
+</ol></p>
+<h2>Source Code Review</h2>
+<p>Source code reviews are used to detect bugs and irregularities in the developed web applications. They can be performed manually or using automated tools to identify specific areas in the application code
+to handle functions regarding authentication, session management and data validation.</p>
+<h2>Encoding Schemes</h2>
+<p>Encoding is the process of converting source information into its equivalent symbolic form which helps in hiding the meaning of the data. At the receiving end, the encoded data is decoded into the plaintext 
+format. Decoding is the reverse process of encoding.</p>
+<p><ol>
+ <ul>URL Encoding -> %3d =; %0a new line; %20 space</ul>
+ <ul>HTML Encoding -> &amp; &; &lt; <; &gt; ></ul>
+ <ul>Unicode Encoding -> 16-bit Unicode Encoding %u2215 /; UTF-8 </ul>
+ <ul>Base64 Encoding -> cake = 01100011011000010110101101100101</ul>
+ <ul>Hex Encoding -> Hello A125C458D8</ul>
+</ol></p>
+
+<h1>Whitelisting vs Blacklisting Applications</h1>
+<p><ol>
+ <ul>Application Whitelisting -> list of applications components such as software libraries, plugins etc.</ul>
+ <ul>Application Blacklisting -> malicious applications or software that are not permitted</ul>
+</ol></p>
+<h2>Blacklisting and whitelisting for basic URL management</h2>
+<p>URL blacklisting prevents the user from loading web pages from the blacklisted URLs. The user can access all URLs except those in the blacklist. URL whitelisting permits the users to access only specific URLs 
+as exclusions to those that are added to the URL blacklist.</p>
+<p><ol>
+ <ul>Allow access to all URLs except the blocked ones</ul>
+ <ul>Block access to all URLs except permitted ones</ul>
+ <ul>Define exceptions to very restrictive blacklists</ul>
+ <ul>Allow the browser to open applications</ul>
+</ol></p>
+<p>URL blacklisting is performed using the following methods:</p>
+<p><ol>
+ <ul>Allow access to all URLs except the blocked ones</ul>
+ <ul>Block access to all URLs except permitted ones</ul>
+ <ul>Define exceptions to very restrictive blacklists</ul>
+ <ul>Allow the browser to open apps</ul>
+</ol></p>
+<h2>Application Whitelisting and Blacklisting Tools</h2>
+<p><ol>
+ <ul>ManageEngine Application Control Plus (manageengine.com)</ul>
+ <ul>ShadowNet (riskanalytics.com)</ul>
+ <ul>Cisco Umbrella (umbrella.cisco.com)</ul>
+ <ul>Centrify Server Suite (centrify.com)</ul>
+ <ul>APT Groups and Operations (docs.google.com)</ul>
+ <ul>NordVPN</ul>
+</ol></p>
