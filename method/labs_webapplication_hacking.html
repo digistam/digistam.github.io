@@ -57,3 +57,27 @@ security vulnerabilities manually</p>
  within the application; it also allows attackers to recover backup copies of live files, configuration and log files containing sensitive data, backup archives containing snapshots of files within the 
  web root and new functionality that is not linked to the main application</ul>
 </ol></p>
+
+<h2>Detect Load Balancers</h2>
+<p><ol>
+ <ul><i>sudo dig yahoo.com</i></ul>
+ <ul>If the result displays multiple IP addresses for the domain, it possibly indicates that the host is using a load balancer</ul>
+ <ul>Kali has built-in tool <b>lbd</b> -> load balancing detector</ul>
+ <ul><i>lbd yahoo.com</i></ul>
+</ol></p>
+
+<h1>Identify Web Server Directories using various tools</h1>
+<p>Web servers host the web applications, therefore misconfigurations in the hosting of the web applications may lead to the exposure of critical files and directories. A professional hacker must identify 
+the target web application's files and directories exposed on the internet using various automated tools such as Nmap, <a target=_blank href=https://github.com/OJ/gobuster>GoBuster</a> and <a target=_blank href=https://github.com/maurosoria/dirsearch>Dirsearch</a>.</p>
+<h2>Nmap</h2>
+<p><ol>
+ <ul><i>nmap -sV --script=http-enum www.moviescope.com</i></ul>
+ <ul>The result shows open ports and services, along with their versions</ul>
+ <ul>Observe the identified web server directories under the <b>http-enum</b> section</ul>
+ <ul>Attackers use various techniques to detect the vulnerabilities in the target web applications hosted by the web servers either to gain admin level access or to retrieve sensitive information stored on the server</ul>
+ <ul>The Nmap NSE script http-enum is often used to enumerate the applications, directories and files of the web servers that are exposed on the internet; through this method attackers identify critical security 
+ vulnerabilities on the target web application</ul>
+</ol></p>
+
+<h2>GoBuster</h2>
+<p></p>
