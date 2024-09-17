@@ -1,6 +1,59 @@
  <meta name=”robots” content=”noindex,nofollow”/>
   <a href=../index.html>Back to home</a>
 <hr/>
-<h1>Web API, Webhooks and Web Shell</h1>
-<p>Web APIs help developers in building web applications that retrieve data from multiple online sources. Web APIs are incorporated in many popular applications such as social networking, shopping and 
- search engines. Im
+<h1>Footprinting web infrastructure</h1>
+<p>Footprinting the web infrastructure allows attackers to engage in the following tasks:</p>
+<p><ol>
+ <ul>Server Discovery -> Whois, DNS interrogation, port scanning</ul>
+ <ul>Service Discovery -> discover services to determine attack paths</ul>
+ <ul>Server Identification -> bannergrabbing; helps to identify make and version of web server software</ul>
+ <ul>Hidden content discovery -> extract content and functionality that is not directly linked to or reachable from main visible content</ul>
+</ol></p>
+<h2>Web Application Reconnaissance using Nmap and Telnet</h2>
+<p>A professional hacker gathers as much information as possible about the target website by footprinting</p>
+<p><ol>
+ <ul>Start Kali</ul>
+ <ul>Perform a Whois lookup to gather information about the IP address of the web server and the complete information about the domain such as its registration details, name servers, IP address, locations</ul>
+ <ul>Tools: Netcraft, SmartWhois, WHOIS Lookup, Batch IP Converter</ul>
+ <ul>Perform DNS Interrogation to gather information about the DNS servers, DNS records and types of servers used by the target organization; DNS zone data include DNS domain names, computer names, IP addresses, 
+ domain mail servers, service records etc.</ul>
+ <ul>Tools: DNSRecon, DNS Records, Domain Dossier (centralops.net)</ul>
+ <ul>Port scanning to gather information about the open ports and services running on the machine hosting the target website</ul>
+ <ul><i>nmap -T4 -A -v www.moviescope.com</i> (-T4 specifies setting time template (0-5); -A aggressive scan; -v verbose output (include all hosts and ports in the output)</ul>
+ <ul>View the target machine name, NetBIOS name, DNS name, MAC address, OS and other information</ul>
+ <ul>Perform banner grabbing to identify the make, model and version of the target web server software:</ul>
+ <ul><i>telnet www.moviescope.com 80</i></ul>
+ <ul><i>GET / HTTP/1.0</i></ul>
+ <ul>The make, model and version of the web server software will be revealed</ul>
+ <ul>Now, we performed web application reconnaissance (Whois Lookup, DNS interrogation, port and services discovery, banner grabbing and firewall detection)</ul>
+</ol></p>
+<h2>Web Application Reconnaissance using WhatWeb</h2>
+<p><a target=_blank href=https://whatweb.net/>WhatWeb</a> identifies websites and recognizes web technologies, including CMS, blogging platforms etc.</p>
+<p><ol>
+ <ul>Kali -> Console -> sudo whatweb</ul>
+ <ul><i>whatweb www.moviescope.com</i></ul>
+ <ul>The result shows a lot of interesting information, such as the website infrastructure, CMS, plugin versions and more !</ul>
+ <ul><i>whatweb -i www.moviescope.com</i></ul>
+ <ul>Using the -i flag, a detailed report on the target website is created in the console</ul>
+ <ul><i>whatweb --log-verbose=MovieScope_Report www.moviescope.com</i></ul>
+ <ul>This command will generate a very usable report with the name MovieScope_Report and saves this file in the current folder</ul>
+ <ul>Attackers use this information to determine the website infrastructure and find underlying vulnerabilities and later exploit them to launch further attacks</ul>
+</ol></p>
+<h2>Performing Web Spidering using OWASP ZAP</h2>
+<p>OWASP Zed Attack Proxy (ZAP) is an integrated penetration testing tool for finding vulnerabilities in web applications. It offers automated scanners as well as a set of tools that allow you to find 
+security vulnerabilities manually</p>
+<p><ol>
+ <ul>Kali -> console -> sudo zaproxy</ul>
+ <ul>After completing initialization -> Do you want to persist the ZAP Session ? -> No !</ul>
+ <ul>Click the <b>Automated Scan</b> option under "Welcome to OWASP ZAP"</ul>
+ <ul>The <b>Automated Scan</b> wizard appears; enter the target website under <b>URL to attack</b> -> Attack !</ul>
+ <ul>OWASP ZAP starts scanning the target website (<b>spidering</b>)</ul>
+ <ul>After performing web spidering, OWASP ZAP performs active scanning -> navigate to the <b>Active Scan</b> tab to observe the various scanned links</ul>
+ <ul>After completing the active scan, the results appear under the <b>Alerts</b> tab, displaying the various vulnerabilities and issues associated with the target website</ul>
+ <ul>Click on the <b>Spider</b> tab from the lower section to view the web spidering information; by default the URLs tab appears under the Spider tab </ul>
+ <ul>The URLs tab contains various links for hidden content and functionality associated with the target website</ul>
+ <ul>Navigate to the Messages tab under the Spider tab to view more detailed information regarding the URLs obtained while performing the web spidering</ul>
+ <ul>Attackers perform web spidering or crawling to discover hidden content and functionality, which is not reachable from the main visible content, to exploit user privileges 
+ within the application; it also allows attackers to recover backup copies of live files, configuration and log files containing sensitive data, backup archives containing snapshots of files within the 
+ web root and new functionality that is not linked to the main application</ul>
+</ol></p>
