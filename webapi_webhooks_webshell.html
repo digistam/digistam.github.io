@@ -7,4 +7,172 @@
  <h2>Wat is Web API</h2>
  <p>Application programming interface that provides online web services to client side applications for retrieving and updating data from multiple online sources. Special type of interface where interactions between 
  applications can be allowed through the internet and some web-based protocols. Web APIs make resources accessible on the internet and they are generally accessed via the HTTP protocol. They also consist of 
- different types of tools, functions and protocols that can be used to develop software or applications without any complexity.</p>
+ different types of tools, functions and protocols that can be used to develop software or applications without any complexity. Using a centralized web API reduces the complexity and increases the integrity of updating and 
+ changing the data or business logic at one central location.</p>
+<h2>Web Service APIs</h2>
+<p><ol>
+ <ul>SOAP API</ul>
+ <ul>REST (Representation State Transfer) API -> architectural style of web service</ul>
+ <ul>RESTful API -> HTTP methods PUT, POST, GET, DELETE</ul>
+ <ul>XML-RPC</ul>
+ <ul>JSON-RPC</ul>
+</ol></p>
+<p>APIs with the following features can be referred to as RESTful APIs:</p>
+<p><ol>
+ <ul>Stateless</ul>
+  <ul>Cacheable</ul>
+ <ul>Client-server Environment</ul>
+ <ul>Uniform Interface</ul>
+ <ul>Layered System</ul>
+ <ul>Code on Demand</ul>
+</ol></p>
+
+<h2>Webhooks</h2>
+<p>Webhooks are user-defined HTTP callback or push APIs that are raised based on events triggered, such as comment received on post and pushing code to the registry. A webhook allows an application to update 
+other applications with the latest information. Once invoked, it supplies data to the other applications, which means that users instantly receive real-time information. Webhooks are sometimes called "Reverse APIs"
+as they provide what is required for API specification, and the developer should create an API to use a webhook.</p>
+<p>A webhook is an API concept that is also used to send text messages and notifications to mobile numbers or email addresses from an application when a specific event is triggered. For instance, if you search 
+for something in the online store and the required item is out of stock, you click on the "Notify me" bar to get an alert from the application when that item is available for purchase. These notification from the 
+applications are usually sent through webhooks.</p>
+<h2>Operation of Webhooks</h2>
+<p>Webhooks are enrolled along with the domain registration via the user interface or API to inform the clients about a new occurrence. The generated path contains the required code that automatically executes 
+on the new event occurrence. Here, systems need not known what should be run; they just need to trace the path to generate notifications. A webhook is a powerful tool because everything remains isolated on the web. 
+ A webhook is an HTTP-based callback function that allows lightweight, event-driven communication between 2 APIs. Webhooks are used by a wide variety of web apps to receive small amounts of data from other apps.
+ A webhook is an HTTP request, triggered by an event in a source system and sent to a destination system, often with a payload of data. Webhooks are automated, in other words they are automatically sent out when 
+ their event is fired in the source system. This provides a way for one system (source) to "speak" (HTTP request) to another system (destination) when an event occurs, and share information (request payload) about the 
+ event that occurred.</p>
+ <p>Example: you subscribe to a streaming service. The streaming service wants to send you an email at the beginning of each month when it charges your creditcard. The streaming service can subscribe to the banking 
+ service (source) to send a webhook when a credit card is charged (event trigger) to their emailing service (destination). When the event is processed, it will send you a notification each time your card is charged.</p>
+ <p>Webhooks are automated scripts that help transfer data or information between two digital services. A webhook is an HTTP request that is triggered when an event happens in an app. When that event occurs, 
+  it sends a payload of data directly to the recipient application. Webhooks are a simple automated connection between two digital services. Webhook examples include automatically receiving emails every morning if there is 
+  no time to check the schedule. You can also upload pictures via Instagram directly onto Twitter. Install a doorbell that will flash the lights if someone rings the doorbell. There is an infinite possibility of what 
+  you can do with webhooks.</p>
+
+<h2>Webhooks vs APIs</h2>
+<p><ol>
+ <ul>Webhooks are automated messages from websites to the server; APIs are used for server-to-website communication</ul>
+ <ul>Webhooks get reports or notifications via HTTP POST only when a new update is made; APIs make calls irrespective of the data updates</ul>
+ <ul>Webhooks update applications or services with real-time information; APIs need additional implementations to perform this activity</ul>
+ <ul>Webhooks have less control over data flow; APIs have easy control over data flow</ul>
+</ol></p>
+
+  <h1>TOP 10 API Security Risks</h1>
+  <p><ol>
+   <ul>Broken Object Level Authorization</ul>
+   <ul>Broken User Authentication</ul>
+   <ul>Excessive Data Exposure</ul>
+   <ul>Lack of Resources and Rate Limiting</ul>
+   <ul>Broken Function Level Authorization</ul>
+   <ul>Mass Assignment</ul>
+   <ul>Security Misconfiguration</ul>
+   <ul>Injection</ul>
+   <ul>Improper Assets Management</ul>
+   <ul>Insufficient Logging and Monitoring</ul>
+  </ol></p>
+  <h1>API Vulnerabilities</h1>
+  <p>Poor management of API permissions, flaws in business logic, exposure of application logic and sensitive data such as personally identifiable information (PII) drastically increase the attack surface and 
+  pave the way for attackers to target these vulnerabilities to perform many attacks such as DoS and code injection attack.</p>
+
+  <h1>Web API Hacking Methodology</h1>
+  <p>Web-based APIs are used to support heterogeneous devices such as mobile devices and IoT devices. These devices frequently communicate with backend web servers via APIs. To make these web-based APIs more 
+  user-friendly developers are taking shortcuts to security, making online web services vulnerable to various attacks. Attackers use various techniques to identify and exploit vulnerabilities in these APIs.
+  To hack an API, attackers need to identify the API technologies, security standards and attack surface for exploitation</p>
+  <p><ol>
+   <ul>Identify the target</ul>
+   <ul>Detect security standards</ul>
+   <ul>Identify the attack surface</ul>
+   <ul>Launch attacks</ul>
+  </ol></p>
+  <h2>Identify the target</h2>
+  <p><ol>
+   <ul>HTTP -> APIs such as SOAP and REST mostly use the HTTP protocol</ul>
+   <ul>Message Formats -> the API messages transmitted over the web will take some format such as JSON for REST API and XML for SOAP API</ul>
+  </ol></p>
+  <h2>Detect Security Standards</h2>
+  <p><ol>
+   <ul>APIs such as SOAP and REST implement different authentication/authorization standards such as OpenID Connect, SAML, OAuth 1.X and 2.X and WS-Security</ul>
+   <ul>SSL provides transport-level security for API messages to ensure confidentiality through encryption and integrity through signature. Although SSL is used for security, in most API 
+   messages, only sensitive user data such as credit card details are encrypted, leaving other information in plaintext</ul>
+  </ol></p>
+  <h2>Identify the attack surface</h2>
+  <p>After identifying the target API to attack and its security implementations, an attacker needs to identify the attack surface for launching the attack. It is very easy to find an attack surface 
+  for UI - based applications. However, identifying the attack surface for an API is different as there are no built-in UI fields; we can only see an endpoint. To identify an attack surface of an API, attackers 
+  need to understand the API's endpoints, messages, parameters and behavior.</p>
+  <h2>API Metadata Vulnerabilities</h2>
+  <p>API metadata reveals a large amount of technical information such as paths, parameters and message formats, useful for an attack. REST API uses metadata formats such as Swagger, RAML, API-Blueprint and 
+  I/O Docs, while SOAP API uses WSDL/XML-Schema etc.</p>
+  <h2>API Discovery</h2>
+  <p>If an API has no metadata, attackers monitor and record the communication between the API and and existing client to identify the initial attack surface. For example, an attacker may use a mobile app 
+  that uses target the API, configure a local proxy for recording traffic and finally configure the mobile device to use this proxy to access the API. Then, the attacker uses automated tools to generate metadata 
+  from the recorded traffic</p>
+  <h2>Brute force</h2>
+  <p>If none of the techniques work, the attackers try to identify the API paths etc. through brute-forcing.</p>
+  <h2>Analyze Web API Requests and Responses</h2>
+  <p>Attackers can use tools such as <a target=_blank href=https://www.postman.com>Postman</a> and ReqBin to intercept and analyze target web APIs, websites and web services.</p>
+
+  <h1>Launch Attacks</h1>
+  <p>After identifying the target API, analyzing the message formats and security standards and identifying the attack surface, attackers perform various attacks on the target API to steal sensitive 
+  information such as credit card details and credentials.</p>
+  <p><ol>
+   <ul>Fuzzing -> <a target=_blank href=https://github.com/Fuzzapi/fuzzapi>Fuzzapi</a></ul>
+   <ul>Invalid Input Attacks</ul>
+   <ul>Malicious Input Attacks -> XML bomb attack</ul>
+   <ul>Injection Attacks -> web APIs are also vulnerable to XSS and CSRF attacks</ul>
+   <ul>Exploiting Insecure Configurations -> insecure SSL configuration, insecure Direct Object References (IDOR), insecure Session/Authentication Handling</ul>
+   <ul>Login / Credential Stuffing Attacks -> most users use the same passwords to access different web services</ul>
+   <ul>API DDoS Attacks -> massive volume of traffic using botnets</ul>
+   <ul>Authorization Attacks on API: OAuth Attacks</ul>
+  </ol></p>
+  <h2>Other Techniques to Hack an API</h2>
+  <p><ol>
+   <ul>Reverse Engineering</ul>
+   <ul>User spoofing</ul>
+   <ul>MITM</ul>
+   <ul>Session Replay</ul>
+   <ul>Social Engineering</ul>
+  </ol></p>
+
+  <h1>REST API Vulnerability Scanning</h1>
+  <p><ol>
+   <ul><a target=_blank href=https://www.getastra.com/>Astra</a></ul>
+   <ul><a target=_blank href=https://github.com/Fuzzapi/fuzzapi>Fuzzapi</a></ul>
+   <ul>w3af</ul>
+   <ul>appspider</ul>
+   <ul>vooki</ul>
+   <ul>OWASP ZAP</ul>
+  </ol></p>
+
+  <h1>Web Shells</h1>
+  <p>A web shell is a <b>malicious</b> piece of code or script that is developed using server-side languages as PHP, ASP, PERL, RUBY, Python and then installed on a target server. The malicious script 
+  enables attackers to gain remote access or remote administration capabilities over the target server along with its file system. Attackers inject malicious scripts by exploiting most common vulnerabilities 
+  such as remote file inclusion (RFI), local file inclusion (LFI), exposition of administration interfaces and SQL injection. Attackers can also perform XSS attacks using social engineering techniques to 
+  install the malicious code.</p>
+  <p>Attackers also employ network monitoring tools (mainly Wireshark) to discover vulnerabilities that can be exploited later for web shell injection. These vulnerabilities often lie in a web server's software 
+  or content management system (CMS)</p>
+  <p>Web shells are used by the attacker to carry out privilege escalation and gain remote access to download, upload, erase and execute files on the target web server. Using the web shell, attackers can 
+  also steal private data, damage the website's reputation via DDoS attacks, change the structure of the website, make the web page's resources unavailable on the internet, maintain persistence, exfiltrate data etc.</p>
+  <h2>Web Shell Tools</h2>
+  <p><ol>
+   <ul>WSO Php Webshell</ul>
+   <ul>Caterpillar WebShell (mitre.org)</ul>
+   <ul>b374k shell</ul>
+   <ul>C99</ul>
+   <ul>China Chopper</ul>
+   <ul>R57</ul>
+  </ol></p>
+
+  <h2>How to prevent installation of web shell</h2>
+  <p><ol>
+   <ul>Update OS</ul>
+   <ul>Establish DMZ</ul>
+   <ul>Block all unused ports and services </ul>
+   <ul>etc.</ul>
+  </ol></p>
+  <h2>Web Shell Detection Tools</h2>
+  <p><ol>
+   <ul>Web Shell Detector (shelldetector.com)</ul>
+   <ul>FireEye Network Security (fireeye.com)</ul>
+   <ul>NeoPI</ul>
+   <ul>AntiShell Web Shell Hunter (antishell.com)</ul>
+   <ul>Astra (getastra.com)</ul>
+  </ol></p>
