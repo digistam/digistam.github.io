@@ -80,4 +80,30 @@ the target web application's files and directories exposed on the internet using
 </ol></p>
 
 <h2>GoBuster</h2>
-<p></p>
+<p><i>sudo apt install gobuster</i></p>
+<p>GoBuster can be used in combination with a wordlist; In order to do this create or download a wordlist file</p>
+<p><ol>
+ <ul>gobuster dir -u www.moviescope.com -w /home/attacker/Desktop/common.txt</ul>
+ <ul>In real-time, attackers use GoBuster to scan the target website for web server directories and perform fast-paced enumeration of the hidden files and directories of the target web application. 
+ GoBuster is a command-oriented tool used to brute-force URIs in websites, DNS subdomains and names of virtual hosts on the target server</ul>
+</ol></p>
+
+<h2>DirSearch</h2>
+<p><i>sudo apt install dirsearch</i></p>
+<p><ol>
+ <ul>dirsearch -u www.moviescope.com</ul>
+ <ul>dirsearch lists all the files and directories of the target website; it's very comprehensive </ul>
+</ol></p>
+
+<h2>Vega Vulnerability Scanner</h2>
+<p><a target=_blank href=https://subgraph.com/vega>Vega</a> is a free and open source web security scanner and web security testing platform to test the security of web applications. Vega can help you 
+find and validate SQL Injection, XSS, inadvertently disclosed sensitive information and other vulnerabilities. </p>
+<p>After the scanner finishes performing its vulnerability assessment on the target website, it lists the discovered vulnerabilities under <b>Scan Alert Summary</b></p>
+
+<h1>Perform Web Application Attacks</h1>
+<p>For a hacker, the next step after gathering required information about the target web application is to attack the web application. They must have the required knownledge to perform web application attacks 
+to test the target network's web application security infrastructure.</p>
+
+<h2>Perform a Brute-force Attack using Burp Suite</h2>
+<p>Burp Suite is an integrated platform for performing security testing of web applications. It has various tools that work together to support the entire testing process from the initial mapping and analysis of 
+an application's attack surface to finding and exploiting security vulnerabilities. </p>
