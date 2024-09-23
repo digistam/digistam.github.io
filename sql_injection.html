@@ -135,3 +135,64 @@ user privileges etc.</p>
   <ul>Use the UNION operator to combine the result set of two or more SELECT statements</ul>
   <ul>Check the detailed error messages to gain information to execute SQL injection</ul>
 </ol></p>
+<h2>Identifying Data Entry Paths</h2>
+<p>An attacker will search for all possible input gates of the application through which different SQL injection techniques can be attempted with tools as:</p>
+<p><ol>
+ <ul>Tamper Chrome (Chrome add-on)</ul>
+ <ul>Burp Suite</ul>
+</ol></p>
+<h2>Extracting information through error messages</h2>
+<p>Error messages are essential for extracting information from the database. In certain SQL injection techniques, the attacker forces the application to generate an error message.</p>
+<p><ol>
+ <ul>Parameter Tampering -> an attacker can tamper with HTTP GET and POST requests to generate errors. The Burp Suite or Tamper Chrome utilities can manipulate GET and POST request</ul>
+ <ul>Determining Database Engine Type -> one of the easiest ways to determine the type of database engine used is to generate ODBC errors, which will show what DB engine you are working on</ul>
+ <ul>Determining a SELECT query structure -> with the error message obtained, an attacker can extract the original structure of the query used in the application</ul>
+ <ul>Injections -> most injections will occur in the middle of a SELECT statement; in a SELECT clause we almost always end up in the WHERE section</ul>
+ <ul>Grouping error -> the HAVING command allows to further define a query based on the "grouped" fields; The error message will tell us which columns have not been grouped</ul>
+ <ul>Type mismatch -> try to insert strings into numeric fields</ul>
+ <ul>Blind injection -> use time delays or error signatures to determine or extract information -> ; if condition waitfor delay '0:0:5' --</ul>
+</ol></p>
+<p>If applications do not provide detailed error messages and return a simple 500 server error or a custom error page, then attempt blind injection techniques</p>
+
+<h2>SQL Injection Vulnerability Detection</h2>
+<p>List all input fields, hidden fields and post requests on the website and try to inject code into the input fields to generate an error. </p>
+<h2>Testing for SQL injection</h2>
+<p>There are standard SQL injection inputs called <b>testing strings</b> to perform SQL injection attacks. These testing strings are widely known as a cheat sheet for SQL injection</p>
+<h2>Additional Methods to detect SQL injection</h2>
+<p><ol>
+ <ul>Function Testing -> software or system is tested against a set of inputs according to the end user's needs; the output obtained from the inputs is then evaluated and compared with the expected results to 
+ check whether it conforms with the functionality or base requirement of a product; falls within the scope of black box testing and requires no knowledge of the inner design of the code or logic</ul>
+ <ul>Fuzz Testing -> adaptive SQL injection testing technique used to discover coding errors by inputting a massive amount of random data and observing the changes in output (Burp Suite, BeSTORM)</ul>
+ <ul>Static Testing -> analysis of web application source code</ul>
+ <ul>Dynamic Testing -> analysis of runtime behavior of the web application</ul>
+</ol></p>
+
+<h1>SQL Injection Black Box Pen Testing</h1>
+<p>In black box testing, the pen tester need not to have any knowledge about the network or system to be tested. The first job of the tester is to determine the location and system infrastructure. The tester tries 
+to identify the vulnerabilities of web applications from an attacker's perspective. He uses special characters, white spaces, SQL keywords, oversized requests etc.</p>
+<p><ol>
+ <ul>Detecting SQL Injection Issues -> send single quotes as the input data to catch instances where the user input is not sanitized; sand double quotes as the input data to catch instances where the user input is not 
+ sanitized</ul>
+ <ul>Detect Input Sanitization -> use a square bracket ] as the input data to catch instances where the user input is used as part of an SQL identifier without any input sanitization</ul>
+ <ul>Detecting Truncation Issues -> send long strings of junk data, just as you would send strings to detect buffer overruns; this might return SQL errors</ul>
+ <ul>Detecting SQL Modification -> send long strings of single quote characters (or right square brackets or double quotes); these max out the return values from the REPLACE and QUOTENAME functions and might 
+ truncate the command variable used to hold the SQL statement</ul>
+</ol></p>
+
+<h2>Source Code Review to detect SQL Injection Vulnerabilities</h2>
+<p>Source code review is a security testing method that involves a systematic examination of the source code for various types of vulnerabilities. It is intended to detect and fix security mistakes made by 
+programmers during the development phase. It is a type of white box testing usually performed during the development phase of the Security Development Lifecycle (SDL). </p>
+<p><ol>
+ <ul>Static Code Analysis -> detect possible vulnerabilities in the source code when the code is not executing (static)</ul>
+ <ul>Dynamic Code Analysis -> analyzed during execution of the code</ul>
+</ol></p>
+<p>Some source code analysis tools:</p>
+<p><ol>
+ <ul>Veracode (veracode.com)</ul>
+ <ul>Sonar (sonarsource.com)</ul>
+ <ul>PVS-Studio (viva64.com)</ul>
+ <ul>Coverity Scan (scan.coverity.com)</ul>
+ <ul>Parasoft JTest (parasoft.com)</ul>
+ <ul>CAST Application Intelligence Platform (AIP) (castsoftware.com)</ul>
+ <ul>Klocwork (perforce.com)</ul>
+</ol></p>
