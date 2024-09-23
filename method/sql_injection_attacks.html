@@ -1,0 +1,13 @@
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>Blind SQL Injection Vulnerability in MySQL and MSSQL</h1>
+<p>An attacker can identify blind SQL injection vulnerabilities by simply testing the <b>URLS</b> of a target website.</p>
+<p>For example: <i>shop.com/items.php?id=101</i> has corresponding SQL query <i>SELECT * FROM ITEMS WHERE ID = 101</i> </p>
+<p>Now, give a malicious input such as 1=0 to perform blind SQL injection:</p>
+<p><i>shop.com/items.php?id=101 AND 1=0</i> -> <i>SELECT * FROM ITEMS WHERE ID = 101 AND 1=0</i></p>
+<p>The query will always return FALSE because 1 never equals 0; Attackers try to obtain a TRUE result by injecting 1=1</p>
+<p><i>shop.com/items.php?id=101 AND 1=1</i> -> <i>SELECT * FROM ITEMS WHERE ID = 101 AND 1=1</i></p>
+<p>Finally, the shopping web application returns the original items page. With this result, an attacker determines that the above URL is vulnerable to a blind SQL injection attack.</p>
+<h2>Hide malicious files</h2>
+<p>Hiding files in NTF
