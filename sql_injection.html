@@ -1,0 +1,137 @@
+ <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=index.html>Back to home</a>
+<hr/>
+<h1>SQL Injection</h1>
+<p>SQL injection is the most common and devastating attack that attackers can launch to take control of a website.</p>
+<h2>SQL injection concepts</h2>
+<p>SQL can be used with client-supplied parameters, making it easier for attackers to inject commands. SQL injection is a technique used to take advantage of unsanitized input vulnerabilities to pass SQL commands 
+through a web application for execution by a backend database. SQL injection is possible because of a flaw in web applications and not because of any issue with the database or the web server. SQL injection attacks 
+use a series of malicious SQL queries or SQL statements to manipulate the database directly. SQL injection attacks work because the application does not properly validate an input before passing it to an SQL 
+statement. Possible attacks:</p>
+<p><ol>
+  <ul>Authentication Bypass</ul>
+  <ul>Authorization Bypass</ul>
+  <ul>Information Disclosure</ul>
+  <ul>Compromised Data Integrity</ul>
+  <ul>Compromised Availability of Data</ul>
+  <ul>Remote Code Execution</ul>
+</ol></p>
+<h2>Server-side Technologies</h2>
+<p>Powerful server-side technologies such as ASP.NET, ASP, Cold Fusion, JSP, PHP, Python, Ruby and database servers allow developers to create dynamic, data-driven websites and web applications with incredible ease. 
+Some are prone to SQL injection vulnerabilities and applications using these technologies are vulnerable to SQL injection attacks. Developers sometimes unknowingly ignore secure coding practices when using these 
+technologies, making applications and relational databases vulnerable to SQL injection attacks.</p>
+<h2>HTTP POST Request</h2>
+<p>POST is a method for carrying the requested data to the web server. POST carries the requested data as part of the message body. It is considered more secure than GET. POST can pass large amounts of data to the 
+server and is ideal to communicate with an XML web service. When a user provides information and clicks submit, the browser submits a string to the web server that contains the user's credentials, visible in the 
+body of the HTTP(S) POST request.</p>
+<h2>SQL query</h2>
+<p>Query statements begin with a command such as SELECT, UPDATE, CREATE or DELETE. </p>
+<h2>SQL injection query</h2>
+<p>An SQL injection query exploits the normal execution of SQL. An attacker submits a request with values that will execute normally but return data from the database that the attacker seeks. If the values 
+submitted by the users are not properly validated, the application can potentially be targeted by an SQL injection attack. To create an SQL injection query, an attacker may submit the following values in 
+application input fields, such as username and password fields:</p>
+<p><ol>
+  <ul>Username: Blah' or 1=1 --</ul>
+  <ul>Password: Springfield</ul>
+</ol></p>
+<p>As part of the normal execution of the query, these input values will replace placeholders and the query will appear as:</p>
+<p><i>SELECT Count(*) FROM Users WHERE Username='Blah' OR 1=1 --' AND Password='Springfield';</i></p>
+<p>The condition in the where clause will always be true. There is no syntax error and it does not violate the normal execution of the query. A pair or hyphens (--) indicate the beginning of a comment in SQL.</p>
+<h2>UNION</h2>
+<p>The UNION statement is useful for a hacker because it splices the results of one query into another. If the form on the webpage contains the following code:</p>
+<p><ol>
+  <ul>if (txtFilter.Text.Length > 0) { strSQL += "WHERE ProductName LIKE '" + txtFilter.Text + '";}</ul>
+</ol></p>
+<p>The hacker can type the following query in this textfiels:</p>
+<p><ol>
+  <ul>Blah' UNION SELECT 0, UserName, Password, 0 FROM Users --</ul>
+</ol></p>
+<p>The query will be:</p>
+<p><ol>
+  <ul>SELECT ProductId, ProductName, QuantityPerUnit, UnitPrice FROM Products WHERE ProductName LIKE 'Blah' UNION Select 0, UserName, Password, 0 FROM Users --';</ul>
+</ol></p>
+<p>An SQL injection query exploits the normal execution of SQL and various SQL commands are used to modify the values in the database. </p>
+<h2>Types of SQL Injection</h2>
+<p><ol>
+  <ul>In-band SQL injection -> same communication channel for attack and retrieving results, error-based SQL injection and UNION SQL injection</ul>
+  <ul>Blind/Inferential SQL injection -> the attacker has no error messages from the system to work on, results returned are generally in Boolean form</ul>
+  <ul>Out-band SQL injection -> different communication channels (database email functionality, file writing and loading etc)</ul>
+</ol></p>
+<h2>In-band SQL Injection</h2>
+<p><ol>
+  <ul>Error-based SQL injection -> an attacker intentionally inserts bad inputs, causing database errors; very useful to build a vulnerability-exploiting request</ul>
+  <ul>System Stored Procedure -> attackers exploit databases' stored procedures to perpetrate their attacks</ul>
+  <ul>Illegal / Logically Incorrect Query -> an attacker may gain knowledge by injecting illegal / logically incorrect requests such as injectable parameters, data types, names of tables etc.</ul>
+  <ul>UNION SQL injection -> The UNION SELECT statement returns the union of the intended dataset and the target dataset:</ul>
+  <ul><i>SELECT Name, Phone, Address FROM Users WHERE Id=1 UNION ALL SELECT CreditcardNumber,1,1 FROM CreditCardTable</i></ul>
+  <ul>The attacker checks for the UNION SQL injection vulnerability by adding a single quote character (') to the end of a ".php?id=" command. The type of error message received will tell the attacker 
+  if the database is vulnerable to a UNION SQL injection</ul>
+  <ul>Tautology -> In a tautology-based SQL injection attack, an attacker uses a conditional OR clause such that the condition of the WHERE clause will always be true. Such an attack can be used to bypass 
+  user authentication</ul>
+  <ul><i>SELECT * FROM users WHERE name = '' OR '1'='1';</i></ul>
+  <ul>End-of-Line Comment -> an attacker uses line comments in specific SQL injection inputs (--)</ul>
+  <ul><i>SELECT * FROM members WHERE username = 'admin'-- AND password = 'password'</i></ul>
+  <ul>In-line comments -> attackers simplify an SQL injection attack by integrating multiple vulnerable inputs into a single query using in-line comments. This type of injections allows an attacker to 
+  bypass blacklisting, remove spaces, obfuscate, and determine database versions</ul>
+  <ul><i>INSERT INTO Users (UserName, isAdmin, Password) VALUES ('Attacker', 1, /*', 0, '*/'mypwd')</i></ul>
+  <ul>Piggybacked Query -> additional malicious query injected into the original query, generally on batched SQL queries; attackers use a semicolon (;) as query delimiter to separate the queries; the delimiter 
+  is recognized and the piggybacked query is executed; also known as stacked queries attack</ul>
+  <ul><i>SELECT * FROM EMP WHERE EMP.EID = 1001 and EMP.ENAME = 'Bob'; DROP TABLE DEPT;</i></ul>
+</ol></p>
+<h2>Blind / Inferential SQL Injection</h2>
+<p>Blind SQL injection is used when a web application is vulernable to an SQL injection but the results of the injection are not visible to the attacker. Blind SQL injection is identical to a normal 
+SQL injection except that when an attacker attempts to exploit an application, he sees a generic custom page instead of a useful error message. In blind SQL injection, an attacker poses a <b>true</b> or 
+<b>false</b> question to the database to determine whether the application is vulnerable to SQL injection. A normal SQL injection attack is often possible when the developer uses generic error messages, which may 
+reveal sensitive information or give a path to perform an SQL injection attack on the application. However, when developers turn off the generic error message for the application, it is difficult for the 
+attacker to perform an SQL injection attack. Attackers can steal data by asking a series of true or false questions through SQL statements.</p>
+<h2>Blind: No Error Message</h2>
+<p>When an attacker tries to perform an SQL injection with the query <i>certifiedhacker'; drop table Orders --</i>, two kinds of error messages may be returned. A generic error with information that can help to perform 
+SQL injection attacks and a custom error message "something went wrong". In case of a custom error message, the attacker has to attempt blind SQL injection attack.</p>
+<h2>Blind: WAITFOR DELAY (YES or NO responses)</h2>
+<p>Time delay SQL injection (time-based SQL injection) evaluates the time delay that occurs in response to a True or False query sent to the database. A waitfor statement stops the SQL server for a specific amount of 
+time. Based on the response, an attacker will extract information such as connection time to the database as the system administrator or as another user and launch further attacks.</p>
+<p><ol>
+  <ul><i>IF EXISTS(SELECT * FROM creditcard) WAITFOR DELAY '0:0:10'--</i></ul>
+  <ul>If database creditcard exists, it will sleep for 10 seconds and then it will say "we are unable to process your request"</ul>
+  <ul>If database creditcard does not exist, it will immediately say "we are unable to process your request"</ul>
+</ol></p>
+<h2>Blind: Boolean Exploitation</h2>
+<p>Boolean-based blind SQL injection (inferential SQL injection) is performed by asking the right questions to the application database. If the attacker constructs and executes the right request, the database will 
+reveal everything the attacker wants to know. The attacker uses a set of <b>Boolean</b> operators.</p>
+<p><ol>
+  <ul><i>SELECT Name, Price, Description FROM ITEM_DATA WHERE ITEM_ID = 67 AND 1 = 2</i></ul>
+  <ul>If the result of this query is False, no items will be displayed on the web page; Then, the attacker changes the request to:</ul>
+  <ul><i>http://shop.com/item.aspx?id=67 and 1 = 1</i></ul>
+  <ul>If the result of this query is True, the details of the item with id=67 are displayed and the attacker concludes that the page is vulnerable to an SQL injection attack </ul>
+</ol></p>
+<h2>Blind: Heavy Query</h2>
+<p>In some circumstances, it is impossible to use time delay functions in SQL queries, as the administrator may disable the use of such functions. In such cases, an attacker can use heavy queries to perform 
+a time delay SQL injection attack without using time delay functions. Example:</p>
+<p><ol>
+  <ul>SELECT count(*) FROM all_users A, all_users B, all_users C</ul>
+  <ul>A heavy query attack is a new type of SQL injection attack that has a severe impact on the performance of the server</ul>
+</ol></p>
+<h2>Out-band SQL injection</h2>
+<p>Out-of-band SQL injection attacks are difficult to perform because the attacker needs to communicate with the server and determine the features of the database server used by the web application. Attackers use 
+DNS and HTTP requests to retrieve data from the database server. </p>
+
+<h1>SQL Injection Methodology</h1>
+<p><ol>
+  <ul>Information gathering and SQL injection vulnerability detection</ul>
+  <ul>Launching SQL injection attacks</ul>
+  <ul>Compromising the entire target network (Advanced SQL injection)</ul>
+</ol></p>
+<h2>Information Gathering</h2>
+<p>In the information gathering stage, attackers try to gather information about the target database such as database name, version, users, output mechanism, DB type, user privilege level and OS interaction level.
+Understanding the underlying SQL query will allow the attacker to craft correct SQL injection statements. <b>Error messages</b> are essential for extracting information from the database. Depending on the type of 
+errors found, an attacker may try different SQL injection attack techniques. Information gathering is also known as <b>survey and assess method</b>. The attacker learns the type of database, database version, 
+user privileges etc.</p>
+<p>Different databases require different SQL syntax. The attacker seeks to identify the database engine used by the server.</p>
+<p><ol>
+  <ul>Check if the web application connects to a database server to access some data</ul>
+  <ul>List all input fields and hidden fields, and post requests whose values could be used for crafting an SQL query</ul>
+  <ul>Attempt to inject code into the input fields to generate an error</ul>
+  <ul>Try to insert a string value where a number is expected in the input field</ul>
+  <ul>Use the UNION operator to combine the result set of two or more SELECT statements</ul>
+  <ul>Check the detailed error messages to gain information to execute SQL injection</ul>
+</ol></p>
