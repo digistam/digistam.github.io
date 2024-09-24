@@ -80,3 +80,13 @@ application. Attackers chain SQL commands and user-provided parameters together.
     <ul>Password: 1234 ' AND 1=0 UNION ALL SELECT 'admin','81dc9bdb52d04dc20036dbd8313ed055</ul>
     <ul>81dc9bdb52d04dc20036dbd8313ed055 = MD5(1234)</ul>
 </ol></p>
+
+<h1>Perform Blind SQL Injection - Exploitation (MySQL)</h1>
+<p>An attacker merges two SQL queries to get more data. The attacker tries to exploit the UNION operator to get more information from the database. Blind injections help an attacker to bypass more filters 
+easily. One of the main distinguishing features of blind SQL injection is that it reads the entries <b>symbol by symbol</b>.</p>
+<h2>Extract First Character</h2>
+<p><i>/?id=1+AND+555+if(ord(mid((select+pass+from+users+limit+0,1),1,1))=97,555,777)</i></p>
+<p>If the table "users" contains a column "pass" and the first character of the first entry in this column is 97 (letter "a"), then DBMS will return True; otherwise False</p>
+<h2>Extract Second Character</h2>
+<p><i>/?id=1+AND+555+if(ord(mid((select+pass+from+users+limit+0,1),2,1))=97,555,777)</i></p>
+<p>If the table "users" contains a column "pass" and the second character of the first entry in this column is 97 (letter "a"), then DBMS will return True; otherwise False</p>
