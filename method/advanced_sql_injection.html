@@ -225,3 +225,82 @@ Nmap and Network Topology Mapper to determine the vulnerabilities of the network
 <p>Attackers use triggers to create database backdoors. A database trigger is a stored procedure that is automatically invoked and executed in response to certain database events. For example, an online 
 shopping website stores the details of all the items it sells in a database called ITEMS. An attacker may inject a malicious trigger into this table such that whenever an INSERT query is executed, the 
 trigger will automatically set the price of the item to 0.</p>
+
+<h1>HTTP Header-Based SQL Injection</h1>
+<p>Attackers can use HTTP headers to inject SQL queries into a vulnerable server. This vulnerability is usually caused when proper sanitization is not performed on the user's input. Attackers may exploit 
+different HTTP header fields to inject malicious SQL queries.</p>
+<h2>HTTP Header Fields</h2>
+<p>HTTP Header Fields are components of the HTTP request and response message headers. These fields are useful for defining the operational parameters of an HTTP transaction between the web server and the 
+browser:</p>
+<p><ol>
+  <ul>Get / HTTP/1.1</ul>
+  <ul>Connection: "Connection"</ul>
+  <ul>Keep-Alive: "Timeout"</ul>
+  <ul>Accept: */*</ul>
+  <ul>Host: Host" ":" host [ ":" port ]</ul>
+  <ul>Accept-Language: language [q=qvalue]</ul>
+  <ul>Accept-Encoding: "encoding types"</ul>
+  <ul>User-Agent: "<product><product-version> <comment>"</ul>
+    <ul>Cookie: name=value</ul>
+</ol></p>
+    <p>The HTTP cookies are the first potential HTTP variables used for testing, and they are stored in the databases for sessions identification</p>
+
+    <h2>X-Forwarded-For</h2>
+    <p>X-Forwarded-For is an HTTP header field that is used by attackers to identify the IP address of the client system that initiated the connection to a web server via an HTTP proxy. For example, assume that 
+    the following SQL query includes a flaw in the form submission:</p>
+    <p><i>$req = mysql_query("SELECT username, pwd FROM admin_table WHERE username='".sanitize($_POST['user'])."' AND pwd='".md5($_POST['password'])."' AND ipadrr='".ip_address()."'");</i></p>
+    <p>By checking the query, the variable login is correctly controlled due to the sanitize() method</p>
+    <p><ol>
+      <ul>function sanitize($params) {</ul>
+      <ul>if (is_numeric($params)) {</ul>
+      <ul>return $params;</ul>
+      <ul>} else {</ul>
+      <ul>return mysql_real_escape_string($params);</ul>
+      <ul>}}</ul>
+    </ol></p>
+    <p>Now, check for the IP variable that is allocating the output of ip_address()</p>
+    <p><ol>
+      <ul>function ip_address () {</ul>
+      <ul>if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {</ul>
+      <ul>$ip_addr = $_SERVER['HTTP_X_FORWARDED_FOR'];</ul>
+      <ul>} else {</ul>
+      <ul>$ip_addr = $_SERVER["REMOTE_ADDR"];</ul>
+      <ul>}</ul>
+      <ul>if(preg_match("#^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}#",$ip_addr)) {</ul>
+      <ul>return $ip_addr;</ul>
+      <ul>} else {</ul>
+      <ul>return $_SERVER["REMOTE_ADDR"];</ul>
+      <ul>}}</ul>
+    </ol></p>
+    <p>In the above function, the IP address is retrieved from the HTTP header X_FORWARDED_FOR and further verified by the preg_match function to check whether the input has at least one IP address. 
+    It implies that the input take from X_FORWARDED_FOR is not properly sanitized, which may lead to malicious SQL query injection. For example, an attacker can modify the X_FORWARDED_FOR HTTP header field 
+    and inject a malicious SQL query to evade the authentication control mechanism.</p>
+    <p><ol>
+      <ul>GET / index.php HTTP/1.1</ul>
+      <ul>Host: [host]</ul>
+      <ul>X_FORWARDED_FOR: 10.10.10.11' or 1=1#</ul>
+    </ol></p>
+    <h2>User-Agent</h2>
+    <p>User-Agent is an HTTP header field that includes information related to the user agent that initiated the HTTP request.</p>
+    <p><ol>
+      <ul>User-Agent: product | comment</ul>
+    </ol></p>
+    <p>For example: <i>User-Agent: Mozilla/ 68.0.2 (compatible; MSIE5.01; Windows 10)</i></p>
+    <p>The firest white space delimited word will be the name of the software product followed by an optional slash and the version number. Attackers can exploit this feature to inject malicious input into 
+    the User-Agent field. For example, an attacker may modify the User-Agent field as follows:</p>
+    <p><ol>
+      <ul>GET /index.php HTTP/1.1</ul>
+      <ul>Host: [host]</ul>
+      <ul>User-Agent: aaa' or 1/*</ul>
+    </ol></p>
+
+    <h2>Referer</h2>
+    <p>Referer is an HTTP header that is vulnerable to SQL injection, as the application stores the input in the database without proper sanitization. It is an optional HTTP header field that allows a client 
+    to specify the URI of a document or an object within the document. This allows a web server to maintain a list of back-links to documents for logging purposes and helps in tracing malicious links. For 
+    example, an attacker can modify the Referer HTTP header field with malicious input as follows:</p>
+    <p><ol>
+      <ul>GET /index.php HTTP/1.1</ul>
+      <ul>Host: [host]</ul>
+      <ul>User-Agent: aaa' or 1/*</ul>
+      <ul>Referer: http://www.hackerswebsite.com</ul>
+    </ol></p>
