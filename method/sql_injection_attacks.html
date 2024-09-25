@@ -265,3 +265,8 @@ an SQL injection attack and bypass the firewall.</p>
     <ul>/?id=(1)union((((((select(1),hex(hash)from(users))))))))</ul>
     <ul>/?id=xx(1)or(0x50=0x50)</ul>
 </ol></p>
+
+<h2>Buffer Overflow Method</h2>
+<p>An attacker can use the buffer overflow method to crash and bypass the firewall. As most firewalls are developed in C/C++, it is easy for the attacker to bypass the firewall.</p>
+<p><i>?page_id=null%0A/**//*!50000%55nIOn*//*yoyu*/all/**/%0A/*!%53eLEct*/%0A/*nnaa*/+1,2,3,4</i></p>
+<p>If the hacker gets the 500 error message as the response, he/she can easily bypass the firewall using the buffer overflow method</p>
