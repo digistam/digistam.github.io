@@ -1,0 +1,59 @@
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>Evasion Techniques</h1>
+<p>Firewalls and IDS can detect SQL injection attempts based on predefined signatures. Attackers use evasion techniques to perform SQL injection without being detected. Even if networks include these network 
+security perimeters, attackers use evasion techniques to perform SQL injection without being detected. Such evasion techniques include hex encoding, manipulating white spaces, in-line comments, sophisticated 
+matches, char encoding and so on.</p>
+<h2>Evading IDS</h2>
+<p>To detect SQL injection, the IDS sensor is placed at the database server to inspect SQL statements. Attackers use:</p>
+<p><ol>
+  <ul>In-line Comment</ul>
+  <ul>Char Encoding</ul>
+  <ul>String Concatenation</ul>
+  <ul>Obfuscated Code</ul>
+  <ul>Manipulating White Spaces</ul>
+  <u>Hex Encoding</u>
+  <ul>Sophisticated Matches</ul>
+  <ul>URL Encoding</ul>
+  <ul>Null Byte</ul>
+  <ul>Case Variation</ul>
+  <ul>Declare Variables</ul>
+  <ul>IP Fragmentation</ul>
+  <ul>Variations</ul>
+</ol></p>
+<h2>Evasion Technique: In-line Comment</h2>
+<p>An evasion technique is succesful when a signature filters white spaces in the input strings. In this technique, an attacker obfuscates the input string via in-line comments. In-line comments create SQL 
+statements that are syntactically incorrect but valid and can hence bypass various input filters. </p>
+<p><ol>
+  <ul>'/**/UNION/**/SELECT/**/password/**/FROM/**/Users/**/WHERE/**/username/**/LIKE/**/'admin'--</ul>
+  <ul>'/**/UN/**/ION/**/SEL/**/ECT/**/password/**/FR/**/OM/**/Users/**/WHE/**/RE/**/ username/**/LIKE/**/'admin'--</ul>
+</ol></p>
+<h2>Evasion Technique: Char Encoding</h2>
+<p>With the char() function, an attacker can encode a common injection variable present in the input string to avoid detection in the signature of network security measures. This char() function converts 
+hexadecimal and decimal values into characters that can easily pass through SQL engine parsing. The char() function can be used for SQL injection into MySQL without double quotes.</p>
+<p><ol>
+  <ul>Load files in unions (string='/etc/passwd' -> ' union select 1, (load_file(char(47,101,116,99,47,112,97,115,115,119,100))),1,1,1;</ul>
+  <ul>Inject without quotes (string="%") -> ' or username like char(37);</ul>
+  <ul>Inject without quotes (string="root") -> ' union select * from users where login = char(114,111,111,116);</ul>
+  <ul>Check for existing files (string="n.ext") -> ' and 1=(if ((load_file(char(110,46,101,120,116))<>char(39,39)),1,0));</ul>
+</ol></p>
+
+<h2>Evasion Technique: String Concatenation</h2>
+<p>A simple string can be broken into two pieces and then concatenated with a "+" sign (Oracle: ||)</p>
+<p><ol>
+  <ul>EXEC('DRO' + 'P T' + 'AB' + 'LE')</ul>
+</ol></p>
+
+<h2>Evasion Technique: Obfuscated Code</h2>
+<p><ol>
+  <ul>Wrapping</ul>
+  <ul>SQL string obfuscation</ul>
+</ol></p>
+<p><i>Reverse(concat(if(1,char(121),2),0x74,right(left(0x567210,2),1),lower(mid('TEST',2,1)),replace(0x7074), 'pt', 'w'), char(instr(123321,33)+110)))</i></p>
+
+<h2>Evasion Technique: Manipulating White Spaces</h2>
+<p>"UNION SELECT" signature is different from "UNION (multiple spaces) SELECT"; Dropping spaces from SQL statements will not affect their execution by some SQL databases -> 'OR'1='1' (with no spaces)</p>
+
+<h2>Evasion Technique: Hex Encoding</h2>
+<p>The string 'SELECT' can be represented by the hexadecimal number 0x73656c656374 which will most likely not be detected by a signature protection system</p>
+<p>DROP TABLE CreditCard = 0x44524f50205461626c652043726564697443617264</p>
