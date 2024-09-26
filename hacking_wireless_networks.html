@@ -160,3 +160,86 @@ each packet</p>
 <p>Wi-Fi Protected Access 2 (WPA2) is a security protocol used to safeguard wireless networks. WPA2 replaced WPA in 2006. WPA2 introduces the use of the National Institute of Standards and Technology (NIST) FIPS 
 140-2-compliant AES encryption algorithm (strong) and the Counter Mode Cipher Block Chaining Message Authentication Code Protocol (CCMP). It provides stronger data protection and network access control than 
 WPA. Furthermore, it gives a high level of security to Wi-Fi connections so that only authorized users can access the network.</p>
+<p><ol>
+    <ul><b>WPA2-Personal</b> -> uses a password set in advance, called the pre-shared key (PSK), to protect unauthorized network access. Each wireless device uses the same 256-bit key generated from a password to 
+    authenticate with the AP; In the PSK mode, each wireless network device encrypts the network traffic using a 128-bit key derived from a passphrase of 8-63 ASCII characters. The router uses the combination 
+    of a passphrase, network SSID and TKIP to generate a unique encryption key for each wireless client. These encryption continually.</ul>
+    <ul><b>WPA2-Enterprise</b> -> uses EAP or RADIUS for centralized client authentication using multiple authentication methods, such as token cards, Kerberos and certificates. WPA2-Enterprise assigns a 
+    unique ciphered key to every system and hides it from the user in order to provide additional security and to prevent the sharing of keys. Users are allocated login credentials by a centralized server, which 
+    they must present when connecting to the network</ul>
+</ol></p>
+
+<h2>WPA3 Encryption</h2>
+<p>WPA3 was announced by the Wi-Fi alliance on January 2018 as an advanced implementation of WPA2 that provides trailblazing protocols. Like WPA2, WPA3 has two variants: WPA3-Personal and WPA3-Enterprise.</p>
+<p><ol>
+    <ul><b>WPA3-Personal</b> -> mainly used to deliver password-based authentication. WPA3 is more rigid to attacks than WPA2 because it uses a modern key establishment protocol called the Simultaneous Authentication of Equals
+    (SAE), also known as Dragonfly Key Exchange, which replaces the PSK concept used in WPA2-Personal</ul>
+    <ul>- Resistance of offline dictionary attacks -> it prevents passive password attacks such as brute-forcing</ul>
+    <ul>- Resistance to key recovery -> even when a password is determined, it is impossible to capture and determine session keys while maintaining the forward secrecy of network traffic</ul>
+    <ul>- Natural password choice -> it allows users to choose weak or popular phrases as passwords, which are easy to remember</ul>
+    <ul>- Easy accessibility </ul>
+    <ul><b>WPA3-Enterprise</b> -> offers better security than WPA2 across the network and protects sensitive data using many cryptographic concepts and tools</ul>
+    <ul>- Authenticated encryption </ul>
+    <ul>- Key derivation and validation</ul>
+    <ul>- Key establishment and verification</ul>
+    <ul>- Frame protection and robust administration</ul>
+</ol></p>
+
+<h2> Enhancements in WPA3 with respect to WPA2</h2>
+<p>WPA3 can be used to implement a layered security strategy that can protect all aspects of a Wi-Fi network. WPA3 has a certification program that specifies the prevailing standards the product must support. 
+The Dragonfly handshake/SAE protocol is mandatory for WPA3 certification.</p>
+<p><ol>
+    <ul>Secured handshake -> the Simultaneous Authentication of Equals (SAE) protocol, also known as the Dragonfly handshake, can be used to make a password resistant to dictionary and brute-force attacks, preventing the 
+    offline decryption of data</ul>
+    <ul>Wi-Fi Easy Connect -> simplifies the security configuration process with one interface using DPP (Wi-Fi Device Provisioning Protocol). This can securely allow a plethora of smart devices in a network to 
+    connect to one device using a quick response (QR) code or password. It also helps to set up a connection between different IoT devices</ul>
+    <ul>Unauthenticated encryption -> it uses a new feature called Opportunistic Wireless Encryption (OWE) that replaces the 802.11 "open" authentication by providing better protection when using public hotspots 
+    and public networks</ul>
+    <ul>Bigger session keys -> the cryptographic security process of WPA3-Enterprise supports key sizes of 192 bits or higher, which are difficult to crack, ensuring rigid protection</ul>
+</ol></p>
+
+<h2>Comparison of WEP, WPA, WPA2 and WPA3</h2>
+<p><ol>
+    <ul><b>WEP</b> -> Encryption algorithm: RC4; IV Size: 24 bits; Encryption key length: 40/104 bits; Key management: None; Integrity Check Mechanism: CRC-32</ul>
+    <ul><b>WPA</b> -> Encryption algorithm: RC4, TKIP; IV Size: 48-bits; Encryption key length: 128 bits; Key management: 4-way handshake; Integrity Check Mechanism: Michael algorithm and CRC-32</ul>
+    <ul><b>WPA2</b> -> Encryption algorithm: AES-CCMP; IV Size: 48-bits; Encryption key length: 128-bits; Key management: 4-way handshake; Integrity Check Mechanism: CBC-MAC</ul>
+    <ul><b>WPA3</b> -> Encryption algorithm: AES-GCMP 256; IV Size: Arbitrary length; Encryption key length: 192-bits; Key management: ECDH and ECDSA; Integrity Check Mechanism: BIP-GMAC-256</ul>
+</ol></p>
+
+<h1>Issues in WEP, WPA and WPA2</h1>
+<h2>Issues in WEP</h2>
+<p><ol>
+    <ul>CRC32 is insufficient to ensure the complete cryptographic integrity of a packet</ul>
+    <ul>IVs are of 24 bits</ul>
+    <ul>WEP is vulnerable to known plaintext attacks</ul>
+    <ul>WEP is vulnerable to dictionary attacks</ul>
+    <ul>WEP is vulnerable to DoS attacks</ul>
+    <ul>An attacker can eventually construct a decryption table of reconstructed keystream -> with approx. 24GB of space, an attacker can use this table to decrypt WEP packets in real time</ul>
+    <ul>A lack of centralized key management makes it difficult to change WEP keys regularly</ul>
+    <ul>IV is a value used to randomize the keystream value, and each packet has an IV value</ul>
+    <ul>The standard does not require each packet to have a unique IV</ul>
+    <ul>The use of RC4 was designed to be a one-time cipher and not intended for use with multiple messages</ul>
+</ol></p>
+<h2>Issues in WPA</h2>
+<p><ol>
+    <ul>Weak passwords -> password-cracking attacks</ul>
+    <ul>Lack of forward secrecy -> if an attacker captures a PSK, they can decrypt all the packets encrypted with that key </ul>
+    <ul>Vulnerability to packet spoofing and decryption -> clients using WPA-TKIP are vulnerable to packet-injection attacks and decryption attacks, which further allows attackers to hijack Transmission Control Protocol 
+    (TCP) connections</ul>
+    <ul>Predictability of the group temporal key (GTK)</ul>
+    <ul>Guessing of IP addresses -> TKIP vulnerabilities allow attackers to guess the IP address of the subnet and inject small packets into the network to downgrade the network performance</ul>
+</ol></p>
+
+<h2>Issues in WPA2</h2>
+<p><ol>
+    <ul>Weak passwords -> if weak passwords: eavesdropping, dictionary and password cracking attacks</ul>
+    <ul>Lack of forward secrecy -> if an attacker captures a PSK, they can decrypt all the packets encrypted with that key </ul>
+    <ul>Vulnerability to MITM and DoS attacks -> the Hole96 vulnerability in WPA2 allows attackers to exploit a shared group temporal key (GTK) to perform MITM and DoS attacks</ul>
+    <ul>Predictability of GTK -> an insecure random number generator (RNG) in WPA2 allows attackers to discover the GTK generated by the AP; This further allows attackers to inject malicious traffic in the network 
+    and decrypt all the transmissions in progress over the internet</ul>
+    <ul>KRACK vulnerabilities -> WPA2 has a significant vulnerability to an exploit known as key reinstallation attack (KRACK); This exploit may allow attackers to sniff packets, hijack connections, 
+    inject malware and decrypt packets</ul>
+    <ul>Vulnerability to wireless DoS attacks -> attackers can exploit the WPA2 replay attack detection feature to send forged group-addressed data frames with a large PN to perform a DoS attack</ul>
+    <ul>Insecure WPS PIN recovery -> in some cases, disabling WPA2 and WPS can be a time consuming process, in which the attacker needs to control the WPA2 PSK used by the clients; When WPA2 and WPS are 
+    enabled, the attacker can disclose the WPA2 key by determining the WPS personal identification number (PIN) through simple steps</ul>
+</ol></p>
