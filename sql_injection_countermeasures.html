@@ -1,0 +1,69 @@
+ <a href=../index.html>Back to home</a>
+<hr/>
+<h1>SQL Injection Countermeasures</h1>
+<h2>Why are Web applications vulnerable to SQL injection attacks</h2>
+<p><ol>
+  <ul>DB server runs OS commands</ul>
+  <ul>Using privileged account to connect to db</ul>
+  <ul>Error message revealing important information</ul>
+  <ul>No data validation at the server</ul>
+</ol>
+<h2>Countermeasures</h2>
+<p><ol>
+  <ul>Minimizing privileges</ul>
+  <ul>Implementing consistent coding standards</ul>
+  <ul>Firewalling SQL server</ul>
+  <ul>Make no assumptions about the size, type, or content of the data that is received by your application.</ul>
+<ul>Test the size and data type of the input and enforce appropriate limits to prevent buffer overruns.</ul>
+<ul>Test the content of string variables and accept only expected values.</ul>
+  <ul>Reject entries that contain binary data, escape sequences, and comment characters.</ul>
+  <ul>Never build Transact-SQL statements directly from user input and use stored procedures to validate user input.</ul>
+<ul>Implement multiple layers of validation and never concatenate user input that is not validated.</ul>
+<ul>Avoid constructing dynamic SQL with concatenated input values.</ul>
+  <ul>Ensure that the web config files for each application do not contain sensitive information.</ul>
+<ul>Use the most restrictive SQL account types for applications.</ul>
+  <ul>Use network, host, and application intrusion detection systems to monitor injection attacks.</ul>
+<ul>Perform automated black box injection testing, static source code analysis, and manual penetration testing to probe for vulnerabilities.</ul>
+<ul>Keep untrusted data separate from commands and queries.</ul>
+  <ul>In the absence of parameterized API, use specific escape syntax for the interpreter to eliminate special characters.</ul>
+<ul>Use a secure hash algorithm such as SHA256 to store user passwords rather than plaintext</ul>
+  <ul>Use the data access abstraction layer to enforce secure data access across an entire application.</ul>
+<ul>Ensure that the code tracing and debug messages are removed prior to deploying an application.</ul>
+<ul>Design the code such that it traps and handles exceptions appropriately.</ul>
+<ul>Apply least privilege rules to run the applications that access the DBMS.</ul>
+<ul>Validate user-supplied data as well as data obtained from untrusted sources on the server side.</ul>
+<ul>Avoid quoted/delimited identifiers as they significantly complicate all whitelisting, black-listing, and escaping efforts.</ul>
+<ul>Use a prepared statement to create a parameterized query to block the execution of the query.</ul>
+<ul>Ensure that all user inputs are sanitized before using them in dynamic SQL statements.</ul>
+<ul>Use regular expressions and stored procedures to detect potentially harmful code.</ul>
+<ul>Avoid the use of any web application that is not tested by the web server.</ul>
+<ul>Isolate the web server by locking it in different domains.</ul>
+<ul>Ensure all software patches are updated regularly.</ul>
+<ul>Regularly monitor SQL statements from database-connected applications to identify malicious SQL statements.</ul>
+<ul>Use of views is necessary to protect data in the base tables by restricting access and performing transformations.</ul>
+<ul>Disable shell access to the database. ▪ Do not disclose database error information to the end users.</ul>
+<ul>Use a safe API that offers a parameterized interface or that avoids the use of the interpreter completely.</ul>
+<ul>Outsource the authentication workflow of applications, for example, using OAUTH APIs, which allows users to login using their existing user accounts and further ensures that their login details are stored in one location.</ul>
+<ul>Employ an object–relational mapping (ORM) framework to communicate with the database safely.</ul>
+<ul>Use the latest programming languages that offer SQLi protection.</ul>
+<ul>Perform user input validation based on whitelists instead of blacklists.</ul>
+<ul>Never use the same database accounts for multiple applications.</ul>
+<ul>Disable unnecessary functionalities of the database.</ul>
+<ul>Avoid using xp_cmdshell to control the interaction between the SQL server and components of other servers.</ul>
+<ul>Use a web application firewall (WAF) to eliminate malicious inputs.</ul>
+<ul>Avoid using extended/long URLs that might cause a stack-based buffer overflow.</ul>
+<ul>Convert the input data of users such as usernames and passwords into strings before validation.</ul>
+</ol></p>
+
+<h2>Defenses in the application</h2>
+<p>Input validation</p>
+<p><ol>
+  <ul>Whitelist validation -> only a list of entities that have been approved for secured access it accepted; validation is commonly implemented using regular expressions</ul>
+  <ul>Blacklist validation -> reject all malicious inputs that have been disapproved for protected access; also with regular expressions</ul>
+  <ul>Output encoding -> validation technique that can be used after input validation; in MySQL a single quote is used to end the string, encoding the single quote is mandatory </ul>
+  <ul>Enforcing Least Privileges -> when only read access is needed for the application, only the read access privileges should be granted etc.</ul>
+  <ul>LIKE clauses -> while using LIKE, wildcard characters (_,%,[) should be escaped, use the Replace() method en place these wildcards between square brackets</ul>
+  <ul>Wrapping parameters with QUOTENAME() and REPLACE() -> if the string has < 128 characters, use QUOTENAME(), if the string has > 128 characters, use REPLACE()</ul>
+</ol></p>
+
+
