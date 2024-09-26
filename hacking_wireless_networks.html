@@ -105,3 +105,58 @@ antenna. This kind of antenna feeds on a balanced parallel-wire RF transmission 
 <h2>Reflector Antennas</h2>
 <p>Used to concentrate EM energy that is radiated or received at a focal point; Generally paraboli. A larger antenna reflector in terms of wavelength multiples results in a higher gain. Reflector antennas 
 reflect radio signals and have high manufacturing cost.</p>
+
+<h1>Wireless Encryption</h1>
+<p>Wireless encryption is a process of protecting a wireless network from attackers who attempt to collect sensitive information by breaching the RF traffic. </p>
+<p><ol>
+    <ul><b>802.11i</b> -> IEEE amendment that specifies security mechanisms for 802.11 wireless networks</ul>
+    <ul><b>WEP</b> -> old and cracked easily</ul>
+    <ul><b>EAP</b> -> Extensible Authentication Protocol; supports multiple authentication methods such as token cards, Kerberos and certificates</ul>
+    <ul><b>LEAP</b> -> Lightweight EAP, proprietary version of EAP by Cisco</ul>
+    <ul><b>WPA</b> -> advanced protocol using TKIP and Message Integrity Check (MIC) to provide strong encryption and authentication; uses a 48-bit initialization vector (IV), 32 bit cyclic redundancy check (CRC) and TKIP encryption for wireless security</ul>
+    <ul><b>TKIP</b> -> security protocol in WPA as replacement for WEP</ul>
+    <ul><b>WPA2</b> -> upgrade to WPA using AES and the Counter Mode Cipher Block Chaining Message Authentication Code Protocol (CCMP) for wireless data encryption</ul>
+    <ul><b>AES</b> -> symmetric-key encryption used in WPA2 as replacement for TKIP</ul>
+    <ul><b>CCMP</b> -> encryption protocol used in WPA2 for strong encryption and authentication</ul>
+    <ul><b>WPA2 Enterprise</b> -> integrates EAP standards with WPA2 encryption</ul>
+    <ul><b>RADIUS</b> -> centralized authentication and authorization management system</ul>
+    <ul><b>PEAP</b> -> protocol that encapsulates the EAP within an encrypted and authenticated Transport Layer Security (TLS) tunnel</ul>
+    <ul><b>WPA3</b> -> third-generation Wi-Fi security protocol that provides new features for personal en enterprise usage; uses Galois/Counter Mode-256 (GCMP-256) for encryption and the 384-bit hash message 
+    authentication code with the Secure Hash Algorithm (HMAC-SHA-384) for authentication</ul>
+</ol></p>
+
+<h2>Wired Equivalent Privacy (WEP) Encryption</h2>
+<p>WEP is a component of the IEEE 802.11 WLAN standards. Primary purpose is to ensure data confidentiality of wireless networks at a level equivalent to that of wired LANs, which can use physical security to 
+prevent unauthorized access to a network. WEP uses the symmetric Rivest Cipher 4 (RC4) encryption algorithm.</p>
+<p><ol>
+    <ul>WEP protects against eavesdropping on wireless communications</ul>
+    <ul>It attempts to prevent unauthorized access</ul>
+    <ul>it depends on a secret key shared by a mobile station and an AP</ul>
+    <ul>WEP encrypts only the data between network clients</ul>
+</ol></p>
+<p>WEP was developed without any academic or public review and has significant vulnerabilities and design flaws. As the Pre-shared keys (PSK) are rarely changed, the same key is used repeatedly. An attacker monitors
+the traffic and finds different ways to work with the plaintext message. Attackers analyze the traffic from passive data captures and crack WEP keys with the help of tools such as AirSnort and WEPCrack.</p>
+
+<h2>Wi-Fi Protected Access (WPA) Encryption</h2>
+<p>WPA is a security protocol defined by the 802.11i standard. WPA has better data encryption security than WEP because messages pass through a Message Integrity Check (MIC) using the Temporal Key Integrity Protocol (TKIP)
+which utilizes the RC4 stream cipher encryption with 128-bit keys and 64-bit MIC to provide strong encryption and authentication.  WEP normally uses 40-bit of 104-bit encryption key, whereas TKIP uses 128-bit keys for 
+each packet</p>
+<p><ol>
+    <ul>TKIP is used in a unicast encryption key that changes for every packet, enhancing security; This change in the key for each packet is automatically coordinated between the wireless client and AP. TKIP uses 
+    a Michael Integrity Check algorithm with a MIC key to generate the MIC value</ul>
+    <ul>TKs -> all newly deployed Wi-Fi equipment uses either TKIP (for WPA) or AES (for WPA2) encryption to ensure WLAN security</ul>
+</ol></p>
+<p>How WPA works:</p>
+<p><ol>
+    <ul>A TK, transmit address and TKIP sequence counter (TSC) are used as input to the RC4 algorithm to generate a keystream</ul>
+    <ul>The MAC service data unit (MSDU) and message integrity check (MIC) are combined using the Michael algorithm</ul>
+    <ul>The combination of MSDU and MIC is fragmented to generate the MAC protocol data unit (MPDU)</ul>
+    <ul>A 32-bit ICV is calculated for the MPDU</ul>
+    <ul>The combination of MPDU and ICV is bitwise XORed with the keystream to produce the encrypted data</ul>
+    <ul>The IV is added to the encrypted data to generate the MAC frame</ul>
+</ol></p>
+
+<h2>WPA2 Encryption</h2>
+<p>Wi-Fi Protected Access 2 (WPA2) is a security protocol used to safeguard wireless networks. WPA2 replaced WPA in 2006. WPA2 introduces the use of the National Institute of Standards and Technology (NIST) FIPS 
+140-2-compliant AES encryption algorithm (strong) and the Counter Mode Cipher Block Chaining Message Authentication Code Protocol (CCMP). It provides stronger data protection and network access control than 
+WPA. Furthermore, it gives a high level of security to Wi-Fi connections so that only authorized users can access the network.</p>
