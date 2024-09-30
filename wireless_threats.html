@@ -119,3 +119,140 @@ encrypted format (like WEP or WPA), an attacker may attempt to break the encrypt
     <a target=_blank href=https://www.kali.org/tools/dsniff/>dsniff</a>,
     <a target=_blank href=https://hacklido.com/blog/552-wi-jacking>Wi-Jacking Attack</a></ul>
 </ol></p>
+
+<h1>Rogue AP Attack</h1>
+<p>Unauthorized (rogue) APs can allow anyone with an 802.11-equipped device to connect to a corporate network. An unauthorized AP can give an attacker access to the network. 
+With the help of wireless sniffing tools, the following can be determined from APs:</p>
+<p><ol>
+    <ul>Authorized MAC addresses</ul>
+    <ul>Vendor name</ul>
+    <ul>Security configurations</ul>
+</ol></p>
+<p>An attacker can create a list of MAC addresses of authorized APs on the target LAN and crosscheck this list with the list of MAC addresses found by sniffing. Subsequently, an attacker can create a 
+rogue AP and place it near the target corporate network. When a user turns on a computer, the rogue AP will offer to connect with the network user's NIC. The attacker lures the user to connect to the 
+rogue AP by sending the SSID. If the user connects to the rogue AP under the impression that it is a legitimate AP, all the traffic from the user passes through the rogue AP, enabling a form of 
+wireless packet sniffing. The sniffed packets may even contain usernames and passwords.</p>
+
+<h1>Client Mis-Association</h1>
+<p>Mis-association is a security flaw that can occur when a network client connects with a neighbouring AP. It can occur for various reasons such as misconfigured clients, insufficient coverage of 
+corporate Wi-Fi, lack of a Wi-Fi policy, restrictions on the use of internet in the office, ad-hoc connections that administrators do not manage regularly, and attractive SSIDs. They can occur with or 
+without the knowledge of wireless client and rogue AP.</p>
+<p>To perform a client mis-association attack, an attacker sets up a rogue AP outside the corporation's perimeter. The attacker first learns the SSID of the target wireless network. Using a spoofed 
+SSID, the attacker may send beacons advertising the rogue AP in order to lure clients to connect. The attacker can use the rogue AP as a channel to bypass enterprise security policies.</p>
+<p>Once a client connects to the rogue AP, an attacker can retrieve sensitive information such as usernames and passwords by launching MITM, EAP dictionary or Metasploit attacks to exploit client 
+mis-associations.</p>
+
+<h1>Misconfigured AP Attack</h1>
+<p>Most organizations spend significant amounts of time defining and implementing Wi-Fi security policies, but it may be possible for a client of a wireless network to change the security settings of 
+an AP unintentionally. This, in turn, may lead to misconfigurations in APs. A misconfigured AP can expose an otherwise well-secured network to attacks. Many organizations fail to maintain Wi-Fi 
+security policies.</p>
+<p>As the Wi-Fi networks of organizations expand to more locations and more devices, misconfigured APs become increasingly dangerous. The key elements that play an important role:</p>
+<p><ol>
+    <ul>SSID broadcast: APs with default configurations using default SSIDs are vulnerable to brute-force dictionary attacks; even if users enable WEP an unencrypted SSID broadcasts the password in plaintext</ul>
+    <ul>Weak password: some network administrators incorrectly use SSIDs as basic passwords to verify authorized users; SSIDs act as rudimentary passwords and help network administrators recognize authorized 
+    wireless devices in the network</ul>
+    <ul>Configuration error: including errors made during installation, human errors made while troubleshooting WLAN problems etc.; SSID broadcasting is a configuration error that assists attackers in stealing 
+    an SSID, which makes the AP assume that the attacker is attempting a legitimate connection</ul>
+</ol></p>
+
+<h1>Unauthorized Association</h1>
+<p>Unauthorized assocation is a major threat to wireless networks. Two forms:</p>
+<p><ol>
+    <ul>accidental association</ul>
+    <ul>malicious association</ul>
+</ol></p>
+<p>An attacker performs malicious association with the help of soft APs instead of corporate APs. The attacker creates a soft AP, typically on a laptop, by running a tool that makes the laptop's NIC 
+appear as a legitimate AP. The attacker then uses the soft AP to gain access to the target wireless network. Software APs are available on client cards or embedded WLAN radios in some PDAs and laptops; 
+an attacker can launch these directly or through a virus program. The attacker infects the victim's machine and activates soft APs, allowing an unauthorized connection to the enterprise network. 
+An attacker who gains access to the network using unauthorized association may steal passwords, launch attacks on a wired connection, or plant Trojans.</p>
+
+<h1>Ad-Hoc Connection Attack</h1>
+<p>Wi-Fi clients can communicate directly via an ad-hoc mode that does not require an AP to relay packets. Data can be conveniently shared among clients in ad-hoc networks, which are quite popular among 
+Wi-Fi users. Security threats arise when an attacker forces a network to enable the ad-hoc mode. Some network resources are accessible only in the ad-hoc mode, but this mode is inherently insecure and 
+does not provide strong authentication or encryption. An attacker who penetrates a wireless network can also use an ad-hoc connection to compromise the security of the organization's wired LAN.</p>
+
+<h1>Honeypot AP Attack</h1>
+<p>If multiple WLANs co-exist in the same area, a user can connect to any available network. Such areas are vulnerable to attacks. Normally, when a wireless client is switched on, it probes a nearby 
+wireless network for a specific SSID. An attacker takes advantage of this behavior or wireless clients by setting up an unauthorized wireless network using a rogue AP. This AP has high-power (high-gain) 
+antennas and uses the same SSID as the target network. Users who regularly connect to multiple WLANs may connect to the rogue AP. Such APs mounted by attackers are called "honeypot" APs. They transmit
+a stronger beacon signal than legitimate APs so that NICs searching for the strongest available signal may connect to the rogue AP.</p>
+
+<h1>AP MAC Spoofing</h1>
+<p>Probe responses contain information on the AP identity (MAC address) and the identity of the network it supports (SSID). Clients in the vicinity connect to the network through these beacons 
+based on the MAC address and the SSID it contains. An attacker can spoof the MAC address of the AP by programming a rogue AP to advertise the same identity information as that of the legitimate AP. 
+An attacker connected to the AP as an authorized client can have full access to the network. This type of attack succeeds when the target wireless network uses MAC filtering to authenticate clients (users).</p>
+
+<h1>Denial-of-Service Attack</h1>
+<p>Wi-Fi networks operate in unlicensed bands with data transmission in the form of radio signals. The designers of the MAC protocol aimed at simplicity, but it is vulnerable to DoS attacks. Examples of 
+MAC DoS attacks are de-authentication flood attacks, virtual jamming and association flood attacks. Wireless DoS attacks disrupt wireless network connections by broadcasting de-authenticate commands. 
+The transmitted de-authentication forces the clients to disconnect from the AP. </p>
+
+<h1>Key Reinstallation Attack (KRACK)</h1>
+<p>KRACK exploits the flaws in the implementation of the four-way handshake process in the WPA2 authentication protocol, which is used to establish a connection between a device and an AP. All secure 
+Wi-Fi networks use the four-way handshake process to establish connections and to generate a fresh encryption key that will be used to encrypt the network traffic.</p>
+<p>The attacker exploits the four-way handshake of the WPA2 protocol by forcing Nonce reuse. In this attack, the attacker captures the victim's ANone key that is already in use to manipulate and replay 
+cryptographic handshake messages. This attack works against all modern protected Wi-Fi networks (both WPA and WPA2); personal and enterprise networks; and the ciphers WPA-TKIP, AES-CCMP and GCMP. It allows the 
+attacker to steal sensitive information such as creditcard numbers, passwords, chat messages, emails and photos. Any device that runs Android, Linux, Windows, Apple, OpenBSD or MediaTek are vulnerable 
+to some variant of the KRACK attack.</p>
+
+<h1>Jamming Signal Attack</h1>
+<p>Jamming is an attack performed on a wireless network to compromise it. In this type of exploitation, overwhelming volumes of malicious traffic result in a DoS to authorized users, obstructing legitimate 
+traffic. All wireless networks are prone to jamming, and spectrum jamming attacks usually block all communications completely.</p>
+<p>An attacker uses specialized hardware to perform this kind of attack. The signals generated by jamming devices appear to be noise to the devices on the wireless network, which causes them to hold their 
+transmissions until the signal has subsided, resulting in a DoS. Furthermore, jamming signal attacks are not easily noticeable.</p>
+<p><ol>
+    <ul>An attacker stakes out the target area from a nearby location with a high-gain amplifier that drowns out a legitimate AP</ul>
+    <ul>Users are unable get through to log in or are disconnected by the overpowering nearby signal</ul>
+    <ul>The jamming signal causes a DoS because 802.11 is a CSMA/CA protocol, the collision-avoidance algorithms of which require a period of silence before a radio is allowed to transmit</ul>
+</ol></p>
+
+<h1>aLTEr Attack</h1>
+<p>Long-Term Evolution (LTE) or 4G is wireless broadband communication standard developed as a successor to 3G to improve the speed and security of wireless mobile networks. It features bandwidth 
+scalability and supports preceding technologies, such as the Global System for Mobile Communications (GSM; 2G) and Universal Mobile Telecommunications System (UMTS; 3G). Although the technology 
+is designed to overcome all the shortcomings of wireless networks, it is susceptible to data hijack attacks.</p>
+<p>The aLTEr attack is usually performed on LTE devices that encrypt user data in the AES counter (AES-CTR) mode, which provides no integrity protection. To perform this attack, the attacker installs 
+a virtual (fake) communication tower between two authentic endpoints to mislead the victim. The attacker uses this virtual tower to interrupt the data transmission between the user and real tower, 
+attempting to hijack an active session. Upon receiving the user's request, the attacker manipulates the traffic with the virtual tower and redirects the victim to malicious websites.</p>
+<p>This attack is carried out on Layer 2, datalink layer, which is responsible for sharing information through wireless networks with standard data encryption technologies. It also enables multiple 
+users to access the network resources and defines how to transfer data between two nodes without any obstacles. By leveraging vulnerabilities or design flaws within this layer, the attacker attempts to 
+take control over browsing data and modifies use inputs with a spoofed DNS server, redirecting the user to unintended or harmful websites. Steps involved in a aLTEr attack:</p>
+<p><ol>
+    <ul>The attacker installs a malicious tower masquerading as a real tower</ul>
+    <ul>The attacker determines the user's position and sends a packet that appears as a valid request to the real tower</ul>
+    <ul>The real tower responds with the requested web link</ul>
+    <ul>The attacker connects the user to unwanted or harmful websites</ul>
+</ol></p>
+
+<h1>Wormhole Attack</h1>
+<p>A wormhole attack exploits dynamic routing protocols such as Dynamic Source Routing (DSR) and the Ad-Hoc On-Demand Distance Vector (AODV). In this attack, an attacker locates themselves strategically 
+in the target network to sniff and record ongoing wireless tranmissions. From this location, the attacker advertises that the malicious node has the shortest route for transmitting data to other nodes in the 
+network. To perform sniffing and to record the ongoing communication, the attacker creates a tunnel to forward the data between the source and destination node. </p>
+<p>In wireless sensor networks, protocols such as AODV and DSR use route request (RREQ) and route reply (RREP) messages to discover the dynamic route between source and destination nodes. In a wormhole attack, 
+the attacker attempts to build a tunnel. Wormhole attacks pose a severe threat to wireless sensor networks because attackers using this attack may manipulate routing and application data in real time, severely 
+    impacting the confidentiality, integrity and availability of network data.</p>
+
+<h1>Sinkhole Attack</h1>
+<p>A sinkhole attack is a variant of the selective forwarding attack in which the attacker advertises a compromised or malicious node as the shortest possible rouute to the base station. The attackers places 
+the malicious node near the base station and attracts all the neighbouring nodes with fake routing path information and further performs a data forging attack. Attackers use the compromised node to sniff and 
+manipulate all ongoing network transmissions.</p>
+<p>A sinkhole attack can also be performed simultaneously with a wormhole attack, where the malicious node can occupy all the network traffic and use the tunneling technique to reach the base station faster 
+than other nodes. A sinkhole attack is complex to detect, and it can adversely affect higher-layer applications in the OSI model.</p>
+
+<h1>Inter-Chip Privilege Escalation / Wireless Co-Existence Attack</h1>
+<p>An inter-chip privilege escalation attack exploits the underlying vulnerabilities in wireless chips that handle wireless communications such as Bluetooth and Wi-Fi. Manufacturers often design separate 
+chips for BT and Wi-Fi. Alternatively, they design a combo chip for both types. Attackers leverage combo chips to exploit one chip to steal the data from another chip and make lateral moves to exploit 
+other chips. For example, while sharing resources, a BT chip can directly capture credentials or other sensitive data from the Wi-Fi chip, or it can manipulate the traffic going through the Wi-Fi chip. 
+This can cause a wireless co-existence attack, which may lead to privilege escalation at chip boundaries.</p>
+
+<h2>GNSS Spoofing</h2>
+<p>The Global Navigation Satellite System (GNSS) is a satellite constellation that transmits signals to GNSS receivers. GNSS receivers are deployed on multiple electronic systems such as mobile phones and 
+vehicles. The communication in the GNSS system occurs between satellites and GNSS receivers via a controller.</p>
+<p>GNSS spoofing is a procedure in which an attacker modifies the target user's legitimate GNSS signal measurements - position, navigation, time (PNT) - with malefic signals and broadcasts the same signals 
+to the target user's GNSS receiver. On receiving the malicious signal, the user's GNSS receiver believes it to be authentic. Consequently, the attacker can force victims into false positioning and timing.</p>
+<p>Similar to a jamming attack, spoofing causes another form of interference, which forces users into believing that they are located at a false position.</p>
+<p><ol>
+    <ul>Interrupting the Lock Mechanism</ul>
+    <ul>Drag-off Strategy</ul>
+    <ul>Cancellation Methodology</ul>
+    <ul>Meaconing Method</ul>
+</ol></p>
