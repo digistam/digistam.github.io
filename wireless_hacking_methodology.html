@@ -3,4 +3,78 @@
   <a href=index.html>Back to home</a>
 <hr/>
 <h1>Wireless Hacking Methodology</h1>
-<p><a target=_blank h
+<p>When hacking wireless networks, an attacker follows a methodology involving systematic steps to perform a successful attack on a target wireless network. The methodology helps an attacker reach the goal of hacking 
+    a target wireless network. A methodology helps to be sure of finding every single-entry point to break into the target network. The objective of the wireless hacking methodology is to compromise a Wi-Fi network 
+in order to gain unauthorized access to network resources. Attackers use the following steps:</p>
+    <p><ol>
+        <ul>Wi-Fi discovery</ul>
+        <ul>GPS mapping</ul>
+        <ul>Wireless traffic analysis</ul>
+        <ul>Launch of wireless attacks</ul>
+        <ul>Wi-Fi encryption cracking</ul>
+        <ul>Wi-Fi network compromising</ul>
+    </ol></p>
+
+    <h1>Wi-Fi Discovery</h1>
+    <p>The first step is to find a Wi-Fi network or device. An attacker performs Wi-Fi discovery to locate a target wireless network using tools such as <a target=_blank href=https://www.metageek.com/inssider/>inSSIDer</a>, 
+   <a target=_blank href=https://nutsaboutnets.com/archives/netsurveyor-wifi-scanner/>NetSurveyor</a> etc. Wi-Fi discovery procedures include footprinting the wireless networks and finding the appropriate target network 
+    that is in range to launch an attack. </p>
+    <h2>Wireless Network Footprinting</h2>
+    <p>An attack on a wireless network begins with its discovery and footprinting. Footprinting involves locating and analyzing (or understanding) the network. To footprint a wireless network, an attacker needs to
+    identify the <b>BSS</b> provided by the AP. An attacker may identify the BSS or independent BSS (IBSS) with the help of the SSID of the wireless network. Therefore, the attacker needs to determine the SSID of the 
+    target wireless network, which can be used to establish an association with an AP to compromise its security.</p>
+    <p>An attacker can use the following two footprinting methods to detect the SSID of a wireless network:</p>
+    <p><ol>
+        <ul><b>Passive</b> Footprinting Method: detecting the existence of an AP by sniffing the packets from airwaves</ul>
+        <ul><b>Active</b> Footprinting Method: the attacker's wireless device sends a probe request with the SSID to an AP and waits for a response; if the wireless device does not have the SSID in advance, it can 
+        send a probe request with an empty SSID</ul>
+    </ol></p>
+    <p>In the case of a probe request with an empty SSID, most APs respons with their own SSID in a probe response packet; consequently, emtpy SSIDs are useful in learning the SSIDs of APs. In this method, the 
+    attacker knows the correct BSS to associate with and can configure the AP to ignore a probe request with an empty SSID.</p>
+    <p>An attacker can scan for Wi-Fi networks with the help of wireless network scanning tools such as <a target=_blank href=https://nutsaboutnets.com/archives/netsurveyor-wifi-scanner/>NetSurveyor</a> and 
+        <a target=_blank href=https://lizardsystems.com/wi-fi-scanner/>Wi-Fi Scanner</a>.</p>
+        <p>The SSID is present in beacons, probe requests and responses as well as in association and re-association requests. An attacker can obtain the SSID through passive scanning, if that fails the attacker 
+        can detect it through active scanning. Subsequently, the attacker can connect to the wireless network and launch attacks. Wireless network scanning allows sniffing by tuning into various channels of the 
+        devices.</p>
+
+    <h2>Finding Wi-Fi Networks in Range to Attack</h2>
+    <p>The first task for an attacker searching for Wi-Fi targets is to check potential networks that are in range to find the best one to attack. Attackers use various Wi-Fi chalking techniques such as WarWalking, 
+    WarChalking, WarFlying and WarDriving to find a target Wi-Fi network.</p>
+    <h2>Wi-Fi Chalking Techniques</h2>
+    <p><ol>
+        <ul>WarWalking: walk around with Wi-Fi enabled laptops installed with a wireless discovery tool to map out open wireless networks</ul>
+        <ul>WarChalking: symbols drawn in public places to advertise open Wi-Fi networks</ul>
+        <ul>WarFlying: using drones to detect open wireless networks</ul>
+        <ul>WarDriving: driving around with Wi-Fi enabled laptops installed with a wireless discovery tool to map out open wireless networks</ul>
+    </ol></p>
+    <p>Attackers use the following tools to discover Wi-Fi networks for launching attacks:</p>
+    <p><ol>
+        <ul>Laptop with a Wi-Fi card</ul>
+        <ul>External Wi-Fi antenna</ul>
+        <ul>Network discovery software</ul>
+    </ol></p>
+    <p>Some of the tools used to discover Wi-Fi networks in range to attack are <a target=_blank href=https://www.metageek.com/inssider/>inSSIDer</a>, 
+        <a target=_blank href=https://nutsaboutnets.com/archives/netsurveyor-wifi-scanner/>NetSurveyor</a>, 
+        <a target=_blank href=https://lizardsystems.com/wi-fi-scanner/>Wi-Fi Scanner</a> and 
+        <a target=_blank href=https://www.acrylicwifi.com/en/>Acrylic Wi-Fi Home</a>.</p>
+
+    <h2>Finding WPS-Enabled APs</h2>
+    <p>Attackers use the <a target=_blank href=https://github.com/wasmCloud/wash>Wash commandline utility</a> to identify WPS-enabled APs in the target wireless network. This utility also helps attackers 
+    check whether the AP is in a locked state. Most WPS-enabled routers are locket automatically when incorrect credentials are entered more than 5 times consecutively, and they can be unlocked only in the 
+    administrator interface of the router manually. The Wash command supports the 5Ghz channel and can be used by installing the Reaver package. Some arguments used by attackers:</p>
+    <p><ol>
+        <ul>-i, --interface</ul>
+        <ul>-a, --all (all access points, including those with WPS disabled</ul>
+        <ul>-f, --file (reads packets from captured files)</ul>
+        <ul>-c, --channel (channel to listen to)</ul>
+        <ul>-o, --out-file (writes data to file)</ul>
+        <ul>-n, --probes (maximum number of probes to send to each AP in the scan mode)</ul>
+        <ul>-D, --daemonize (Wash command)</ul>
+        <ul>-5, --5ghz</ul>
+        <ul>-s, --scan</ul>
+        <ul>-u, --survey</ul>
+    </ol></p>
+    <p>Attackers use the following command to discover the access point, extended service set identifier (ESSID) and BSSID of a device or router:</p>
+    <p><ol>
+        <ul>sudo wash -i wlan0</ul>
+    </ol></p>
