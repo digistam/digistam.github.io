@@ -1,6 +1,37 @@
     <meta name=”robots” content=”noindex,nofollow”/>
   <a href=index.html>Back to home</a>
 <hr/>
-<h1>APT</h1>
-<p><a target=_blank href=https://en.wikipedia.org/wiki/Advanced_persistent_threat>Advanced Persistent Threat (APT)</a> is a major security concern for any organization. Recently in the news it was revealed that a member of an “APT” group that utilises the “Conti” ransomware became disgruntled 
-    at the 
+<h1>Wireless Threats</h1>
+<p>Wireless networks can be at risk to various types of attacks, including:</p> 
+<p><ol><ul><b>access-control</b> attacks</ul>
+    <ul><b>integrity</b> attacks</ul>
+    <ul><b>confidentiality</b> attacks</ul>
+    <ul><b>availability</b> attacks</ul> 
+    <ul><b>authentication</b> attacks</ul>
+</ol></p>
+
+<h2>Access Control Attacks</h2>
+<p>Wireless access-control attacks aim to penetrate a network by evading WLAN access-control measures, such as AP MAC filters and Wi-Fi port access controls.</p>
+<p><ol>
+    <ul><b>WarDriving</b>: WLANs detected by sending probe requests over a connection or by listening to web beacons; Tools: <a target=_blank href=https://kismac-ng.org/>KisMAC</a>, <a target=_blank href=https://www.netstumbler.com/>NetStumbler</a></ul>
+    <ul><b>Rogue access points</b>: in order to create a backdoor to a trusted network, an attacker may install an unsecured AP or fake AP inside a firewall; A wireless AP is termed a <b>rogue access point</b> when it is installed on a trusted network without authorization</ul>
+    <ul><b>MAC spoofing</b>: reconfigure a MAC address to appear as an authorized AP to a host on a trusted network; Tools: <a target=_blank href=https://smac-tool.com/>SMAC</a></ul>
+    <ul><b>AP misconfiguration</b></ul>
+    <ul><b>Ad hoc associations</b>: using any USB adapter or wireless card; connecting host to an unsecured client to attack a specific client or to avoid AP security</ul>
+    <ul><b>Promiscuous client</b>: using an promiscuous client, an attacker exploits the behavior of 802.11 wireless cards as they always attempt to find a stronger signal signal to connect; Intent to lure the client to connect to 
+    the attacker's AP</ul>
+    <ul><b>Client mis-association</b>: client may intentionally of accidentally connect or associate with an AP outside the legitimate network because the WLAN signals travel through the air, walls and other obstructs</ul>
+    <ul><b>Unauthorized association</b></ul>
+</ol></p>
+
+<h2>Integrity Attacks</h2>
+<p>An integrity attack involves changing or altering data during transmission. In wireless integrity attacks, attackers send forged control, management or data frames over a wireless network to misdirect wireless
+devices and perform another type of attack such as a DoS attack.</p>
+<p><ol>
+    <ul><b>Data-Frame injection</b>: constructing and sending forged 802.11 frames; Tools: <a target=_blank href=https://airpwn.sourceforge.net/Airpwn.html>Airpwn</a>, 
+        <a target=_blank href=https://www.willhackforsushi.com/?page_id=19>File2air</a>, 
+        <a target=_blank href=https://github.com/OSUSysLab/wPerf>Wperf</a>, 
+        <a target=_blank href=https://packetstormsecurity.com/files/32491/void11-0.2.0.tar.bz2.html>void11</a>, 
+        <a target=_blank href=https://sourceforge.net/projects/wepwedgie/>WEPWedgie</a>, 
+        wnet dinject</ul>
+</ol></p>
