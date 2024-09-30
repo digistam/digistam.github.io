@@ -34,4 +34,88 @@ devices and perform another type of attack such as a DoS attack.</p>
         <a target=_blank href=https://packetstormsecurity.com/files/32491/void11-0.2.0.tar.bz2.html>void11</a>, 
         <a target=_blank href=https://sourceforge.net/projects/wepwedgie/>WEPWedgie</a>, 
         wnet dinject</ul>
+    <ul><b>WEP injections</b>: constructing and sending forged WEP encryption keys; Tools: WEP cracking and injection tools</ul>
+    <ul><b>Bit-Flipping attacks</b>: capturing frame and flipping random bits in the data payload, modifying ICV and sending it to user</ul>
+    <ul><b>Extensible AP replay</b>: capturing 802.1X Extensible Authentication Protocols (eg. EAP Identity, Success and Failure) for later replay; Tools: wireless capture and injection tools between client and AP</ul>
+    <ul><b>Data Replay</b>: capturing 802.11 data frames for later (modified) replay; Tools: capture and injection tools</ul>
+    <ul><b>Initialization Vector Replay Attacks</b>: deriving the keystream by sending a plaintext message</ul>
+    <ul><b>RADIUS Replay</b>: capturing RADIUS Access-Accept or Reject messages for later replay; Tools: Ethernet capture and injection tools between AP and authentication server</ul>
+    <ul><b>Wireless Network Viruses</b>: viruses can provide an attacker with a simple method to compromise APs</ul>
+</ol></p>
+<h2>Confidentiality Attacks</h2>
+<p>These attacks attempt to intercept confidential information sent over a wireless network, regardless of whether the system transmits data in cleartext or an encrypted format. If the system transmits data in an 
+encrypted format (like WEP or WPA), an attacker may attempt to break the encryption.</p>
+<p><ol>
+    <ul><b>Eavesdropping</b>: capturing and decoding unprotected application traffic to obtain potentially sensitive information; Tools: <a target=_blank href=https://www.wireshark.org/>Wireshark</a>, 
+        <a target=_blank href=https://www.ettercap-project.org/>Ettercap</a>, 
+        <a target=_blank href=https://www.bettercap.org/>Bettercap</a>, 
+        <a target=_blank href=https://www.kismetwireless.net/>Kismet</a>, commercial analyzers</ul>
+    <ul><b>Traffic Analysis</b>: inferring information from the observation of external traffic characteristics</ul>
+    <ul><b>Cracking WEP Key</b>: capturing data to recover a WEP key using brute force or Fluhrer-Mantin-Shamir (FMS) cryptanalysis; Tools: <a target=_blank href=https://www.aircrack-ng.org/>Aircrack-ng</a>, 
+        <a target=_blank href=https://sourceforge.net/projects/airsnort/>AirSnort</a>, 
+        <a target=_blank href=https://www.researchgate.net/figure/The-chopchop-attack-on-Wired-Equivalency-Privacy-WEP-10-This-attack-determines-the_fig1_260635283>chopchop</a>, 
+        <a target=_blank href=https://wepattack.sourceforge.net/>WepAttack</a>, 
+        <a target=_blank href=https://wepdecrypt.sourceforge.net/>WebDecrypt</a></ul>
+    <ul><b>Evil Twin AP</b>: posing as an authorized AP by beaconing the WLAN's SSID to lure users; Tools: <a target=_blank href=https://en.wikipedia.org/wiki/HostAP>HostAP</a>, 
+        <a target=_blank href=https://github.com/Esser50K/EvilTwinFramework>EvilTwinFramework</a>, 
+        <a target=_blank href=https://github.com/wifiphisher/wifiphisher>Wifiphisher</a></ul>
+    <ul><b>Honeypot AP</b>: setting an AP's SSID to be the same as that of a legitimate AP; Tools: manipulating SSID</ul>
+    <ul><b>Session Hijacking</b>: manipulating the network such that the attacker's host appears to be the desired destination; Tools: manipulating</ul>
+    <ul><b>Masquerading</b>: pretending to be an authorized user to gain access to a system; Tools: stealing login IDs and passwords, bypassing authentication mechanisms</ul>
+    <ul><b>MITM attack</b>: running conventional MITM attack tools on an evil twin AP to intercept TCP sessions or Secure Sockets Layer (SSL) / Secure Shell (SSH) tunnels; Tools: 
+        <a target=_blank href=https://www.kali.org/tools/dsniff/>dsniff</a>, 
+        <a target=_blank href=https://www.ettercap-project.org/>Ettercap</a>, 
+        <a target=_blank href=https://www.zimperium.com/blog/alter-poc-exploit-lte-layer-two/>aLTEr attack</a></ul>
+</ol></p>
+
+<h2>Availability Attacks</h2>
+<p>Availability attacks aim at obstructing the delivery of wireless services to legitimate users, either by crippling WLAN resources or by denying them access to these resources. </p>
+<p><ol>
+    <ul><b>Access Point Theft</b>: physicall removing an AP</ul>
+    <ul><b>Disassociation Attacks</b>: destroying connectivity, making unavailable</ul>
+    <ul><b>EAP-Failure</b>: observing a valid 802.1X EAP exchange and then sending the client a forged EAP-Failure message; Tools: <a target=_blank href=https://www.willhackforsushi.com/?page_id=19>File2air</a>, 
+        <a target=_blank href=https://www.intuitibits.com/products/airtoolpi/>Airtool Pi</a></ul>
+    <ul><b>Beacon Flood</b>: generating thousands of counterfeit 802.11 beacons to make it difficult for clients to find a legitimate AP; Tools: <a target=_blank href=https://github.com/evil5hadow/fakeap>FakeAP</a></ul>
+    <ul><b>Denial-of-Service</b>: exploiting the carrier-sense multiple access with collision avoidance (CSMA/CA) clear channel assessment (CCA) mechanism to make a channel appear busy; Tools: an adapter that supports 
+    the CW Tx mode, with a low level utility to invoke continuous tranmissions</ul>
+    <ul><b>De-authenticate Flood</b>: flooding client(s) with forged de-authenticates or disassociates to disconnect users from an AP; Tools: <a target=_blank href=https://sourceforge.net/projects/airjack/>AirJack</a>, 
+        <a target=_blank href=https://packetstormsecurity.com/files/32491/void11-0.2.0.tar.bz2.html>void11</a></ul>
+    <ul><b>Routing Attacks</b>: distributing routing information within the network; Tools: <a target=_blank href=https://en.wikipedia.org/wiki/Routing_Information_Protocol>RIP protocol</a>, 
+        exploiting <a target=_blank href=https://ieeexplore.ieee.org/document/749281>Ad-Hoc On-Demand Distance Vector (AODV)</a> and 
+        <a target=_blank href=https://en.wikipedia.org/wiki/Dynamic_Source_Routing>Dynamic Source Routing (DSR)</a> protocols using wormhole and 
+    sinkhole attacks</ul>
+    <ul><b>Authenticate Flood</b>: sending forged authenticates or associates from random MACs to fill a target APs association table; Tools: Airjack, File2Air, void11</ul>
+    <ul><b>Address Resolution Protocol (ARP) Cache Poisoning Attacks</b>: creating many attack vectors</ul>
+    <ul><b>Power Saving Attacks</b>: transmitting a spoofed traffic indication map (TIM) or delivery TIM (DTIM) to a client in the power-saving mode, making the client vulnerable to a DoS attack</ul>
+    <ul><b>TKIP MIC Exploit</b>: generating invalid TKIP data to exceed the target AP's MIC error threshold, suspending WLAN service; Tools: File2air, wnet dinject </ul>
+</ol></p>
+
+<h2>Authentication Attacks</h2>
+<p>Object is to steal the identity of Wi-Fi clients, their personal information, login credentials etc. to gain unauthorized access to network resources.</p>
+<p><ol>
+    <ul><b>PSK Cracking</b>: recovering a WPA PSK from captured key handshake frames using a dictionary attack tool; Tools: 
+    <a target=_blank href=https://www.kali.org/tools/cowpatty/>Cowpatty</a>,
+    <a target=_blank href=https://kismac-ng.org/>KisMAC</a>,
+    <a target=_blank href=https://github.com/savio-code/fern-wifi-cracker>Fern Wifi Cracker</a></ul>
+    <ul><b>LEAP Cracking</b>: recovering user credentials from captured 802.1X Lightweight EAP (LEAP) packets using a dictionary attack tool to crack the NT password hash; Tools:
+    <a target=_blank href=https://github.com/joswr1ght/asleap>Asleap</a>,
+    <a target=_blank href=https://www.diva-portal.org/smash/get/diva2:831198/fulltext01.pdf>THCLEAPcracker</a></ul>
+    <ul><b>VPN Login Cracking</b>: gaining user credentials (eg. Point-to-Point Tunneling Protocol (PPTP) password or Internet Protocol Security (IPsec) pre-shared secret key) using 
+    brute force attacks on virtual private network authentication protocols; Tools: <a target=_blank href=https://github.com/royhills/ike-scan>ike-scan</a>, 
+    <a target=_blank href=https://ikecrack.sourceforge.net/>IKECrack</a> (IPsec),
+    Anger,
+    <a target=_blank href=https://www.kali.org/tools/thc-pptp-bruter/>THC-pptp-bruter</a> (PPTP)</ul>
+    <ul><b>Domain Login Cracking</b>: recovering user credentials (eg. Windows login and password) by cracking NetBIOS password hashes with a brute-force or dictionary-attack tool; Tools:
+    <a target=_blank href=https://www.openwall.com/john/>John the Ripper</a>,
+    <a target=_blank href=https://l0phtcrack.gitlab.io/>L0phtCrack</a>,
+    <a target=_blank href=https://github.com/vanhauser-thc/thc-hydra>THC-Hydra</a></ul>
+    <ul><b>Key Reinstallation Attack</b>: exploiting the four-way handshake of the WPA2 protocol; Tools: None reuse technique</ul>
+    <ul><b>Identity Theft</b>: capturing user identities from cleartext 802.1X Identity Response packets; Tools: packet capturing tools</ul>
+    <ul><b>Shared Key Guessing</b>: attempting 802.11 shared key authentication with the vendor default or cracked WEP keys; Tools: WEP cracking tools, 
+    <a target=_blank href=https://www.kali.org/tools/wifite/>Wifite</a></ul>
+    <ul><b>Password speculation</b>: repeatedly attempting 802.1X authentication using a captured identity to guess the user's password; Tools: password dictionary</ul>
+    <ul><b>Application Login Theft</b>: capturing user credentials (eg. email address and password) from cleartext application protocols; Tools: 
+    <a target=_blank href=http://www.effetech.com/aps/>Ace Password Sniffer</a>,
+    <a target=_blank href=https://www.kali.org/tools/dsniff/>dsniff</a>,
+    <a target=_blank href=https://hacklido.com/blog/552-wi-jacking>Wi-Jacking Attack</a></ul>
 </ol></p>
