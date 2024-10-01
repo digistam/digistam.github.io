@@ -151,3 +151,39 @@ in order to gain unauthorized access to network resources. Attackers use the fol
         <ul>Capture and save the NetStumbler log files that contain the GPS coordinates of the APs</ul>
         <ul>Upload this log file to WiGLE, which automatically plots the points on a map</ul>
     </ol></p>
+
+    <h1>Wireless Traffic Analysis</h1>
+    <p>The third step in the wireless hacking methodology is to analyze the traffic of the discovered wireless network. An attacker performs wireless traffic analysis before launching actual attacks on the 
+    wireless network. An attacker performs wireless traffic analysis before launching actual attacks on the wireless network. This analysis helps the attacker determine the vulnerabilities and susceptible 
+    victims in the target network as well as the appropriate strategy for a succesful attack. The attacker uses various tools and techniques to analyze the traffic of the target wireless network.</p>
+    <p>Wi-Fi protocols are unique to Layer 2, and traffic over the air is not serialized, which makes it easy to sniff and analyze wireless packets. Attackers analyze a wireless network to determine the 
+    broadcasted SSID, presence of multiple APs, possibility of recovering SSIDs, authentication method used, WLAN encryption algorithms etc. Attackers use Wi-Fi packet sniffing tools such as 
+    <a target=_blank href=https://www.netally.com/products/airmagnet-wifi-analyzer/>AirMagnet WiFi Analyzer Pro</a>, Wireshark, 
+        <a target=_blank href=https://support.riverbed.com/content/support/software/steelcentral-npm/packet-analyzer.html>SteelCentral Packet Analyzer</a>, 
+    <a target=_blank href=https://www.liveaction.com/products/omnipeek/>OmniPeek Network Protocol Analyzer</a> and 
+    <a target=_blank href=https://www.tamos.com/download/main/ca>CommView for Wi-Fi</a> to capture and analyze the traffic of a target wireless network.</p>
+
+    <h2>Choosing the Optimal Wi-Fi Card</h2>
+    <p>Choosing the optimal Wi-Fi card is very important for an attacker because tools such as aircrack-ng and KisMAC work only with selected wireless chipsets. An attacker considers the following when 
+    choosing the optimal Wi-Fi card:</p>
+    <p><ol>
+        <ul>Determine the Wi-Fi requirements: an attacker may want to listen to wireless network traffic or both listen to and inject packets. Windows systems can listen to network traffic but do not 
+        have the capability of injecting data packets, whereas Linux has the capability of both listening and injecting packets. Based on these issues, the attacker chooses the OS; hardware format, such as 
+        Personal Computer Memory Card International Association (PCMCIA) and USB; and features such as listening, injection or both</ul>
+        <ul>Learn the capabilities of a wireless card: wireless cards have two manufacturers. One is the brand of the card, and the other is the chipset manufacturer. Knowing the card manufacturer and model 
+        is not sufficient to choose the Wi-Fi card. The attacker must also know about the chipset of the card. Most card manufacturers are reluctant to reveal the chipset used in their cards, but this information 
+        is critical for the attacker because it allows the attacker to determine the supported OS, the required software drivers and limitations</ul>
+        <ul>Determine the chipset of the Wi-Fi card: an attacker can determine the chipset of a Wi-Fi card using the following techniques:</ul>
+        <ul>- Search the internet</ul>
+        <ul>- View Windows driver filenames, which often reveal the chipset name</ul>
+        <ul>- Check the manufacturer's page</ul>
+        <ul>- The wireless chip can be directly viewed for some cards. Often, the chipset number can also be observed</ul>
+        <ul>- The Federal Communications Commission (FCC) ID search can be used to look up detailed information on the device if an FCC identification number is printed on the board. This search will return 
+        information on the manufacturer, model and chipset</ul>
+        <ul>Card manufacturers occasionally change the card chipset while retaining the model number. Manufacturers may call this a "card revision" or "card version". Therefore, an attacker's search must 
+        include the version or revision. The method to determine it may vary by OS. The site <a target=_blank href=https://wireless.wiki.kernel.org/en/users/Drivers>wireless.wiki.kernel.org</a> may provide
+        compatibility information</ul>
+        <ul>Verify the chipset capabilities: the attacker must verify that the chipset is compatible with the OS and that it meets all requirements</ul>
+        <ul>Determine the drivers and patches required</ul>
+    </ol></p>
+<p>After considering all these aspects to choose a chipset, the attacker chooses a card that uses that specific chipset with the help of a compatible card list.</p>
