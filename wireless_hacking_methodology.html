@@ -59,7 +59,7 @@ in order to gain unauthorized access to network resources. Attackers use the fol
         <a target=_blank href=https://www.acrylicwifi.com/en/>Acrylic Wi-Fi Home</a>.</p>
 
     <h2>Finding WPS-Enabled APs</h2>
-    <p>Attackers use the <a target=_blank href=https://github.com/wasmCloud/wash>Wash commandline utility</a> to identify WPS-enabled APs in the target wireless network. This utility also helps attackers 
+    <p>Attackers use the <a target=_blank href=https://en.kali.tools/?p=341>Wash commandline utility</a> to identify WPS-enabled APs in the target wireless network. This utility also helps attackers 
     check whether the AP is in a locked state. Most WPS-enabled routers are locket automatically when incorrect credentials are entered more than 5 times consecutively, and they can be unlocked only in the 
     administrator interface of the router manually. The Wash command supports the 5Ghz channel and can be used by installing the Reaver package. Some arguments used by attackers:</p>
     <p><ol>
@@ -77,4 +77,77 @@ in order to gain unauthorized access to network resources. Attackers use the fol
     <p>Attackers use the following command to discover the access point, extended service set identifier (ESSID) and BSSID of a device or router:</p>
     <p><ol>
         <ul>sudo wash -i wlan0</ul>
+    </ol></p>
+
+    <h2>Wi-Fi Discovery Tools</h2>
+    <p><ol>
+        <ul><a target=_blank href=https://www.metageek.com>inSSIDer</a></ul>
+        <ul><a target=_blank href=https://nutsaboutnets.com>NetSurveyor</a></ul>
+        <ul><a target=_blank href=https://lizardsystems.com>Wi-Fi Scanner</a></ul>
+        <ul><a target=_blank href=https://www.acrylicwifi.com>Acrylic Wi-Fi Home</a></ul>
+        <ul><a target=_blank href=https://www.passmark.com>WirelessMon</a></ul>
+        <ul><a target=_blank href=https://www.ekahau.com>Ekahau Wi-Fi Heatmaps</a></ul>
+    </ol></p>
+    <h2>Mobile-based Wi-Fi Discovery Tools</h2>
+    <p><ol>
+        <ul>WiFi Analyzer</ul>
+        <ul><a target=_blank href=https://opensignal.com>Opensignal</a></ul>
+        <ul><a target=_blank href=https://www.kaibits-software.com>Network Signal Info Pro</a></ul>
+        <ul><a target=_blank href=https://kmansoft.com>WiFi Manager</a></ul>
+        <ul>Network Refresher: Network Signal Refresher</ul>
+        <ul>WiFi Scanner</ul>
+    </ol></p>
+
+    <h1>GPS Mapping</h1>
+    <p>The second step in the wireless hacking methodology is GPS mapping. An attacker who discovers a target wireless network can proceed toward wireless hacking by drawing a map of the network. In this step, 
+    the attacker may use various automated tools to map the target wireless network. The Global Positioning System (GPS) is a space-based satellite navigation system that provides the location of physical 
+    entities on Earth, along with the time when they were present at that location. Using a GPS utility, anyone can find a specific location on Earth and its geographical features. An attacker uses this GPS 
+    utility to locate and map the target wireless network in a particular geographical area.</p>
+    <p>A GPS receiver calculates position, time and velocity by processing specifically coded satellite signals. Attackers know that the presence of free Wi-Fi networks in an area may indicate the existence 
+    of an unsecured network. Attackers usually create maps of discovered Wi-Fi networks and a database with statistics collected using Wi-Fi discovery tools such as inSSIDer Office and NetSurveyor. GPS is 
+    useful in tracking the location of discovered Wi-Fi networks and the coordinates uploaded to sites such as <a target=_blank href=https://wigle.net>WiGLE</a>. Attackers can share such information with the
+    hacking community or sell it for profit.</p>
+    <p><a target=_blank href=https://wigle.net>WiGLE</a> consolidates information on wireless networks worldwide, including their locations, in a central database, and it provides user-friendly Java, Windows
+    and web applications that can map, query and update the database via the web. A wireless network can be added to WiGLE from a stumble file or manually, and remarks can be added to existing networks.</p>
+    <p>The location of discovered Wi-Fi networks can be tracked using WiGLE through the following steps:</p>
+    <p><ol>
+        <ul>Navigate to <a target=_blank href=https://wigle.net>wigle.net</a> and click on <b>Uploads</b></ul>
+        <ul>In the <b>Uploads</b> page, click on <b>UPLOAD A FILE</b> to upload a log file</ul>
+        <ul>A pop-up window will appear, showing the types of files supported for upload</ul>
+        <ul>Click on <b>Choose File</b>; select Wi-Fi discovery tools and then the log file to upload</ul>
+        <ul>Click on <b>Send</b></ul>
+        <ul>WiGLE then shows complete information on the location of the Wi-Fi networks</ul>
+    </ol></p>
+    <p>WiGLE currently supports DStumbler, G-Mon, inSSIDer, KisMAC, Kismet, MacStumbler, NetStumbler, Pocket Warrior, Wardrive-Android, WiFiFoFum, WiFi-Where, WiGLE WiFi Wardriving and Apple consolidated 
+    DB formats.</p>
+
+    <h2>GPS Mapping Tools</h2>
+    <p><ol>
+        <ul><a target=_blank href=https://www.calipher.com>Maptitude Mapping Software</a></ul>
+        <ul><a target=_blank href=https://www.skyhook.com>Skyhook</a></ul>
+        <ul><a target=_blank href=https://www.expertgps.com>ExpertGPS</a></ul>
+        <ul><a target=_blank href=https://www.gpsvisualizer.com>GPS Visualizer</a></ul>
+        <ul><a target=_blank href=https://www.mapwel.net>Mapwel</a></ul>
+        <ul><a target=_blank href=https://www.trackmaker.com>Trackmaker</a></ul>
+    </ol></p>
+
+    <h2>Wi-Fi Hotspot Finder Tools</h2>
+    <p><ol>
+        <ul>Wi-Fi Finder -> mobile application that can be used for finding free or paid public Wi-Fi hotspots online or offline</ul>
+        <ul><a target=_blank href=https://www.the-sz.com>Homedale::Wi-Fi/WLAN Monitor</a></ul>
+        <ul>Fing - Network Tools</ul>
+        <ul>WiFi Finder - Free WiFi Map</ul>
+        <ul>WiFi Map</ul>
+        <ul>Find Wifi & Connect to Wi-Fi</ul>
+    </ol></p>
+
+    <h2>Wi-Fi Network Discovery Through WarDriving</h2>
+    <p>WarDriving can be used to discover Wi-Fi networks with the following procedure:</p>
+    <p><ol>
+        <ul>Register with WiGLE and download map packs of the target area to view the plotted APs on a map</ul>
+        <ul>Connect the laptop to an antenna and a GPS device via a USB serial adapter and board a car</ul>
+        <ul>Install and launch NetStumbler and WiGLE client software and turn on the GPS device</ul>
+        <ul>Drive the car at speeds of 35 mph or below (at higher speeds, the Wi-Fi antenna will not be able to detect Wi-Fi networks)</ul>
+        <ul>Capture and save the NetStumbler log files that contain the GPS coordinates of the APs</ul>
+        <ul>Upload this log file to WiGLE, which automatically plots the points on a map</ul>
     </ol></p>
