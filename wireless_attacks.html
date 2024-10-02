@@ -39,3 +39,23 @@
     </ol></p>
 
     <h2>Fragmentation Attack</h2>
+<p>A succesful fragmentation attack can obtain 1500 bytes of a pseudo-random generation algorith (PRGA). However, this attack does not directly recover the WEP key. At least one data packet must be 
+received from the target AP to initiate this attack. The <b>aircrack-ng</b> suite helps the attacker obtain a small amount of keying material from the packet, following which it attempts to send ARP and/or 
+logical link control (LLC) packets with known content to the AP. The attacker can gather a larger amount of keying information from the replay packet if the AP echoes this packet. An attacker repeats this 
+cycle several times to obtain the PRTG. The attacker can use PRGA with <b>packetforge-ng</b> to generate packets for injection attacks.</p>
+
+    <h2>MAC Spoofing Attack</h2>
+    <p>A MAC address is a unique identifier hard coded in the circuit of a network card by its manufacturer. Some networks implement MAC address filtering as a security measure. In MAC spoofing, attackers 
+    change their MAC address to that of an authenticated user to bypass the MAC filtering configured in an AP. To spoof a MAC address, the attacker simply needs to set the value returned by ifconfig to 
+    another hex value in the format of aa:bb:cc:dd:ee:ff. This change is made with sudo. Attackers use MAC spoofing tools such as <a target=_blank href=https://technitium.com/tmac/>Technitium MAC Address Changer</a>,  
+        <a target=_blank href=https://smac-tool.com/>SMAC Address Spoofing Tool</a> and <a target=_blank href=https://lizardsystems.com/change-mac-address/>Change Mac Address</a></p>
+
+    <h2>DoS: Disassociation and De-authentication Attacks</h2>
+    <p>In a <b>disassocation attack</b>, the attacker makes the victim unavailable to other wireless devices by destroying the connectivity between the AP and client. </p>
+    <p>In a <b>de-authentication attack</b>, the attacker floods station(s) with forged de-authenticates or disassociates to disconnect users from an AP.</p>
+
+    <h2>MITM Attack</h2>
+    <p>A MITM attack is an active internet attack in which the attacker attempts to intercept, read or alter information transmitted between two computers</p>
+    <h2>Eavesdropping</h2>
+    <p>Eavesdropping is easy in a wireless network because no physical medium is used for communication. An attacker in the vicinity of a wireless network can receive radio waves on the wireless 
+    network without much effort or equipment. Furthermore, the attacker can examine the entire data frame sent across the network or store it for later assessment.</p>
