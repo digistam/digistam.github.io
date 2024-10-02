@@ -59,3 +59,51 @@ cycle several times to obtain the PRTG. The attacker can use PRGA with <b>packet
     <h2>Eavesdropping</h2>
     <p>Eavesdropping is easy in a wireless network because no physical medium is used for communication. An attacker in the vicinity of a wireless network can receive radio waves on the wireless 
     network without much effort or equipment. Furthermore, the attacker can examine the entire data frame sent across the network or store it for later assessment.</p>
+    <p>Several layers of encryption are needed to prevent attackers from obtaining sensitive information. WEP or data-link encryption can be used in these layers. Further, a security mechanism such as IPsec, 
+    SSH or SSL must be used, failing which sent data may be available to attackers. </p>
+    <p>However, an attacker can crack WEP with tools freely available. A skilled hacker can potentially log gigabytes of WEP-protected traffic, post-process that data, and break the encryption.</p>
+    <h2>Manipulation</h2>
+    <p>Manipulation is a level beyond eavesdropping. It occurs when an attacker receives the victim's encrypted data, manipulates it, and retransmits the manipulated data to the victim. In addition, an 
+    attacker can intercept packets with encrypted data and change the destination address to forward these packets across the internet.</p>
+    <p>An attacker performs a MITM attack through the following steps:</p>
+    <p><ol>
+        <ul>The attacker sniffs the victim's wireless parameters (MAC address, ESSID/BSSID and number of channels)</ul>
+        <ul>The attacker sends a DEAUTH request to the victim with a spoofed source address or the victim's AP</ul>
+        <ul>On receiving the request, the victim's computer is de-authenticated and starts to search all channels for a new valid AP</ul>
+        <ul>The attacker sets a forged AP on a new channel with the original MAC address (BSSID) and ESSID of the victim's AP, thereby connecting the victim to the forged AP</ul>
+        <ul>After the victim's successful association to the forged AP, the attacker spoofs the victim to connect to the original AP</ul>
+        <ul>The attacker positions themselves between the AP and victim, listening to all traffic</ul>
+    </ol></p>
+
+    <h2>MITM Attack using Aircrack-ng</h2>
+    <p>An attacker can perform an MITM attack using <b>aircrak-ng</b> through the following steps:</p>
+    <p><ol>
+        <ul>Run airmon-ng in the monitor mode</ul>
+        <ul>Start airodump to discover SSIDs on the interface</ul>
+        <ul>De-authenticate (deauth) the client using aireplay-ng</ul>
+        <ul>Associate the wireless card (fake association) with the AP to be accessed with aireplay-ng</ul>
+    </ol></p>
+
+    <h2>Wireless ARP Poisoning Attack</h2>
+    <p>ARP determines the MAC address of an AP if it already knows its IP address. Usually, ARP does not possess any feature to verify whether the responses are from valid hosts. ARP poisoning is an attack 
+    technique that exploits this lack of verification. In this technique, the ARP cache maintained by the OS is corrupted with wrong MAC addresses. An attacker achieves this by sending an ARP replay packet 
+    constructed with a wrong MAC address. </p>
+    <p>An ARP poisoning attack impacts all the hosts in a subnet. All stations associated with a subnet affected by an ARP poisoning attack are vulnerable because most APs act as transparent MAC-layer bridges.
+    All hosts connected to a switch or hub are susceptible to ARP poisoning attacks if the AP is connected directly to that switch or hub without any router / firewall between them. </p>
+
+    <h2>ARP Poisoning Attack using Ettercap</h2>
+    <p>Attackers use Ettercap to identify the MAC addresses of the clients and routers for performing various attacks such as ARP poisoning, sniffing and MITM attacks. Using this tool, an attacker can obtain 
+    all the information about the network traffic of the victim. An attacker performs an ARP poisoning attack using Ettercap through the following steps:</p>
+    <p><ol>
+        <ul>Launch the Ettercap graphical interface and enable the unified sniffing option by selecting <b>Sniff</b> -> <b>Unified Sniffing</b> from the menu bar. This allows the attacker to bridge the 
+        connection and sniff the traffic crossing the interfaces.</ul>
+        <ul>In the Ettercap <b>Setup</b> pop-up window, set the <b>Primary interface</b> to sniff and click on <b>OK</b>. This will show advanced menu options such as targets, hosts, MITM and plugins.</ul>
+        <ul>Identify the target host in the network by selecting <b>Hosts</b> -> <b>Scan for Hosts</b>. Ettercap performs a scan of all live hosts in the network and displays a list of hosts. Next, select 
+        <b>Hosts</b> -> <b>Hosts List</b> to view all the hosts discovered on the local network</ul>
+        <ul>Select <b>View</b> -> <b>Connections</b> to start snooping on the identified connections. The connections can be filtered in the <b>Connections</b> view based on the IP address, type of 
+        connection and state of connection (open / closed / active / killed).</ul>
+        <ul>Select the hosts to perform an ARP spoofing attack. Go to the <b>Hosts</b> window and select the target IP address. Select <b>Targets</b> -> <b>Current targets</b> to add a list of target hosts 
+        to use for ARP spoofing</ul>
+        <ul>Select <b>MITM</b> -> <b>ARP poisoning</b>. In the pop-up window that appears, select <b>Sniff remote connections</b> and click <b>OK</b> to launch an ARP poisoning attack on the target</ul>
+        <ul>Once the attack is launched, the target host's login credentials can also be sniffed if the web traffic is not encrypted with HTTPS</ul>
+    </ol></p>
