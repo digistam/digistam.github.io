@@ -2,5 +2,40 @@
     <meta name=”robots” content=”noindex,nofollow”/>
   <a href=index.html>Back to home</a>
 <hr/>
-<h1>Wireless Hacking Methodology</h1>
-<p>When hacking wireless networks, an a
+<h1>Launch of Wireless Attacks</h1>
+<p>After completing the wireless network discovery, mapping, and analysis of the target wireless network, an attacker will be in a position to launch an attack on the target wireless network. The attacker 
+    may launch various types of attacks such as fragmentation attacks, MAC spoofing attacks, DoS attacks and Address Resolution Protocol (ARP) poisoning attacks.</p>
+    <h2>Aircrack-ng Suite</h2>
+    <p><a target=_blank href=https://www.aircrack-ng.org>Aircrack-ng</a> is a network software suite consisting of a detector, packet sniffer, WEP / WPA / WPA2 PSK cracker and analysis tool for 802.11 
+    wireless networks</p>
+    <p><ol>
+        <ul>Airbase-ng: captures WPA/WPA2 handshake and can act as an ad-hoc AP</ul>
+        <ul>Aircrack-ng: de facto WEP / WPA / WPA2 cracking tool</ul>
+        <ul>Airdecap-ng: decrypts WEP / WPA / WPA2 and can be used to strip wireless headers from Wi-Fi packets</ul>
+        <ul>Airdecloak-ng: removes WEP cloaking from a pcap file</ul>
+        <ul>Airdrop-ng: program used for targeted, rule-based de-authentication of users</ul>
+        <ul>Aireplay-ng: used for traffic generation, fake authentication, packet replay and ARP request injection</ul>
+        <ul>Airgraph-ng: creates a client-AP relationship and common probe graph from an airodump file</ul>
+        <ul>Airmon-ng: used to switch from managed mode to monitor mode on wireless interfaces</ul>
+        <ul>Airodump-ng: capture packets of raw 802.11 frames and collect WEP IVs</ul>
+        <ul>Airolib-ng: stores and manages ESSID and password lists used in WPA/WPA2 cracking</ul>
+        <ul>Airserv-ng: allows multiple programs to independently use a Wi-Fi card via a client-server TCP connection</ul>
+        <ul>Airtun-ng: creates a virtual tunnel interface to monitor encrypted traffic and inject arbitrary traffic into a network</ul>
+        <ul>Easside-ng: allows to communicate via a WEP-encrypted AP without knowing the WEP key</ul>
+        <ul>Packetforge-ng: use this program to create encrypted packets that can subsequently be used for injection</ul>
+        <ul>Tkiptun-ng: injects frames into a WPA TKIP network with QoS and can recover MIC keys and keystreams from Wi-Fi traffic</ul>
+        <ul>Wesside-ng: seamlessly obtain a WEP key in minutes</ul>
+        <ul>WZCook: recover WEP keys from the Wireless Zero Configuration utility of Win XP</ul>
+    </ol></p>
+
+    <h2>Detection of Hidden SSIDs</h2>
+    <p>Based on the principle of security through obscurity, many organizations hide the SSID of their wireless network by not broadcasting it. However, hiding SSID does NOT increase security. An attacker 
+    can reveal a hidden SSID using the <b>aircrack-ng</b> suite through the following steps:</p>
+    <p><ol>
+        <ul>Run <b>Airmon-ng</b> in the <b>monitor</b> mode</ul>
+        <ul>Start <b>airodump-ng</b> to discover SSIDs on the interface</ul>
+        <ul><b>De-authenticat (deauth -> -0)</b> the client to reveal hidden SSID using <b>Aireplay-ng</b></ul>
+        <ul>Switch to <b>airodump</b> to view the revealed SSID</ul>
+    </ol></p>
+
+    <h2>Fragmentation Attack</h2>
