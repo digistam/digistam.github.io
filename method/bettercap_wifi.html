@@ -3,5 +3,66 @@
   <a href=../index.html>Back to home</a>
 <hr/>
 <h1>Bettercap WiFi module</h1>
-<h2>Hide malicious files</h2>
-<p>Hiding files in
+    <p>The WiFi modules use a WiFi interface supporting monitor mode and packet injection in order to scan the 802.11 spectrum</p>
+<p><ol><ul>perform deauthentication attacks on connected client stations</ul>
+<ul>perform RSN PMKID based clientless attacks on vulnerable access points</ul>
+<ul>automatically sniff and save key material either from complete WPA/WPA2 handshakes or PMKID packets</ul>
+<ul>send spoofed management beacons to create fake access points or fake client probes</ul>
+<ul>perform authentication wordlist attacks</ul>
+</ol></p>
+    <p>The interface only needs to support monitor mode and packet injection, it’ll be bettercap itself to switch it to the right mode, 
+        just make sure there aren’t other processes using the same wifi interface.</p>
+<h2>Commands</h2>
+    <p><ol>
+    <ul><b>wifi.recon on</b> -> start 802.11 wireless base stations discovery and handshakes/PMKID capture</ul>
+    <ul><b>wifi.recon off</b> -> stop 802.11 wireless base stations discovery</ul>
+    <ul><b>wifi.bruteforce on</b> -> attempts to bruteforce WiFi authentication (see bruteforce specific parameters)</ul>
+    <ul><b>wifi.bruteforce off</b> -> stop previously started bruteforcing</ul>
+    <ul><b>wifi.clear</b> -> clear all access points collected by the WiFi discovery module</ul>
+    <ul><b>wifi.recon BSSID</b> -> set 802.11 base station address to filter for</ul>
+    <ul><b>wifi.recon clear</b> -> remove the 802.11 base station filter</ul>
+    <ul><b>wifi.assoc BSSID</b> -> send an association request to the selected BSSID in order to receive a RSN PMKID key 
+        (use all, * or ff:ff:ff:ff:ff:ff to iterate for every access point)</ul>
+    <ul><b>wifi.deauth BSSID</b> -> start a 802.11 deauth attack, if an access point BSSID is provided, every client will be deauthenticated, 
+        otherwise only the selected client (use all, * or ff:ff:ff:ff:ff:ff to deauth everything)</ul>
+    <ul><b>wifi.probe BSSID ESSID</b> -> send a fake client probe with the given station BSSID, searching for ESSID</ul>
+    <ul><b>wifi.show</b> -> show current wireless stations list (default sorting by RSSI)</ul>
+    <ul><b>wifi.show.wps BSSID</b> -> show WPS information about a given station (use all, * or ff:ff:ff:ff:ff:ff to select all)</ul>
+    <ul><b>wifi.recon.channel CHANNEL</b> -> comma separated list of channels to hop on</ul>
+    <ul><b>wifi.recon.channel clear</b> -> enable channel hopping on all supported channels</ul>
+    <ul><b>wifi.ap</b> -> inject fake management beacons in order to create a rogue access point ( requires wifi.recon to run )</ul>
+    </ol></p>
+
+    <p><a target=_blank href=https://www.bettercap.org/modules/wifi/>More information</a> about parameters etc.</p>
+
+    <h1>Examples</h1>
+    
+    <h2>Run bettercap on wlan0</h2>
+    <p>Run bettercap using eth0 as the main interface but start the wifi module on wlan0 instead:</p>
+    <p>sudo bettercap -iface eth0 -eval "set wifi.interface wlan0; wifi.recon on"</p>
+
+    <h2>Deauth clients</h2>
+    <p>Keep deauthing clients from the access point with BSSID DE:AD:BE:EF:DE:AD every five seconds:</p>
+    <p>set ticker.period 5; set ticker.commands "wifi.deauth DE:AD:BE:EF:DE:AD"; ticker on</p>
+
+    <h2>Create a WiFi scanner</h2>
+    <p>Use the ticker and wifi.recon modules to create a WiFi scanner (performing channel hopping on every supported frequency):</p>
+    <p>set ticker.commands "clear; wifi.show"; wifi.recon on; ticker on</p>
+
+    <h2>Sort and filter by BSSID</h2>
+    <p>Sort by BSSID and filter for BSSIDs starting with F4:</p>
+    <p>set wifi.show.sort bssid asc<br/>
+    set wifi.show.filter ^F4<br/>
+    wifi.show</p>
+
+    <h2>Recon specific channels</h2>
+    <p>Only recon on channels 1, 2 and 3:</p>
+    <p>wifi.recon.channel 1,2,3; wifi.recon on</p>
+
+    <h2>Brute force using wordlist</h2>
+    <p>Bruteforce using a wordlist:</p>
+    <p>set wifi.interface en0<br/>
+    set wifi.bruteforce.target TargetRouter<br/>
+    set wifi.bruteforce.wordlist /path/to/your/wordlist.txt<br/>
+    set wifi.bruteforce.stop_at_first true<br/>
+    wifi.bruteforce on</p>
