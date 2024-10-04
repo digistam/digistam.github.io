@@ -2,6 +2,49 @@
     <meta name=”robots” content=”noindex,nofollow”/>
   <a href=../index.html>Back to home</a>
 <hr/>
-<h1>NTFS streams</h1>
-<h2>Hide malicious files</h2>
-<p>Hiding files in 
+<h1>Simple WiFi hacking with Bettercap and Aircrack-ng</h1>
+    <p>This is a very simple lab which I found out using information from the internet and personal preferences.</p>
+<h2>Tools needed</h2>
+<p><ol>
+    <ul>TP-Link AC600 Archer T2U Plus USB module / antenna</ul>
+    <ul>Kali</ul>
+    <ul>Bettercap</ul>
+    <ul>Aircrack-ng</ul>
+</ol></p>
+<h2>Bettercap</h2>
+<p>Start Bettercap -> <b>sudo bettercap -iface wlan0 -eval "wifi.recon on"</b></p>
+<p>A nice list of available APs will be created (be patient and let it grow!)</p>
+<p>Use the <b>wifi.show</b> command to view the table with available APs. Most interesting columns in this table: <b>BSSID</b>, <b>Channel</b> and <b>Clients</b> </p>
+<p>As soon as you found an interesting AP <b>with some clients connected</b>, copy the BSSID (MAC Address) and take a note of the <b>Channel</b> and stop Bettercap.</p>
+
+    <h2>Airodump-ng</h2>
+    <p>Start a new tab in the console and use airodump-ng to create a .cap file</p>
+    <p><b>sudo airodump-ng -c [Channel] -w [output .cap file] --bssid [BSSID]</b></p>
+    <p>Example: <i>sudo airodump-ng -c 108 -w mostwanted --bssid 64:fd:96:4c:42:f6</i></p>
+    <p>Be sure that some <b>Stations</b> are connected to the <b>BSSID</b> because you will need their help to get the password !. Let the airodump-ng process run and open a new tab in the terminal</p>
+
+    <h2>Aireplay-ng</h2>
+    <p>In the new console tab, you will do some nasty DoS like things to <b>deauth</b> the stations from the BSSID. This is important to get the password as soon as the stations try to connect to the BSSID again.</p>
+    <p><b>sudo aireplay-ng -0 0 -a [BSSID] wlan0</b></p>
+    <p>Let the process run and go back to te console tab where airodump-ng is running</p>
+
+    <h2>Get the password (handshake)</h2>
+    <p>As soon as a deauthorized station tries to connect to the BSSID again, a <b>WPA handshake</b> will be caught, and you will see this in the upper right corner of the console tab (<b>WPA handshake: 64:fd:96:4c:42:f6)</b>)</p>
+    <p>Now, be nice and immediately stop the aireplay-ng process (so the stations can connect to the BSSID again) as well as the aireplay-ng process, using CTRL+C.</p>
+    <p>The output file can be opened with Wireshark for inspection.</p>
+
+    <h2>Cracking the password</h2>
+    <p>The .cap file can be used to crack the password.</p>
+    <p><ol>
+        <ul>Using a wordlist</ul>
+        <ul>Using brute-force</ul>
+    </ol></p>
+
+    <h2>Using a wordlist</h2>
+    <p><b>aircrack-ng -w wordlist.txt output_file.cap</b></p>
+    <p>The tool will go through every password in the wordlist and try to crack the APs password. Wordlists are convenient and can be fast, but if the password is not in the wordlist, we have to try brute-force.</p>
+
+    <h2>Using brute-force</h2>
+    <p>There are a lot of tools that can generate password combinations. In Kali we can use the <b>crunch</b> tool.</p>
+    <p><b>crunch 8 20 abcdefghijklmnopqrstuvwxyz 1234567890 | aircrack-ng -w - output_file.cap -e "SSID"</b></p>
+    <p>This process will be very slow as the program will attempt every 8 to 20 character letter and number combination possible</p>
