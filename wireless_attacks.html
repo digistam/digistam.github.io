@@ -33,8 +33,10 @@
     can reveal a hidden SSID using the <b>aircrack-ng</b> suite through the following steps:</p>
     <p><ol>
         <ul>Run <b>Airmon-ng</b> in the <b>monitor</b> mode</ul>
+        <ul><b>sudo airmon-ng start wlan0</b></ul>
         <ul>Start <b>airodump-ng</b> to discover SSIDs on the interface</ul>
         <ul><b>De-authenticat (deauth -> -0)</b> the client to reveal hidden SSID using <b>Aireplay-ng</b></ul>
+        <ul><b>sudo aireplay-ng -0 1 -a [BSSID] wlan0</b></ul>
         <ul>Switch to <b>airodump</b> to view the revealed SSID</ul>
     </ol></p>
 
