@@ -12,6 +12,9 @@
 </ol></p>
     <p>The interface only needs to support monitor mode and packet injection, it’ll be bettercap itself to switch it to the right mode, 
         just make sure there aren’t other processes using the same wifi interface.</p>
+
+    <p>Bettercap has two modules for Wi-Fi: events.stream and wifi. To display the help screen for any model, just type <b>help</b> followed by module name. </p>
+    <p><b><i>kali > help wifi</i></b></p>
 <h2>Commands</h2>
     <p><ol>
     <ul><b>wifi.recon on</b> -> start 802.11 wireless base stations discovery and handshakes/PMKID capture</ul>
@@ -41,6 +44,11 @@
     <p>Run bettercap using eth0 as the main interface but start the wifi module on wlan0 instead:</p>
     <p>sudo bettercap -iface eth0 -eval "set wifi.interface wlan0; wifi.recon on"</p>
 
+    <h2>See all found Wi-Fi APs</h2>
+    <p>See all found Wi-Fi APs and their basic parameters such as BSSID, SSID, encryption type and whether they use WPS incl. WPS type (1.0 or 2.0)</p>
+    <p>wifi.show</p>
+    <p>With this information, we can choose to use another app like aircrack-ng to crack these APs or move on to one of the Bettercap cracking apps.</p>
+
     <h2>Deauth clients</h2>
     <p>Keep deauthing clients from the access point with BSSID DE:AD:BE:EF:DE:AD every five seconds:</p>
     <p>set ticker.period 5; set ticker.commands "wifi.deauth DE:AD:BE:EF:DE:AD"; ticker on</p>
@@ -66,3 +74,5 @@
     set wifi.bruteforce.wordlist /path/to/your/wordlist.txt<br/>
     set wifi.bruteforce.stop_at_first true<br/>
     wifi.bruteforce on</p>
+
+    <h2></h2>
