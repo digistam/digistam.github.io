@@ -2,8 +2,26 @@
     <meta name=”robots” content=”noindex,nofollow”/>
   <a href=../index.html>Back to home</a>
 <hr/>
-<h1>Bettercap WiFi module</h1>
-    <p>The WiFi modules use a WiFi interface supporting monitor mode and packet injection in order to scan the 802.11 spectrum</p>
-<p><ol><ul>perform deauthentication attacks on connected client stations</ul>
-<ul>perform RSN PMKID based clientless attacks on vulnerable access points</ul>
-<ul>automatically sniff a
+<h1>How to install TP-Link AC600 Drivers on Kali Linux (Archer T2U Plus)</h1>
+    <p>Youtube: <a target=_blank href=https://www.youtube.com/watch?v=QPsdp3aE4is>Instruction</a></p>
+    <p><ol>
+        <ul>sudo apt update && sudo apt upgrade</ul>
+        <ul>sudo apt-get install dkms</ul>
+        <ul>sudo apt-get install bc</ul>
+        <ul>sudo apt-get install rsync</ul>
+        <ul>sudo apt-get install git</ul>
+        <ul>sudo apt update</ul>
+        <ul>sudo reboot now</ul>
+    </ol></p>
+    <p>After installing the packages, put the TP-Link antenna in the USB port. Assign the usb device to the VMware client and not to the host. Type <b>lsusb</b> in the terminal. The antenna has to show up in the output.</p>
+
+    <h2>Download the drivers</h2>
+    <p><ol>
+        <ul>cd Downloads</ul>
+        <ul>sudo apt-get install realtek-rtl88xxau-dkms
+        <ul>git clone https://github.com/aircrack-ng/rtl8812au.git</ul>
+        <ul>cd rtl8812au</ul>
+            <ul>sudo make dkms_install</ul>
+            <ul>dkms autoinstall</ul>
+            <ul>reboot</ul>
+    </ol></p>
