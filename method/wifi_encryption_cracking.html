@@ -1,0 +1,26 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>Wi-Fi Encryption Cracking</h1>
+<p>Wi-Fi networks use WEP or WPA/WPA2 encryption, which the attacker must crack.</p>
+<h2>WEP Encryption Cracking</h2>
+<p>Gathering a large number of IVs is necessary to break the WEP encryption key. An attacker can gather sufficient IVs by simply listening to the network traffic. WEP packet injection expedites the IV - gathering 
+process and allows capturing a large number of IVs in a short period. An attacker can break WEP encryption through the following steps:</p>
+<p><ol>
+  <ul>Start the interface in monitoring mode on the specific AP channel</ul>
+  <ul>Test the capability of injection from the wireless device to the AP</ul>
+  <ul>Use a tool such as aireplay-ng for fake authentication with the AP</ul>
+  <ul>Start the Wi-Fi sniffing tool -> for example airodump-ng with a BSSID filter to collect unique IVs</ul>
+  <ul>Start a Wi-Fi packet encryption tool such as aireplay-ng in the ARP request replay mode to inject packets</ul>
+</ol></p>
+  <p>Using tools such as aircrack-ng, the attacker can extract WEP encryption keys from the captures IVs.</p>
+  <h2>Cracking WEP using aircrack-ng</h2>
+  <p><ol>
+    <ul>Run airmon-ng in monitoring mode</ul>
+    <ul>Start airodump-ng to discover SSIDs on the interface and keep it running -> collect more than 50.000 IVs !</ul>
+    <ul>Associate the Wi-Fi interface with the target AP</ul>
+    <ul>Inject packets using aireplay-ng to generate traffic on the target AP</ul>
+    <ul>Wait for airodump-ng to capture more than 50.000 IVs</ul>
+    <ul>Crack the WEP key using aircrack-ng</ul>
+  </ol></p>
