@@ -97,6 +97,7 @@ PCAP bestand.</p>
 <p><b><i>(eapol && wlan.rsn.ie.pmkid)</i></b></p>
 <h2>PCAP omzetten naar PMKID</h2>
 <p>Vervolgens zetten we het PCAP bestand om in een PMKID bestand waarin alle gevonden hashes vermeld worden:</p>
-<p><b><i>hcxpcaptool -z /root/bettercap-wifi-handshakes.pmkid /root/bettercap-wifi-handshakes.pcap</i></b></p>
+<p><b><i>sudo hcxpcaptool -z /home/user/Downloads/handshakes.pmkid /root/bettercap-wifi-handshakes.pcap</i></b></p>
 <h2>Wachtwoorden kraken met hashcat</h2>
-<p><b><i>hashcat -m 16800 bettercap-wifi-handshakes.pmkid -a 0 --kernel-accel=1 -w 4 --force 'passwordlist.txt'</i></b></p>
+<p><b><i>hashcat -m 22000 /usr/home/handshakes.pmkid -a 0 --kernel-accel=1 -w 4 --force 'rockyou.txt'</i></b></p>
+<p>Zodra hashcat een wachtwoord heeft recovered dan wordt deze in de console getoond!</p>
