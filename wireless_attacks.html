@@ -109,3 +109,73 @@ cycle several times to obtain the PRTG. The attacker can use PRGA with <b>packet
         <ul>Select <b>MITM</b> -> <b>ARP poisoning</b>. In the pop-up window that appears, select <b>Sniff remote connections</b> and click <b>OK</b> to launch an ARP poisoning attack on the target</ul>
         <ul>Once the attack is launched, the target host's login credentials can also be sniffed if the web traffic is not encrypted with HTTPS</ul>
     </ol></p>
+
+    <h2>Rogue APs</h2>
+    <p>Rogue APs are wireless APs that an attacker installs on a network without authorization and are not under the management of the network administrator. The rogue AP can provide backdoor access to the 
+    target wireless network.</p>
+    <p><ol>
+        <ul>Compact, pocket-sized rogue AP plugged into Ethernet port</ul>
+        <ul>Rogue AP connected to corporate networks over a Wi-Fi link -> requires credentials of target network</ul>
+        <ul>USB-based rogue AP plugged into a network machine -> eliminates need for unused Ethernet port and credentials of target AP</ul>
+        <ul>Software based rogue AP running on a network Windows machine</ul>
+    </ol></p>
+    <p><ol>
+        <ul>Choose appropriate location to plug in rogue AP for maximum coverage</ul>
+        <ul>Disable SSID broadcast (silent mode) and any management features to avoid detection</ul>
+        <ul>Place the AP behind a firewall, if possible, to avoid network scanners</ul>
+        <ul>Deploy the rogue AP for a short while</ul>
+    </ol></p>
+
+    <h2>Evil Twin</h2>
+    <p>An Evil Twin is a wireless AP that pretends to be a legitimate AP by imitating its SSID. An attacker sets up a rogue AP outside the network perimeter and lures users to sign in to this AP.
+    Because employees of a company may take their corporate laptops to establishments with public Wi-Fi networks, it is challenging to keep company data safe. A fake hotspot can be set up using a 
+    laptop with internet connectivity and a mini AP:</p>
+    <p><ol>
+        <ul>Enable Internet Connection Sharing in Windows or Internet Sharing in MacOS</ul>
+        <ul>Broadcast the Wi-Fi connection and run a sniffer program to capture passwords</ul>
+    </ol></p>
+
+    <h2>aLTEr Attack</h2>
+    <p>An aLTEr attack has the following two phases:</p>
+    <p><ol>
+        <ul>Information gathering phase -> identity mapping and website fingerprinting</ul>
+        <ul>Attack phase -> active attack using techniques as DNS spoofing</ul>
+    </ol></p>
+    <p>Information gathering -> attackers snoop on the websites that users attempt to access and record how often they visit those websites. Attackers only spy or monitor the transmission between the base 
+    station and the end user, and they do not modify any credentials or information in this attack</p>
+    <p><ol>
+        <ul>Identity mapping -> the attacker maps the identity to locate the target device, once determined, the attacker devises a strategy to implement the next two attacks</ul>
+        <ul>Website fingerprinting -> the attacker records the amount of traffic the client is accessing and keeps track of the user's online activities and other meta information</ul>
+    </ol></p>
+    <p>Attack phase -> after snooping or gathering information about the target users, the attacker launches an MITM attack using a fake tower impeding and manipulating the user data, which are intended 
+    to be shared with the real tower. The attacker uses DNS spoofing to redirect the victim to a malicious website or a website of their choice, where the attacker records all the sensitive information entered
+    by the victim such as usernames and passwords.</p>
+
+    <h2>Wi-Jacking Attack</h2>
+    <p>Attackers use a Wi-Jacking attack for gaining access to an enormous number of wireless networks. In this attack, the Wi-Fi information of the nearest victims can be retrieved without using any 
+    cracking mechanisms. This attack can be used when credentials are saved in the victim's browser, when the victim accesses the same website multiple times, and when the router uses an unencrypted HTTP
+    connection to access the router configuration interface in the browser. Attackers can take advantage of these vulnerabilities to crack WPA/WPA2 networks without going through a single handshake process.
+    The following conditions must be met to perform a Wi-Jacking attack:</p>
+    <p><ol>
+        <ul>At least one active client device must be connected to the target network</ul>
+        <ul>The client device must have already connected to any open network and allow automatic reconnection to that network</ul>
+        <ul>The client device must use a chromium - based web browser</ul>
+        <ul>The client device's browser must store the admin interface credentials of the router</ul>
+        <ul>The target network's router must use an unencrypted HTTP connection for the router configuration interface</ul>
+    </ol></p>
+    <p>Attackers launch a Wi-Jacking attack through the following steps:</p>
+    <p><ol>
+        <ul>Send de-authentication requests to the victim's device using aireplay-ng to disconnect the victim from their legitimate Wi-Fi network</ul>
+        <ul>Perform a KARMA attack using "hostapd-wpe", luring the victim to connect to the malicious Wi-Fi network</ul>
+        <ul>After succesful de-authentication, use tools such as <b>dnsmasq</b> and Python scripts to inject a malicious URL and force the victim's browser to load that malicious URL. 
+        Based on the BSSID and ESSID, the URL/page pair to be sent can be detected</ul>
+        <ul>Wait for the victim to access the HTTP page. At this moment, the victim's router is updated and automatically restarted</ul>
+        <ul>Once the victim opens the malicious page, the browser will check the following two conditions to automatically load the page having stored credentials:</ul>
+        <ul>- do the malicous URL and the router's admin interface have the same origin ?</ul>
+        <ul>- do the input fields of the page and the router's admin interface match ?</ul>
+        <ul>After receiving the credentials, the victim is made to access the page for some more time. Subsequently, stop the KARMA attack and allow the victim to connect back to 
+        their legitimate network. Once the victim's device is connected to the legitimate network, the malicious page remains in the router's admin interface, along with admin credentials 
+        loaded into the JavaScript</ul>
+        <ul>Use XMLHttpRequest to login to the router to extract the victim's WPA2 PSK and further perform any other malicious changes as necessary. Using this PSK and other credentials, 
+        the victim's private network can be hacked, and critical data can be accessed and tampered using the Wi-Jacking technique.</ul>
+    </ol></p>
