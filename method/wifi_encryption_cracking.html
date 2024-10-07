@@ -4,7 +4,7 @@
 <hr/>
 <h1>Wi-Fi Encryption Cracking</h1>
 <p>Wi-Fi networks use WEP or WPA/WPA2 encryption, which the attacker must crack.</p>
-<h2>WEP Encryption Cracking</h2>
+<h1>WEP Encryption Cracking</h1>
 <p>Gathering a large number of IVs is necessary to break the WEP encryption key. An attacker can gather sufficient IVs by simply listening to the network traffic. WEP packet injection expedites the IV - gathering 
 process and allows capturing a large number of IVs in a short period. An attacker can break WEP encryption through the following steps:</p>
 <p><ol>
@@ -24,3 +24,10 @@ process and allows capturing a large number of IVs in a short period. An attacke
     <ul>Wait for airodump-ng to capture more than 50.000 IVs</ul>
     <ul>Crack the WEP key using aircrack-ng</ul>
   </ol></p>
+<h1>WPA/WPA2 Encryption Cracking</h1>
+<p>WPA Encryption is less exploitable than WEP encryption. However, an attacker can still crack WPA/WPA2 encryption by capturing the necessary type of packets. The attacker can perform this offline but needs to 
+be near the AP for a few moments.</p>
+<p><ol>
+    <ul>WPA PSK -> WPA PSK uses a user-defined password to initialize the four-way handshake. An attacker can not crack this password because it is a per-packet key, but the keys can be brute-forced using 
+    dictionary attacks; a dictionary attack can compromise most consumer passwords</ul>
+</ol></p>
