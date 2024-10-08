@@ -39,4 +39,50 @@ enabled device.</p>
     and might perform malicious activities such as intercepting phone calls and messages and forwarding calls and text messages</ul>
     <ul><b>BluePrinting</b> -> footprinting technique performed by an attacker to determine the make and model of a target BT enabled device. Attackers collect this information to create infographics of the 
     model, manufacturer etc. and analyze them to determine whether the device has exploitable vulnerabilities</ul>
+    <ul><b>BtleJacking</b> -> a BtleJacking attack is detrimental to BT low energy (BLE) devices. The attacker can sniff, jam, and take control of the data tranmission between BLE devices by performing 
+    an MITM attack. Following a succesful attempt, the attacker can also bypass security mechanisms and listen to the information being shared. To implement this attack, the attacker must use affordable 
+    firmware-embedded equipment and minor software coding</ul>
+    <ul><b>KNOB attack</b> -> a Key Negotiation of Bluetooth (KNOB) attack enables an attacker to breach Bluetooth security mechanisms and perform an MITM attack on paired devices without being traced; 
+    The attacker leverages a vulnerability in the BT wireless standard and eavesdrops on all the data being shared in the network, such as keystrokes, chats and documents. A KNOB attack is especially 
+    detrimental to two BT enabled devices sharing encrypted keys. The attack is launched on short-distance communication protocols of BT negotiating the encrypted keys required to be shared between nodes 
+    to establish a connection</ul>
+    <ul><b>MAC spoofing attack</b> -> a MAC spoofing attack is a passive attack in which attackers spoof the MAC address of a target BT enabled device to intercept or manipulate the data sent to the target device</ul>
+    <ul><b>MITM / impersonation attack</b> -> attackers manipulate the data transmitted between devices communicating via a BT connection (piconet). During this attack, the devices intended to pair with each other
+    unknowingly pair with the attacker's device, thereby allowing the attacker to intercept and manipulate the data transmitted in the piconet</ul>
 </ol></p>
+<h1>Bluetooth Threats</h1>
+<p><ol>
+    <ul>Leakage of calendars and address books -> stealing personal information</ul>
+    <ul>Bugging devices -> instruct a smartphone to make a call to other phones without any user interaction; even record a user's conversation</ul>
+    <ul>Sending SMS messages -> bomb threats etc.</ul>
+    <ul>Causing financial loss -> MMS messages to international phones</ul>
+    <ul>Remote control -> remotely control a smartphone to make phone calls or connect to the internet</ul>
+    <ul>Social engineering -> trick BT users into lowering security or disabling authentication for BT connections to pair with them and steal their information</ul>
+    <ul>Malicious code -> smartphone worms can exploit a BT connection to replicate and spread</ul>
+    <ul>Protocol vulnerabilities -> exploit BT pairings and communication protocols to steal data, make calls, send messages, launch DoS attacks on a device, spy on phones etc.</ul>
+</ol></p>
+    <h1>BT Reconnaissance using BlueZ</h1>
+    <p>BlueZ is a similar built-in protocol stack for Linux - based systems that has several default tools for BT reconnaissance. Because they are available in every Linux system, the attacker 
+    can utilize them with modest commanding skills. Attackers use BlueZ tools to discover BT devices through the following steps:</p>
+    <p><ol>
+        <ul>Configure the BT device using <b>hciconfig</b> -> the BT device and its MAC address named hci0 will be detected in Linux; command: <b><i>hciconfig hci0 up</i></b></ul>
+        <ul>Scan for pairable BT devices using <b>hcitool</b> -> command: <b><i>hcitool scan</i></b></ul>
+        <ul>After finding pairable devices, use the following command to display further information about the discovered devices: <b><i>hcitool inq</i></b></ul>
+        <ul>Use the Service Discovery Protocol (SDP) tool to scan services -> command: <b><i>sdptool browse [MAC Address]</i></b></ul>
+        <ul>Ping all the available devices to check if they are reachable using L2ping -> command: <b><i>l2ping [MAC Address]</i></b></ul>
+        <ul>Attackers can gather information such as MAC addresses and services offered by devices, with this information they can launch further attacks</ul>
+    </ol></p>
+
+    <h1>Btlejacking using BtleJack</h1>
+    <p>Btlejack is an open-source software that enables an attacker to perform a Btlejacking attack using a hardware tool such as micro:bit (https://microbit.org). It helps attackers sniff, jam and hijack
+    BT connections. Upon gaining access to a connection, an attacker can hijack, read and export sensitive information shared between the connected devices.</p>
+    <p><ol>
+        <ul>Select target devices using the following command: <b><i>btlejack -d /dev/ttyACM0 -d /dev/ttyACM2 -s</i></b></ul>
+        <ul>With the Btlejack tool, take a position within a radius of 5 m from the target devices</ul>
+        <ul>Capture already established (live) as well as new BT low enery connections using the following commands:</ul>
+        <ul>Sniffing an existing connection -> <b><i>btlejack -s</i></b></ul>
+        <ul>Sniffing for new connections -> <b><i>btlejack -c any</i></b></ul>
+        <ul>Once the connection is captured, perform a jamming operation using the following command: <b><i>btlejack -f 0x129f3244 -j</i></b></ul>
+        <ul>Start hijacking the connection using the following command: <b><i>btlejack -f 0x9c68fd30 -t -m 0x1fffffffff</i></b></ul>
+        <ul>The captured data can be converted into the pcap format using the following command: <b><i>btlejack -f 0xac56bc12 -x nordic -o capture.nordic.pcap</i></b></ul>
+    </ol></p>
