@@ -2,5 +2,41 @@
     <meta name=”robots” content=”noindex,nofollow”/>
   <a href=index.html>Back to home</a>
 <hr/>
+<h1>Bluetooth</h1>
+<p>Bluetooth is a wireless technology that allows devices to share data over short distances. Bluetooth technology is vulnerable to various types of attacks. </p>
+    <h2>Bluetooth Stack</h2>
+    <p>Bluetooth is a short-range wireless communication technology that replaces cables connecting portable or fixed devices while maintaining high levels of security. 
+    It allows mobile phones, computers and other devices to exchange information. Two BT enabled devices connect through a pairing technique.</p>
+    <p>The BT Stack has two ports: general purpose and embedded system</p>
+    <h2>BT Modes</h2>
+    <p><ol>
+        <ul>Discoverable -> when discoverable, BT devices are visible to other BT enabled devices; the discoverable mode is necessary only while connecting to a device for the first time. Upon 
+        saving the connection, the devices remember each other; therefore the discoverable mode is not necessary for lateral connection establishment</ul>
+        <ul>Limited discoverable -> in limited discoverable mode, the BT devices are discoverable only for a limited period, for a specific event or during temporary conditions; However, there is no 
+        Host Controller Interface (HCI) command to set a device directly in the limited discoverable mode. A user has to do this indirectly. When a device is set to the limited discoverable mode, it 
+        filters out non-matched IACs and reveals itself only to those that matched</ul>
+        <ul>Non-discoverable -> setting to non-discoverable prevents that device from appearing on the list during a BT enabled device search process; However, it remains visible to users and devices 
+        that were previously paired with or knows its MAC address</ul>
+    </ol></p>
+    <h2>Pairing Modes</h2>
+    <p><ol>
+        <ul>Non-pairable mode -> a BT device rejects pairing requests</ul>
+        <ul>Pairable mode -> a BT device can accept pairing requests and establish a connection with a device that requested pairing</ul>
+    </ol></p>
 <h1>Bluetooth Hacking</h1>
-<p></p>
+<p>BT hacking refers to the exploitation of BT Stack implementation vulnerabilities to compromise sensitive data in BT enabled devices and networks.</p>
+<p>BT enabled devices connect and communicate wirelessly through ad-hoc networks known as <b>piconets</b>. Attackers can gain information by hacking the target BT enabled device from another BT 
+enabled device.</p>
+<h2>BT attacks</h2>
+<p><ol>
+    <ul><b>Bluesmacking</b> -> send an oversized packet to a victim's device, causing a buffer overflow (similar to ICMP ping-of-death)</ul>
+    <ul><b>Bluejacking</b> -> using BT to send messages to users without the recipient's consent, similar to email spamming</ul>
+    <ul><b>Bluesnarfing</b> -> method of gaining access to sensitive data in a BT enabled device; an attacker within the range of a target can use specialized software to obtain the data 
+    stored on the victim's device; to perform Bluesnarfing, an attacker exploits a vulnerability in the Object Exchange (OBEX) protocol that BT uses to exchange information. The attacker connects with 
+    the target and performs a GET operation for files with correctly guessed or known names, such as /pb.vcf for the device's phonebook or /cal.vcs for the device's calendar file</ul>
+    <ul><b>Bluesniff</b> -> POC code for a BT wardriving utility, for finding hidden and discoverable BT devices, operating on Linux</ul>
+    <ul><b>Bluebugging</b> -> attack in which an attacker gains remote access to a target BT enabled device without the victim's awareness; in this attack, an attacker sniffs sensitive information 
+    and might perform malicious activities such as intercepting phone calls and messages and forwarding calls and text messages</ul>
+    <ul><b>BluePrinting</b> -> footprinting technique performed by an attacker to determine the make and model of a target BT enabled device. Attackers collect this information to create infographics of the 
+    model, manufacturer etc. and analyze them to determine whether the device has exploitable vulnerabilities</ul>
+</ol></p>
