@@ -1,0 +1,54 @@
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>Hashcat techniques</h1>
+
+<h2>Dictionary / Wordlist attack (-a 0)</h2>
+<p>First, select a wordlist (for example: rockyou.txt), create a new wordlist or download a wordlist from the internet (Github)</p>
+<p><b><i>hashcat -m 22000 dh_aps.pmkid -a 0 --kernel-accel=1 -w 4 --force ../Documents/Wordlists/Dutch_Norm_All.txt</i></b></p>
+  
+<h2>Hybrid attack (-a 6)</h2>
+<p>A hybrid attack is a combinator attack. One side (left side / right side) is a dictionary / wordlist and the other side (right side / left side) is the result of a Brute-Force attack. The Full Brute-Force 
+keyspace is either prepended or appended to each of the words from the dictionary ('hybrid').</p>
+<p><i><b>hashcat -m 22000 dh_aps.pmkid -a 6 --kernel-accel=1 -w 4 --force ../Documents/Wordlists/Dutch_FirstNames.txt '?d?d?d'</b></i></p>
+
+<h2>Rule based attack with Wordlist (-a 0)</h2>
+<p>First, create a rule file:</p>
+<p>:<br/>
+#Lowercase<br/>
+l<br/>
+#Uppercase<br/>
+u<br/>
+#Capitalise first character<br/>
+c<br/>
+#Add '1' to the end<br/>
+$1<br/>
+#Add '2' to the end<br/>
+$2<br/>
+#Add '3' to the end<br/>
+$3<br/>
+#Add '4' to the end<br/>
+$4<br/>
+#Add '5' to the end<br/>
+$5<br/>
+#Add '6' to the end<br/>
+$6<br/>
+#Add '7' to the end<br/>
+$7<br/>
+#Add '8' to the end<br/>
+$8<br/>
+#Add '9' to the end<br/>
+$9<br/>
+#Add '123' to the end<br/>
+$1 $2 $3<br/>
+#Substitute 'a' for '@'<br/>
+sa@<br/>
+#Substitute 'e' for '3'<br/>
+se3<br/>
+#substitute 'l' for '1'<br/>
+sl1<br/>
+#Substitute 'a' for '@', 'e' for '3', 'l' for '1'<br/>
+sa@ se3 sl1<br/>
+</p>
+<p>In this case, the fule file is saved as <i>../Documents/Hashcat/Rules/rules</i></p>
+<p><b><i>hashcat -m 22000 dh_aps.pmkid -a 0 --kernel-accel=1 -w 4 --force ../Documents/Wordlists/Dutch_FirstNames.txt -r ../Documents/Hashcat/Rules/rules</i></b></p>
