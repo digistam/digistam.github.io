@@ -30,4 +30,21 @@ be near the AP for a few moments.</p>
 <p><ol>
     <ul>WPA PSK -> WPA PSK uses a user-defined password to initialize the four-way handshake. An attacker can not crack this password because it is a per-packet key, but the keys can be brute-forced using 
     dictionary attacks; a dictionary attack can compromise most consumer passwords</ul>
+    <ul>Offline attack -> to perform an offline attack, the attacker needs to be near the AP for a few seconds to capture the WPA/WPA2 handshake. By capturing the necessary type of packets, WPA encryption keys can be 
+    cracked offline. In WPA handshakes, the protocol does not send the password across the network, because the WPA handshake typically occurs over insecure channels and in plaintext. Capturing a full authentication 
+    handshake from a client and the AP helps in breaking the WPA/WPA2 encryption without packet injection</ul>
+    <ul>De-authentication attack -> an attacker needs to find an actively connected client; The attacker forces the client to disconnect from the AP, following which they use tools such as aireplay-ng to capture the 
+    authentication packet when the client attempts to reconnect. The client should be able to re-authenticate itself with the AP in a few seconds. The authentication packet includes the pairwise master key (PMK) which the 
+    attacker can crack by dictionary or brute-force attacks to recover the WPA key</ul>
+    <ul>Brute forcing of WPA keys -> an attacker can perform a brute-force attack on WPA encryption keys using a dictionary or using tools such as aircrack, aireplay or KisMAC; Breaking WPA keys through brute-force 
+    may take hours, days, weeks or longer</ul>
+</ol></p>
+<h1>WPA3 Encryption Cracking</h1>
+<p>The WPA3 Wi-Fi security standard replaces WPA2's four-way (PSK) handshake method with the Dragonfly (also known as SAE) handshake function to supply the strongest password-based authentication to date. 
+It is still vulnerable to password-cracking attacks. <b>Dragonblood</b> is a set of vulnerabilities in the WPA3 security standard that allows attackers to recover keys, downgrade security mechanisms and launch 
+various information-theft attacks. Attackers can use various tools such as Dragonslayer, Dragonforce, Dragondrain and Dragontime to exploit these vulnerabilities and launch attacks on WPA3-enabled networks.</p>
+<p><ol>
+    <ul>Downgrade Security Attacks -> the client and AP should support both WPA3 and WPA2 encryption mechanisms; the attacker forces the user to follow the older encryption method, WPA2</ul>
+    <ul>Side-Channel Attacks (Information-Leaking Attack) -> attackers target protocols or encryption mechanisms used by devices that attempt to connect to a network; during the key-exchange process, the 
+    attacker launches this attack to capture leaked information. This information is further used by the attcker to launch brute-force or dictionary attacks to obtain all the data of the target user</ul>
 </ol></p>
