@@ -88,3 +88,25 @@ enabled device.</p>
         <ul>Start hijacking the connection using the following command: <b><i>btlejack -f 0x9c68fd30 -t -m 0x1fffffffff</i></b></ul>
         <ul>The captured data can be converted into the pcap format using the following command: <b><i>btlejack -f 0xac56bc12 -x nordic -o capture.nordic.pcap</i></b></ul>
     </ol></p>
+
+    <h1>Crackling BLE Encryption using crackle</h1>
+    <p>The BT Low Energy (BLE) technology is implemented on modern wireless devices and gadgets such as sensors, mobile phones, cars, beacons, fitness watches etc. The data exchange and pairing process in BLE 
+    devices can occur in two phases. In the first phase, devices exchange details about their types and abilities to determine the best possible way to establish a connection. The second phase is a key phase that 
+    involves key establishment and exchange. Attackers use tools such as <b>crackle</b> that mainly target the second phase to breach and gain access to the target device. </p>
+<h2>Crackle</h2>
+<p><a target=_blank href=https://github.com/mikeryan/crackle>Crackle</a> exploits a flaw in the BLE pairing process that allows an attacker to guess or very quickly brute force the temporary key (TK). With the TK 
+and other data collected from the pairing process, the short-term key (STK) and later, the long-term key (LTK) can be collected. With the STK and LTK, all communication between master and slave devices can be 
+decrypted.</p>
+<h2>Crack TK mode</h2>
+<p>This mode is operated during the pairing phase of BLE, where the tool attempts to brute-force the TK. For this purpose, the tool requires a PCAP file containing all the BLE pairing events. Run the following 
+command to check whether all the pairing packets are present in the PCAP file using the -i argument:</p>
+<p><b><i>crackle -i [file.pcap]</i></b></p>
+<p>Crackle checks for active connections and then determines the vulnerable connections to breach.</p>
+<p>The encrypted pcap data can be decrypted by adding the -o option using the following command:</p>
+<p><b><i>crackle -i [file.pcap] -o [output.pcap]</i></b></p>
+<h2>Decryption using LTK</h2>
+<p>In this mode, to unlock the encrypted data, crackle requires an LTK value, which is a 128 hexadecimal number, and a PCAP file containing LL_ENC_REQ and LL_ENC_RSP packets. Run the following command with the 
+-i and -1 options, which assist in verifying the data within the file:</p>
+<p><b><i>crackle -i [file.pcap] -1 [LTK]</i></b></p>
+<p>Run the following command to decrypt the packets and store them in a PCAP file using the -o option:</p>
+<p><b><i>crackle -i [file.pcap] -o [out.pcap] -1 [LTK]</i></b></p>
