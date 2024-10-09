@@ -1,0 +1,28 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>Bettercap Bluetooth Hacking</h1>
+<h2>Prepare Kali system</h2>
+<p>It seems Bluetooth with a dongle on Kali VMware is a bit buggy. It is important to check all settings:</p>
+<p><ol>
+  <ul>Start VMware without BT dongle</ul>
+  <ul>Use terminal -> <b><i>rfkill</i></b></ul>
+  <ul>Put the BT dongle in the computer</ul>
+  <ul>Terminal -> <b><i>hciconfig</i></b></ul>
+  <ul>hci1 must be Up and Running</ul>
+</ol>
+
+  <h2>Bettercap</h2>
+  <p><ol>
+    <ul>sudo bettercap</ul>
+    <ul>ble.recon on</ul>
+    <ul>ble.show</ul>
+    <ul>ble.enum [MAC Address]</ul>
+  </ol></p>
+  <p>With a little luck, Bettercap will show a lot of interesting information, such as:</p>
+  <p><ol>
+    <ul>Handles</ul>
+    <ul>Service characteristics (Device information, manufacturer, battery status etc.)</ul>
+    <ul>Properties (READ, WRITE, NOTIFY, INDICATE)</ul>
+  </ol></p>
