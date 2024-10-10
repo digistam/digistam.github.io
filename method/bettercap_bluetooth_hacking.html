@@ -28,6 +28,16 @@
         <ul>WEL: info [MAC address]</ul>
     </ol></p>
 
+    <h2>btmon</h2>
+    <p>Another awesome tool from the Bluez package is <a target=_blank href=https://www.mankier.com/1/btmon>btmon</a>. Start btmon (sudo btmon) and then run a scan with Bluetoothctl. The 
+    result is a full list with information about found BT devices. You can write the results to a BTSnoop format file, which can be opened with Wireshark:</p>
+    <p><ol>
+        <ul>cd ~/Downloads</ul>
+        <ul>sudo btmon -w ./btmoncapture</ul>
+        <ul>sudo bluetoothctl</ul>
+        <ul>scan on</ul>
+    </ol></p>
+
   <h2>Bettercap</h2>
     <p>If bluetoothctl works okay, you can start Bettercap</p>
   <p><ol>
