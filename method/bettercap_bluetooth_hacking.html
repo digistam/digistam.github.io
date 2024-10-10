@@ -3,17 +3,27 @@
   <a href=../index.html>Back to home</a>
 <hr/>
 <h1>Bettercap Bluetooth Hacking</h1>
-<h2>Prepare Kali system</h2>
-<p>It seems Bluetooth with a dongle on Kali VMware is a bit buggy. It is important to check all settings:</p>
+<h2>Check the system first</h2>
+<p>It seems that working with a Bluetooth dongle on Kali VMware is not that easy. Before we can use it with Bettercap, it's important to check all settings:</p>
 <p><ol>
   <ul>Start VMware without BT dongle</ul>
   <ul>Use terminal -> <b><i>rfkill</i></b></ul>
   <ul>Put the BT dongle in the computer</ul>
   <ul>Terminal -> <b><i>hciconfig</i></b></ul>
-  <ul>hci1 must be Up and Running</ul>
+  <ul>hci1 must be UP and RUNNING</ul>
 </ol>
 
+    <h2>Bluetoothctl</h2>
+    <p>First, use the awesome bluetoothctl to see if you can connect to devices</p>
+    <p><ol>
+        <ul>sudo bluetoothctl</ul>
+        <ul>scan on</ul>
+        <ul>connect [MAC address]</ul>
+        <ul>info [MAC address]</ul>
+    </ol></p>
+
   <h2>Bettercap</h2>
+    <p>If bluetoothctl works okay, you can start Bettercap</p>
   <p><ol>
     <ul>sudo bettercap</ul>
     <ul>ble.recon on</ul>
