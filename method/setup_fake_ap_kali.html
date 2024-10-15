@@ -1,0 +1,105 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>Set up rogue access point with Kali</h1>
+  <p>We need a WiFi adapter (USB) that can be in monitor mode [<a target=_blank href=https://www.youtube.com/watch?v=4hBROf92qS0>video</a>]</p>
+        <h2>Adapters</h2>
+        <p>Put the WiFi adapter in the Kali machine (VMware). Start the console and type: <b>ip a</b></p>
+        <p>Both the eth0 and wlan0 should be visible. wlan0 will be a pass through to eth0 (internet) </p>
+        <p>If the WiFi adapter has a strange name (for example: wlxd0374), you can rename it:</p>
+        <p><ol>
+          <ul>sudo ip link set wlxd0374 down</ul>
+          <ul>sudo ip link set wldx0374 name wlan0</ul>
+          <ul>sudo ip link set wlan0 up</ul>
+        </ol></p>
+  <h2>Monitor mode</h2>
+  <p>The WiFi adapter has to be in monitoring mode (promisquous mode):</p>
+  <p><ol>
+    <ul>sudo ip link set wlan0 down</ul>
+    <ul>sudo iw dev wlan0 set type monitor</ul>
+    <ul>sudo ip link set wlan0 up</ul>
+  </ol></p>
+  
+  <h2>Install packages</h2>
+  <p>Install some necessary packages:</p>
+  <p><ol>
+    <ul>sudo apt-get update</ul>
+    <ul>sudo apt-get install <b>dnsmasq hostapd aircrack-ng apache2</b></ul>
+  </ol></p>
+  <h2>Check monitor mode</h2>
+  <p>Check that the WiFi card is in monitoring mode:</p>
+  <p><b>sudo airodump-ng wlan0</b></p>
+  <p>If everything goes well you will see several APs in the neighbourhood. You can see which access points you can impersonate !</p>
+  <h2>Set up IP addresses for the WiFi interface</h2>
+  <p>This is a very important step. First we will have to known the IP address that is assigned to eth0 (internet):</p>
+  <p><ol>
+    <ul><b>ip a</b></ul>
+    <ul>For example, eth0 uses the IP address 192.168.1.64/24</ul>
+    <ul>wlan0 has to use a DIFFERENT network! So, if eth0 uses 192.168.<b><u>1</u></b>.64 than wlan0 has to use for example 192.168.<b><u>0</u></b>.1</ul>
+    <ul>sudo ip link set wlan0 down</ul>
+    <ul>sudo ifconfig wlan0 up 192.168.0.1 netmask 255.255.255.0</ul>
+    <ul>sudo route add -net 192.168.0.0 netmask 255.255.255.0 gw 192.168.0.1</ul>
+    <ul>sudo ip link set wlan0 up</ul>
+    <ul>Check if it has worked: <b>ip a</b></ul>
+  </ol></p>
+  <h2>Create DNS masquerade</h2>
+  <p>The DNS masquerade will create a kind of DHCP for the stations that want to connect to our rogue AP:</p>
+  <p><ol><ul>In the Documents folder, create a subfolder named <b>fap</b></ul>
+  <ul>In the fap folder, create a config file: <b>nano dnsmasq.conf</b> with the following contents:</ul>
+    <ul>interface=wlan0</ul>
+    <ul>dhcp-range=192.168.0.2, 192.168.0.30, 255.255.255.0, 12h</ul>
+    <ul>dhcp-option=3, 192.168.0.1 # default gateway</ul>
+    <ul>dhcp-option=6, 192.168.0.1</ul>
+    <ul>server=8.8.8.8 # nameserver</ul>
+    <ul>log-queries</ul>
+    <ul>log-dhcp</ul>
+    <ul>listen-address=127.0.0.1</ul>
+    <ul>CTRL + X, save as dnsmasq.conf</ul>
+    <ul>It is very important that the dhcp-range starts with a HIGHER number than the IP address assigned to the WiFi adapter. The IP addresses in the dhcp range have to be in the network assigned to the WiFi adapter</ul>
+  </ol></p>
+  <h2>Set up Hostapd</h2>
+  <p>A second config file has to be created with details of the AP:</p>
+  <p><ol>
+    <ul>In the fap folder, create a file named hostapd.conf:</ul>
+  <ul>nano hostapd.conf</ul>
+    <ul>interface=wlan0</ul>
+    <ul>driver=nl80211</ul>
+    <ul>ssid=[SSID from AIRODUMP-NG output]</ul>
+    <ul>hw_mode=g</ul>
+    <ul>channel=[CHANNEL from AIRODUMP-NG output]</ul>
+    <ul>macaddr_acl=0</ul>
+    <ul>ignore_broadcast_ssid=0</ul>
+    <ul>CTRL+X, save as hostapd.conf</ul>
+  </ol></p>
+  <h2>Prevent services blocking Dnsmasq</h2>
+  <p>Check if dnsmasq is blocked by running services:</p>
+  <p><ol>
+    <ul>sudo ss -lp "sport = :domain"</ul>
+    <ul>kill running services if necessary: sudo systemctl stop systemd-resolved</ul>
+  </ol></p>
+  <h2>IPTables rules (Linux firewall)</h2>
+  <p><ol>
+    <ul><b>sudo iptables --table nat --append POSTROUTING --out-interface eth0 -j MASQUERADE</b></ul>
+    <ul><b>sudo iptables --append FORWARD --in-interface wlan0 -j ACCEPT</b></ul>
+    <ul>Check with: sudo iptables -L</ul>
+  </ol></p>
+  <h2>Enable IP forwarding</h2>
+  <p>IP forwarding is needed so the traffic from the wireless interface is passed to the internet interface:</p>
+  <p><ol>
+    <ul>sudo sysctl net.ipv4.ip_forward=1</ul>
+    <ul>Check with: sudo sysctl net.ipv4.ip_forward (result has to be 1)</ul>
+  </ol></p>
+  <h2>Activate the AP</h2>
+  <p><ol>
+    <ul><b>sudo hostapd ./hostapd.conf</b></ul>
+    <ul>Open a second console:</ul>
+    <ul><b>sudo dnsmasq -C ./dnsmasq.conf -d</b></ul>
+  </ol></p>
+  <h2>Check the AP</h2>
+  <p>Use your mobile phone to test the newly created AP</p>
+  
+  
+  
+  
+  
