@@ -113,6 +113,7 @@
         <ul>sudo sysctl net.ipv4.ip_forward=1</ul>
         <ul>sudo iptables --table nat --append POSTROUTING --out-interface eth0 -j MASQUERADE</ul>
         <ul>sudo iptables --append FORWARD --in-interface wlan0 -j ACCEPT</ul>
+        <ul>cd ~/Documents/fap
         <ul>sudo hostapd ./hostapd.conf</ul>
         <ul>Open a second console:</ul>
         <ul>sudo dnsmasq -C ./dnsmasq.conf -d</ul>
