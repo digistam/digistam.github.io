@@ -1,0 +1,32 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>How to poison DNS with a rogue AP in Kali</h1>
+  <p>Finding out this procedure took some time and was cause of a headache.</p>
+  <h2>HTTP only</h2>
+  <p>At the moment this procedure only works for HTTP websites (no SSL, HTTPS etc.)</p>
+  <h2>System set up</h2>
+  <p>First, set up the system with the process I described <a target=_blank href=https://digistam.github.io/method/setup_fake_ap_kali.html>here</a></p>
+
+  <h2>Start webserver</h2>
+  <p>Start Apache2 or Nginx and upload a nice <a target=_blank href=https://www.google.com/search?q=github+fake+captive+portals>captive portal</a> to /var/www/html.</p>
+
+  <p>IP address</p>
+  <p>Find out the IP address and gateway:</p>
+  <p><ol>
+    <ul>ip a</ul>
+    <ul>Take a note of the IP assigned to wlan0 (example: 192.168.0.1</ul>
+  </ol></p>
+
+  <h2>HOSTS file</h2>
+  <p>For now, I use the hosts file to add domains that I want to spoof. Maybe, there are better ways but this works.</p>
+  <p><ol>
+    <ul>sudo nano /etc/hosts</ul>
+    <ul>add:</ul>
+    <ul>192.168.0.1 neverssl.com</ul>
+    <ul>192.168.0.1 www.neverssl.com</ul>
+    <ul>etc.</ul>
+  </ol>
+  </p>
+  <p>Save it all with CTRL+X</p>
