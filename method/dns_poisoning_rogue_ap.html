@@ -30,3 +30,22 @@
   </ol>
   </p>
   <p>Save it all with CTRL+X</p>
+    <h2>Visit http website</h2>
+    <p>When visiting the website which is in the hosts file, the local page should pop up instead of the real website!</p>
+    <h2>Another method with dnsmasque</h2>
+    <p>I found out there's another method which does not use the hosts file. Alter the dnsmasque.conf file:</p>
+    <p><ol>
+        <ul>interface=wlan0</ul>
+        <ul>dhcp-range=192.168.0.2, 192.168.0.30, 255.255.255.0, 12h</ul>
+        <ul>dhcp-option=3, 192.168.0.1</ul>
+        <ul>dhcp-option=6, 192.168.0.1</ul>
+        <ul>server=8.8.8.8</ul>
+        <ul>server=8.8.4.4</ul>
+        <ul><b>no-hosts</b></ul>
+        <ul><b>addn-hosts=./fake_hosts.txt</b></ul>
+        <ul>log-queries</ul>
+        <ul>log-dhcp</ul>
+        <ul>listen-address=127.0.0.1</ul>
+    </ol></p>
+    <p>Start dnsmasque: sudo dnsmasque -C ./dnsmasque.conf -d</p>
+    <p>When visiting the website which is in the fake_hosts.txt file, the local page should pop up instead of the real website!</p>
