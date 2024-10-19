@@ -1,0 +1,49 @@
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>WiFiPhisher</h1>
+    <p>Wifiphisher is simple to install and works out of the box!</p>
+<h2>Installation</h2>
+<p>
+  <ol>
+    <ul>sudo su</ul>
+    <ul>apt-get install -y libnl-3-dev libnl-genl-3-dev libssl-dev python3-virtualenv</ul>
+    <ul>cd /opt/ </ul>
+    <ul>git clone https://github.com/wifiphisher/wifiphisher.git </ul>
+    <ul>cd wifiphisher</ul>
+    <ul>virtualenv -p python3 env</ul>
+    <ul>source env/bin/activate</ul>
+    <ul>python3 -m pip install ConfigParser</ul>
+    <ul>git clone https://github.com/wifiphisher/roguehostapd.git</ul>
+    <ul>cd /opt/wifiphisher/roguehostapd</ul>
+    <ul>python3 setup.py install</ul>
+    <ul>cd /opt/wifiphisher</ul>
+    <ul>python3 -m pip install six</ul>
+    <ul>python3 -m pip install .</ul>
+  </ol>
+</p>
+
+ 
+<h2>Start WiFi AP</h2>
+<p>wifiphisher -eN</p>p>
+<p>with the command above you can select an AP in the neighbourhood and spoof it with multiple options</p>
+<p>wifiphisher -e NogEenTest -p wifi_connect -kB -nE</p>
+<p>with the command above you can create a free AP to lure victims</p>
+
+<h2>Help</h2>
+<p><ol>
+  <ul><a target=_blank href=https://github.com/wifiphisher/wifiphisher>wifiphisher Github</a></ul>
+  <ul><a target=_blank href=https://wifiphisher.org/>wifiphisher.org</a></ul>
+  <ul><a target=_blank href=https://www.blackhillsinfosec.com/how-to-install-and-perform-wi-fi-attacks-with-wifiphisher/>How to perform WiFi attacks with Wifiphisher</a></ul>
+  <ul><a target=_blank href=https://www.youtube.com/watch?v=b9Yv3qRWVFE>Youtube wifiphiser</a></ul>
+</ol></p>
+
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+deactivate # when done 
