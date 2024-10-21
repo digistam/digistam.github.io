@@ -105,4 +105,41 @@ it is genuine.</p>
   Google Updater or Themes. The attacker produces a massive volume of irrelevant and fraudulent advertisements on the victim's device through the infected app for financial gain.</p>
 
   <h2>Exploiting SS7 vulnerability</h2>
-  <p>Signaling System 7 (SS7) is a communication protocol that allows mobile users to exchange communication through another cellular network (especially when roaming).</p>
+  <p>Signaling System 7 (SS7) is a communication protocol that allows mobile users to exchange communication through another cellular network (especially when roaming). Changing the telecom operator 
+  or using the network of another cell tower is allowed via the SS7 protocol. Mutual trust between operators, without any authentication verification. The SS7 signaling network is not isolated and the 
+  attacker can exploit this vulnerability to perform an MITM attack by impeding text messages and calls between communicating devices. Eavesdropping on bank credentials, OTPs etc. This vulnerability in SS7 
+  can allow the attacker to bypass 2FA and end-to-end encryption via SMS</p>
+
+    <h2>Simjacker: SIM card attack</h2>
+    <p>Simjacker is a vulnerability associated with a SIM card's S@T browser (SIMalliance Toolbox Browser), a pre-installed software incorporated in SIM cards to provide a set of instructions. 
+    The attacker sends fraudulent SMS containing hidden code or instructions from a SIM Application Toolkit (STK). The victim receives the malicious SMS and the S@T browser on the SIM card 
+    automatically recognizes and processes the hidden instructions or code. The injected code performs various activities on the device without the user's content. The attacker receives the user 
+    information via SMS, who can track live locations, exfiltrate device information, perform many malicious activities.</p>
+
+    <h2>OTP Hijacking / 2FA Hijacking</h2>
+    <p>OTPs are sent by a server via SMS, authenticator app or email. This seems secure, but attackers can hijack OTPs and redirect them to their personal devices using different techniques such as 
+    social engineering and SMS jacking. The attacker succeeds in OTP hijacking by stealing the victim's data by bribing or tricking mobile store sellers or exploiting the reuse of the number for 
+    different customers. Attackers perform social engineering on telecom providers to obtain ownership of the target user's SIM by claiming that their device was lost. In this manner, attackers convince 
+    the telecom provider and request them to transfer control over the victim's SIM. Also: SIM jacking attacks can infect the target device's SIM using malware through which the attacker can intercept 
+    and read OTPs.</p>
+
+    <h2>OTP Hijacking via Lock screen notifications</h2>
+    <p>Attackers physically steal SMS based OTPs from the target user's mobile phone by monitoring the user's actions closely and can view the notifications on the screen when they request an OTP. 
+    Eavesdropping or tricking the user into lending their phone for making an emergency call.</p>
+
+    <h2>Camera / Microphone capture attacks</h2>
+    <p>Camfecting attack is a webcam capturing attack, the attacker gains access to the camera of a target's computer or mobile device. The attacker infects the target device with a remote access 
+    Trojan (RAT) and compromises it to access the victim's camera and microphone. First, the attacker sends a phishing mail with a malicious link or lures the victim into visiting a malicious website.
+    When the victim clicks on the malicious link or visits the malicious website, malware is downloaded and installed on the device, providing remote access to the attacker. Now, the attacker can 
+    capture personal data such as photos and videos.</p>
+    <p>Android Camera Hijack Attack: attackers attempt to leverage Google's camera application, which is widely used in Android devices as the default camera app. An attacker can exploit Android's 
+    multiple security bypass vulnerabilities to circumvent the required permissions and gain access to the victim's camera and microphone. Further, the attacker can exploit this vulnerability 
+    even if the mobile device is locked. Android camera applications generally require storage permissions to store photos and videos. Permissions as android.permissions.CAMERA, android.permissions.RECORD_AUDIO, 
+    android.permissions.ACCESS_COARSE_LOCATION and android.permissions.ACCESS_FINE_LOCATION provide unrestricted access to the entire internal storage and allow attackers to perform various activities 
+    such as capturing photos; recording videos and voice calls and accessing stored photos, videos and GPS locations etc.</p>
+    <p>Attackers exploit various bypass vulnerabilities on the target Android device by tricking the victim into downloading a malicious app. The malicious app installs a Trojan on the victim's device. When 
+    the victim starts using the infected application, a persistent connection is established between victim and attacker.</p>
+
+    <h1>Android Rooting</h1>
+    <p>The goal of rooting android is to overcome the restrictions imposed by hardware manufacturers and carriers. It can void the phone's warranty, lead to poor performance, infection by malware and "bricking"
+        (making it utterly unusable)</p>
