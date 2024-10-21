@@ -1,0 +1,108 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+<a href=index.html>Back to home</a>
+<hr/>
+<h1>Hacking mobile platforms</h1>
+<p>People's lifestyles are becoming increasingly reliant on smartphones and tablets. Mobile devices are replacing desktops and laptops and allow users not only to access the internet, email and GPS navigation but also store 
+critical data such as contact lists, passwords, calendars and login credentials. People believe that surfing the internet on mobile devices is safe and fail to enable existing security software.</p>
+
+<h2>Mobile platform attack vectors</h2>
+<p>Smartphones are being widely used for both business and personal purposes and are a treasure trove for attackers who seek to steal corporate or personal data. The (OWASP) top 10 mobile risks:</p>
+  <p><ol>
+    <ul>Improper platform usages -> android intents, platform permissions, misuse of touch id, keychain</ul>
+    <ul>Insecure data storage -> development teams assume that users and malware will not have access to mobile's file system and store sensitive information in the data stores. Jailbreaking or rooting a mobile
+    device bypasses encryption protection mechanisms</ul>
+    <ul>Insecure communication -> poor handshaking, incorrect SSL versions, weak negotations, cleartext communication of sensitive assets; admin accounts could expose the entire site, Poor SSL setup can facilitate 
+    phishing and MITM attacks</ul>
+    <ul>Insecure authentication -> failing to identify the user when required, failure to maintain the user's identity when required, weaknesses in session management</ul>
+    <ul>Insufficient cryptography -> cryptography can be attempted but not performed correctly</ul>
+    <ul>Insecure authorization -> authorization decisions on the client side and forced browsing, distinct from authentication issues (user identification)</ul>
+    <ul>Client code quality -> security decisions via untrusted inputs, catch-all for code level implementation problems in the mobile client (buffer overflows, format string vulnerabilities etc.), results in 
+    foreign code execution or DoS on remote server endpoints (not the mobile device itself)</ul>
+    <ul>Code tampering -> binary patching, local resource modification, method hooking, method swizzling and dynamic memory modification</ul>
+    <ul>Reverse engineering -> analysis of final core binary to determine its source code, libraries, algorithms and other assets</ul>
+    <ul>Extraneous functionality -> developers often include hidden backdoor functionality or other internal development security controls that are not intended to be released into a production environment</ul>
+  </ol></p>
+  <h1>Anatomy of a mobile attack</h1>
+  <p>BYOD policies in organizations are the reason for mobile devices to be prime targets for attacks. </p>
+  <h2>The Device</h2>
+  <p>Device-based attacks are of the following types:</p>
+  <p><ol>
+    <ul>Browser-based attacks -> phishing, framing (web page integrated into another webpage using iframes etc.), clickjacking (user interface redressing), Man-in-the-Mobile (malicious code that bypasses password 
+    verification systems that send OTP (one-time passwords) via SMS or voice calls); Buffer overflows; Data caching</ul>
+    <ul>Phone / SMS -based attacks -> Baseband attacks (sending and receiving radio signals); SMiShing</ul>
+    <ul>Application-based attacks -> sensitive data storage, no / weak encryption, improper SSL validation, configuration manipulation, dynamic runtime injection (circumvent security locks and logic checks, access 
+    privileged parts of an app, steal data stored in memory); Unintended permissions (open doors to attackers via unintended permissions); Escalated privileges</ul>
+    <ul>The System -> no passcode / weak passcode, iOS jailbreaking, android routing, OS data caching (memory dumping); passwords and data accessible; carrier-loaded software (pre-installed software or apps may contain 
+    vulnerabilities); User-initiated code (trick the victim to install malicious applications or clicking links that allow an attacker to install malicious code to exploit the user's browser, cookies and 
+    security permissions</ul>    
+  </ol></p>
+  <h2>The Network</h2>
+  <p><ol>
+    <ul>WiFi (weak encryption / no encryption)</ul>
+    <ul>Rogue access points </ul>
+    <ul>Packet sniffing</ul>
+    <ul>MITM</ul>
+    <ul>Session Hijacking</ul>
+    <ul>DNS Poisoning</ul>
+    <ul>SSLStrip (downgrading connections to HTTP which is difficult to detect in mobile browsers)</ul>
+    <ul>Fake SSL certificates</ul>
+  </ol></p>
+  <h2>The Data Center / Cloud</h2>
+  <p><ol>
+    <ul>Web-server based attacks -> platform vulnerabilities, server misconfigurations, XSS (Cross-site Scripting), CSRF (Cross-site Request Forgery), weak input validation, Brute-force attacks</ul>
+    <ul>Database attacks -> SQL Injection, privilege escalation, data dumping, OS command execution (gain unrestricted / root-level system access)</ul>
+  </ol></p>
+  <h1>Mobile attack vectors and mobile platform vulnerabilities</h1>
+<h2>Malicious apps in stores</h2>
+<p>In general, apps are made available via application distribution platforms like Apple App Store, Google Play Store, Microsoft Store App, Amazon Appstore, GetJar, APKMirror. App stores are 
+common targets for attackers to distribute malware and malicious apps. Attackers may download a legitimate app, repackage it with malware and upload it to a third-party app store where users download it, thinking 
+it is genuine.</p>
+  <h2>Mobile malware</h2>
+
+  <h2>App sandboxing vulnerabilities</h2>
+<p>Developers should develop sandboxed apps. Sandboxing isolates applications from one another but malicious apps may exploit vulnerabilities and bypass the sandbox.</p>
+  
+  <h2>Weak device and app encryption</h2>
+
+  <h2>OS and app update issues</h2>
+
+  <h2>Jailbreaking and rooting</h2>
+
+  <h2>Mobile application vulnerabilities</h2>
+
+  <h2>Privacy issues (Geolocation)</h2>
+
+  <h2>Weak data security</h2>
+
+  <h2>Excessive permissions</h2>
+
+  <h2>Weak communication security</h2>
+
+  <h2>Physical attacks</h2>
+
+  <h2>Insufficient code obfuscation</h2>
+
+  <h2>Insufficient transport layer security</h2>
+
+  <h2>Insufficient session expiration</h2>
+
+  <h1>Attacks</h1>
+  <h2>Mobile Spam</h2>
+  <p>Spam messages consume a significant amount of network bandwidth and can lead to financial losse, malware injection and corporate data breach incidents.</p>
+  <p>SMS Phising Attack (SMiShing); aka Targeted Attack Scan -> a type of phising fraud in which an attacker uses SMS systems to send bogus texts; goal is to acquire personal and 
+  financial information by sending SMS (or IM) containing deceptive links. It is easy to set up and difficult to detect and stop; no mainstream mechanism for weeding out spam SMS and most 
+  mobile anti-virus tools do not check SMS</p>
+  <h2>Pairing devices on open BT and WiFi</h2>
+  <p>Setting a mobile device's BT connection to open or discoverable and turning on automatic WiFi connection capability (particulary in public places) pose significant risks.</p>
+  <p><ol>
+    <ul>Bluesnarfing -> stealing information via BT (contac list, emails etc.)</ul>
+    <ul>Bluebugging -> taking over a device via BT via backdoor attack, allows to sniff sensitive corporate or personal data, receive calls, intercept phone calls etc.</ul>
+  </ol></p>
+  <h2>Agent Smith Attack</h2>
+  <p>Luring victims into downloading and installing malicious apps designed and published by attackers in the form of games, photo editors or other attractive tools from third-party app stores such 
+  as 9Apps. The deceptive application replaces legitimate apps such as WhatsApp, SHAREit and MX Player with similar infected versions. Sometimes it appears as authentic Google products such as 
+  Google Updater or Themes. The attacker produces a massive volume of irrelevant and fraudulent advertisements on the victim's device through the infected app for financial gain.</p>
+
+  <h2>Exploiting SS7 vulnerability</h2>
+  <p>Signaling System 7 (SS7) is a communication protocol that allows mobile users to exchange communication through another cellular network (especially when roaming).</p>
