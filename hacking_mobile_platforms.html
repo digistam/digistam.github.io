@@ -228,3 +228,104 @@ it is genuine.</p>
         <ul><a target=_blank href=https://www.sisik.eu>Sixo Online APK Analyzer</a></ul>
         <ul><a target=_blank href=http://apk-deguard.com>DeGuard</a></ul>
     </ol></p>
+
+    <h1>Hacking iOS</h1>
+    <h2>Jailbreaking iOS</h2>
+    <p>Jailbreaking is defined as the process of installing a modified set of kernel patches that allow users to run third-party applications not signed by the OS vendor. It is the process of bypassing 
+    the user limitations set by Apple, such as modifying the OS, attaining admin privileges and installing unofficially approved apps via 'side loading'. Jailbreaking is accomplished by simply modifying 
+    the iOS system kernels. Jailbreaking provides root access to the OS and permits downloading of third-party applications, themes and extensions that are unavailable through the official Apple App Store.</p>
+
+    <h2>Types of Jailbreaking</h2>
+    <p><ol>
+        <ul>Userland Exploit -> using loophole in the system application; it allows user-level access but does not allow iboot-level access. It's not possible to secure iOS devices against this exploit as 
+        nothing can cause a recovery mode loop. Only firmware updates can patch such vulnerabilities.</ul>
+        <ul>iBoot Exploit -> this type of exploit can be semi-tethered if the device has a new bootrom; allows user-level access and iboot-level access; take advantage of a loohole in iBoot (iDevice's third
+        bootloader) to delink the code-signing appliance. Firmware updates can patch such exploits</ul>
+        <ul>Bootrom Exploit -> uses a loophole in the SecureROM (iDevice's first bootloader) to disable signature checks; firmware updates cannot patch such exploits; allows user-level access and iboot-level 
+        access; only a hardware update of bootrom by Apple can patch this exploit</ul>
+    </ol></p>
+
+    <h2>Jailbreaking techniques</h2>
+    <p><ol>
+        <ul>Untethered Jailbreaking -> if the user turns the device off and back on, the device will start up completely and the kernel will be patched without the help of a computer; in other words the 
+        device will be jailbroken after each reboot</ul>
+        <ul>Semi-tethered Jailbreaking -> if turned off and on, the device will start up completely and will no longer have a patched kernel, but will still be usable for normal functions; to use jailbroken 
+        addons, the user needs to start the device with the help of the jailbreaking tool</ul>
+        <ul>Tethered Jailbreaking -> if the device starts up on its own, it will no longer have a patched kernel and it may get stuck in a partially started state; it essentially must be "re-jailbroken"
+        with a computer each time it is turned on</ul>
+        <ul>Semi-untethered Jailbreaking -> similar to semi-tethered jailbreak; the kernel can be patched without using a computer, it is patched using an app installed on the device</ul>
+    </ol></p>
+
+    <h2>Hacking iOS devices</h2>
+    <p><ol>
+        <ul><a target=_blank href=https://spyzie.io>Spyzie</a> allows attackers to hack SMS, call logs, app chats, GPS etc. Attackers hack the target device remotely in an invisible mode without jailbreaking 
+        the device</ul>
+        <ul>iOS Trustjacking -> exploiting the iTunes WiFi Sync whereby the victim connects the device to any trusted computer that is already infected by the attacker</ul>
+        <ul>Manipulating an iOS application using <a target=_blank href=http://www.cycript.org>Cycript</a> </ul>
+        <ul>iOS method swizzling -> aka Monkey patching, involves modifying the existing methods or adding new functionality at runtime</ul>
+        <ul>Extracting secrets using <a target=_blank href=https://github.com/ptoomey3/Keychain-Dumper>Keychain Dumper</a> -> has a self-signed certificate with a wildcard entitlement, to dump secret keychains 
+        from the target iOS app</ul>
+        <ul>Analyzing an iOS application using <a target=_blank href=https://github.com/sensepost/objection>Objection</a></ul>
+    </ol></p>
+
+    <h2>iOS Malware</h2>
+    <p><ol>
+        <ul>NoReboot Trojan</ul>
+        <ul>Pegasus (spyware by an Israel based company that supplies spyware to government agencies)</ul>
+    </ol></p>
+
+    <h1>Mobile Device Management</h1>
+    <p>MDM is gaining considerable importance with the adoption of BYOD policies etc. MDM provides platforms for over-the-air or wired distribution of applications, data and configuration settings for all
+    types of mobile devices. It helps in implementing enterprise-wide policies to reduce support costs, business discontinuity and security risks.</p>
+    <p><ol>
+        <ul>Uses a passcode for the device</ul>
+        <ul>Remotely locks the device if it is lost</ul>
+        <ul>Remotely wipes data in the lost or stolen device</ul>
+        <ul>Detects if the device is rooted or jailbroken</ul>
+        <ul>Enforces policies and tracks inventory</ul>
+        <ul>Performs real-time monitoring and reporting</ul>
+    </ol></p>
+
+    <h2>BYOD</h2>
+    <p>BYOD allows employees to use devices that they are comfortable with and best fits their preference and word purposes. Work anywhere, anytime! </p>
+    <p>Benefits:</p>
+    <p><ol>
+        <ul>Increased productivity</ul>
+        <ul>Employee satisfaction</ul>
+        <ul>Work flexibility</ul>
+        <ul>Lower costs</ul>
+    </ol></p>
+    <p>Risks:</p>
+    <p><ol>
+        <ul>Sharing confidential data on unsecured networks</ul>
+        <ul>Data leakage and endpoint security issues</ul>
+        <ul>Improperly disposing of devices</ul>
+        <ul>Support for many different devices</ul>
+        <ul>Mixing personal and private data</ul>
+        <ul>Lost or stolen devices</ul>
+        <ul>Lack of awareness</ul>
+        <ul>Ability to bypass organization's network policy rules</ul>
+        <ul>Infrastructure issues</ul>
+        <ul>Disgruntled employees</ul>
+    </ol></p>
+
+    <h1>Reverse engineering mobile applications</h1>
+    <p>Reverse engineering is used to:</p>
+    <p><ol>
+        <ul>Read and understand the source code</ul>
+        <ul>Detect underlying vulnerabilities</ul>
+        <ul>Scan for sensitive information embedded inside the source code</ul>
+        <ul>Conduct malware analysis</ul>
+        <ul>Regenerate the application or software after applying some modifications</ul>
+    </ol></p>
+    <p>Mobile security professionals need to possess basic knowledge or reverse engineering techniques for the following reasons:</p>
+    <p><ol>
+        <ul>Initiating black-box testing on mobiles apps</ul>
+        <ul>Improving static analysis in black-box testing</ul>
+        <ul>Performing resilience assessment</ul>
+    </ol></p>
+    <h2>Reverse Engineering Tools</h2>
+    <p><ol>
+        <ul><a target=_blank href=https://ibotpeaches.github.io>Apktool</a></ul>
+        <ul><a target=_blank href=https://www.frida.re>Frida</a></ul>
+    </ol></p>
