@@ -30,4 +30,362 @@ device's ID and sends a request associated with that device using gateways. If t
 device's ID and the user associated with it, and the end-user receives an alert.</p>
 
     <h1>IoT architecture</h1>
-    <p>The IoT architecture includes several layers, from the application layer at the top to the edge technology layer at the bottom.</p>
+    <p>The IoT architecture includes several layers, from the application layer at the top to the edge technology layer at the bottom. These layers are designed in such a way that they can meet the requirements 
+    of various sectors, including societies, industry, enterprises, governments etc.</p>
+    <p><ol>
+        <ul><b>Edge Technology Layer</b> -> all the hardware components, incl. sensors, RFID tags, readers, soft sensors, devices -> <b>collecting</b> and <b>connecting devices</b></ul>
+        <ul><b>Access Gateway Layer</b> -> bridge gaps between endpoints such as device and client -> <b>data handling</b>, <b>message routing</b>, <b>message identification</b> and <b>subscribing</b></ul>
+        <ul><b>Internet Layer</b> -> main component in carrying out communication between endpoints</ul>
+        <ul><b>Middleware Layer</b> -> operates in two-way mode, sits in the middle of application layer and hardware layer (interface) -> <b>data management</b>, <b>device management</b>, <b>data analysis</b>, 
+        <b>device information discovery</b>, <b>access control</b></ul>
+        <ul><b>Application Layer</b> -> delivery of services to relevant users from different sectors incl. building, industrial, medical, automobile etc.</ul>
+    </ol></p>
+<h2>IoT Technologies and protocols</h2>
+<p><b>Short-Range Wireless Communication</b></p>
+<p><ol>
+    <ul>BT Low Energy (BLE)</ul>
+    <ul>Light-Fidelity (LiFi) -> like WiFi but mode and communication is different, LiFi is a visible light communication (VLC) system that uses common light bulbs for data transfer at a very high speed of 224 Gbps</ul>
+    <ul>Near-Field Communication (NFC) -> magnetic field induction to enable communication (contactless mobile payment, identification of documents etc.)</ul>
+    <ul>QR codes and Barcodes</ul>
+    <ul>Radio-Frequency Identification (RFI) -> stores data in tags that are read using electromagnetic fields</ul>
+    <ul>Thread -> IPv6 networking protocol for IoT devices, home automation</ul>
+    <ul>WiFi</ul>
+    <ul>WiFi Direct -> peer to peer without need for AP</ul>
+    <ul>Z-Wave -> low power, short range communication for home automation</ul>
+    <ul>Zig-Bee -> another communication form for home automation, low rate transfer in restricted area (10 - 100 mtr)</ul>
+    <ul>Adaptive Network Topology (ANT) -> multicast wireless sensor network technology for short rang communication between devices related to sports and fitness sensors</ul>
+</ol></p>
+    <p>Medium-Range Wireless Communication</p>
+    <p><ol>
+        <ul>HaLow -> variant of WiFi, extended range for use in rural areas, low data rates reducing power and costs of transmission</ul>
+        <ul>LTE Advanced -> standard for mobile communication </ul>
+        <ul>6LoWPAN -> IPv6 over Low Power Wireless Personal Area Networks -> communication between smaller and low power devices with limited processing capacity such as various IoT devices</ul>
+        <ul>Quick UDP Internet Connections (QUIC) -> multiplexed connections between IoT devices over UDP; security enhancements equivalent to SSL/TLS </ul>
+    </ol></p>
+    <p>Long-Range Wireless Communication</p>
+    <p><ol>
+        <ul>Low Power Wide Area Networking (LPWAN) -> long range communication between two endpoints; LoRaWAN, Sigfox, Neul </ul>
+        <ul>Very Small Aperture Terminal (VSAT) -> using small dish antennas for both broadband and narrowband data transmission</ul>
+        <ul>Cellular -> expensive and high power consumption</ul>
+        <ul>Message Queuing Telemetry Transport (MQTT) -> ISO standard; connections to remote locations via for example satellite links</ul>
+        <ul>Narrowband IoT (NB-IoT) -> variant of LoRaWAN and Sigfox that uses more enhanced physical layer technology for machine-to-machine communication</ul>
+    </ol></p>
+    <p>Wired Communication</p>
+    <p><ol>
+        <ul>Ethernet</ul>
+        <ul>Multimedia over Coax Alliance (MoCa) -> high definition video and related content over existing coaxial cables</ul>
+        <ul>Power-Line Communication (PLC) </ul>
+    </ol></p>
+
+    <h2>IoT Operating Systems</h2>
+    <p><ol>
+        <ul>Windows 10 IoT</ul>
+        <ul>Amazon FreeRTOS -> used in microcontrollers for low power, battery operated edge devices</ul>
+        <ul>Contiki -> low power wireless devices such as street lightning, sound monitoring etc.</ul>
+        <ul>Fuchsia -> open source OS by Google</ul>
+        <ul>RIOT -> embedded systems, sensors etc.</ul>
+        <ul>UbuntuCore (Snappy) -> robots, drones, edge gateways etc.</ul>
+        <ul>ARM Mbed OS -> wearables</ul>
+        <ul>Zephyr</ul>
+        <ul>Embedded Linux</ul>
+        <ul>NuttX RTOS -> 8bit and 32bit microcontrollers</ul>
+        <ul>Integrity RTOS -> aerospace, defense, medical etc.</ul>
+        <ul>Apache Mynewt -> devices working on BLE protocol</ul>
+    </ol></p>
+
+    <h2>IoT Application Protocols</h2>
+    <p><ol>
+        <ul>Constrained Application Protocol (CoAP) -> web transfer protocol for constrained nodes and IoT networks, mainly machine-to-machine (M2M) such as smart energy </ul>
+        <ul>Edge -> Edge computing allowing smart devices and gateways to perform tasks and services from the cloud end</ul>
+        <ul>LWM2M -> lightweight Machine-to-machine is an application layer communication protocol used for application-level communication between IoT devices; for IoT device management</ul>
+        <ul>Physical Web -> reveals the list of URLs being broadcast by nearby devices with BLE beacons</ul>
+        <ul>eXtensible Messaging and Presence Protocol (XMPP) -> open technology for realtime communication used for IoT devices</ul>
+        <ul>Mihini/M3DA -> communication between M2M server and applications running on embedded gateway</ul>
+    </ol></p>
+
+    <h2>IoT Communication Models</h2>
+    <p><ol>
+        <ul>Device-to-Device -> protocols such as ZigBee, Z-Wave or BT, most commonly in smart home devices such as thermostats, light bulbs, fridges</ul>
+        <ul>Device-to-Cloud -> using WiFi, Ethernet etc. -> CCTV camera that can be accessed on a smartphone from a remote location</ul>
+        <ul>Device-to-Gateway -> ZigBee, Z-Wave</ul>
+        <ul>Back-End Data-Sharing -> extends device-to-cloud such that the data can be accessed by third parties</ul>
+    </ol></p>
+
+    <h1>Challenges of IoT</h1>
+    <p><ol>
+        <ul>Lack of security and privacy -> a lot of IoT devices lack even basic security and privacy policies</ul>
+        <ul>Vulnerable Web Interfaces</ul>
+        <ul>Legal, Regulatory and Rights Issue -> no existing laws</ul>
+        <ul>Default, Weak and Hardcoded credentials</ul>
+        <ul>Clear text protocols and unnecessary open ports</ul>
+        <ul>Coding errors (buffer overflow)</ul>
+        <ul>Storage Issues -> data collected and transmitted is limitless, storage is often small</ul>
+        <ul>Difficult to update firmware and OS</ul>
+        <ul>Interoperability standard issues</ul>
+        <ul>Physical theft and tampering</ul>
+        <ul>Lack of vendor support for fixing vulnerabilities</ul>
+        <ul>Emerging economy and development issues</ul>
+        <ul>Handling of unstructured data</ul>
+    </ol></p>
+
+    <h1>IoT Attacks</h1>
+    <p>Most IoT devices come with security issues such as the absence of a proper authentication mechanism or the use of default credentials, absense of a lock-out mechanism, absence of a strong encryption 
+    scheme, absence of proper key management systems, improper physical security</p>
+    <p><ol>
+        <ul>Application -> validation of inputted string, AuthN, AuthZ, no automatic security updates, default passwords</ul>
+        <ul>Network -> firewall, improper communications encryption, services, lack of automatic updates</ul>
+        <ul>Mobile -> insecure API, lack of communication channels encryption, authentication, lack of storage security</ul>
+        <ul>Cloud -> improper authentication, no encryption for storage and communications, insecure web interface</ul>
+        <ul>IoT -> Application + Network + Mobile + Cloud = IoT</ul>
+    </ol></p>
+
+    <h2>OWASP Top 10 IoT Threats</h2>
+    <p><ol>
+        <ul>Weak, guessable or hardcoded passwords</ul>
+        <ul>Insecure network services </ul>
+        <ul>Insecure Ecosystem Interfaces -> web, API, mobile, cloud interfaces outside the device</ul>
+        <ul>Lack of secure update mechanisms</ul>
+        <ul>Use of insecure or outdated components</ul>
+        <ul>Insufficient privacy protection</ul>
+        <ul>Insecure data transfer and storage</ul>
+        <ul>Lack of device management</ul>
+        <ul>Insecure default settings</ul>
+        <ul>Lack of physical hardening</ul>
+    </ol></p>
+
+    <h2>IoT vulnerabilities</h2>
+    <p><ol>
+        <ul>username enumeration</ul>
+        <ul>weak passwords</ul>
+        <ul>account lockout</ul>
+        <ul>unencrypted services</ul>
+        <ul>Lack of 2FA</ul>
+        <ul>Poorly implemented encryption</ul>
+        <ul>Update sent without encryption </ul>
+        <ul>Update location writable </ul>
+        <ul>DoS</ul>
+        <ul>Removal of storage media</ul>
+        <ul>No manual update mechanism</ul>
+        <ul>Missing update mechanism</ul>
+        <ul>Firmware version display and/or last update date not displayed</ul>
+        <ul>Firmware and storage extraction</ul>
+        <ul>Manipulating code execution flow of the device</ul>
+        <ul>Obtaining console access</ul>
+        <ul>Insecure third party components -> out of date versions of busybox, openssl, ssh etc.</ul>
+    </ol></p>
+
+    <h2>Attacks</h2>
+    <p><ol>
+        <ul>DDoS attack</ul>
+        <ul>Attack on HVAC systems</ul>
+        <ul>Rolling code attack</ul>
+        <ul>BlueBorne attack</ul>
+        <ul>Jamming attack -> DoS using overwhelming volume of malicious traffic; special types of hardware</ul>
+        <ul>Remote access using backdoor -> using social engineering employees get phishing emails with malicious content; after clicking link a backdoor is installed</ul>
+        <ul>Remote access using telnet</ul>
+        <ul>Sybil attack -> multiple forged identities create a strong illusion of traffic congestion (kind of DoS)</ul>
+        <ul>Exploit kits</ul>
+        <ul>MITM</ul>
+        <ul>Replay attack</ul>
+        <ul>Forged malicious device -> replacing devices in case of physical access to the network</ul>
+        <ul>Side-Channel attack -> extracting information about encryption keys by observing emission of signals (side channels) from IoT devices</ul>
+        <ul>Ransomware attack</ul>
+        <ul>Client impersonation</ul>
+        <ul>SQL injection</ul>
+        <ul>SDR-based attack -> examining communication signals using a software-based radio communication system; Replay attack, Cryptanalysis attack, Reconnaissance attack</ul>
+        <ul>Fault Injection attack -> exploiting faults </ul>
+        <ul>Network pivoting -> using malicious smart device to connect and gain access to a closed server and then using that connection to pivot other devices etc.</ul>
+        <ul>DNS rebinding attack -> obtaining access to a router using malicious javascript code injected on web page</ul>
+    </ol></p>
+
+    <h2>Hacking IoT devices: general scenario</h2>
+    <p><ol>
+        <ul>An eavesdropper intercepts communication between two endpoints and discovers the confidential information that is sent across</ul>
+        <ul>A fake server can be used to send unwanted commands to trigger unplanned events</ul>
+        <ul>A fake device can inject a malicious script into the system to make it work as instructed by the device</ul>
+    </ol></p>
+
+    <h2>DDoS attack</h2>
+    <p><ol>
+        <ul>Attacker gains remote access to vulnerable devices</ul>
+        <ul>After gaining access he injects malware into the IoT devices to turn them into botnets</ul>
+        <ul>Attacker uses C&C to instruct botnets and send multiple requests to target server</ul>
+    </ol></p>
+
+    <h2>Exploit HVAC</h2>
+    <p><ol>
+        <ul>Attacker uses Shodan and searches for vulnerable industrial control systems (ICSs)</ul>
+        <ul>The attacker then searches for default user credentials using online tools such as https://www.defpass.com</ul>
+        <ul>Attacker uses default user credentials to attempt to access the ICS</ul>
+        <ul>After gaining access to the ICS, the attacker attempts to gain access to the HVAC systems</ul>
+    </ol></p>
+
+    <h2>Rolling code attack</h2>
+    <p>Most smart vehicles use smart locking systems, which include an RF signal transmitted in the form of code from a modern key fob to lock or unlock the vehicle. The code sent to the vehicle is only used 
+    once and is different for every other use. If a vehicle receives the same code again, it rejects it. The code that locks or unlocks a car or garage is called a <b>rolling code</b> or hopping code. It is 
+    used in a keyless entry system to prevent replay attacks. An eavesdropper can capture the code transmitted and later use it to unlock the garage or vehicle. The attack is performed using a jamming device 
+    that simulteneously jams the signal and sniffs the code. The attacker later uses the captured code to unlock the vehicle. Attackers use <a target=_blank href=https://github.com/exploitagency/rfcat-rolljam>RFcat-rolljam</a>
+    and <a target=_blank href=https://github.com/cclabsInc/RFCrack>RFCrack</a> to perform the attack.</p>
+
+    <h2>BlueBorne Attack</h2>
+    <p>BlueBorne is a collection of various techniques based on the known vulnerabilities of the BT protocol. In all operating systems, the BT process has high privileges. After gaining access to one device, 
+    an attacker can penetrate any corporate network using that device to steal critical information from the organization and spread malware to nearby devices. BlueBorne is compatible with all software versions and 
+    does not require any user interaction, precondition or configuration except for BT being active. This attack establishes a connection with the target BT enabled device without even pairing with the device. 
+    Using this attack, an attacker can discover BT enabled devices even though they are not in an active discovery mode. Once the attacker identifies any nearby device, he tries to extract the MAC address 
+    and OS information to perform further exploitation on the target OS. Based on the vulnerabilities present in the BT protocol, attackers can even perform remote code execution and MITM attacks on the target device.</p>
+
+    <p><ol>
+        <ul>Attacker discovers active BT enabled devices around him</ul>
+        <ul>he obtains the MAC address of the device</ul>
+        <ul>he sends continuous probes to the target device to determine the OS</ul>
+        <ul>after identifying the OS, the attacker exploits the vulnerabilities in the BT protocol to gain access to the device</ul>
+        <ul>now, the attacker can perform remote code execution or a MITM attack and take full control of the device</ul>
+    </ol></p>
+
+    <h2>Identifying and accessing local IoT devices</h2>
+    <p>An attacker gains access over local IoT devices when a user from the network visits a malicious page, i.e. created and distributed by an attacker in the form of an advertisement or any attractive means. 
+    Once the victim visits the harmful website, a malicious JavaScript node inside the page begins the process. In general an attacker implements two methods:</p>
+    <h2>Discovering or Identifying the local IoT devices</h2>
+    <p><ol>
+        <ul>Attacker obtains local IP address (using malicious code)</ul>
+        <ul>Attacker requests all the available devices in the network</ul>
+        <ul>Active devices respond with reset packet and request for inactive devices would return timeout</ul>
+        <ul>Attacker detects all available devices based on their responses</ul>
+    </ol></p>
+    <h2>Accessing the local IoT devices using DNS rebinding</h2>
+    <p>DNS rebinding is a process of gaining access over the victim's router using a malicious javascript code injected on a web page. After this, an attacker can assault any device using the default password. 
+    After identifying all the connected devices and their information in the network, the attacker exploits further to gain complete access to the local interconnected devices. Now that the attacker has the 
+    information on IoT devices in the network, he follows the following steps:</p>
+    <p><ol>
+        <ul>Checks if the malicious code is performing DNS rebinding in all discovered devices, using DNS rebinding tools such as <a target=_blank href=https://github.com/LinkedInAttic/jaqen>Jaqen</a></ul>
+        <ul>Once the DNS rebinding is successfully implemented, the attacker can command and control the local IoT devices</ul>
+        <ul>The attacker can further extract private information, such as the UIDs and BSSIDs of local access points that are useful in finding the geolocation of the target devices</ul>
+    </ol></p>
+    <p>After successfully launching this attack, the attacker could bypass the security and gain access to applications running on the local IoT devices. Further, the attacker can launch random audio or 
+    video files on different browsers of the devices</p>
+
+    <h2>Fault Injection Attacks</h2>
+    <p>Fault injection attacks are also known as pertubation attacks, they occur when a perpetrator injects a faulty or malicious program into a system to compromise the system security.</p>
+    <p><ol>
+        <ul>Optical, Electromagnetic Fault Injection (EMFI), Body Bias Injection (BBI) -> lasers and electromagnetic pulses</ul>
+        <ul>Power / Clock / Reset glitching</ul>
+        <ul>Frequency / voltage tampering</ul>
+        <ul>Temperature attacks</ul>
+    </ol></p>
+
+    <h1>IoT hacking methodology</h1>
+    <p>The following are the different phases in hacking an IoT device:</p>
+    <p><ol>
+        <ul>Information Gathering</ul>
+        <ul>Vulnerability Gathering</ul>
+        <ul>Launch Attacks</ul>
+        <ul>Gain Remote Access</ul>
+        <ul>Maintain Access</ul>
+    </ol></p>
+    <h2>Information Gathering</h2>
+    <p>First step is to extract information such as the IP address, protocols (ZigBee, Z-Wave, BLE, 5G etc.), open ports, device type, geolocation, manufacturing number, manufacturing company etc.</p>
+    <h2>Shodan.io</h2>
+    <p><b>Shodan</b> is a search engine that provides information about all internet-connected devices such as routers, traffic lights, CCTV cameras etc. Attackers can make use of this tool to gather information 
+    such as the IP address, hostname, ISP, device location and banner of the target IoT device.</p>
+    <p><ol>
+        <ul>Search for webcams using geolocation -> webcamxp country:"US"</ul>
+        <ul>Search using city -> webcamxp city:"streetsboro"</ul>
+        <ul>using longitude and latitude -> geo:"-50.81,201,80"</ul>
+    </ol></p>
+    <p>Additional filters used by the attackers to obtain target information:</p>
+    <p><ol>
+        <ul>Net (IP address or CIDR)</ul>
+        <ul>OS (operating system used by devices)</ul>
+        <ul>Port (find all open ports)</ul>
+        <ul>Before/after (provides results within a certain timeframe)</ul>
+    </ol></p>
+
+    <h2>Information Gathering using MultiPing</h2>
+    <p>An attacker can use the <a target=_blank href=https://www.multiping.com>MultiPing</a> tool to find the IP address of any IoT device in the target network. After obtaining the IP address of an IoT device, 
+    the attacker can perform further scanning to identify vulnerabilities present in that device.</p>
+    <p><ol>
+        <ul>Open the MultiPing application and select File > Add Address Range</ul>
+        <ul>Select the router's gateway IP address from the Initial Address to Add drop-down field</ul>
+        <ul>set the Number of addresses to 255</ul>
+        <ul>Click OK</ul>
+        <ul>MultiPing will cycle through every possible IP address in the range you have selected, and it begins testing every IP address that responds to its ping</ul>
+        <ul>Each row in the MultiPing Window is a device on the network, from the list the attacker can identify the IP address of the target IoT device</ul>
+    </ol></p>
+    <h2>Information Gathering using FCC ID Search</h2>
+    <p><ol>
+        <ul>Open the device and examine the attached label</ul>
+        <ul>The label has the FCC ID of the device</ul>
+        <ul>Go to the <a target=_blank href=https://www.fcc.gov/oet/ea/fccid>FCC ID search form</a></ul>
+        <ul>FCC ID search will show details and a summary of the device with different frequencies</ul>
+        <ul>After obtaining the required information, the attacker can find underlying vulnerabilities in the target device and launch further attacks</ul>
+    </ol></p>
+
+    <h2>Discovering IoT devices with default credentials using IoTSeeker</h2>
+    <p>Attackers use tools such as <a target=_blank href=https://github.com/rapid7/IoTSeeker>IoTSeeker</a> to discover IoT devices that are using default credentials and are vulnerable to various 
+    hijacking attacks.</p>
+
+    <h2>Vulnerability Scanning</h2>
+    <p>Once the attackers gather information about a target device, they search for the attack surfaces of a device (identify the vulnerabilities).</p>
+
+    <h2>Nmap vulnerability scanning</h2>
+    <p><b><i>nmap -n -Pn -sS -pT:0-65535 -v -A -oX [Name][IP]</i></b> -> scan specific IP address</p>
+    <p><b><i>nmap -n -Pn -sSU -pT:0-65535,U:0-65535 -v -A -oX [Name][IP]</i></b> -> check both TCP and UDP services and ports</p>
+    <p><b><i>nmap -6 -n -Pn -sSU -pT:0-65535,U:0-65535 -v -A -oX [Name][IP]</i></b> -> check both TCP and UDP services and ports using IPv6</p>
+
+    <h2>Vulnerability Scanning using Retina IoT (RIoT) Scanner</h2>
+    <p><a target=_blank href=https://www.beyondtrust.com>Retina IoT (RIoT) Scanner</a> identifies at-risk IoT devices</p>
+
+    <h2>Sniffing using Foren6</h2>
+    <p>Attackers use tools such as <a target=_blank href=https://cetic.github.io>Foren6</a> to sniff the traffic of IoT devices. Foren6 is a non-intrusive 6LoWPAN network analysis tool.</p>
+
+    <h2>Sniffing using Wireshark</h2>
+    <p>Many IoT devices, such as security cams, host a website for controlling or configuring the cameras from a remote location. These websites mostly implement the insecure HTTP protocol instead of 
+    HTTPS and are vulnerable to various attacks. If the cameras are using default factory credentials, an attacker can easily intercept all the traffic flowing between the camera and the web application 
+    and further gain access to the camera itself.</p>
+    <p><ol>
+        <ul><b><i>nmap -p 80,81,8080,8081 [Target IP address range]</i></b></ul>
+        <ul>Set up the wireless card in monitor mode and identify the channel used by the target router for broadcasting, for this run <b>ifconfig</b> to identify your wireless card (wlan0)</ul>
+        <ul>airmon-ng start wlan0</ul>
+        <ul>airodump-ng start wlan0</ul>
+        <ul>Discover the target wireless network and not down the corresponding channel to sniff the traffic using Wireshark</ul>
+        <ul>Set up your wireless card to listen to the traffic on the same channel; for example if the target network's channel is 11:</ul>
+        <ul>airmon-ng start wlan0 11</ul>
+        <ul>Launch Wireshark and double-click the interface that was kept in monitor mode and start capturing the traffic</ul>
+        <ul>After sniffing the traffic, attackers can decrypt WEP / WPA keys and hack the target IoT device to steal sensitive information</ul>
+    </ol></p>
+
+    <h2>Analyzing Spectrum using Gqrx</h2>
+    <p><a target=_blank href=https://gqrx.dk>Gqrx</a> is an SDR implemented with the help of GNU Radio and Qt GUI tool. Attackers use hardware devices such as FunCube dongles, Airspy, HackRF and 
+    RTL-SDR along with Gqrx SDR to analyze the spectrum. Attackers use Gqrx to observe the frequency bands of temperature/humidity sensors, light switches, car keys, M-bus transmitters etc.</p>
+
+    <h2>Analyzing IoT Traffic using IoT Inspector</h2>
+    <p>Attackers use tools such as <a target=_blank href=https://www.iot-inspector.com>IoT Inspector</a> to discover target IoT devices and analyze their network traffic to identify vulnerabilities. 
+    IoT Inspector helps the attacker to breach privacy and security mechanisms. This tool projects the vulnerabilities in the form of tables and graphs. It also allows the attacker to record and 
+    replay all information from the communicating devices to gather sensitive information. IoT Inspector automatically scans and displays the available devices in the network.</p>
+
+    <h1>Launch Attacks</h1>
+    <p>Vulnerabilities found are exploited further to launch various attacks</p>
+    <h2>Rolling Code Attack using RFCrack</h2>
+    <p>Attackers use the <a target=_blank href=https://github.com/cclabsInc/RFCrack>RFCrack</a> tool to obtain the rolling code sent by the victim to unlock a vehicle and later use the same code 
+    for unlocking and stealing the vehicle.</p>
+    <h2>Hacking ZigBee devices with Attify ZigBee Framework</h2>
+    <p>Most IoT devices use the ZigBee protocol for short-range wilreless communication. Attackers find vulnerabilities using tools as the <a target=_blank href=https://github.com/cclabsInc/RFCrack>Attify ZigBee Framework</a>.
+    The framework consists of a set of tools used to perform ZigBee penetration testing.</p>
+    <h2>BlueBorne Attack using HackRF One</h2>
+    <p>IoT devices involve wireless communication using RF, ZigBee or LoRa. Attackers use <a target=_blank href=https://greatscottgadgets.com>HackRF One</a> to perform attacks such as BlueBorne or AirBorne attacks, 
+    including replay, fuzzing and jamming. HackRF One is an advanced hardware- and software-defined radio with a range of 1 MHz to 6 GHz. It transmits and receives radio waves in half-duplex mode, so it is easy 
+    for attackers to perform attacks using this device. It can sniff a wide range of wireless protocols from GSM to Z-wave. The attacker records and replays the signal.</p>
+    <h2>SDR-Based attacks using RTL-SDR and GNU Radio</h2>
+    <p>Attackers use hardware tools such as <a target=_blank href=https://www.rtl-sdr.com>RTL-SDR</a> to perform SDR-based attacks on IoT devices. RTL-STR hardware is available in the form of a USB dongle that 
+    can be used to capture active radio signals in the vicinity. It is available in different models, such as DVB-T SDR, RTL2832, RTL dongle, DVB-T dongle.</p>
+    <p>Attackers can use an RTL-SDR radio scanner to perform the following activities:</p>
+    <p><ol>
+        <ul>Receiving and decoding GPS signals</ul>
+        <ul>Analyzing spectrum</ul>
+        <ul>Listening to DAB broadcast radio</ul>
+        <ul>Listening to and decoding HD radio</ul>
+        <ul>Sniffing GSM signals</ul>
+        <ul>Listening to VHF amateur radio</ul>
+        <ul>Scanning for cordless phones</ul>
+    </ol></p>
+    <p>Along with hardware tools, attackers can also assault SDR-based IoT devices using various software tools such as <a target=_blank href=https://www.gnuradio.org>GNU Radio</a></p>
