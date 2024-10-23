@@ -389,3 +389,59 @@ device's ID and the user associated with it, and the end-user receives an alert.
         <ul>Scanning for cordless phones</ul>
     </ol></p>
     <p>Along with hardware tools, attackers can also assault SDR-based IoT devices using various software tools such as <a target=_blank href=https://www.gnuradio.org>GNU Radio</a></p>
+
+    <h2>Side-Channel Attack using ChipWhisperer</h2>
+    <p><a target=_blank href=https://newae.com>ChipWhispere</a> is an open-source toolchain mainly used for embedded hardware security research and for performing side-channel power analysis and glitching 
+    attacks. These attacks are mainly used to extract cryptographic keys from a system.</p>
+    <p>A <b>Side-channel attack</b> is a cryptographic attack that leverages the implementation of the physical system to gain information, such as information regarding power consumption, time, sound and 
+    electromagnetic leaks, instead of exploiting the vulnerabilities in the code. For these attacks, special hardware is needed (capture board and target board).</p>
+
+    <h2>Identifying IoT communication buses and interfaces</h2>
+    <p>Attackers identify various serial and parallel interfaces such as universal asynchronous receiver-transmitter (UART), serial peripheral interface (SPI), joint test action group (JTAG) and 
+    inter-integrated circuit (I2C) to gain access to a shell, extract firmware etc. Attackers use tools such as BUS Auditor, Damn Insecure and Vulnerable Application (DIVA), a printed circuit board 
+    (PCB) and the EXPloit framework to identify buses. </p>
+
+    <h2>NAND Glitching</h2>
+    <p>Attackers often focus on gaining privileged access to IoT devices or routers by exploiting their booting vulnerabilities using techniques such as glitching. NAND glitching is the process of gaining 
+    privileged root access while booting a device, which can be performed by making a ground connection to the serial I/O pin of a flash memory chip.</p>
+
+    <h1>Gain Remote Access</h1>
+    <p>Vulnerabilities identified in the vulnerability-scanning phase allow an attacker to remotely gain access and command and control the attack while evading detection from various security products. 
+    Based on the vulnerabilities in an IoT device, the attacker may turn the device into a backdoor to gain access to an organization's network without infecting any end system that is protected by IDS/IPS, 
+    firewall, antivirus software etc. After gaining remote access, attackers use these devices as a platform to launch attacks on other devices in the network.</p>
+    <h2>Telnet</h2>
+    <p>Attackers perform port scanning to learn about open ports and services on the target IoT device. If the attacker identifies that the telnet port is open, he exploits this vulnerability to gain 
+    remote access to the device. Many embedded system applications in IoT devices support Telnet.</p>
+
+    <h1>Maintain Access</h1>
+    <p>Once gaining access to the device, the attacker uses various techniques to maintain access and perform further exploitation. Attackers remain undetected by clearing logs, updating firmware and using
+    malicious programs such as backdoors, trojans etc. to maintain access. Attackers use tools such as Firmware Mod Kit, Firmwalker, Firmalyzer Enterprise and Firmware Analysis Toolkit to exploit firmware.</p>
+    <h2>Maintain Access by Exploiting Firmware</h2>
+    <p><a target=_blank href=https://github.com/rampageX/firmware-mod-kit>Firmware Mod Kit</a> allows for easy deconstruction and reconstruction of firmware images for various embedded devices. </p>
+    <h2>Firmware Analysis and Reverse Engineering</h2>
+    <p>Firmware acts as the central point in controlling various IoT devices. Attackers analyze the firmware of the target IoT devices to uncover the underlying loopholes and vulnerabilities. Firmware 
+    analysis is performed to identify the passwords, API tokens and endpoints, vulnerable services running, backdoor accounts, configuration files in use, private keys, stored data etc.</p>
+    <p><ol>
+        <ul>Obtain Firmware</ul>
+        <ul>Analyze Firmware (cat, md5sum, strings, hexdump etc.)</ul>
+        <ul>Extract the filesystem</ul>
+        <ul>Mount the filesystem</ul>
+        <ul>Analyze the filesystem content (grep, find etc.)</ul>
+        <ul>Emulate firmware for dynamic testing (qemu)</ul>
+    </ol></p>
+    <h1>IoT Hacking Tools</h1>
+    <p><ol>
+        <ul><a target=_blank href=https://censys.io>Censys search engine</a> -> Censys collects data on hosts and websites through daily <a target=_blank href=https://zmap.io/>ZMap</a> and 
+            <a target=_blank href=https://github.com/zmap/zgrab2>ZGrab</a> scans of the IPv4 address space</ul>
+        <ul><a target=_blank href=https://www.thingful.net>Thingful search engine</a> -> Thingful is a search engine for finding and using open IoT data from around the world (now deprecated)</ul>
+    </ol></p>
+    <h2>Sniffing Tools</h2>
+    <p><ol>
+        <ul><a target=_blank href=https://www.suphammer.net>SuphaCup</a> -> Z-Wave Sniffer, hardware tool</ul>
+    </ol></p>
+
+    <h2>Vulnerability Scanning Tools</h2>
+    <p><ol>
+        <ul><a target=_blank href=https://www.beyondsecurity.com>beSTORM</a> -> smart fuzzer that detects buffer overflow vulnerabilities</ul>
+        <ul>Metasploit Pro</ul>
+    </ol></p>
