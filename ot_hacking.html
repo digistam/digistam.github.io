@@ -1,0 +1,225 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+<a href=index.html>Back to home</a>
+<hr/>
+<h1>Hacking OT</h1>
+<p>Operational technology (OT) plays a major role in today's modern society, as it drives a collection of devices designed to work together as an integrated or homogeneous system. OT is a combination of hardware and 
+  software that is used to monitor, run and control industrial process assets. These devices include switches, pumps, lights, sensors, surveillance cameras, elevators, robots, valves, cooling and heating systems.
+  Any system that analyzes and processes operational data can be part of OT.</p>
+  <p><ol>
+    <ul>Industrial Control Systems (ICSs)</ul>
+    <ul>Supervisory Control and Data Acquisition (SCADA)</ul>
+    <ul>Remote Terminal Units (RTU)</ul>
+    <ul>Programmable Logic Controllers (PLC)</ul>
+    <ul>Distributed Control Systems (DCS)</ul>
+  </ol></p>
+
+  <h2>Essential Terminology</h2>
+  <p><ol>
+    <ul>Assets -> different components of OT are generally referred to as assets</ul>
+    <ul>Zones and Conduits -> network segregation technique used to isolate networks and assets to impose and maintain strong access control mechanisms</ul>
+    <ul>Industrial Network and Business Network -> collection of automated control systems</ul>
+    <ul>Industrial Protocols -> S7, CDA, SRTP, Modbus, OPC, DNP3, CIP etc.</ul>
+    <ul>Network Perimeter / Electronic Security Perimeter -> outermost boundary of a network zone (closed group of assets)</ul>
+    <ul>Critical Infrastructure -> collection of physical or logical systems and assets, the failure or destruction will severly impact security, safety, economy or public healts</ul>
+  </ol></p>
+  <h2>IT/OT Convergence (IIOT)</h2>
+  <p>IT/OT convergence is the integration of IT computing systems and OT operation monitoring systems. Bridging the gap between IT and OT can improve the overall business, producing faster and 
+  efficient results. IT and OT teams are traditionally separated and are found in their respective domains. For instance, IT teams monitor internal processes and safeguard networks from cyber-attacks, 
+  whereas OT teams ensure overall maintenance and management, including that of employees and industrial equipment.</p>
+
+  <h2>Purdue Model</h2>
+  <p>Derived from the Purdue Enterprise Reference Architecture (PERA) model, which is a widely used conceptual model that describes the internal connections and dependencies of important components in ICS networks.
+  The Purdue Model consists of three zones:</p>
+  <p><ol>
+    <ul>Manufacturing Zone (OT)</ul>
+    <ul>Enterprise Zone (IT)</ul>
+    <ul>Demilitarized Zone (DMZ)</ul>
+  </ol></p>
+  <p>The Enterprise security zone is part of IT, in which supply-chain management and scheduling are performed using business systems such as SAP and ERP. It also locates the data centers, users and cloud access.
+  It has two levels:</p>
+  <p><ol>
+    <ul>Level 5 (Enterprise Network) -> B2B, B2C services, internet connectivity, inventory etc.</ul>
+    <ul>Level 4 (Business Logistics Systems) -> all the IT systems supporting the production process in the plant lie at this level</ul>
+  </ol>
+  <p>The Manufacturing Zone contains the OT systems. All the devices, networks, control and monitoring systems reside in this zone. Four levels:</p>
+  <p><ol>
+    <ul>Level 3 (Operational Systems / Site Operations)</ul>
+    <ul>Level 2 (Control Systems / Area Supervisory Controls)</ul>
+    <ul>Level 1 (Basic Controls / Intelligent Devices)</ul>
+    <ul>Level 0 (Physical Process)</ul>
+  </ol></p>
+  <h2>Challenges of OT</h2>
+  <p><ol>
+    <ul>Lack of visibility -> having no clear cybersecurity visibility</ul>
+    <ul>Plain-text passwords</ul>
+    <ul>Network complexity</ul>
+    <ul>Legacy technology</ul>
+    <ul>Lack of antivirus protection</ul>
+    <ul>Lack of skilled security professionals</ul>
+    <ul>Rapid pace of change</ul>
+    <ul>Outdated systems</ul>
+    <ul>Haphazard modernization (updating the system can take several years)</ul>
+    <ul>Insecure connections</ul>
+    <ul>Usage of rogue devices</ul>
+    <ul>Convergence with IT (IT security team does not have much experience with OT systems)</ul>
+    <ul>Organizational challenges</ul>
+    <ul>Unique production networks / proprietary software</ul>
+    <ul>Vulnerable communication protocols</ul>
+    <ul>Remote management protocols</ul>
+  </ol></p>
+  <h1>Industrial Control System (ICS)</h1>
+  <p>ICS is an essential part of every industrial process and critical infrastructure. A typical ICS represents the information system that controls and supports all types of industrial processes, such as 
+  production, manufacturing, product handling, distribution etc. An ICS comprises several types of control systems, such as SCADA, DCS, BPC, Safety Instrumentation Systems (SIS), HMI etc. This technology 
+  consists of various components such as sensors, controllers and actuators (mechanical, electrical, hydraulic, pneumatic etc.) that act collectively to achieve and industrial objective. The operation of ICS 
+  can be configured in three modes:</p>
+  <p><ol>
+    <ul>Open Loop (output of system depends on the preconfigured settings)</ul>
+    <ul>Closed Loop (output always has an effect on the input to acquire the desired objective)</ul>
+    <ul>Manual Loop (system totally under control of humans)</ul>
+  </ol></p>
+  <h2>Components of an ICS</h2>
+  <p><ol>
+    <ul>Distributed Control System (DCS) -> highly engineered and large-scale control system used to perform industry-specific task</ul>
+    <ul>Supervisory Control and Data Acquisition (SCADA) -> centralized supervisory control system used for controlling and monitoring industrial facilities and infrastructure</ul>
+    <ul>Programmable Logic Controller (PLC) -> digital solid-state computer used for industrial automation, built to survive severe industrial environments</ul>
+    <ul>Basic Process Control System (BPCS) -> system that responds to input signals from processes and associated equipment; act as first layer of protection agains any unsafe or hazardous condition to the 
+    equipment</ul>
+    <ul>Safety Instrumented Systems (SIS) -> automated control system designed to safeguard the manufacturing environment in case of any hazardous incident; it consists of sensors, logic solvers and final 
+    control elements</ul>
+  </ol></p>
+  <h1>OT Technologies and Protocols</h1>
+  <p>The key communication technologies and protocols of the OT network over the Purdue model are as follows:</p>
+  <p><ol>
+    <ul>Level 4, 5 (DCOM, DDE, FTP/SFTP, GE-SRTP, IPv4/IPv6, OPC, TCP/IP, WiFi)</ul>
+    <ul>Level 3 (CC-Link, DDE, GE-SRTP, HSCP, ICCP, IEC 61850, ISA/IEC 62443), Modbus, NTP, Profinet, SuiteLink, Tase-2, TCP/IP)</ul>
+    <ul>Level 2 (6LoWPAN, CC-Link, DNP3, DNS/DNSSEC, FTE, HART-IP, IEC 60870-5-101/104, IPv4/IPv6, ISA/IEC 62443, OPC, NTP, SOAP, TCP/IP)</ul>
+    <ul>Level 0, 1 (BACnet, EtherCat, CANopen, Crimson v3, DeviceNet, GE-SRTP, Zigbee, ISA/IEC 62443, ISA SP100, MELSEC-Q, Modbus, Niagara Fox, Omron Fins, PCWorx, Profibus, Profinet, Sercos II, S7 
+      Communications, WiMAx)</ul>
+  </ol></p>
+  <h2>Protocols explained</h2>
+  <p><ol>
+    <ul>DCOM: Distributed Component Object Model, Microsoft's proprietary software that enables software components to communicate directly over a network reliably and securely</ul>
+    <ul>DDE: Dynamic Data Exchange used for Inter-Process Communication (IPC)</ul>
+    <ul>GE-SRTP: Service Request Transport Protocol, developed by GE Intelligent Platforms, used to transfer data from PLCs</ul>
+    <ul>OPC: Open Platform Communications, set of client/server protocols designed for the communication of real-time data between data acquisition devices like PLCs</ul>
+    <ul>CC-Link: Control and Communications Link, enables devices from different manufactures to communicate</ul>
+    <ul>HSCP: Hybrid SCP (Secury Copy Protocol)</ul>
+    <ul>ICCP (IEC 60870-6): Inter-Control Center Communications Protocol, provides a set of standards and protocols for covering ICS or SCADA communication in power system automation</ul>
+    <ul>IEC 61850: common protocol that enables interoperability and communications between IEDs</ul>
+    <ul>ISA/IEC 62443: flexible framework for addressing and mitigating current and future security vulnerabilities</ul>
+    <ul>Modbus: serial communication protocol used with PLCs and enables communication between many devices</ul>
+    <ul>Profinet: communication protocol used to exchange data between controllers like PLCs and devices like RFID readers</ul>
+    <ul>SuiteLink: based on TCP/IP and runs as a service on Windows operating systems</ul>
+    <ul>Tase-2: open communication protocol that enables the exchange of time-critical information between control systems through WAN and LAN</ul>
+    <ul>DNP3: Distributed Network Protocol 3, communication protocol used to interconnect components within process automation systems</ul>
+    <ul>FTE: Fault Tolerant Ethernet, designed to provide rapid network redundancy, each node connected twice to a single LAN</ul>
+    <ul>HART-IP: integrate WirelessHART gateways and HART multiplexers tightly and efficiently for sending and receiving digital information</ul>
+    <ul>IEC 60870-5-101/104: extension of IEC 101 protocol</ul>
+    <ul>BACnet: Building Automation and Control Network, data communication protocol designed for building automation and control networks</ul>
+    <ul>EtherCAT: Ethernet for Control Automation Technology, Ethernet based fieldbus system </ul>
+    <ul>CANopen: high level communication protocol based on CAN protocol, used for embedding networking applications like vehicle networks</ul>
+    <ul>Crimson: common programming platform</ul>
+    <ul>DeviceNet: variant of Common Industrial Protocol (CIP)</ul>
+    <ul>ISA SP100: committee for establishing the industrial wireless standard ISA100</ul>
+    <ul>MELSEC-Q: provides open and seamless network environment integrating different levels of automation networks such as CC-Link</ul>
+    <ul>Niagara Fox: building automation protocol</ul>
+    <ul>Omron Fins: used by PLC programs for transferring data and performing other services with remote PLC connected on Ethernet </ul>
+    <ul>PCWorx: used in many ICS components, make series of inline controllers (ILCs)</ul>
+    <ul>Profibus: designed and developed to address interoperability issues</ul>
+    <ul>Sercos II: serial real-time communication system, digital drive interface</ul>
+    <ul>S7 Communication: Siemens proprietary protocol that runs between PLCs of Siemens</ul>
+    <ul>WiMax: Worldwide Interoperability for Microwave Access (WiMax)</ul>
+  </ol></p>
+
+  <h1>OT Attacks</h1>
+
+  <h2>OT Vulnerabilities</h2>
+  <p><ol>
+    <ul>Publicly Accessible OT systems: directly connected to internet so third-party vendors can remotely perform maintenance, not protected using modern security controls, ability to perform password brute-forcing </ul>
+    <ul>Insecure Remote Connections</ul>
+    <ul>Missing Security Updates</ul>
+    <ul>Weak Passwords</ul>
+    <ul>Insecure Firewall Configuration</ul>
+    <ul>OT systems placed within the corporate IT network</ul>
+    <ul>Insufficient security for corporate IT network from OT systems</ul>
+    <ul>Lack of segmentation within OT networks</ul>
+    <ul>Lack of encryption and authentication for wireless OT networks</ul>
+    <ul>Unrestricted outbound internet access from OT networks</ul>
+  </ol></p>
+
+  <h2>MITRE ATT&CK for ICS</h2>
+  <p><b>Initial Access</b></p>
+  <p><ol>
+    <ul>Drive-by compromise: exploiting target user's web browser by tricking them into visiting a compromised website during a normal browsing session</ul>
+    <ul>Exploiting a public-facing software application</ul>
+    <ul>Exploiting remote services</ul>
+    <ul>Spear-phishing</ul>
+    <ul>Supply-chain compromise</ul>
+    <ul>Wireless compromise</ul>
+  </ol></p>
+  <p><b>Execution</b></p>
+  <p><ol>
+    <ul>Changing operating mode</ul>
+    <ul>Command-line interface (CLI)</ul>
+    <ul>Execution through APIs</ul>
+  </ol></p>
+  <p><b>Persistence</b></p>
+  <p><ol>
+    <ul>Modifying a program</ul>
+    <ul>Module firmware</ul>
+    <ul>Project file infection</ul>
+  </ol></p>
+  <p><b>Privilege Escalation</b></p>
+  <p><ol>
+    <ul>Exploiting software</ul>
+    <ul>Hooking</ul>
+  </ol></p>
+  <p><b>Evasion</b></p>
+  <p><ol>
+    <ul>Removing the indicators</ul>
+    <ul>Rootkits</ul>
+    <ul>Changing operator mode</ul>
+  </ol></p>
+  <p><b>Discovery</b></p>
+  <p><ol>
+    <ul>Enumerating network connection</ul>
+    <ul>Network sniffing</ul>
+    <ul>Identifying remote systems</ul>
+  </ol></p>
+  <p><b>Lateral movement</b></p>
+  <p><ol>
+    <ul>Default credentials</ul>
+    <ul>Program download</ul>
+    <ul>Remote services</ul>
+  </ol></p>
+  <p><b>Collection</b></p>
+  <p><ol>
+    <ul>Automated collection</ul>
+    <ul>Information repositories</ul>
+    <ul>I/O image</ul>
+  </ol></p>
+  <p><b>Command and control</b></p>
+  <p><ol>
+    <ul>Frequently used ports</ul>
+    <ul>Connection proxy</ul>
+    <ul>Standard application-layer protocol</ul>
+  </ol></p>
+  <p><b>Inhibit Response Function</b></p>
+  <p><ol>
+    <ul>Activate Firmware update mode</ul>
+    <ul>Block command messages</ul>
+    <ul>Block reporting messages</ul>
+  </ol></p>
+  <p><b>Impair Process Control</b></p>
+  <p><ol>
+    <ul>I/O brute-forcing</ul>
+    <ul>Alter the parameters</ul>
+    <ul>Module firmware</ul>
+  </ol></p>
+  <p><b>Impact</b></p>
+  <p><ol>
+    <ul>Damage to property</ul>
+    <ul>Loss of availability</ul>
+    <ul>Denial of control</ul>
+  </ol></p>
