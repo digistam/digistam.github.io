@@ -252,3 +252,155 @@
     <p>Exploit buffer overflow vulnerabilities that exist in ICS software</p>
     <h2>Exploiting RF Remote Controllers</h2>
     <p>RF communication lack in-built security of remote communication</p>
+
+    <h2>HMI based Attacks</h2>
+    <p>Attackers often try to compromise an HMI system as it is the core hub that controls criticl infrastructure. If attackers gain access over HMI systems, they can cause physical damage to the 
+    SCADA devices of collect sensitive information related to the critical architecture that can be used later to perform malicious activities. Using this information, attackers can disable alert 
+    notifications of incoming threats to SCADA systems.</p>
+    <p><ol>
+        <ul>Memory corruption</ul>
+        <ul>Credential management</ul>
+        <ul>Lack of authorization / authentication and insecure defaults</ul>
+        <ul>Code injection</ul>
+    </ol></p>
+
+    <h2>Side-Channel Attacks</h2>
+    <p>ICS systems are often vulnerable to side-channel attacks (timing analysis and power analysis)</p>
+    <p><ol>
+        <ul>Timing Analysis</ul>
+        <ul>Power Analysis</ul>
+    </ol></p>
+
+    <h2>Hacking Programmable Logic Controller (PLC)</h2>
+    <p>PLCs are susceptible to cyber-attacks as they are used for controlling the physical processes of the critical infrastructure.</p>
+    <p>PLC Rootkit Attack:</p>
+    <p><ol>
+        <ul>Attacker gains authorized access to the PLC device by injecting a rootkit</ul>
+        <ul>The attacker maps the input and output modules along with their locations in the memory to overwrite the input and output PLC parameters</ul>
+        <ul>After learning about I/O pins and PLC logic mapping, the attacker manipulates the I/O initialization sequence, taking complete control</ul>
+    </ol></p>
+
+    <h2>Hacking Industrial Systems through RF Remote Controllers</h2>
+    <p>Most industrial machines are operated via remote controllers. Attackers can stand within the radius of the target system and use a specially designed radio transceiver-type device.</p>
+    <p><ol>
+        <ul>Replay Attack</ul>
+        <ul>Command Injection</ul>
+        <ul>Abusing E-Stop</ul>
+        <ul>Repairing with malicious RF controller</ul>
+        <ul>Malicious Reprogramming Attack</ul>
+    </ol></p>
+
+    <h1>OT Malware</h1>
+    <p><ol>
+        <ul>Pipedream</ul>
+        <ul>Industroyer.v2</ul>
+    </ol></p>
+
+    <h1>OT Hacking Methodology</h1>
+    <p><ol>
+        <ul>Information Gathering</ul>
+        <ul>Vulnerability Scanning</ul>
+        <ul>Launch Attacks</ul>
+        <ul>Gain Remote Access</ul>
+        <ul>Maintain Access</ul>
+    </ol></p>
+    <h2>Information Gathering</h2>
+    <p>The Shodan search engine helps attackers to gather information about OT devices connected to the internet. </p>
+    <p><ol>
+        <ul>Identify SCADA systems using port numbers -> port:502 retrieves all ICS/SCADA systems with Modbus port 502 enabled</ul>
+        <ul>Discovering SCADA systems using PLC name -> "Schneider Electric" displays all systems that deploy Schneider Electric products</ul>
+        <ul>Search SCADA systems based on geolocation -> SCADA Country:"US"</ul>
+    </ol></p>
+    <p><a target=_blank href=http://www.critifence.com>CRITIFENCE</a> is an online database that stores default passwords of critical infrastructure, SCADA, ICS and the IIOT.</p>
+    <p>Attackers can also use tools such as <a target=_blank href=http://www.scada.sl>SCADAPASS</a> which consists of default login credentials of various products such as wireless gateways, network modules, 
+    servers, PLCs and industry routers along with vendor names.</p>
+
+    <h2>Scanning ICS/SCADA Systems running Nmap</h2>
+    <p><i>nmap -Pn -sT --scan-delay 1s --max-parallelism 1 -p 80, 102, 443, 502, 530, 593, 789, 1089-1091, 1911, 1962, 2222, 2404, 4000, 4840, 4843, 4911,
+    9600, 19999, 20000, 20547, 34962-34964, 34980, 44818, 46823, 46824, 55000-55003 [IP ADDRESS]</i></p>
+    <p>The port numbers listed in the command above are well-known port numbers used for ICS/SCADA protocols.</p>
+    <p><i>nmap -Pn -sT -p 46824 [IP ADDRESS]</i> -> HMI software Sielco Sistemi Winlog uses port 46824</p>
+    <p><i>nmap -Pn -sT -p 102 --script s7-info [IP ADDRESS]</i> -> Siemens SIMATIC S7 PLC uses port 102 for S7 communication</p>
+    <p><i>nmap -Pn -sT -p 502 --script modbus-discover [IP ADDRESS]</i></p>
+    <p><i>nmap -sT -Pn -p 502 --script modbus-discover --script-args='modbus-discover.aggressive=true' [IP ADDRESS]</i></p>
+    <p><i>nmap -Pn -sU -p 47808 --script bacnet-info [IP ADDRESS]</i></p>
+    <p><i>nmap -Pn -sU -p 44818 --script enip-info [IP ADDRESS]</i> -> Ethernet/IP is a popular protocol implemented by many industrial networks</p>
+    <p><i>nmap -Pn -sT -p 1911,4911 --script fox-info [IP ADDRESS]</i> -> Niagara Fox is a protocol used for device-to-device within building management systems (BMS)</p>
+    <p><i>nmap -Pn -sT -p 20547 --script proconos-info [IP ADDRESS]</i> -> ProConOS is a high performance runtime engine for PLC devices</p>
+    <p><i>nmap -Pn -sT -p 9600 --script omron-info [IP ADDRESS]</i></p>
+    <p><i>nmap -Pn -sU -p 9600 --script omron-info [IP ADDRESS]</i></p>
+    <p><i>nmap -Pn -sT -p 1962 --script pcworx-info [IP ADDRESS]</i></p>
+
+    <h1>Vulnerability Scanning</h1>
+    <p><a target=_blank href=https://www.tenable.com>Nessus</a> is a vulnerability assessment tool which includes a bunch of SCADA plugins through which attackers can perform vulnerability scanning 
+    on target ICS/SCADA devices.</p>
+    <p><a target=_blank href=https://www.skyboxsecurity.com>Skybox</a> conducts detailed path analysis across combined OT and IT networks and provides insights into associated vulnerabilities.</p>
+    <h2>Fuzzing ICS Protocols</h2>
+    <p><a target=_blank href=https://github.com/nccgroup/fuzzowski>Fuzzowski</a> is a network protocol fuzzer that helps attackers perform fuzz tests on ICS protocols. Attackers must gain a thorough 
+    understanding of the protocol that they aim to fuzz.</p>
+    <p><i>python -m fuzzowski 127.0.0.1 47808 -p udp -f bacnet -rt 0.5 -m BACnetMon</i></p>
+    <h2>Sniffing using NetworkMiner</h2>
+    <p><a target=_blank href=https://www.netresec.com>NetworkMiner</a> helps attackers to perform passive network sniffing and packet capturing to detect open ports, hostnames, operating systems, 
+    sessions etc. NetworkMiner is also used to parse and analyze PCAP files etc.</p>
+    <p>Attackers use Wireshark to capture and analyze Modbus/TCP traffic on industrial networks. Modbus/TCP does not have any in-built encryption or security features.</p>
+    <h2>Discovering ICS/SCADA Network topology using GRASSMARLIN</h2>
+    <p><a target=_blank href=https://github.com/nsacyber/GRASSMARLIN>GRASSMARLIN</a> is an open source tool that passively maps and visually displays an ICS/SCADA network topology.</p>
+
+    <h1>Launch Attacks</h1>
+    <p>Attackers use publicly available online sources to gather details of the hardware chip used in a specific ICS device.</p>
+    <p>Hardware tools:</p>
+    <p><ol>
+        <ul>Signal analyzer</ul>
+        <ul>Multimeter</ul>
+        <ul>Microcontrollers and memory programmer</ul>
+        <ul>Oscilloscope</ul>
+        <ul>Soldering equipment</ul>
+        <ul>Digital microscope or magnifying glass</ul>
+        <ul>Communication interface (example: JTAG)</ul>
+        <ul>(Precision) screwdrivers</ul>
+        <ul>(Precision) tweezers for connection and converters</ul>
+    </ol></p>
+    <p>Software tools:</p>
+    <p><ol>
+        <ul>GDB (gnu.org) -> debugging tool for on-chip executions</ul>
+        <ul>OpenOCD (openocd.org)</ul>
+        <ul>Binwalk (https://github.com/ReFirmLabs/binwalk) -> firmware analysis tool </ul>
+        <ul>Fritzing (fritzing.org) -> designing electronic diagrams and circuits</ul>
+        <ul>Radere2 (https://github.com/radareorg/radare2) -> portable framework for reverse engineering</ul>
+        <ul>OllyDbg (ollydbg.de) -> code disassembling tool</ul>
+        <ul>IDA Pro (hex-rays.com) -> dissassembler</ul>
+    </ol></p>
+
+    <h2>Hacking Modbus Slaves using Metasploit</h2>
+    <p>auxiliary/scanner/scada/modbus_findunitid</p>
+    <p>auxiliary/scanner/scada/modbusclient</p>
+
+    <h2>Hacking PLC using modbus-cli</h2>
+    <p><ol>
+        <ul>Identify internet-connected PLCs using Shodan etc.</ul>
+        <ul>Install <a target=_blank href=https://github.com/favalex/modbus-cli>modbus-cli</a></ul>
+        <ul>Understand datatypes (word, integer, floating point, double word, booleans)</ul>
+        <ul>Read register values -> <i>modbus read [IP ADDRESS] %MW100 10</i></ul>
+        <ul>Manipulate register values -> <i>modbus write [IP ADDRESS] %MW100 2 2 2 2 2 2 2 2</i></ul>
+        <ul>Read coil values -> <i>modbus read [IP ADDRESS] 101 10</i></ul>
+        <ul>Manipulate coil values -> <i>modbus write [IP ADDRESS] 101 1 1 1 1 1 1 1 1 1 1</i></ul>
+        <ul>Capture data into the output file -> <i>modbus read --output SCADAregisters.txt [IP ADDRESS] 400101 200</i></ul>
+    </ol></p>
+
+    <h1>Gain and maintain remote access</h1>
+    <p>Attackers can use tools as Shodan to scan open ports or services on the target ICS device. For instance, attackers targeting specific ICS protocols such as DNP3 - port 20000 perform 
+    a scan using Shodan that displays open ports and associated vulnerabilities. By clicking on the open port, attackers are redirected to the login page of the target system. From here, 
+    the attacker can gain remote access to the ICS network or systems by entering the default password or brute forcing the credentials.</p>
+
+    <h1>OT Hacking Tools</h1>
+    <h2>Information Gathering Tools</h2>
+    <p><ol>
+        <ul><a target=_blank href=https://bishopfox.com>SearchDiggity</a> -> primary attack tool of the Google Hacking Diggity Project</ul>
+        <ul>ShodanDiggity provides an easy to use scanning interface to Shodan and comes with a convenient list of 167 search queries</ul>
+    </ol></p>
+    <h2>Sniffing and vulnerability scanning tools</h2>
+    <p><ol>
+        <ul><a target=_blank href=https://www.ti.com>SmartRF Packet Sniffer</a></ul>
+        <ul><a target=_blank href=https://azure.microsoft.com>Microsoft Defender for IoT</a></ul>
+        <ul><a target=_blank href=https://github.com/dark-lbp/isf>ICS Exploitation Framework (ISF)</a></ul>
+    </ol></p>
