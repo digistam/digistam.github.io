@@ -52,7 +52,10 @@
   <p>Attackers use <a target=_blank href=https://github.com/vpistis/s3-inspector>S3Inspector</a> to enumerate AWS S3 bucket permissions. By using this tool, attackers can verify whether a bucket is public or 
   non-public. In case of a public bucket, attackers can acquire the bucket permissions and a list of URLs to access it. Non-public buckets respond with access denied.</p>
 
-
+  <h2>Enumerating Kubernetes etcd</h2>
+  <p>Kubernetes is a distributed computing platform; therefore, it requires a distributed database, such as etcd. Gaining access to etcd is the same as obtaining root-level access to the system. In 
+  Kubernetes, only the API server is allowed to access the etcd store. Attackers enumerate etcd processes, configuration files, open ports (identifying port 2379) etc. to identify endpoints connected 
+  to the Kubernetes environment.</p>
 
 
 
