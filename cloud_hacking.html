@@ -6,6 +6,21 @@
 <h2>Container vulnerability scanning using Trivy</h2>  
 <p>Container images consist of an operating system, application, runtime etc. packaged together. <a target=_blank href=https://github.com/aquasecurity/trivy>Trivy</a> is an automated tool used to 
   perform container image vulnerability scanning. </p>
-
-  
+  <h2>Kubernetes vulnerability scanning using Sysdig</h2>
+  <p>Kubernetes is a complex environment that often suffers cluster misconfigurations. <a target=_blank href=https://sysdig.com>Sysdig</a> identifies Kubernetes vulnerabilities.</p>
+  <h2>Enumerating S3 Buckets</h2>
+<p>Attackers can exploit misconfigurations in bucket implementation and breach the security mechanism to compromise data privacy.</p>
+  <p><ol>
+    <ul>Inspecting HTML -> find URLs to target S3 buckets</ul>
+    <ul>Brute-forcing URL -> each S3 bucket has a unique identification number, attackers perform brute-force attacks on the target bucket to identify the correct bucket URL; Burp suite</ul>
+    <ul>Finding subdomains -> tools such as OWASP Amass and Robtex</ul>
+    <ul>Reverse IP search -> advanced search operator ip:[TARGET IP ADDRESS] in Bing search engine</ul>
+    <ul>Advanced Google Hacking -> inurl: s3.amazonaws.com</ul>
+  </ol></p>
+  <h2>Identifying Open S3 Buckets using S3Scanner</h2>
+  <p>Attackers use <a target=_blank href=https://github.com/sa7mon/S3Scanner>S3Scanner</a> to identify open S3 buckets of cloud services and retrieve their content for malicious purposes.</p>
+  <p><ol>
+    <ul>s3scanner --threads 8 scan --buckets-file ./bucket-names.txt</ul>
+    <ul>s3scanner dump --bucket my-bucket-to-dump</ul>
+  </ol></p>
 </html>
