@@ -35,4 +35,30 @@
     <ul>People posting personal IDs to seek online assistance/troubleshooting</ul>
   </ol></p>
   <p>After obtaining account IDs, attackers can perform various activities such as resource enumeration (discovering existing roles, users etc.), IAM role assumption, invocation of Lambda functions</p>
+<h2>Enumerating IAM Roles</h2>
+  <p>Attackers enumerate IAM role names by analyzing the AWS error messages, which reveal information regarding the existence of a user. Generally, in AWS cloud services, users are allowed to perform 
+  numerous attempts to assume a role. For every failed attempt, AWS response messages reveal information about the existence of the role. If the AWS blocks an account after some failed attempts, implementing 
+  a brute-force technique can be difficult but not impossible. By executing the process with a fragmented set of accounts or nodes, attackers can ultimately evade IP and account filtering solutions.</p>
+  <p><ol>
+    <ul>Internal software / stacks</ul>
+    <ul>IAM user names (used for social engineering)</ul>
+    <ul>AWS services in use</ul>
+    <ul>3rd-party software in use </ul>
+  </ol></p>
+  <p>After enumerating the roles, attackers can try to assume an open role and steal its credentials. For example, if an attacker tries to assume a role that is not permitted, the AWS produces an error message. 
+  By analyzing the error message, attackers can confirm the existence of the role but cannot assume it. By using any valid account ID and well-filtered wordlist, attackers can enumerate existing IAM roles.</p>
+
+  <h2>Enumerating Bucket Permissions using S3Inspector</h2>
+  <p>Attackers use <a target=_blank href=https://github.com/vpistis/s3-inspector>S3Inspector</a> to enumerate AWS S3 bucket permissions. By using this tool, attackers can verify whether a bucket is public or 
+  non-public. In case of a public bucket, attackers can acquire the bucket permissions and a list of URLs to access it. Non-public buckets respond with access denied.</p>
+
+
+
+
+
+
+
+
+
+  
 </html>
