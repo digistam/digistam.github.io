@@ -198,3 +198,140 @@ Benefits of Docker is that when an application is packaged along with its depend
     <ul>Rest API</ul>
     <ul>Client CLI</ul>
 </ol></p>
+<h2>Docker Swarm</h2>
+<p>The Docker engine supports the swarm mode that allows managing multiple Docker engines within the Docker platform. The swarm mode enables admins to communicate with containers, expand the number of containers, 
+carry out a health check and perform software updates to all containers.</p>
+<h2>Docker architecture</h2>
+<p>Docker employs a client/server model and consists of various components such as host, client, network, registry and other storage units. The Docker client interacts with the Docker daemon which develops, runs and 
+distributes the containers. Users can connect the Docker client to remote daemons. Communication is established via REST APIs.</p>
+<h2>Microservices</h2>
+<p>Monolithic applications are broken down into cloud-hosted sub-applications named microservices, that work together, each performing a unique task.</p>
+<h2>Docker Networking</h2>
+<p>Docker allows to connecting multiple containers and services or other non-Docker workloads together. It can manage Docker hosts running on multiple platforms, such as Linux and Windows, in a platform - 
+independent way.</p>
+<h2>Container Orchestration</h2>
+<p>Automated process of managing the lifecycles of software containers and their dynamic environments. Various tasks can be automated using container orchestrator, such as provisioning and deployment of containers.</p>
+<h2>Kubernetes</h2>
+<p>Kubernetes, also known as K8s, is an open source, portable, extensible, orchestration platform by Google for managing containerized applications and microservices.</p>
+<p>Both Dockers and Kubernetes are based on microservice architecture, built using Go to deploy small lightweight binaries and use YAML file for specifying application configurations and stacks.</p>
+<h1>Clusters and Containers</h1>
+<p>A cluster refers to a set of two or more connected nodes that run parallelly to complete a task. One of the nodes in a cluster acts as a master node, responsible for allocating the work, retrieving 
+results and giving a response. Types:</p>
+<p><ol>
+    <ul>Highly available (HA) or Fail-over</ul>
+    <ul>Load balancing</ul>
+    <ul>High-performance computing</ul>
+</ol></p>
+<h2>Clusters in the cloud</h2>
+<p>Clusters in the cloud are sets of nodes hosted on virtual machines and are often coupled with private virtual clouds. Containers help in running applications reliable under different computing environments.</p>
+<h2>Container Security Challenges</h2>
+<p><ol>
+    <ul>Inflow of vulnerable source code</ul>
+    <ul>Large attack surface</ul>
+    <ul>Lack of visibility</ul>
+    <ul>Compromising secrets</ul>
+    <ul>DevOps speed</ul>
+    <ul>Noisy neighbouring containers</ul>
+    <ul>Containers breakout to host (containers running as root)</ul>
+    <ul>Network based attacks</ul>
+    <ul>Bypassing isolation</ul>
+    <ul>Ecosystem complexity</ul>
+</ol></p>
+<h2>Container management platforms</h2>
+<p><ol>
+    <ul><a target=_blank href=https://www.docker.com>Docker</a></ul>
+    <ul>Amazon AWS ECS</ul>
+    <ul>Microsoft Azure Container Instances</ul>
+    <ul>Red Hat OpenShift</ul>
+    <ul>Portainer (portainer.io)</ul>
+    <ul>Rancher (rancher.com)</ul>
+</ol></p>
+<h2>Kubernetes platforms</h2>
+<p><ol>
+    <ul>Kubernetes.io</ul>
+    <ul>Amazon Elastic Kubernetes Service EKS</ul>
+    <ul>Docker Kubernetes Service DKS</ul>
+    <ul>Knative</ul>
+    <ul>IBM Cloud Kubernetes Service</ul>
+    <ul>Google Kubernetes Engine GKE</ul>
+</ol></p>
+<h1>Serverless Computing</h1>
+<p>Serverless computing is emerging technology for deployment of cloud-based enterprise applications built on container and microservices. Also known as FaaS. It has a cloud based architecture and 
+simplifies the process of application deployment and eliminates the need for managing the server and hardware by the developers. Servers are required, but not exposed to developers.</p>
+<p>Advantages:</p>
+<p><ol>
+    <ul>High scalability and flexibility</ul>
+    <ul>Faster deployment and updating</ul>
+    <ul>Reduced infrastructure costs</ul>
+    <ul>No server management</ul>
+    <ul>Pay-per-use</ul>
+    <ul>Low risk of failure</ul>
+    <ul>No system administration</ul>
+</ol></p>
+<p>Disadvantages:</p>
+<p><ol>
+    <ul>Increased security vulnerability</ul>
+    <ul>Vendor lock-in</ul>
+    <ul>Difficulty in managing statelesness</ul>
+    <ul>Complex end-to-end application testing</ul>
+    <ul>Unsuitable for long-running processes</ul>
+</ol></p>
+<p><ol>
+    <ul>Microsoft Azure Functions</ul>
+    <ul>Amazon AWS Lambda</ul>
+    <ul>Google Cloud Functions</ul>
+    <ul>IBM Cloud Functions</ul>
+    <ul>Alibaba Cloud Function Compute</ul>
+</ol></p>
+
+<h1>Cloud Attacks</h1>
+<h2>Service Hijacking using social engineering</h2>
+<p>An attacker steals the credentials of a CSP or a client by phishing, pharming, social engineering en exploitation of software vulnerabilities. Using the stolen credentials, the attacker gains access to 
+the cloud computing services and compromises data confidentiality, integrity and availability.</p>
+<h2>Service hijacking using network sniffing</h2>
+<p>Unencrypted sensitive data such as login credentials during transmission across a network are at high risk.</p>
+<h2>Side-Channel attacks or Cross-guest VM breaches</h2>
+<p>Attackers can compromise the cloud by placing a malicious virtual machine near a target cloud server and then launch a side-channel attack. The attacker runs the VM on the same physical host as the 
+target VM and takes advantage of the shared physical resources (cache). Then, he launches side-channel attacks (timing attack, acoustic cryptanalysis, power monitoring attack etc.) to extract cryptographic 
+keys/plain text secrets to steal the victim's credentials.</p>
+<h2>Wrapping attack</h2>
+<p>Performed during the translation of the SOAP message in the TLS layer, where attackers duplicate the body of the message and send it to the server as a legitimate user.</p>
+<h2>Man-in-the-Cloud MITC Attack</h2>
+<p>Advanced version of MITM, carried out by abusing cloud file synchronization services such as Google Drive or DropBox, for data compromise, C&C, data exfiltration and remote access.</p>
+<h2>Cloud Hopper Attack</h2>
+<p>Triggered at managed service providers (MSPs) and their customers. Once the attack is succesful, attackers can gain remote access to the intellectual property and critical information of the 
+target MSP and its users. Attackes initiate spear-phishing emails with custom made malware to compromise user accounts of staff members of cloud service firms to obtain confidential information. 
+Attackers can also use PowerShell and PowerSploit scripting for recon and information gathering. </p>
+<h2>Cloud Cryptojacking</h2>
+<p>Cryptojacking is the unauthorized use of the victim's computer to stealthily mine digital currency. An attacker can exploit misconfigured cloud instances to inject malicious cryptomining payload into 
+a web page of library loaded by the web page.</p>
+<h2>Cloudborne Attack</h2>
+<p>Cloudborne is a vulnerability residing in a bare-metal cloud server that enables attackers to implant malicious backdoors in its firmware. The installed backdoor can persist even if the server is reallocated 
+to new clients or businesses that use it as an IaaS.</p>
+<h2>Instance Metadata Service IMDS Attack</h2>
+<p>An Instance metadata service IMDS provides information about an instance, its associated network and the software configured to run the instance. The attacker exploits a zero-day vulnerability or a reverse 
+proxy implemented on the target application server.</p>
+<h2>Cache Poisoned DoS (CPDoS) / Content Delivery Network CSN Cache poisoning attack</h2>
+<p>Attackers create malformed or oversized HTTP requests to trick the origin web server into responding with malicious or error content, which can be cached at the CDN servers. The CDN delivers it to 
+legitimate users, resulting in a DoS.</p>
+<h2>Cloud Snooper Attack</h2>
+<p>Triggered at AWS security groups (SGs) to compromise the target server and extract sensitive data stealthily. Attackers perform this attack by leveraging a weakly configured firewall or any 
+underlying vulnerabilities. Attackers install rootkits either by exploiting weaknesses in traffic filters, supply-chain attacks or bruteforcing SSH.</p>
+<h2>Golden SAML Attack</h2>
+<p>Golden Security Assertion Markup Language SAML attacks are implemented to target identity providers on cloud networks.</p>
+<h2>Session Hijacking using XSS</h2>
+<p>Attackers implement XSS to steal cookies used in the user authentication process. Using the stolen cookies, attackers exploit active computer sessions, gaining access to data.</p>
+<h2>Session Hijacking using Session Riding</h2>
+<p>Attackers exploit websites by engaging in CSRF forgeries to transmit unauthorized commands. In session riding attackers "ride" an active computer session by sending an email or tricking users 
+into visiting a malicious webpage during login to an actual target site.</p>
+<h2>DNS Attacks</h2>
+<p>DNS poisoning, cybersquatting (phising scams by registering a domain name similar to CSP), domain hijacking, domain snipping (registering elapsed domain name)</p>
+<h1>Cloud malware</h1>
+<p><ol>
+    <ul>Hildegard (unit42.paloaltonetworks.com) -> exploit misconfigured kubelets in a Kubernetes cluster</ul>
+    <ul>Denonia</ul>
+    <ul>LemonDuck</ul>
+    <ul>RansomCloud</ul>
+    <ul>DBatLoader / ModiLoader</ul>
+    <ul>Goldbackdoor</ul>
+</ol></p>
