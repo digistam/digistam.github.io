@@ -23,4 +23,16 @@
     <ul>s3scanner --threads 8 scan --buckets-file ./bucket-names.txt</ul>
     <ul>s3scanner dump --bucket my-bucket-to-dump</ul>
   </ol></p>
+  <h2>Enumerating AWS Account IDs</h2>
+  <p>AWS accounts are identified via unique IDs, which, when exposed in the public domain, can be leveraged by attackers to target cloud services. These unique IDs are meant to be private but 
+  are often exposed to the public without the user's knowledge. Attackers enumerate AWS account IDs via:</p>
+  <p><ol>
+    <ul>AWS error messages</ul>
+    <ul>Code repositories, such as Github</ul>
+    <ul>Screenshots</ul>
+    <ul>Databases</ul>
+    <ul>Public elastic block store snapshots</ul>
+    <ul>People posting personal IDs to seek online assistance/troubleshooting</ul>
+  </ol></p>
+  <p>After obtaining account IDs, attackers can perform various activities such as resource enumeration (discovering existing roles, users etc.), IAM role assumption, invocation of Lambda functions</p>
 </html>
