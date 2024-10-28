@@ -56,6 +56,22 @@
   <p>Kubernetes is a distributed computing platform; therefore, it requires a distributed database, such as etcd. Gaining access to etcd is the same as obtaining root-level access to the system. In 
   Kubernetes, only the API server is allowed to access the etcd store. Attackers enumerate etcd processes, configuration files, open ports (identifying port 2379) etc. to identify endpoints connected 
   to the Kubernetes environment.</p>
+  <h2>Enumerating Azure Active Directory (AD) Accounts</h2>
+  <p>Cloud platforms such as Office 365 can be accessed directly from the internet. Hence, attackers target these environments to initiate different attacks 
+  on Azure Active Directory (AD) and Office 365.</p>
+  <p><ol>
+    <ul><b>Account enumeration</b> -> Azure AD users having access to the services of Office 365 can enumerate all the user accounts as well as admin groups - this 
+      attracts attackers; The <a target=_blank href=https://github.com/nccgroup/azucar>Azucar</a> tool allows users to assess the overall security of an Azure
+    environment</ul>
+    <ul><b>Password spraying</b> -> attackers use password spraying to perform automated password guessing on Azure AD accounts; This method does NOT lead to 
+    account lockouts; The <a target=_blank href=https://github.com/sensepost/ruler>Ruler</a> tool allows attackers to communicate with exchange servers</ul>
+  </ol></p>
+  <h2>Gathering Cloud Keys Through IMDS Attack</h2>
+  <p>In an AWS environment, <b>cloud access keys</b> are the security credentials used by an 
+    <a target=_blank href=https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html>IAM user</a> or AWS account root user to access AWS services. 
+  An <b>access key</b> and a <b>secret access key</b> are integral parts of cloud keys, which can be used to authenticate requests. Attackers launch 
+    <a target=_blank href=https://www.sans.org/blog/cloud-instance-metadata-services-imds-/>IMDS attacks</a>  
+  to obtain these cloud keys to gain access to cloud resources.</p>
 
 
 
