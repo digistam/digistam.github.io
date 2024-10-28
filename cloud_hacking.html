@@ -71,7 +71,109 @@
     <a target=_blank href=https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html>IAM user</a> or AWS account root user to access AWS services. 
   An <b>access key</b> and a <b>secret access key</b> are integral parts of cloud keys, which can be used to authenticate requests. Attackers launch 
     <a target=_blank href=https://www.sans.org/blog/cloud-instance-metadata-services-imds-/>IMDS attacks</a>  
-  to obtain these cloud keys to gain access to cloud resources.</p>
+  to obtain these cloud keys to gain access to cloud resources. The attacker can access a REST API operating at a particular IP address through IMDS.</p>
+
+  <h2>Exploiting Amazon Cloud Infrastructure using Nimbostratus</h2>
+  <p><a target=_blank href=https://andresriancho.github.io>Nimbostratus</a> is a tool used for fingerprinting and exploiting Amazon cloud infrastructures. 
+  It allows attackers to enumerate access to AWS services for the current IAM role; use a poorly configured IAM role to create new AWS user; extract current 
+  AWS credentials from metadata, .boto.cfg files, environment variables etc.; clone DBs to access information stored in snapshot etc.</p>
+  <p>Always use <a target=_blank href=https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html>IAM</a> instead of allowing direct root access.</p>
+
+  <h2>Exploiting Misconfigured AWS S3 Buckets</h2>
+  <p><ol>
+    <ul>Step 1: Identify S3 buckets -> S3Scanner, lazys3, Bucket Finder, s3-buckets-bruteforcer; gather URLs of the identified buckets</ul>
+    <ul>Step 2: Setup AWS command line interface (aws-cli)</ul>
+    <ul>Step 3: Extract access keys -> create account, add user, download CSV file and extract access keys</ul>
+    <ul>Step 4: Configure aws-cli</ul>
+    <ul>Step 5: Identify vulnerable S3 buckets -> <i>aws s3 ls s3://[bucket-name] --no-sign-request</i></ul>
+    <ul>Step 6: Exploit S3 buckets</ul>
+  </ol></p>
+
+<h2>Compromising AWS IAM Credentials</h2>
+  <p>AWS IAM helps IT administrators manage the AWS user identities and levels of access to AWS resources. Various security vulnerabilities exploited 
+  by attackers:</p>
+  <p><ol>
+    <ul>Repository Misconfigurations -> most organizations host their AWS keys in a shared storage on an internal network, such as a Git repo so 
+    developers can access and use them when needed; disgruntled insiders may misuse the keys and keys can unknowingly be shared to a shared repo</ul>
+    <ul>Social Engineering -> fake emails, calls, SMS etc.</ul>
+    <ul>Password reuse</ul>
+    <ul>Server Side Request Forgery</ul>
+    <ul>Reading local file</ul>
+    <ul>Exploiting third party software</ul>
+    <ul>Insider threat</ul>
+  </ol></p>
+
+  <h2>Hijacking Misconfigured IAM Roles using Pacu</h2>
+  <p>Pacu is an open-source AWS exploitation framework for enumerating and hijacking IAM roles. Pacu contains a 1100+ wordlist of commonly used role 
+  names and automatically alerts the attacker when the role is identified</p>
+
+<h2>Cracking AWS access keys using DumpsterDiver</h2>
+<p><a target=_blank href=https://github.com/securing/DumpsterDiver>DumpsterDiver</a> allows attackers to examine a large volume of file types while 
+scanning hardcoded secret keys, such as AWS access, SSL and Microsoft Azure keys. Attackers use DumpsterDiver to identify potential secret leaks and 
+hardcoded passwords in the target cloud services.</p>
+
+  <h2>Exploiting Docker containers on AWS using Cloud Container Attack Tool (CCAT)</h2>
+  <p><ol>
+    <ul>Step 1: Abuse AWS credentials -> CCAT provides Enumerate ECR module to list the details of available ECR repos</ul>
+    <ul>Step 2: Pull the target Docker image</ul>
+    <ul>Step 3: Create a backdoor image</ul>
+    <ul>Step 4: Push the backdoor Docker image</ul>
+  </ol></p>
+
+  <h2>Serverless-Based attacks on AWS Lambda</h2>
+  <p>As serverless functions can run without a managed server, they are vulnerable to different application-level attacks such as DDoS, command injection 
+  and cross-site scripting XSS. Attackers can abuse AWS Lambda functions to gain privileges and compromise the confidentiality of an account.</p>
+  <p><ol>
+    <ul>Black Box Scenario -> attackers make assumptions regarding specific feature as they do not have prior information about the internal working systems or 
+    the environment</ul>
+    <ul>White Box Scenario -> attackers hold prior information about the environment which helps them in achieving their goals</ul>
+  </ol></p>
+
+  <h2>Exploiting Shadow Admins in AWS</h2>
+  <p>Shadow admins are user accounts with specific permissions that allow attackers to penetrate the target cloud network. Attackers can exploit shadow 
+  admins only after gaining some kind of access to the target environment. Attackers abuse show admin permissions to escalate privileges and gain control 
+  over the target cloud environment -> <a target=_blank href=https://github.com/cyberark/SkyArk>SkyArk</a>, Red-Shadow, ACLight2</p>
+
+<h2>Exploiting Docker Remote API</h2>
+  <p>After gaining access to the target Docker host, attackers exploit the Docker remote API to launch further attacks, such as mining cryptocurrency, 
+  initiating attacks by masking IPs, creating botnets to perform DoS attacks, installing services for phishing campaigns, compromising the security of 
+  the internal network etc. Attackers create a new container and mount it to the folder on the Docker host to gain access to other files.</p>
+
+  <h2>Hacking Container Volumes</h2>
+  <p>In Kubernetes, containers use volumes to share filesystems and manipulate container files. A volume is similar to a directory that stores files 
+  and is accessible to all containers in a pod. Kubernetes supports different types of volumes, such as NFS and Internet small computer systems interface 
+  (iSCSI), using various protocols. Weak and default configs in these volumes may be exploited by attackers to launch privilege escalation attacks and 
+  perform a lateral movement in the internal network.</p>
+
+  <h2>CloudGoat 2 - vulnerable by design AWS deployment tool</h2>
+  <p><a target=_blank href=https://rhinosecuritylabs.com>CloudGoat 2</a> allows you to hone your cloud cybersecurity skills by creating and completing 
+  several "capture-the-flag" style scenarios.</p>
+
+<h2>Gaining access by exploiting SSRF vulnerabilities</h2>
+<p>Attackers can exploit <a target=_blank href=https://www.f5.com/glossary/ssrf#:~:text=SSRF%20is%20a%20type%20of,compromise%2C%20and%20remote%20code%20execution.>SSRF vulnerabilities</a>
+in a web application that is hosting the cloud service to retrieve the AWS credentials for a role (Server Side Request Forgery)</p>  
+
+  <h2>AWS IAM Privilege Escalation Techniques</h2>
+  <p>After gaining access to the target cloud services, attackers attempt to exploit their privileges to expand their attack surfaces and perform further 
+  exploitation.</p>
+  <p><ol>
+    <ul>Create a new policy version</ul>
+    <ul>Assign the default policy version to an existing version</ul>
+    <ul>Create an EC2 instance with an existing instance profile</ul>
+    <ul>Create a new user access key</ul>
+    <ul>Create / update login profile</ul>
+    <ul>Attach a policy to a user /group/role</ul>
+    <ul>Create / update an inline policy for user/group/role</ul>
+    <ul>Add a user to a group</ul>
+  </ol></p>
+
+<h2>Escalating privileges of Google Storage Buckets using GCPBucketBrute</h2>
+<p>Similar to Amazon AWS S3 buckets, Google Storage uses buckets for static file storage. Vulnerabilities in bucket permission policies may expose
+the buckets to all GCP users or even to the public internet. Like AWS S3 buckets, Google Storage buckets are also vulnerable to privilege escalation 
+attacks through misconfigured bucket ACLs. <a target=_blank href=https://rhinosecuritylabs.com>DCPBucketBrute</a> is a script-based tool that allows 
+attackers to enumerate Google storage buckets; Using this tool, attackers can check the bucket's policy by making a direct HTTP request to 
+<i>https://www.googleapis.com/storage/v1/b/BUCKETNAME/iam</i>. If allusers or allAuthenticatedUsers can read the bucket policy, attackers get a valid 
+response; otherwise, an access denied message is displayed.</p>
 
 
 
