@@ -2,4 +2,63 @@
   <a href=index.html>Back to home</a>
 <hr/>
 <h1>Cryptography</h1>
-<p>dd</p>
+<p>Cryptography comes from the Greek words <b>kryptos</b> (concealed, hidden, veiled, secret, mysterious) and <b>graphia</b> (writing). Cryptography is 
+"the art of secret writing". Cryptography is the practice if concealing information by converting plaintext into cyphertext.</p>
+<h2>Objectives</h2>
+<p><ol>
+    <ul>Confidentiality -> information is only accessible to those authorized to access it</ul>
+    <ul>Integrity -> trustworthiness of data or resources in terms of preventing improper and unauthorized changes</ul>
+    <ul>Authentication -> assurance that the communication, document or data is genuine</ul>
+    <ul>Nonrepudiation -> sender can't deny having sent the message and recipient can't deny having received the message</ul>
+</ol></p>
+<h1>Cryptography types</h1>
+<p>Categorized in two types according to the <b>number of keys</b> employed for encryption and decryption</p>
+<h2>Symmetric Encryption</h2>
+<p><ol>
+    <ul>One encryption key</ul>
+    <ul>Also called: secret key cryptography</ul>
+</ol></p>
+<p>Strengths:</p>
+<p><ol>
+    <ul>Faster and easier to implement, as the same key is used to encrypt and decrypt data</ul>
+    <ul>Requires less processing power</ul>
+    <ul>Can be implemented in ASIC (Application Specific Integrated Chip)</ul>
+    <ul>Prevents widespread messages security compromise as different secret keys are used to communicate with different parties</ul>
+    <ul>The key is not bound to the data being transferred on the link, even if the data is intercepted it is not possible to decrypt it</ul>
+</ol></p>
+<p>Weaknesses:</p>
+<p><ol>
+    <ul>Lack of secure channel to exchange the secret key</ul>
+    <ul>Difficult to manage and secure too many shared keys that are generated to communicate with different parties</ul>
+    <ul>Provides no assurance about the origin and authenticity of a message, as the same key is used by both sender and receiver</ul>
+    <ul>Vulnerable to dictionary attacks and brute-force attacks</ul>
+</ol></p>
+<h2>Asymmetric Encryption</h2>
+<p><ol>
+    <ul>Two keys -> public key and private key</ul>
+    <ul>Also called: public key cryptography</ul>
+    <ul>To meet the need for authentication: digital signatures</ul>
+</ol></p>
+<p>Strengths:</p>
+<p><ol>
+    <ul>Convenient to use, as the distribution of keys to encrypt messages is not required</ul>
+    <ul>Enhanced security, as one need not share or transmit private keys to anyone</ul>
+    <ul>Provides digital signatures that cannot be repudiated</ul>
+</ol></p>
+<p>Weaknesses:</p>
+<p><ol>
+    <ul>Slow in processing and requires high processing power</ul>
+    <ul>Widespread message security compromise is possible (if private key is compromised)</ul>
+    <ul>Messages received can't be decrypted if private key is lost</ul>
+    <ul>Vulnerable to man-in-the-middle and brute-force attacks</ul>
+</ol></p>
+
+<h1>Government Access to Keys (GAK)</h1>
+<p><ol>
+    <ul>Software companies will give copies of all keys to the government</ul>
+    <ul>Law Enforcement agencies around the world acquire and use these keys to monitor suspicious communication and collect evidence of cybercrimes in the 
+    interests of national security</ul>
+    <ul>Government promises that it will hold on the keys in a secure manner and only use them when a court issues a warrant to do so</ul>
+    <ul>Similar to wiretap phones</ul>
+    <ul>Government agencies often use key escrow for uninterrupted access to keys</ul>
+</ol></p>
