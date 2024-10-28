@@ -175,11 +175,139 @@ attackers to enumerate Google storage buckets; Using this tool, attackers can ch
 <i>https://www.googleapis.com/storage/v1/b/BUCKETNAME/iam</i>. If allusers or allAuthenticatedUsers can read the bucket policy, attackers get a valid 
 response; otherwise, an access denied message is displayed.</p>
 
+<h2>Privilege escalation using misconfigured user accounts in Azure AD</h2>
+  <p><ol>
+    <ul>Step 1: The attacker discovers a normal user account in AD using tools such as <a target=_blank href=https://github.com/BloodHoundAD/AzureHound>Bloodhound or AzureHound</a> </ul>
+    <ul>Step 2: The attacker runs <i>Connect -AzureAD</i> with PowerShell and log in</ul>
+    <ul>Step 3: The attacker executes the following commands to create a new key credential for the application and store it in the local machine:
+    $pwd = [password] $path=[thumbprint] Export-PfxCertificate -cert $path -FilePath [path-to-save-.pfx file] -Password $pwd</ul>
+    <ul>Step 4: The attacker uploads that self-signed certificate into the Azure AD in the certificate portion of the registered application</ul>
+    <ul>Step 5: The attacker runs the following commands to escalate privileges of the normal user account to Global Admin after authenticating the Azure AD 
+    with the newly created certificate: Connect -AzureAD -TenentId [tenant_id] -ApplicationId [app_id] -CertificateThumbPrint [thumpprint]; 
+    Add-AzureADDirectoryRoleMember -RefObjectId [normaluser_objectID] -ObjectId [GlobalAdmin_ID]</ul>
+    <ul>After escalating privileges, the attacker opens Azure AD and verifies the role; now the attacker can further exploit</ul>
+  </ol></p>
 
+  <h2>Creating Backdoor Accounts in AWS</h2>
+  <p>The attacker can create backdoor accounts in an AWS cloud platform by creating a rogue AWS account. Attackers abuse the existing resources in the 
+  cloud platform by modifying the existing policies or exploiting the resources via APIs and RAM (AWS Resource Access Manager)</p>
+  <p><ol>
+    <ul><a target=_blank href=https://github.com/DavidDikker/endgame>EndGame</a> exploitation framework</ul>
+  </ol></p>
 
+  <h2>Backdooring Docker Images using dockerscan</h2>
+  <p><a target=_blank href=https://github.com/cr0hn/dockerscan>Dockerscan</a> is a Docker analysis and hacking tool that allows attackers to scan networks to 
+  identify Docker registries, manipulate registries by removing an image / tag, pushing a backdoored image and uploading a malicious file etc.</p>
 
+  <h2>Maintaining access and covering tracks on AWS cloud environment by manipulating the CloudTrial service</h2>
+  <p>After gaining admin-level access, attackers manipulate the cloud trials to remain undetected and gain persistent access to the compromised environment.
+  User activities are monitored through the CloudTrial service. The first step an attacker performs after gaining high-level access is hiding traces.
+  By default, the CloudTrial service is disabled. An admin needs to explicitly configure to enable the CloudTrial service and configure trials to monitor
+  user activities. Attackers disable the logging functionality by pausing the CloudTrial service and resume the service after executing the attack.
+  Stopping or removing trials for clearing the tracks may generate a security alert.</p>
 
+  <h2>AWS hacking tool: AWS pwn</h2>
+  <p>Attackers can use the <a target=_blank href=https://github.com/dagrz/aws_pwn>AWS pwn</a> tool to hack the target AWS cloud environment. This tool 
+  includes various automated scripts for different hacking phases, such as reconnaissance, escalating privileges, maintaining access and clearing tracks.</p>
 
+  <h2>Cloud security controls</h2>
+  <p><ol>
+    <ul>PKI (Public Key Infrastructure)</ul>
+    <ul>SDL (Security Development Lifecycle)</ul>
+    <ul>WAF (Web Application Firewall</ul>
+    <ul>FW (Firewall)</ul>
+    <ul>RTG (Real Traffic Grabber)</ul>
+    <ul>IAM (Identity and Access Management)</ul>
+    <ul>ENC (encryption)</ul>
+    <ul>DLP (Data Loss Prevention)</ul>
+    <ul>IPS (Intrusion Prevention System)</ul>
+    <ul>SWG (Secure Web Gateway)</ul>
+    <ul>VA / VM (Virtual Application / Virtual machine)</ul>
+    <ul>App Sec (Application Security)</ul>
+    <ul>AV (Anti Virus)</ul>
+    <ul>VPN (Virtual Private Network)</ul>
+    <ul>LB (Load Balancer)</ul>
+    <ul>GRC (Governance, risk and compliance)</ul>
+    <ul>Config Control</ul>
+    <ul>CoS / QoS (Class of service / Quality of service)</ul>
+    <ul>DDoS (Distributed denial of service)</ul>
+    <ul>TPM (Trusted Platform Module)</ul>
+    <ul>Netflow (Network protocol by Cisco)</ul>
+  </ol></p>
 
+<h2>Security Controls in the Cloud</h2>
+  <p><ol>
+    <ul>Deterrent controls - reduce attacks on cloud system</ul>
+    <ul>Preventive controls - strengthen system against incidents</ul>
+    <ul>Detective controls - detect and react</ul>
+    <ul>Corrective controls - minimize consequences of an incident</ul>
+  </ol></p>
+
+<h2>NIST recommendations</h2>
+  <p><ol>
+    <ul>Assess the risk posed to the client's data, software and infrastructure</ul>
+    <ul>Select an appropriate deployment model according to needs</ul>
+    <ul>Ensure audit procedures are in place for data protection and software isolation</ul>
+    <ul>Renew SLAs in case of security gaps</ul>
+    <ul>Establish appropriate incident detection and reporting </ul>
+    <ul>Analyze the security objectives of the organization</ul>
+    <ul>Enquire about who is responsible for data privacy and security issues in the cloud</ul>
+  </ol></p>
+
+  <h2>Securit Assertion Markup Language (SAML)</h2>
+  <p>SAML is a popular open-standard protocol used for authentication and authorization between two communicating entities.
+  It provides a single sign-on (SSO) facility for users to interact with multiple applications or services with one set of common credentials.</p>
+  <p><ol>
+    <ul>Client or user</ul>
+    <ul>Service Provider (SP)</ul>
+    <ul>Identity Provider (IdP)</ul>
+  </ol></p>
+  <p>When SAML federation software is installed or configured, it builds a trust relationship between SP and IdP, enabling secure communication.
+  When a user wants to access any service or resource, he must be authenticated by the IdP. Soon after a service request is initiated by the user, the 
+  SP sends an SAML request to the IdP to validate the user. The IdP creates an XML based SAML authentication assertion that describes what type of 
+  login attempt has been initiated (password, 2FA etc.). XML based assertions are then forwarded to the SP. Once the authentication process is 
+  completed successfully, the user is free to access the protected resources or services.</p>
+
+<h2>Cloud Network Security</h2>
+  <p>Cloud Service Providers (CSP) can perform network operations on the public cloud using individual client accounts.</p>
+  <p><ol>
+    <ul>Virtual private cloud (VPC) - secure and independent private cloud that resides within the public cloud</ul>
+    <ul>Public and private subnets</ul>
+    <ul>Transit gateways</ul>
+    <ul>VPC endpoint</ul>
+  </ol></p>
+
+  <h2>Cloud Security Controls</h2>
+  <p>Cloud Security Controls protect a cloud environment form any type of vulnerability and minimize the impacts of cyberattacks.</p>
+  <p><ol>
+    <ul>Cloud Application Security -> set of rules, processes, policies, controls and techniques</ul>
+    <ul>High availability across zones -> two nodes, master node and secondary node</ul>
+    <ul>Cloud integration and auditing</ul>
+    <ul>Security groups</ul>
+    <ul>Instance awareness</ul>
+  </ol></p>
+
+  <h2>Zero Trust Networks</h2>
+  <p>The Zero Trust model is a security implementation that by default assumes every user trying to access the network is not a trusted entity and 
+  verifies every incoming connection before allowing access to the network. Principle: Trust no one and validate before providing a cloud service or 
+  granting access permission. Zero Trust can be integrated with techniques such as encryption, multifactor authentication, privileged access management (PAM).</p>
+
+<h2>Cloud Access Security Broker (CASB)</h2>
+  <p>CASBs are on-premise or cloud-hosted solutions. They are responsible for enforcing security, compliance and governance policies in the cloud applications. 
+  A CASB is located between the on-premise infrastructure of an organization and the infrastructure of a cloud provider. It acts as a gatekeeper that enables 
+  organizations to extend their security policies beyond their own infrastructure. </p>
+
+  <h2>Next-Generation Secure Web Gateway (NG SWG)</h2>
+  <p>NG SWG is a cloud based security solution that protects an organization's network from cloud based threats, malware infections and online data theft. 
+  It allows clients to securely access the cloud services. It detects cloud based threats in advance, prioritizes them based on their risks and manages 
+  the application being used by different users and clients. </p>
+  <p><ol>
+    <ul>URL filtering</ul>
+    <ul>TLS/SSL decryption</ul>
+    <ul>CASB operations such as identifying, decrypting, analyzing and securing traffic</ul>
+    <ul>Advanced Threat Protection (ATP) along with sandboxing and machine learning (ML) oriented anomaly detection</ul>
+    <ul>Support for data loss prevention </ul>
+    <ul>Qualitative metadata contexts for web inspection and reporting</ul>
+  </ol></p>
   
 </html>
