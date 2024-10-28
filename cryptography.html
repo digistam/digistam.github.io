@@ -61,4 +61,107 @@
     <ul>Government promises that it will hold on the keys in a secure manner and only use them when a court issues a warrant to do so</ul>
     <ul>Similar to wiretap phones</ul>
     <ul>Government agencies often use key escrow for uninterrupted access to keys</ul>
+    <ul>Growing concern about privacy and security of cryptographic keys and information</ul>
+    <ul>Agencies generally use a single key to protect other keys, which is not a good idea, as revealing a single key could expose the other keys</ul>
+    <ul>Agencies are NOT aware of how confidential the information protected by the keys is, which makes it difficult to judge how much protection is 
+    required</ul>
+</ol></p>
+
+<h1>Encryption Algorithms</h1>
+<p><ol>
+    <ul>Block ciphers</ul>
+    <ul>Stream ciphers</ul>
+</ol></p>
+<h2>Ciphers</h2>
+<p><ol>
+    <ul>Cipher: algorithm for performing encryption and decryption</ul>
+    <ul>Algorithm: series of well-defined steps</ul>
+    <ul>Encipherment: process of converting plaintext into a cipher or code</ul>
+    <ul>Decipherment: process of converting cipher or code into plaintext</ul>
+</ol>
+<h2>Classical Ciphers</h2>
+<p><ol>
+    <ul>Operate on letters of the alphabet a-z</ul>
+    <ul>Generally unreliable</ul>
+    <ul>Substitution cipher: <b>replacing</b> units of plaintext with ciphertext according to a regular system</ul>
+    <ul>Transposition cipher: <b>rearranging</b> units of plaintext according to a regular system</ul>
+</ol></p>
+<h2>Modern Ciphers</h2>
+<p><ol>
+    <ul>Designed to withstand a wide range of attacks</ul>
+    <ul>Providing secrecy, integrity and authentication of sender</ul>
+    <ul>Calculated using a one-way mathematical function capable of factoring large prime numbers</ul>
+</ol></p>
+
+<h1>Well known ciphers</h1>
+<h2>DES - Data Encryption Standard</h2>
+<p><ol>
+    <ul>Block cipher</ul>
+    <ul>Secret-key cryptography</ul>
+    <ul>Symmetric cryptosystem</ul>
+    <ul>One key for both encryption and decryption</ul>
+    <ul>64-bit secret key</ul>
+    <ul>56 bits generated randomly and the other 8 bits used for error detection</ul>
+    <ul>Uses data encryption algorithm (DEA)</ul>
+    <ul>Archetypical block cipher: the algorithm takes a fixed-length string of plaintext bits and transforms it into a ciphertext bit string of the 
+    same length</ul>
+    <ul>Can be implemented in hardware and use it for single-user encryption (such as store files on a hard disk in encrypted form)</ul>
+    <ul>72 quadrillon or more possible encrytion keys and choosing a random key for the encryption of each message</ul>
+    <ul>Now regarded weak</ul>
+</ol></p>
+<h2>Triple Data Encryption Standard (3DES)</h2>
+<p><ol>
+    <ul>DES become more and more insecure</ul>
+    <ul>Interim solution: 3DES</ul>
+    <ul>3DES performs DES three times with three different keys</ul>
+    <ul>3DES uses a "key bundle" (three 56-bit DES keys): K1, K2 and K3</ul>
+    <ul><i>DES encrypt with K1, DES decrypt with K2, DES encrypt with K3</i></ul>
+    <ul>Option 1: all three keys are independent and different (most secure)</ul>
+    <ul>Option 2: K1 and K3 are identical</ul>
+    <ul>Option 3: K1, K2 and K3 are identical (least secure)</ul>
+</ol></p>
+
+<h2>Advanced Encryption Standard (AES)</h2>
+<p><ol>
+    <ul>Established by NIST in 2001 to replace DES and 3DES as the go-to encryption standard</ul>
+    <ul>Block cipher</ul>
+    <ul>Symmetric algorithm</ul>
+    <ul>Iterated block cipher that works by repeating the defined steps multiple times</ul>
+    <ul>128-bit block size with key sizes of 128, 192 and 256 bits (AES-128, AES-192, AES-256)</ul>
+    <ul>Efficient in both software and hardware use</ul>
+    <ul>Works simultaneously at multiple network layers</ul>
+</ol></p>
+
+<h2>RC4</h2>
+<p><ol>
+    <ul>Developed by RSA Security</ul>
+    <ul>Stream cipher</ul>
+    <ul>Symmetric algorithm</ul>
+    <ul>Variable key-size</ul>
+    <ul>Based on the use of random permutation</ul>
+    <ul>Each output byte uses 8 to 16 system operations</ul>
+    <ul>Cipher can run fast when used in software</ul>
+    <ul>Enables safe communications for traffic encryption (secure websites) and SSL protocol</ul>
+</ol></p>
+
+<h2>RC5</h2>
+<p><ol>
+    <ul>Developed by RSA Security (Ronald Rivest)</ul>
+    <ul>Block cipher</ul>
+    <ul>Symmetric algorithm</ul>
+    <ul>Variable block size</ul>
+    <ul>Key size between 0 and 2040 bits</ul>
+    <ul>Offers flexibility at all levels of security</ul>
+    <ul>Routines used: key expansion, encryption and decryption</ul>
+    <ul>Key expansion: secret key is expanded to fill the key table (RC5 uses a key table for both encryption and decryption)</ul>
+    <ul>Encryption routine has three fundamental operations: integer addition, bitwise XOR and variable rotation</ul>
+    <ul>Intensive use of data-dependent rotation and combination of different operations make RC5 a secure encryption algorithm</ul>
+</ol></p>
+
+<h2>RC6</h2>
+<p><ol>
+    <ul>Differs from RC5 with:</ul>
+    <ul>Integer multiplication</ul>
+    <ul>Use of four 4-bit working registers rather than two 2-bit registers</ul>
+    <ul>128-bit block size</ul>
 </ol></p>
