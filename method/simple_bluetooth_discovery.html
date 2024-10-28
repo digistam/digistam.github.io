@@ -1,0 +1,21 @@
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>Simple Bluetooth Discovery</h1>
+<h2>Scan BLE devices</h2>
+<p><ol>
+  <ul>service bluetooth start</ul>
+  <ul>sudo bluetoothctl</ul>
+  <ul>scan le</ul>
+  <ul>scan stop</ul>
+</ol></p>
+<h2>Create pcap file</h2>
+<p><ol>
+  <ul>console -> Actions -> Split Terminal Vertically</ul>
+  <ul>sudo btmon -w /home/username/Downloads/demo_ble_cap.pcap</ul>
+  <ul>In right terminal screen: bluetoothctl -> scan le</ul>
+  <ul>After a while: exit</ul>
+  <ul>In left terminal screen: btmon -> CTRL + C</ul>
+</ol></p>
+<h2>Wireshark packet inspection</h2>
+
