@@ -521,3 +521,26 @@ algorithms replace the original RIPEMD, which was found to have a collision issu
     <ul>Eliminates the problem of error propagation because it does not use previously generated ciphertext in encryption or decryption</ul>
     <ul>Requires synchronized counter values on both the source and destination sides</ul>
 </ol></p>
+
+<h1>Modes of Authenticated Encryption</h1>
+<p>Authenticated encryption (AE) modes of operation provide integrity and confidentiality for a transmitted message. In AE modes, the ciphertext is combined with a message authentication code (MAC). This rectifies 
+the problem of cipher attacks. Choosing a part in the ciphertext is not possible, and the AE scheme rejects improper ciphertexts while decrypting.</p>
+<h2>Message Authentication Code (MAC)</h2>
+<p>A MAC is a value obtained by hashing a plaintext message using a <b>shared secret key</b>. It provides integrity for the message, and the receiver can verify the message using the hash value attached to it.</p>
+<p><ol>
+    <ul>Encrypt-then-MAC (EtM) -> plaintext is first encrypted using a secret key; for the obtained ciphertext a hash value called MAC is generated; the MAC is attached to the ciphertext and transmitted -> higher security</ul>
+    <ul>Encrypt-and-MAC (E&M) -> MAC generated for plaintext, following which the plaintext is encrypted using a secret key, finally both ciphertext and MAC are combined and transmitted</ul>
+    <ul>MAC-then-encrypt (MtE) -> MAC generated for plaintext using hash function and MAC is combined with the plaintext; combination of plaintext and MAC is encrypted with a secret key to produce ciphertext; ciphertext contains 
+    encrypted MAC</ul>
+</ol></p>
+<h2>Authenticated Encryption with Associated Data (AEAD)</h2>
+<p>This approach adds additional data to the ciphertext at certain places to thwart chosen ciphertext attacks; The message header is kept unencrypted so that the receiver can verify the source of the message, and the payload is 
+encrypted to ensure confidentiality.</p>
+
+<h1>Blockchain</h1>
+<p><ol>
+    <ul>Type of distributed ledger technology (DLT) that is used to record and store the history of transactions securely in the form of blocks</ul>
+    <ul>Data recorded in blockchains are resistant to unwanted modifications</ul>
+    <ul>Account transparency is maintained through cryptographic techniques</ul>
+    <ul>For multiple transactions, multiple blocks are created, cryptographically linked together to form a "blockchain"</ul>
+</ol></p>
