@@ -379,3 +379,119 @@ message digest functions include:</p>
     <ul>MD5</ul>
     <ul>SHA</ul>
 </ol></p>
+<h2>MD4, MD5 and MD6</h2>
+<p>MD2, MD4, MD5 and MD6 are message digest algorithms used in digital signature applications to compress a document securely before the system signs it with a private key. The algorithms can be of variable length but the 
+resulting message digest always has a size of <b>128 bits</b>. MD2 supports 8 bit machines, while MD4 and MD5 support 32 bit machines. The algorithm pads the message with extra bits to ensure that the number of bits is 
+<b>divisible by 512</b>. The extra bits may include a 64 bit binary message. MD4 can be cracked within a minute on a typical pc using collision attacks.</p>
+<h2>Collision Attack</h2>
+<p>In cryptography, a collision attack on a cryptographic hash tries to find two inputs producing the same hash value, i.e. a hash collision. 
+This is in contrast to a preimage attack where a specific target hash value is specified. Much like symmetric-key ciphers are vulnerable to brute force 
+attacks, every cryptographic hash function is inherently vulnerable to collisions using a birthday attack. Due to the birthday problem, these attacks are 
+much faster than a brute force would be. A hash of n bits can be broken in 2n/2 time steps (evaluations of the hash function). Mathematically stated, a collision 
+attack finds two different messages m1 and m2, such that hash(m1) = hash(m2). In a classical collision attack, the attacker has no control over the content of 
+either message, but they are arbitrarily chosen by the algorithm. More efficient attacks are possible by employing cryptanalysis to specific hash functions. 
+When a collision attack is discovered and is found to be faster than a birthday attack, a hash function is often denounced as "broken". 
+The NIST hash function competition was largely induced by published collision attacks against two very commonly used hash functions, MD5[1] and SHA-1. 
+The collision attacks against MD5 have improved so much that, as of 2007, it takes just a few seconds on a regular computer. 
+Hash collisions created this way are usually constant length and largely unstructured, so cannot directly be applied to attack widespread document formats or protocols.</p>
+<h2>MD5</h2>
+<p>MD5 is slightly more secure than MD4. However, both the message digest size and the padding requirements remain the same. MD5 is widely used. It takes a message of arbitrary length as input and outputs a 
+128 bit (16 byte) fingerprint or message digest of the input. MD5 is not collision resistant; therefore it is better to use the latest algorithms, such as MD6, SHA-2 and SHA-3.</p>
+<h2>MD6</h2>
+<p>MD6 uses a Merkle-tree like structure to allow for large-scale parallel computation of hashes for very long inputs. It is resistant to different cryptanalysis attacks.</p>
+
+<h2>Secure Hashing Algorithm (SHA)</h2>
+<p>NIST has developed SHA. It generates a cryptographically secure one-way hash. Rivest developed SHA, which is similar to the MD5 family. It is slightly slower but its larger message digest makes it more secure against 
+brute-force collision and inversion attacks. </p>
+<p>SHA encryption is a series of five different cryptographic functions, and it currently has three <b>generations</b>: SHA-1, SHA-2 and SHA-3.</p>
+<p><ol>
+    <ul>SHA-0 -> withdrawn due to an undisclosed significant flaw</ul>
+    <ul>SHA-1 -> 160 bit hash function that resembles MD5 developed by Ron Rivest; produces a 160 bit digest from a message with a maximum length of (264 - 1) bits. It was designed by the NSA to be part of DSA. It is most 
+    commonly used in security protocols such as PGP, GPG, TLS, SSH and SSL; As of 2010 SHA-1 is no longer approved for cryptographic use because of its cryptographic weaknesses</ul>
+    <ul>SHA-2 -> family of two similar hash functions with different block sizes: SHA-256 (32 bit words) and SHA-512 (64 bit words); Truncated versions of each standard are SHA-224 and SHA-384</ul>
+    <ul>SHA-3 -> uses sponge construction in which message blocks are XORed into the initial bits of the state, which the algorithm then invertibly permates. It supports the same hash lengths as SHA-2 but differs
+    in its internal structure considerably from the rest of the SHA family</ul>
+</ol></p>
+
+<h2>RIPEMD-160</h2>
+<p>RACE Integrity Primitives Evaluation Message Digest (RIPEMD) is a 160 bit hash algorithm. There exist 128-, 256- and 320-bit versions of this algorithm, named RIPEMD-128, RIPEMD-256 and RIPEMD-320. These 
+algorithms replace the original RIPEMD, which was found to have a collision issue. They do NOT follow any standard security policies or guidelines. RIPEMD-160 is a more secure version of the RIPEMD algorithm.</p>
+
+<h2>HMAC</h2>
+<p>Hash-based message authentication code (HMAC) is a type of message authentication code (MAC) that uses a cryptographic key along with a cryptographic hash function. It is widely used to verify the integrity of data 
+    and authentication of a message. This algorithm includes an embedded hash function such as SHA-1 or MD5. The strength of HMAC depends on the embedded hash function, key size and size of hash output.</p>
+    <p>HMAC includes two stages for computing the hash. The input key is processed to produce two keys, namely the inner key and the outer key. The first stage of the algorithm inputs the output from the first stage 
+    and outer key, and produces the final HMAC code. As HMAC executes the underlying hash function twice, it offers protection against various length extension attacks. The size of the key and the output depends on the 
+    embedded hash function; 128 or 160 bits in the case of MD5 of SHA-1 respectively.</p>
+
+    <h2>CHAP</h2>
+    <p>Challenge-Handshake Authentication Protocol (CHAP) is an authentication mechanism used by Point-to-Point (PPP) servers to authenticate or validate the identity of remote clients or network hosts. It is more secure 
+    and effective compared to Password Authentication Procedure (PAP), as it regularly verifies the identity of the client using a three-way handshake and provides protection against replay attacks.</p>
+
+    <h2>EAP</h2>
+    <p>Extensible Authentication Protocol (EAP) was originally designed for point-to-point connections. Is is used as an alternative to the CHAP and PAP authentication protocols, as it is more secure and supports 
+    different authentication mechanisms such as passwords, smart tokens, one-time passwords (OTP), secure ID card, digital certificates and public-key encryption mechanisms. After the selection of the EAP authentication 
+    mechanism, a session is established and messages are exchanged between the client and the authenticating server.</p>
+
+    <h2>GOST - Hash Function</h2>
+    <p><ol>
+        <ul>Fixed-length output of 256 bits</ul>
+        <ul>Input message is broken up into chunks of 256 bit blocks</ul>
+        <ul>If a block is less than 256 bits, the message is padded by appending as many zeros to it as are required to make the length of the message 256 bits</ul>
+    </ol></p>
+
+    <h1>Other Encryption Techniques</h1>
+    <h2>Elliptic Curve Cryptography (ECC)</h2>
+    <p><ol>
+        <ul>Modern public key cryptography developed to avoid larger cryptographic key usage</ul>
+        <ul>Asymmetric cryptosystem depends on number theory and mathematical elliptic curves (algebraic structure) to generate short, quick and robust keys</ul>
+        <ul>To compare: RSA key size is large !</ul>
+        <ul>Smaller key length allows faster encryption</ul>
+        <ul>ECC has been proposed as a replacement for RSA</ul>
+        <ul>ECC Key size 160 -> RSA Key size 1024</ul>
+        <ul>ECC Key size 224 -> RSA Key size 2048</ul>
+        <ul>ECC Key size 256 -> RSA Key size 3072</ul>
+        <ul>ECC Key size 384 -> RSA Key size 7680</ul>
+        <ul>ECC Key size 512 -> RSA Key size 15360</ul>
+    </ol></p>
+    <p>While RSA uses a key size of 1024 to encrypt the data, ECC provides equal security with a comparatively smaller key size of 160 !</p>
+
+    <h2>Quantum Cryptography</h2>
+    <p>Since mathematical encryption uses binary digits (0 and 1), it can be easily eavesdropped on or manipulated using various techniques. Quantum Cryptography has been introduced to protect data from MITM etc. 
+    This cryptography is processed based on quantum mechanics, such as quantum key distribution QKD using <b>photons</b> instead of mathematics as a part of encryption. To breach this mechanism, attackers have to know 
+    the exact shape of the photons; if they fail to choose the right transmission, the photon polarization is distorted and the receiver detects an error indicating the eavesdrop.</p>
+
+    <h2>Homomorphic Encryption</h2>
+    <p><ol>
+        <ul>Homographic encryption allows users to secure and leave their data in an encrypted format even while it is being processed of manipulated</ul>
+        <ul>Encryption and decryption performed by the same key holder</ul>
+        <ul>Enables user / sender to encrypt the confidential data and out-source it to an enterprise via cloud services to process the data</ul>
+        <ul>In conventional encryption mechanisms:</ul>
+        <ul>- In private key encryption: only keyholders can generate and decrypt ciphertexts using similar keys</ul>
+        <ul>- In public key encryption: only the public keyholder generates the ciphertext and the secret keyholder decrypts the ciphertext</ul>
+        <ul>In homomorphic encryption:</ul>
+        <ul>- keyholder can generate the ciphertext and anyone can alter the ciphertext, but only the keyholder again can decrypt the data</ul>
+    </ol></p>
+
+    <h2>Hardware based encryption</h2>
+    <p><ol>
+        <ul>Uses computer hardware for assisting or replacing the software when the data encryption process is being performed</ul>
+        <ul>Devices that offer encryption techniques can be considered as hardware-based encryption devices</ul>
+        <ul>These devices do not support third-party software, thereby preventing the execution of any malicious programs</ul>
+        <ul>Hardware encryption offers many advantages over software encryption</ul>
+    </ol></p>
+    <p>Types:</p>
+    <p><ol>
+        <ul>TPM (Trusted Platform Module) -> cryptoprocessor or chip present in the motherboard</ul>
+        <ul>HSM (Hardware Security Module) -> additional external security device used in a system for crypto processing</ul>
+        <ul>USB Encryption -> Kingston Ironkey etc.</ul>
+        <ul>Hard drive encryption -> data stored on the hdd can be encrypted using a wide range of encryption options; Hard drive encryption needs a TPM or HSM</ul>
+    </ol></p>
+    <h2>Post-quantum Cryptography</h2>
+    <p><ol>
+        <ul>Also known as quantum-resistant and quantum-proof cryptography; advanced cryptographic algorithm (mostly public-key based) designed to protect security systems from attacks initiated on both conventional and quantum 
+        computers. It is aimed at preparedness for the age of quantum computing by updating specific algorithms and standards.</ul>
+    </ol></p>
+    <h2>Lightweight Cryptography</h2>
+    <p>A major challenge in current cryptography techniques is its usage in low-powered devices (IoT). Researchers are attempting to develop a compact algorithm that is quantum-safe and can be operated effectively on low-powered 
+    devices, such as RFID tags, sensors and other IoT applications.</p>
