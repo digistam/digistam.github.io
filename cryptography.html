@@ -295,3 +295,51 @@ security equal to their key length.</p>
     <ul>128-bit block size and key size varying from 128 to 256 bits</ul>
     <ul>Uses zero-correlation cryptanalysis</ul>
 </ol></p>
+<h2>GOST Block Cipher</h2>
+<p><ol>
+    <ul>GOST (GOvernment STandard) block cipher</ul>
+    <ul>Also known as Magma</ul>
+    <ul>Symmetric key block cipher</ul>
+    <ul>32 round Feistel network working on 64-bit blocks with 256-bit key length</ul>
+    <ul>Simple encryption algorithm</ul>
+</ol></p>
+<h2>Camellia</h2>
+<p><ol>
+    <ul>Symmetric-key block cipher</ul>
+    <ul>18 rounds for 128 bit keys</ul>
+    <ul>24 rounds for 256 bit keys</ul>
+    <ul>Feistel cipher with a block size of 128 bits</ul>
+    <ul>Key size of 128, 192 and 256 bits</ul>
+    <ul>Camellia is part of the Transport Layer Security (TLS) protocol</ul>
+    <ul>Camellia can't be brute-forced although it uses a smaller key size of 128 bits</ul>
+    <ul>Offers high security and its processing skills are equivalent to those of AES or Rijndael</ul>
+</ol></p>
+
+<h1>DSA and Related Signature Schemes</h1>
+<p>The Digital Signature Algorithm (DSA) is a Federal Information Processing Standard for digital signatures. The NIST proposed the DSA for use in the Digital Signature Standard (DSS), adopted as FIPS 186. 
+The DSA helps in the generation and verification of digital signatures for sensitive and unclassified applications. It creates a 320 bit digital signature with 512 - 1024 bit security. A digital signature is a 
+mathematical scheme used for the authentication of digital messages.</p>
+<h2>Processes involved in DSA</h2>
+<p><ol>
+    <ul>Signature Generation Process -> the private key is used to know who has signed it</ul>
+    <ul>Signature Verification Process -> the public key is used to verify whether the given digital signature is genuine</ul>
+</ol></p>
+<p>DSA is a public key cryptosystem, as it involves the use of both private and public keys</p>
+<p>Benefits of DSA:</p>
+<p><ol>
+    <ul>Less chance of forgery compared with a written signature</ul>
+    <ul>Quick and easy method of business transactions</ul>
+    <ul>Fake currency problem can be mitigated considerably</ul>
+</ol></p>
+
+<h2>Rivest Shamir Adleman (RSA)</h2>
+<p>Rivest, Shamir and Adleman formulated RSA, a public-key cryptosystem for internet encryption and authentication. The RSA system is widely used in a variety of products, platforms and industries. It is one of the 
+defacto standards and used by companies as Microsoft, Apple, Sun and Novell. RSA can be found on hardware-secured phones, ethernet network cards and smart cards. </p>
+<h2>Example RSA:</h2>
+<p><ol>
+    <ul>The sender of a message encrypts it using a randomly chosen DES symmetric key</ul>
+    <ul>The sender looks up the recipient's public key and use it to encrypt the DES key using the RSA system</ul>
+    <ul>The sender transmits a RSA digital envelope, consisting of a DES - encrypted message and a RSA - encrypted DES key, to the recipient</ul>
+    <ul>The recipient will decrypt the DES key and then use the DES key to decrypt the message itself</ul>
+</ol></p>
+<p>This system combines the high speed of DES with the key management convenience of the RSA system.</p>
