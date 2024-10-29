@@ -495,3 +495,29 @@ algorithms replace the original RIPEMD, which was found to have a collision issu
     <h2>Lightweight Cryptography</h2>
     <p>A major challenge in current cryptography techniques is its usage in low-powered devices (IoT). Researchers are attempting to develop a compact algorithm that is quantum-safe and can be operated effectively on low-powered 
     devices, such as RFID tags, sensors and other IoT applications.</p>
+
+<h1>Cipher Modes of Operation</h1>
+<p>Cipher modes of operation, also known as block cipher mode of operation, are used to encrypt a fixed block of plaintext using a secret key and, in some modes, an initialization vector.</p>
+<h2>Electronic Code Book (ECB) Mode</h2>
+<p><ol>
+    <ul>straightforwarded process -> plaintext, secret key and block cipher encryption algorithm</ul>
+    <ul>Decryption is performed in the same manner as generation of the first block of ciphertext; Secret key is taken as input to the block cipher decryption algorithm, which outputs the first block of plaintext</ul>
+    <ul>Flaw: if equally partitioned blocks of plaintext contain the same data, the output of cipher blocks also contain the same ciphertext, providing a chance to predict the plaintext</ul>
+</ol></p>
+<h2>Cipher Block Chaining (CBC) Mode</h2>
+<p><ol>
+    <ul>Improvement over ECB that rectifies most of the security flaws in ECB</ul>
+    <ul>CBC requires an initialization vector and a secret key</ul>
+    <ul>Problem: if one generated ciphertext block has an error, it propagates to the subsequent cipher blocks</ul>
+</ol></p>
+<h2>Cipher Feedback (CFB) Mode </h2>
+<p><ol>
+    <ul>Previously generated ciphertext is used as feedback for the encryption algorithm to encrypt the next plaintext block to ciphertext</ul>
+    <ul>Advantage: it makes cryptanalysis difficult as it has some data loss because of the use of shift registers</ul>
+</ol></p>
+<h2>Counter Mode</h2>
+<p><ol>
+    <ul>Block cipher mode of operation that uses a counter value in the encryption and decryption process</ul>
+    <ul>Eliminates the problem of error propagation because it does not use previously generated ciphertext in encryption or decryption</ul>
+    <ul>Requires synchronized counter values on both the source and destination sides</ul>
+</ol></p>
