@@ -152,6 +152,7 @@ security equal to their key length.</p>
     <ul>128-bit block size with key sizes of 128, 192 and 256 bits (AES-128, AES-192, AES-256)</ul>
     <ul>Efficient in both software and hardware use</ul>
     <ul>Works simultaneously at multiple network layers</ul>
+    <ul>Used in WPA2</ul>
 </ol></p>
 
 <h2>RC4</h2>
@@ -164,6 +165,7 @@ security equal to their key length.</p>
     <ul>Each output byte uses 8 to 16 system operations</ul>
     <ul>Cipher can run fast when used in software</ul>
     <ul>Enables safe communications for traffic encryption (secure websites) and SSL protocol</ul>
+    <ul>TKIP (IEEE 802.11) used in WPA uses RC4</ul>
 </ol></p>
 
 <h2>RC5</h2>
@@ -362,4 +364,18 @@ digital signature scheme that provides message recovery from the signature itsel
     <ul>Private key security</ul>
     <ul>Full forward secrecy</ul>
     <ul>Session key security</ul>
+</ol></p>
+
+<h1>Message Digest (One-way Hash) Functions</h1>
+<p>Hash functions calculate a unique fixed-size bit string representation, called a message digest, of any arbitrary block of information. Message digest functions distill the information contained in a file (small or large) 
+into a single fixed-length number, typically between 128 and 256 bits. If any given bit of the function's input is changed, every output bit has a 50% chance of changing. Given an input file and its corresponding message digest, 
+it should be nearly impossible to find another file with the same message digest value, as it is computationally infeasable to have two files with the same message digest value.</p>
+<p>Message digest functions are also called one-way hash functions because they produce values that are nearly impossible to invert, resistant to attack, mostly unique and widely distributed. Message digest algorithms themselves 
+do not participate in encryption and decryption operations. They allow the creation of digital signatures and message authentication codes (<b>MACs</b>) as well as the derivation of encryption keys from passphrases.</p>
+<p>The main role of a cryptographic hash function is to provide <b>integrity in document management</b>. Crytographic hash functions are an integral part of digital signatures. They are relatively faster than digital signature 
+algorithms, hence their characteristic feature is to calculate the signature of the document's hash value, which is smaller than the document. In addition, digests help to hide the contents or source of the document. Widely used 
+message digest functions include:</p>
+<p><ol>
+    <ul>MD5</ul>
+    <ul>SHA</ul>
 </ol></p>
