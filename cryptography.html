@@ -543,4 +543,34 @@ encrypted to ensure confidentiality.</p>
     <ul>Data recorded in blockchains are resistant to unwanted modifications</ul>
     <ul>Account transparency is maintained through cryptographic techniques</ul>
     <ul>For multiple transactions, multiple blocks are created, cryptographically linked together to form a "blockchain"</ul>
+    <ul>The chain of records or blocks are known as ledgers, which are shared in the network to make other participants aware of all the transaction details and the number of bits owned by each members</ul>
+    <ul>The members in the network authenticate blocks using their hash values</ul>
+    <ul>Hashes are further validated by crypto miners using complex cryptographic algorithms, following which the blocks are approved to join the blockchain mechanism</ul>
+</ol></p>
+<p>Blockchains are generally implemented using two mechanisms:</p>
+<p><ol>
+    <ul>Hash functions (mostly SHA-256</ul>
+    <ul>Asymmetric key algorithms</ul>
+</ol></p>
+<p>The process of validating blocks is known as <b>proof of work</b>, for which cryptominers are compensated, and the process of adding blocks to a blockchain after performing proof of work is referred to as 
+<b>crypto mining</b>.</p>
+<p>Each block in a blockchain consists of three elements:</p>
+<p><ol>
+    <ul>Data (transaction details)</ul>
+    <ul>Hash</ul>
+    <ul>Hash of previous block</ul>
+</ol></p>
+<p>Every time a new block is created using a new hash value, the hash value is shared with the next block. The first block in a blockchain is referred to as the <b>genesis</b> and is represented by <b>0s</b>. 
+Once a block verifies its previous block's hash, it is allowed to join the blockchain. If a block is tampered with, the next block in the chain invalidates it because it does not match the previous hash value in the 
+current block.</p>
+<p>Attackes CAN generate valid hashes for each block using many cryptographic techniques. The proof of work mechanism is used, to mitigate such risks. The security of the blockchain is ensured by both the effective 
+usage of hashes and the proof of work by miners (on public ledgers).</p>
+<p><ol>
+    <ul>Public ledger or public blockchain -> no central authority or administration to manage the blocks or ledgers; decentralized and permissionless network in which anyone can join, create and share blocks (Bitcoin, 
+    Ethereum etc.)</ul>
+    <ul>Private ledger or private blockchain -> supervisor or central authority decides who can join and participate (Hyperledger, Ripple XRP etc.); suitable for B2B services</ul>
+    <ul>Federated blockchain or consortium blockchain -> partially decentralized in which a <b>group of individuals or organizations</b> create and manage separate blockchain networks (controlled by trusted nodes); Extremely fast 
+    and scalable; Examples: EWF (Energy) and R3 (banks)</ul>
+    <ul>Hybrid blockchain -> combination of both private and public blockchain; only a selected set of records / data from the blockchain cna be publicly accessed, the remaining data is kept confidential in a private network; Example: IBM 
+    Food Trust</ul>
 </ol></p>
