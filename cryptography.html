@@ -343,3 +343,23 @@ defacto standards and used by companies as Microsoft, Apple, Sun and Novell. RSA
     <ul>The recipient will decrypt the DES key and then use the DES key to decrypt the message itself</ul>
 </ol></p>
 <p>This system combines the high speed of DES with the key management convenience of the RSA system.</p>
+
+<h2>RSA Signature Scheme</h2>
+<p>Cryptography uses RSA for public key encryption and for a digital signature (to sign a message and verify it). The RSA signature scheme is the first technique used to generate digital signatures. It is a deterministic 
+digital signature scheme that provides message recovery from the signature itself, making it the most practical and versatile technique available.</p>
+<p>RSA involves both a public key and a private key. The public key can be used by anyone for encrypting messages. The messages that the user encrypts with the public key require the private key for decryption.</p>
+
+<h2>Diffie-Hellman</h2>
+<p><ol>
+    <ul>Cryptographic protocol that allows two parties to establish a shared key over an insecure channel</ul>
+    <ul>Does not provide any authentication for the key exchange and is vulnerable to many cryptographic attacks</ul>
+    <ul>It is the basis of many authentication mechanisms, for example it provides forward secrecy in the TLS protocol</ul>
+</ol></p>
+
+<h2>YAK</h2>
+<p>YAK is a public key based Authenticated Key Exchange (AKE) protocol. The authentication of YAK is based on public key pairs, and it needs PKI to distribute authentic public keys. YAK can accomplish:</p>
+<p><ol>
+    <ul>Private key security</ul>
+    <ul>Full forward secrecy</ul>
+    <ul>Session key security</ul>
+</ol></p>
