@@ -66,6 +66,28 @@
     <ul>Agencies are NOT aware of how confidential the information protected by the keys is, which makes it difficult to judge how much protection is 
     required</ul>
 </ol></p>
+<h1>Background information</h1>
+<h2>Birthday attack (2016)</h2>
+<p>Cryptographic protocols like TLS, SSH, IPsec, and OpenVPN commonly use block cipher algorithms, such as AES, Triple-DES, and Blowfish, 
+    to encrypt data between clients and servers. To use such algorithms, the data is broken into fixed-length chunks, called blocks, and each block is 
+    encrypted separately according to a mode of operation. Older block ciphers, such as Triple-DES and Blowfish use a block size of 64 bits, 
+    whereas AES uses a block size of 128 bits. It is well-known in the cryptographic community that a short block size makes a block cipher vulnerable to 
+    birthday attacks, even if there are no cryptographic attacks against the block cipher itself. We observe that such attacks have now become practical 
+    for the common usage of 64-bit block ciphers in popular protocols like TLS and OpenVPN. Still, such ciphers are widely enabled on the Internet. 
+    Blowfish is currently the default cipher in OpenVPN, and Triple-DES is supported by nearly all HTTPS web servers, and currently used for roughly 
+    1-2% of HTTPS connections between mainstream browsers and web servers. We show that a network attacker who can monitor a long-lived Triple-DES HTTPS 
+    connection between a web browser and a website can recover secure HTTP cookies by capturing around 785 GB of traffic. In our proof-of-concept demo, 
+    this attack currently takes less than two days, using malicious Javascript to generate traffic. Keeping a web connection alive for two days may not 
+    seem very practical, but it worked easily in the lab. In terms of computational complexity, this attack is comparable to the recent attacks on RC4. 
+    We also demonstrate a similar attack on VPNs that use 64-bit ciphers, such as OpenVPN, where long-lived Blowfish connections are the norm.</p>
+    <h2>Difference between block size and key size</h2>
+<p>Block ciphers operate on a fixed length string of bits. The lenght of the bit string is the <b>block size</b>. Both the input (plaintext) and output 
+(ciphertext) are the <b>same length</b>; the output can't be shorter than the input. Until the announcement of NIST's AES contest, the majority of block 
+ciphers followed the example of the DES in using a block size of 64 bit (8 bytes). However the <b>birthday paradox</b> indicates that after accumulating 
+several blocks equal to the square root of the total number possible, there will be an approx. 50% chance of two or more being the same, which would 
+start to leak information about the message contents. Consequently, AES candidates were required to support a block length of 128 bits (16 bytes).</p>
+<p>Key size or key length refers to the number of bits in a key used by a cryptographic algorithm. Most symmetric-key algorithms are designed to have 
+security equal to their key length.</p>
 
 <h1>Encryption Algorithms</h1>
 <p><ol>
