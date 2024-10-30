@@ -12,3 +12,73 @@
   to create a digital signature. The two types of keys in public key cryptography are the 
   private key (only the signer knows this key and uses it to create a digital signature) and the 
   public key (widely known and the relying party uses it to verify the digital signature).</p>
+  <p>A hash function is an algorithm that helps a user to create and verify a digital signature.
+  This algorithm creates a digital representation, also known as the message fingerprint. This 
+  fingerprint has a hash value that is much smaller than the message, but one that is unique to it.
+  If the attacker changes the message, the hash function will automatically produce a different 
+  hash value.</p>
+  <p>To verify the digital signature, one needs the hash value of the original message and the 
+  encryption algorithm used to create the digital signature. Using both the public key and the new
+  result, the verifier checks to see if the digital signature was created with the related private 
+  key and whether the new hash value is the same as the original one. A digital signature may be 
+  further protected by encrypting the signed email for confidentiality.</p>
+
+  <h2>Secure Sockets Layer (SSL)</h2>
+  <p>SSL protocol is an application layer protocol developed by Netscape for managing the 
+  security of message transmission on the Internet. It is used to provide a secure authentication 
+  mechanism between two communicating applications, such as a client and a server. SSL requires a 
+  reliable transport protocol, such as TCP for data transmission and reception. It uses RSA 
+  asymmetric (public key) encryption to encrypt data transferred over SSL connections.</p>
+  <p>Any application layer protocol that is higher than SSL, such as HTTP, FTP and Telnet, can form 
+  a transparant layer over SSL. SSL acts as an arbitrator between the encryption algorithm and the
+  session key; it also verifies the destination server prior to the transmission and reception of 
+  data. SSL encrypts the complete data of the application protocol to ensure security.</p>
+  <p>SSL also offers <b>channelsecurity</b> with three basic properties:</p>
+  <p><ol>
+    <ul>Private channel -> all the messages are encrypted after a simple handshake is used to define 
+    a secret key</ul>
+    <ul>Authenticated channel -> the server endpoint of the conversation is always encrypted, whereas 
+    the client endpoint is optionally authenticated</ul>
+    <ul>Reliable channel -> message transfer has an integrity check</ul>
+  </ol></p>
+<p>SSL uses both asymmetric and symmetric authentication mechanisms. Public-key encryption verifies 
+the identities of the server, the client or both. Once authentication has occurred, the client and server 
+can create symmetric keys, allowing them to communicate and transfer data rapidly. An SSL session is 
+responsible for carrying out the SSL handshake protocol to organize the states of the server and client, thus 
+ensuring consistency of the protocol.</p>
+<h2>SSL handshake protocol flow</h2>
+<p>The SSL handshake protocol works on top of the SSL record layer. The processes executed in the three-way
+handshake protocol are as follows:</p>
+<p><ol>
+  <ul>The client sends a hello message to the server, to which the server must respond with a hello message, 
+  or the connection will fail due to the occurrence of a fatal error; The attributes established due to the 
+  server and client hello are protocol version, session ID, cipher suite and compression method</ul>
+  <ul>After the connection is established, the server sends a certificate to the client for authentication. In 
+  addition, the server might send a server-key exchange message. On authentication of the server, it may ask 
+  the client for the certificate (if appropriate for the cipher suite selected)</ul>
+  <ul>The server sends a "hello done" message to inform the client that the handshake phase is complete and 
+  waits for the client's response</ul>
+  <ul>If the client receives a certificate request message, the client must respond to the message by 
+  sending a certificate message or "no certificate" alert. The server sends the client key-exchange message. 
+  The content of the message depends on the public-key algorithm between the server hello and the client hello.
+  If the certificate sent by the client has signing ability, a digitally signed certificate verifies the message, 
+  and the client transmits it</ul>
+  <ul>The client transmits the changed cipher-spec message and copies the pending cipher spec into the current cipher 
+  spec. The client sends a message to initiate the completion of the message under the new algorithm, keys and 
+  secrets</ul>
+  <ul>In response, the server replies by sending its own changed cipher-spec message, transfers the pending cipher 
+  spec to the current cipher spec, and initiates the completion of the message under the new cipher spec. At this point, 
+  the handshake is complete and the server starts exchanging the application-layer data</ul>
+</ol></p>
+  <p>The resumption of a previous session or the replication of an existing session proceeds as follows:</p>
+  <p><ol>
+    <ul>The client initiates the communication by sending a hello message with the session ID of the session 
+    that is to be resumed</ul>
+    <ul>If the server finds a match, it re-establishes the session under the specified session state with the same 
+    session ID</ul>
+    <ul>At this point, both the server and the client exchange the changed spec messages and proceed directly to the 
+    finished messages</ul>
+    <ul>After re-establishment, the server and client exchange data at the application layer</ul>
+    <ul>If the session ID does not exist, the server creates a new session ID. The SSL client and server
+    then carry out a complete handshake.</ul>
+  </ol></p>
