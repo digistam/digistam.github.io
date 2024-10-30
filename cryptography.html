@@ -423,6 +423,7 @@ algorithms replace the original RIPEMD, which was found to have a collision issu
     <p>HMAC includes two stages for computing the hash. The input key is processed to produce two keys, namely the inner key and the outer key. The first stage of the algorithm inputs the output from the first stage 
     and outer key, and produces the final HMAC code. As HMAC executes the underlying hash function twice, it offers protection against various length extension attacks. The size of the key and the output depends on the 
     embedded hash function; 128 or 160 bits in the case of MD5 of SHA-1 respectively.</p>
+<p>HMAC is a.o. used in the PKID frame -> PMKID = HMAC-SHA1-128(PMK, "PMK Name" | MAC_AP | MAC_STA)</p>
 
     <h2>CHAP</h2>
     <p>Challenge-Handshake Authentication Protocol (CHAP) is an authentication mechanism used by Point-to-Point (PPP) servers to authenticate or validate the identity of remote clients or network hosts. It is more secure 
@@ -573,4 +574,26 @@ usage of hashes and the proof of work by miners (on public ledgers).</p>
     and scalable; Examples: EWF (Energy) and R3 (banks)</ul>
     <ul>Hybrid blockchain -> combination of both private and public blockchain; only a selected set of records / data from the blockchain cna be publicly accessed, the remaining data is kept confidential in a private network; Example: IBM 
     Food Trust</ul>
+</ol></p>
+<h1>Tools</h1>
+    
+    <h2>On-line hash calculators</h2>
+<p><ol>
+    <ul>MD5 calculator (bullzip.com)</ul>
+    <ul>HashMyFiles (nirsoft.net)</ul>
+<ul>HashCalc (https://www.slavasoft.com)</ul>
+    <ul>MD6 Hash Generator (https://www.browserling.com)</ul>
+    <ul>All Hash Generator (https://www.browserling.com)</ul>
+    <ul>md5 hash calculator (https://onlinehashtools.com)</ul>
+    <ul>Message Digester (https://www.freeformatter.com)</ul>
+</ol></p>
+
+<h2>Cryptography tools</h2>
+<p><ol>
+    <ul>BCTextEncoder (jetico.com)</ul>
+<ul>AxCrypt (https://www.axcrypt.net)</ul>
+    <ul>Microsoft Cryptography Tools (https://docs.microsoft.com)</ul>
+    <ul>Concealer (https://www.belightsoft.com)</ul>
+    <ul>SensiGuard (https://www.sensiguard.com)</ul>
+    <ul>Challenger (https://www.encryption-software.de)</ul>
 </ol></p>
