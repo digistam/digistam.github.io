@@ -1,0 +1,27 @@
+<html>
+<a href=index.html>Back to home</a>
+<hr/>
+<h1>Public Key Infrastructure</h1>
+<p>PKI is a security architecture developed to increase the confidentiality of information exchanged over the insecure Internet. 
+  It includes hardware, software, people, policies, and procedures required to create, manage, distribute, use, store, and revoke digital certificates. 
+  In cryptography, the PKI helps to bind public keys with corresponding user identities by means of a certification authority (CA).</p>
+  <h2>PKI components</h2>
+<p><ol>
+  <ul>Certificate Management System -> generates, distributes, stores and verifies certificates</ul>
+  <ul>Digital certificates -> establishes credentials of a person when performing online transactions</ul>
+  <ul>Validation Authority (VA) -> stores certificates (incl. their public keys)</ul>
+  <ul>Certification Authority (CA) -> issues and verifies digital certificates</ul>
+  <ul>End user -> requests, manages and uses certificates</ul>
+  <ul>Registration Authority (RA) -> acts as the verifier for the CA</ul>
+</ol></p>
+
+  <p>PKI is a comprehensive system that allows the use of public-key encryption and digital signature services across a wide variety of applications. 
+    PKI authentication depends on digital certificates (also known as public-key certificates) that CAs sign and provide. A digital certificate is a 
+    digitally signed statement with a public key and the subject (user, company, or system) name in it. PKI uses public-key cryptography, 
+    which is widely used on the Internet to encrypt messages or authenticate message senders. In public-key cryptography, a CA generates public 
+    and private keys with the same algorithm simultaneously. The private key is held only by the subject (user, company, or system) mentioned in the 
+    certificate, while the public key is made publicly available in a directory that all parties can access. The subject keeps the private key secret and 
+    uses it to decrypt the text encrypted by someone else using the corresponding public key (available in a public directory). Thus, others encrypt messages for 
+    the user with the user’s public key, and the user decrypts it with his/her private key</p>
+
+  
