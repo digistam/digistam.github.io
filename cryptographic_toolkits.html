@@ -17,4 +17,114 @@
 
 <h1>Pretty Good Privacy (PGP)</h1>  
   <p>PGP is a protocol used to encrypt and decrypt data with authentication and cryptographic 
-  privacy. </p>
+  privacy. It is often used for data compression, digital signing, encryption and decryption 
+  of messages, emails, files and directories, and to enhance the privacy of email communications. 
+  The alogrithm used for message encryption is RSA for key transport and IDEA for bulk-message 
+  encryption. PGP uses RSA for computing digital signatures and MD5 for computing message 
+  digests.</p>
+  <p>It combines the best features for both conventional (around 1000 times faster than public 
+  key encryption) and public key cryptography (solution to key distribution and data transmission 
+  issues), and is therefore known as a hybrid cryptosystem.</p>
+  <p>PGP is used for:</p>
+  <p><ol>
+    <ul>Encrypting a message or file prior to transmission so that only the recipient can 
+    decrypt and read it</ul>
+    <ul>Clear signing of the plaintext message to ensure the authenticity of the sender</ul>
+    <ul>Encrypting stored computer files so that no one besides the person who encrypted them 
+    can decrypt them</ul>
+    <ul>Deleting files rather than just removing them from the directory or folder</ul>
+    <ul>Data compression for storage or transmission</ul>
+  </ol></p>
+<p>How PGP works</p>
+  <p>PGP Encryption</p>
+<p><ol>
+  <ul>When a user encrypts data with PGP, PGP first compresses the data</ul>
+  <ul>Compressing the data reduces patterns in the plaintext that could be exploited by 
+  most cryptanalysis techniques to crack the ciper, thereby increasing the resistance to 
+  cryptanalysis considerably</ul>
+  <ul>PGP then creates a random key that is a one-time only secret key</ul>
+  <ul>PGP uses the random key generated to encrypt the plaintext, resulting in a ciphertext</ul>
+  <ul>Once the data is encrypted, a random key is encrypted with the recipient's public key</ul>
+  <ul>The public key encrypted random key is sent along with the ciphertext to the recipient</ul>
+</ol></p>
+  <p>PGP Decryption</p>
+  <p><ol>
+    <ul>Decryption works in reverse</ul>
+    <ul>The recipient's copy of PGP uses his private key instead of the public key to recover
+    the temporary random key</ul>
+    <ul>PGP then uses the recovered random key to decrypt the conventionally encrypted ciphertext</ul>
+  </ol></p>
+  <p>Each step of the PGP encryption process (hashing, data compression, symmetric key cryptography, 
+  and public key cryptography) uses one of the various supported algorithms.</p>
+
+  <h1>GNU Privacy Guard (GPG)</h1>
+  <p>GPG is a software replacement of PGP and free implementation of the OpenPGP standard that is used 
+  to encrypt and decrypt data. GPG is also called a hybrid encryption software program, as it uses both 
+  symmetric key cryptography and asymmetric cryptography for improved speed and secure key exchange, which 
+  is achieved using the receiver's public key for encrypting the session key.</p>
+  <p>GPG also supports S/MIME and Secure Shell (SSH). The latest version of GPG supports most cryptographic 
+  functions, such as elliptic curve cryptography (ECDSA, ECDH and EdDSA), and it also supports the 
+  cryptography library Libgcrypt.</p>
+  <p>GPG is used for:</p>
+  <p><ol>
+    <ul>Proper key management of both private and public keys</ul>
+    <ul>Creating new private keys and exporting or importing any key even though it is in some 
+    armored (eg. ASCII) format</ul>
+    <ul>Pushing the public key to the key server by signing code with the GPG key having a public 
+    signature</ul>
+    <ul>Deleting a private key from local storage</ul>
+    <ul>Encrypting and signing files using asymmetric keys for encrypting any file used for email 
+    or FTP</ul>
+    <ul>Decrypting and verifying the encrypted file using asymmetric keys</ul>
+    <ul>Detaching signatures where the signature file can be detached from the message file </ul>
+    <ul>Managing and building the web of trust</ul>
+    <ul>Automatically securing messages in messaging applications such as Psi and FIre</ul>
+  </ol></p>
+  <p>How GPG works</p>
+  <p>GPG Encryption:</p>
+  <p><ol>
+    <ul>GPG encrypts messages individually by using asymmetric key pairs</ul>
+    <ul>The user sends the raw file, and GPG is used for signing the file using the sender's
+    private key for confirming the file contents at the time of signing</ul>
+    <ul>Then, the file is encrypted using the receiver's public key. Now, the file can be 
+    decrypted only with the receiver's private key</ul>
+    <ul>After encrypting the data, the encrypted file can be stored locally, distributed to the 
+    FTP servers, or sent to the email recipients</ul>
+  </ol></p>
+  <p>GPG Decryption:</p>
+  <p><ol>
+    <ul>GPG decryption is the reverse process of GPG encryption</ul>
+    <ul>As the asymmetric key pairs are used, GPG searches for the receiver's private key 
+    for decrypting the file</ul>
+    <ul>Signature verification is done automatically by the GPG using the sender's public key 
+    after the decryption</ul>
+  </ol></p>
+  <h1>Web of Trust (WOT)</h1>
+  <p>WOT is a trust model of PGP, OpenPGP and GnuPG accessible systems. It is an idea of decentralizing
+  the key distribution among PGP users. In the PKI, only a centralized power such as the CA signs certificates
+  in the network, ensuring authenticity between the public key and its owner. In WOT, everyone in the 
+  network is a CA, and they can sign for other trusted entities. WOT is a network chain in which individuals 
+  intermediately validate each other's certificates using their signatures. These signatures verify the 
+  ownership of keys from various trust levels. There is a bunch of similar trust levels through direct or 
+  indirect references in WOT.</p>
+  <p>In WOT, every PGP user in the network has a ring of public keys to encrypt the data, and they 
+  introduce many others whom they trust. In this trust model, a user encodes the data with the receiver's
+  public key that is decrypted only by the receiver's private key. Then, every user in the model digitally 
+  signs the data with their private keys; when the recipient is validating it against the user's public key, 
+  he can confirm the user's authenticity. This process will ensure that data are received from a valid 
+  user without being modified, and only the intended user can access the information, as only he holds the 
+  related private key.</p>
+
+  <h1>Encrypting Email messages in Outlook</h1>
+  <h2>Secure/Multipurpose Internet Mail Extensions (S/MIME) Encryption</h2>
+  <p>S/MIME certification is a technique that allows users to encrypt their email messages. It is used 
+  for encrypting Outlook email messages so that senders and the designated receivers can access them 
+  without compromising the integrity of the message.</p>
+
+  <h1>Disk Encryption</h1>
+  <p>Disk encryption encrypts every bit of data stored on a disk or a disk volume, thus preventing illegal
+  access to data storage. Disk encryption is a technology that protects the confidentiality of the 
+  data stored on a disk by converting it into an ureadable code using disk encryption software or hardware.</p>
+  <p>BitLocker uses a microchip that is called a <b>Trusted Platform Module (TPM)</b> to provide 
+  enhanced protection for your data and to preserve early boot component integrity. The TPM can help 
+  protect your data from theft or unauthorized access by encrypting the entire Wíndows volume.</p>
