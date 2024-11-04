@@ -41,3 +41,91 @@ obsolete.</p>
   a non-repeating set of letters or numbers, chosed by the system randomly. The user writes them on small sheets of paper and then pastes them together in a pad. The sender encrypts only one plaintext
   character using each key letter on the pad, and the receiver decrypts each letter of the ciphertext using an identical pad. Once the letter uses a page, he tears it off the pad and securely discards it; 
   hence the name one-time pad. A drawback is that the key length is the same as that of the message, thus making it impossible to encrypt and send large messages.</p>
+
+  <h1>Cryptography Attacks</h1>
+  <p>A cryptography attack or cryptanalysis involves the study of various principles and methods of decrypting the ciphertext back to the plaintext without knowledge of the key.</p>
+  <h2>Ciphertext-only attack</h2>
+  <p><ol>
+    <ul>Less effective but much more likely for the attacker</ul>
+    <ul>The attacker only has access to a collection of ciphertexts</ul>
+    <ul>The attack is completely succesful if the corresponding plaintexts (or even better, the key) can be deduced</ul>
+    <ul>Obtaining any information at all about the underlying plaintext is considered a success</ul>
+    <ul>Often, the result of an attack is just a partial break and not a complete break</ul>
+  </ol></p>
+  <h2>Adaptive Chosen-plaintext attack</h2>
+  <p><ol>
+    <ul>The attacker has complete access to the plaintext message including its encryption</ul>
+    <ul>He can modify the content of the message by making a series of interactive queries, choosing subsequent plaintext blocks based on the information from the previous encryption queries and functions</ul>
+    <ul>To perform this attack, an attacker needs to interact with the encryption device</ul>
+  </ol></p>
+  <h2>Chosen-plaintext attack</h2>
+  <p><ol>
+    <ul>Highly effective type of cryptanalysis attack</ul>
+    <ul>The attacker obtains the ciphertexts corresponding to a set of plaintexts of his/her own choosing</ul>
+    <ul>The attacker attempts to derive the key used and thus decrypt other messages encrypted with that key</ul>
+    <ul>Since the attacker knows the plaintext and the resultant ciphertext, he gains many insights into the key used</ul>
+    <ul>This technique can be difficult but is not impossible</ul>
+    </ul>
+  </ol></p>
+  <h2>Related-Key attack</h2>
+  <p><ol>
+    <ul>Similar to chosen plaintext attack, except that the attacker can obtain ciphertexts encrypted under two different keys</ul>
+    <ul>Very useful attack is you can obtain the plaintext and matching ciphertext</ul>
+    <ul>The attack requires that the differing keys be closely related, e.g. in a wireless environment where subsequent keys might be derived from previous keys</ul>
+    <ul>The keys are different, but close</ul>
+    <ul>Most likely resulting in a partial break</ul>
+  </ol></p>
+  <h2>Dictionary attack</h2>
+  <p><ol>
+    <ul>After building a dictionary, if the attacker obtains the ciphertext, the attacker uses the already built dictionary to find the corresponding plaintext</ul>
+    <ul>Decrypting keys, passwords, passphrases and ciphertext</ul>
+  </ol></p>
+  <h2>Known-plaintext attack</h2>
+  <p><ol>
+    <ul>The only information available to the attacker is some plaintext blocks along with the corresponding ciphertext and algorithm used to encrypt and decrypt the text</ul>
+    <ul>Using this information, the key used to generate the ciphertext is deduced so as to decipher other messages</ul>
+    <ul>This attack works on block ciphers and is an example of linear cryptanalysis</ul>
+    <ul>The known plaintext blocks are generated using a series of intelligent guesses and logic, and not by accessing the plaintext over a channel</ul>
+  </ol></p>
+  <h2>Chosen-ciphertext attack</h2>
+  <p><ol>
+    <ul>The attacker obtains the plaintext corresponding to an arbitrary set of ciphertexts of his own choosing</ul>
+    <ul>Using this information, the attacker tries to recover the key used to encrypt the plaintext</ul>
+    <ul>To perform this attack, the attacker must have access to the communication channel between the sender and the receiver</ul>
+    <ul>Two variants:</ul>
+    <ul>Lunchtime of Midnight attack -> the attacker can have access to the system for only a limited amount of time or can access only a few plaintext-ciphertext pairs</ul>
+    <ul>Adaptive Chosen-ciphertext attack -> the attacker selects a series of ciphertexts and then observes the resulting plaintext blocks</ul>
+  </ol></p>
+  <h2>Rubber Hose attack</h2>
+  <p>using coercion or torture -> people under pressure can't maintain security</p>
+  <h2>Chosen-key attack</h2>
+  <p><ol>
+    <ul>An attacker not only breaks a ciphertext but also breaks into a larger system, dependent of that ciphertext</ul>
+    <ul>Once an attacker breaks the cipher, he gets access to the system, and he can control the whole system</ul>
+  </ol></p>
+  <h2>Timing attack</h2>
+  <p><ol>
+    <ul>Based on repeatedly measuring the exact execution times of modular exponentiation operations</ul>
+    <ul>The attacker tries to break the ciphertext by analyzing the time take to execute the encryption and decryption algorithm for various inputs</ul>
+    <ul>In a computer, the time taken to execute a logical operation may vary based on the input given</ul>
+    <ul>An attacker tries to extract the plaintext by giving varying inputs</ul>
+  </ol></p>
+  <h2>Man-in-the-Middle attack</h2>
+  <p><ol>
+    <ul>Attack performed against a cryptographic protocol</ul>
+    <ul>An attacker intercepts the communcation between a client and a server and negotiates the cryptographic parameters</ul>
+    <ul>Using this attack, an attacker can decrypt the encrypted content and obtain confidential information such as system passwords</ul>
+    <ul>An attacker can also inject commands that can modify the data in transit</ul>
+    <ul>MITM is usually performed on public key cryptosystems where key exchange is required before communication takes place</ul>
+  </ol></p>
+  <h2>Birthday Attac</h2>
+  <p>A birthday attack refers to a class of brute-force attacks against cryptographic hashes that renders brute-forcing easier to perform. This attack depends on the <b>birthday paradox</b> which is the 
+  probability of two or more people in a group of 23 sharing the same birthday is greater than 0.5.</p>
+  <p>How many people are needed to have a high likelihood that two will share the same birthday. There are 365 days a year, and therefore you might think that at least half or 182 people share the same
+  birthday, when it is actually only 23! Even with 23 people in a room, there is a 50% chance that two of them will have their birthdays on the same day and month.</p>
+  <p>The idea behind the birthday attack is to attempt to find a collision for a given hash. Assume the hash is MD5 with 128-bit output. You would have to try 2^128 possible hashes to guarentee a 
+  collision, which is a VERY LARGE number. From the birthday paradox, we still need a very large number but many orders of magnitude smaller than the first value.</p>
+  <h2>Meet-in-the-Middle attack on digital signature schemes</h2>
+  <p>A meet-in-the-middle attack is the best attack method for cryptographic algorithms using multiple keys for encryption. This attack reduces the number of brute-force permutations required to decode text 
+  encrypted by more than one key. A meet-in-the-middle attack uses space-time trade-off; it is also a type of birthday attack because it exploits the mathematics behind the birthday paradox, and the attack 
+  consumes less time than an exhaustive attack. It is called a meet-in-the-middle attack because it works by encrypting from one end and decrypting from the other end, thereby <b>meeting in the middle</b>.</p>
