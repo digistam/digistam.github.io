@@ -129,3 +129,31 @@ obsolete.</p>
   <p>A meet-in-the-middle attack is the best attack method for cryptographic algorithms using multiple keys for encryption. This attack reduces the number of brute-force permutations required to decode text 
   encrypted by more than one key. A meet-in-the-middle attack uses space-time trade-off; it is also a type of birthday attack because it exploits the mathematics behind the birthday paradox, and the attack 
   consumes less time than an exhaustive attack. It is called a meet-in-the-middle attack because it works by encrypting from one end and decrypting from the other end, thereby <b>meeting in the middle</b>.</p>
+  <p>In the meet-in-the-middle attack, the attacker uses a known plaintext message. The attacker has access to both the plaintext as well as the respective encrypted text. This attack is performed by attackers 
+  for forging messages that use multiple encryption schemes.</p>
+<h2>Side-Channel attack</h2>
+<p>A side-channel attack is a physical attack performed on a cryptographic device/cryptosystem to gain sensitive information. Cryptography is generally part of the hardware or software that runs on physical 
+devices such as semi-conductors (resistor, transistor etc.) that interact with and affect various environmental factors as follows:</p>
+<p><ol>
+  <ul>Power Consumption -> simple power analysis (SPA), differential power analysis (DPA)</ul>
+  <ul>Electromagnetical field -> computer components often generate electromagnetic radiation; by measuring the variations of the electromagnetical field over the chip surface, an attacker can predict its
+  correlation to the underlying computation and data and may be able to deduce some valuable information about this computation and data</ul>
+  <ul>Light emission -> deduce the data a computer is processing based on the optical radiation emitted from its LED status indicators</ul>
+  <ul>Timing and Delay</ul>
+  <ul>Sound -> acoustic attacks exploit the sound produced during a computation; these acoustic emissions are from keyboards and computing components (CPU, memory etc.)</ul>
+</ol></p>
+  <h2>Hash collision attack</h2>
+  <p><ol>
+    <ul>Performed by finding two different input messages that result in the same hash output</ul>
+    <ul>hash(a1) = hash(a2)</ul>
+    <ul>Since the algorithm itself randomly selects these messages, attackers have no role in the content of these messages. This allows the attacker to perform cryptanalysis by exploiting the digital signature 
+    used to generate a different message with the same hash value</ul>
+    <ul>Once the attacker detects a collision in the hash, he can identify more collisions by concatenating the data to matching messages</ul>
+  </ol></p>
+  <h2>DUHK attack</h2>
+  <p><b>Don't Use Hard-Coded Keys (DUHK)</b> is a cryptographic vulnerability that allows attackers to obtain encryption keys used to secure VPNs and web sessions. This attack mainly affects any hardware / software 
+  using the ANSI X9.31 Random Number Generator (RNG). Pseudorandom number generators (PRNGs) generate random sequences of bits based on the initial secret value, called <b>seed</b> and the current state. The PRNG
+  algorithm generates cryptographic keys that are used to establish a secure communication channel over the VPN. In some cases, the seed key is hardcoded into the implementation. Both the factors are key issues 
+  of the DUHK attack, as any attacker can combine ANSO X9.31 with the hard coded seed key to decrypt the encrypted data sent or received by that device.</p>
+  <p>MITM attackers use the DUHK attack to learn the seed value, observe the current session, and obtain the current state value. Using this attack, attackers can identify encryption keys and steal confidential 
+  information such as critical business data, user credentials and credit card details.</p>
