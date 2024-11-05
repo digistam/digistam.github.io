@@ -157,3 +157,34 @@ devices such as semi-conductors (resistor, transistor etc.) that interact with a
   of the DUHK attack, as any attacker can combine ANSO X9.31 with the hard coded seed key to decrypt the encrypted data sent or received by that device.</p>
   <p>MITM attackers use the DUHK attack to learn the seed value, observe the current session, and obtain the current state value. Using this attack, attackers can identify encryption keys and steal confidential 
   information such as critical business data, user credentials and credit card details.</p>
+<h2>Rainbow Table attack</h2>
+<p>A rainbow table attack is a type of cryptography attack whereby an attacker uses a rainbow table for reversing cryptographic hash functions. A rainbow table attack uses the cryptanalytic time-memory trade-off 
+technique, which is less time consuming than other techniques. It uses already calculated information stored in memory for encryption. In the rainbow table attack, the attacker creates a table of all the possible 
+passwords and their respective hash values, called a rainbow table, in advance.</p>
+<p>A rainbow table contains word lists such as dictionary files and brute-force lists and their hash values. It is a lookup table particularly used for recovering a plaintext password from a ciphertext. The 
+attacker uses this table to look for the password en tries to recover it from password hashed. An attacker computes the hash for a list of possible passwords and compares it with the pre-computed hash table 
+(rainbow table). If a match is found, then he can crack the password. It is easy to recover passwords by comparing the captured password hashes with pre-computed tables.</p>
+<h2>Related-Key attack</h2>
+<p><ol>
+  <ul>Attackers launch a related-key attack by exploiting the mathematical relationship between the keys in a cipher and gain access to encryption and decryption functions. The attacker's motive for launching 
+  this attack is to find the related private / secret keys. To implement this attack, the attacker monitors the cipher operation where key values are initially unknown; then, the attacker captures the relation 
+  between those keys after a thorough examination. For instance, the attacker observes and finds that the last 80 bits of the keys are same at all times, but he does not initially know about these bits.</ul>
+  <ul>The failure in WEP cryptography, when used in wireless networks, is the best example of this attack. In this attack, each AP and user interface device uses the same key. The encryption used in WEP is a 
+  stream cipher known as RC4; it is important to note that the same keys should not be repeated in the stream cipher. To avoid this, WEP integrates a 24-bit initial vector (IV) in every packet transferred.</ul>
+</ol></p>
+  <h2>Padding Oracle attack</h2>
+  <p>In a padding oracle attack, the attackers exploit the padding validation of an encrypted message to decipher the ciphertext. Such an attack is also known as a Vaudenay attack. In many cryptographic algorithms 
+  based on a block cipher, the messages are padded with additional random bits so that the length of the last block is of the required size. Padding oracle is a function of such encryption that verifies if a 
+  message was correctly padded. This attack is mainly performed on algorithms that operate in the CBC (Cipher Block Chaining) mode.</p>
+  <h2>DROWN attack</h2>
+  <p>Decrypting RSA with Obsolete and Weakened eNcryption (DROWN) is a grave vulnerability that can affect important cryptographic protocols such as HTTPS and other cryptographic services that depend on SSL and TLS. 
+  The DROWN attack is a cross-protocol weakness that can communicate and initiate an attack on servers supporting recent SSLv3/TLS protocol suites. The server is critically vulnerable to the DROWN attack if:</p>
+  <p><ol>
+    <ul>The server permits SSLv2 connection, which is mostly caused by a misconfiguration or incorrect default settings</ul>
+    <ul>The same private key certificate is used on a different server that allows SSLv2 connection, and it also makes the TLS server vulnerable, as the SSLv2 server can leak the key information</ul>
+  </ol></p>
+  <p>The DROWN attack allows the attacker to decrypt the latest TLS connection between the victim client and the server by launching malicious SSLv2 probes using the same private key. Using this attack, the 
+  attacker can also force the victim client and server to use the RSA key exchange. Thus, the attacker can disrupt connections among the latest browsers and servers that favor the use of latest techniques, 
+  i.e. perfect-forward-secret key exchange, such as DHE and ECDH.</p>
+  <p>Attackers perform the DROWN attack as part of an online MITM attack, breaking encrypted keys, sniffing or stealing sensitive information such as passwords and bank account details, and accessing personal 
+  emails or messages. By performing this attack, the attacker can also masquerade as a secure website and thus seize or change the website contents.</p>
