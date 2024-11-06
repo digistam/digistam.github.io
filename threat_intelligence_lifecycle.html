@@ -12,4 +12,16 @@
   <ul>Dissemination and Integration -> integration and distribution to intended customers</ul>
 </ol></p>
 
-  
+  <h1>Attack Lifecycle</h1>
+  <p>Company Mandiant often refers to a different methodology called <b>attack life cycle</b>. This is different from the Cyber Kill Chain. Rather than having a military focus, the attack life cycle describes
+  exactly how attackers have operated for as far back as there have been attacks against computing infrastructure. One significant diference between the attack life cycle and the cyber kill chain is a recognition 
+  that often an attack is not one-and-done. There is a <b>loop</b> that happens in the middle. Attackers don't keep launching attacks from outside the network. Once they get into the environment, they use the 
+  compromised systems as launch points for additional compromises within the environment. Attackers will gain access to a system and use that system and anything discovered there, like credentials, to move 
+  off to another system in the network. Before we get there, though, an attacker identifies a victim and potential attack possibilities in the <b>initial recon</b> stage. The attacker is doing reconnaissance, 
+  including identifying names and titles using open source intelligence. To gain access, they launch attacks - commonly phishing attacks - the <b>initial compromise</b> stage.</p>
+  <p>Once the attackers compromised a system, the attacker will work to <b>establish a foothold</b>. This includes making sure they retain access to the system so they can get back in when they need to. It may 
+  take days or weeks to move from one phase of the attack life cycle to another. This depends on the organization performing the attacks. They are NOT individuals. To do much else, the attacker will need to 
+  <b>escalate privileges</b>. Administrative privileges are needed to move into the <b>loop</b> that happens as they continue to move through the environment. They may try to identify other credentials that are 
+  known to the system, a form of <b>internal reconnaissance</b>. The <b>reconnaissance</b> is needed to be able to <b>move laterally</b>. This is sometimes known as <b>east-west movement</b>. With every system the 
+  attacker gets access to, they need to <b>maintain presence</b>. This means some form of persistence, so any malware that is allowing the attacker access remains running. The last phase of the attack life cycle is 
+  <b>complete mission</b>. Likely, the attacker will come back sooner or later...</p>
