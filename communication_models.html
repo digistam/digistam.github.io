@@ -1,0 +1,94 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=index.html>Back to home</a>
+<hr/>
+<h1>Communications Models</h1>
+<p>We access systems through their addresses. Each system has multiple addresses. These addresses are separated into <b>buckets</b> related to the functionality provided by the protocol each address belongs to.</p>
+  <p>Communication Models are broken into layers, the layers are stacked on top of one another. Often they are referred to as <b>network stacks</b> or <b>protocol stacks</b>. It is important to consider that all the 
+  layers are all separate and the functionality is distinct. When two systems are talking to each other, each has these notional layers. Layer C of machine 1 can only talk to layer C of machine 2 etc. This is 
+  because the protocol at layer C on both systems match. The same is true for other protocols.</p>
+<h2>Protocols</h2>
+  <p>Start Wireshark and do some capture with eth0. Wireshark will show captured frames containing protocols (for example: Internet Protocol Version 4, User Datagram Protocol, Simple Service Discovery Protocol).</p>
+<p>A protocol is a set of rules or conventions that dictate communication. Dissecting the functions of network communications into layers means the functions are modulized. This means that it can be easy to 
+extract one protocol from the chain and insert into another. This works because the functionality of each layer is abstracted, meaning layers can communicate with each other without needing to known the details
+because the functionality is known. The individual protocols don't matter, necessarily.</p>
+<h2>OSI - Open Systems Interconnection</h2>
+<p>The OSI model contains seven layers:</p>
+<p><ol>
+  <ul>Application (Layer 7) -> closest to the end users (NOT the application itself, but the PROTOCOLS); Example: Hypertext Transfer Protocol (HTTP)</ul>
+  <ul>Presentation (Layer 6) -> responsible for preparing data for the application itself; when systems are communicating there may be disconnects in formatting between the two endpoints, the presentation 
+  layer makes sure the data is correctly formatted; Example: ASCII, Unicode, JPEG</ul>
+  <ul>Session (Layer 5) -> manages the communication between the two endpoints when it comes to maintaining the communication of applications; Example: Remote Procedure Calls (RPC), components of file sharing services</ul>
+  <ul>Transport (Layer 4) -> takes care of segmenting messages for transmission as well as multiplexing of the communication; Example: TCP, UDP</ul>
+  <ul>Network (Layer 3) -> gets messages from one endpoint to another, taking care of addressing and routing; Example: IP</ul>
+  <ul>Data Link (Layer 2) -> media access control (MAC), identifying the network interface on the network so communications can get from one system to another on the local network; Example: ARP (Address Resolution 
+  Protocol), virtual local networks (VLANs), Ethernet</ul>
+  <ul>Physical (Layer 1) -> all the protocols that manage the physical communications, dictating how the pulses on the wire are handled; Example: 10BaseT, 100BaseTX</ul>
+</ol></p>
+  <p>One of the problems with the OSI model is that there not always good fits when it comes to mapping protocols to the seven layers. The problem often comes in the areas between the Session and Application Layers. 
+  At which layer does SSH protocol live ? It handles sessions, or is it in the application layer because it includes encryption mechanisms and negotiates them ?</p>
+  <h2>TCP/IP Architecture</h2>
+  <p>The TCP/IP architecture (sometimes called model) is a much simpler design than the OSI model. It only has four layers:</p>
+  <p><ol>
+    <ul>Application</ul>
+    <ul>Transport</ul>
+    <ul>Internet</ul>
+    <ul>Link</ul>
+  </ol></p>
+  <p>Regardless of which model you prefer to think about networking in, protocols don't generally sprawl across multiple layers. They are designed to fill the requirements of a specific function, which will 
+  land pretty squarely into one of the layers of each model.</p>
+  <h1>Physical networking</h1>
+  <p>Each layer of the network stack has a different term to refer to the chunk of data encapsulated by that layer. These chunks are called <b>protocol data units (PDUs)</b>. The PDU at Layer 2, is a <b>frame</b>. 
+  When you are looking at a chunk of data with the physical address in it, you are looking at a frame (Wireshark will also show it as a "frame").</p>
+  <h2>Addressing</h2>
+  <p>Ethernet interfaces all have addresses. These addresses are exclusive to each network interface and they are called MAC addresses. MAC addresses are hard coded into the hardware of the interface, it is 
+  sometimes referred to as the <b>hardware address</b>. Since it's also the address that is used by a physical piece of hardware, it is sometimes referred to as a <b>physical address</b>. Common format is 
+  6 octets (8 bit bytes) separated by colons (BA:00:4C:78:75:57). First part is the Vendor ID / organizationally unique identifier (UOI). Second half is the unique ID for the card itself.</p>
+  <h2>Switching</h2>
+  <p>MAC addresses are the cornerstone for switching. Switching is what happens when decisions about forwarding messages are based on the physical address. A switch is really a multiport bridge. A bridge 
+  connects two networks together. What a switch does is make determinations about what traffic goes to which port based on the destination MAC address.</p>
+  <h2>IP</h2>
+  <p>Moving into the Network layer, we run across IP. As each layer is passed trough, a set of data is added to the message that is specific to the protocol processing the message. These sets of data are 
+  called <b>headers</b>. Each protocol has its own set of headers that get attached. The message is then encapsulated by the headers, creating an entirely new PDU. For IP, the PDU is called a <b>packet</b>. IP 
+  is considered a <b>best effort</b> protocol. It does its best to get packets from the source to the destination. It does nothing to absolutely ensure that they get there. It does facilitate the 
+  transmissions, however, by providing addressing.</p>
+  <h2>Headers</h2>
+  <p>When looking at the <b>Internet Protocol</b> in a Wireshark Frame you will see header fields:</p>
+  <p><ol>
+    <ul>Version -> 4, 6 (4-bit field)</ul>
+    <ul>Header Length -> most common is 20 bytes</ul>
+    <ul>Type of Service -> ToS, referred to as Differentiated Services Field; helps network elements to make QoS decisions by prioritizing some messages and deprioritizing others</ul>
+    <ul>Total Length -> max. 65.535 octets (bytes)</ul>
+    <ul>Identification -> sometimes there is too much data beingt sent to fit into the maximum length allowed based on the size of the length field. This means that sometimes the messages need to be 
+    fragmented; all fragments will have the same identification value</ul>
+    <ul>Flags -> 3 bits allocated to a flags field. One is reserved and the second indicates whether the message can be fragmented (DF bit). The last bit is used to indicate whether there are additional 
+    fragments</ul>
+    <ul>Fragment Offset -> 13 bits long, indicates where the data in the packet aligns, to let the receiving system known how to stitch all the fragments together</ul>
+    <ul>Time to Live -> TTL, indicates how long a message can live on the network before it is considered to be expired; Once the field hits 0, the message is discarded and an error message is returned to the sender</ul>
+    <ul>Protocol -> tells the receiving system what headers to look for in the transport header</ul>
+    <ul>Checksum -> 16 bit value to determine whether the header is intact</ul>
+    <ul>Source Address -> IPv4 address that sent the message</ul>
+    <ul>Destination Address -> IPv4 address the message is going to</ul>
+  </ol></p>
+  <p>IPv4 addresses are 4 octets (bytes) long. They are commonly shown as being separated by a period (.) and are sometimes referred to as <b>dotted quads</b> or <b>dotted decimal</b>. 
+  Since each value is 8 bits, there are potential values of 0 to 255. The address range 127.0.0.1 - 127.255.255.255 is reserved for loopback addresses. The loopback interface ensures there is always a 
+  network interface on the system and allows for testing over a network without sending any traffic outside the system. Commonly the loopback address on systems is 127.0.0.1 though any address in that 
+  range could be used.</p>
+  <p>RFC 1918 defines ranges of IP addresses that are used for private networks. These addresses are not routable over the internet. Most networks will do something to block source addresses from these 
+  ranges coming into their space, since they should never be originating from the outside of a network:</p>
+  <p><ol>
+    <ul>10.0.0.0 - 10.255.255.255</ul>
+    <ul>172.16.0.0 - 172.31.255.255</ul>
+    <ul>192.168.0.0 - 192.168.255.255</ul>
+  </ol></p>
+  <h1>Subnets</h1>
+  <p>IP addresses are aggregated into networks using contiguous addresses. This makes routing to those addresses easier since routing tables don't have to keep track of every single IP address. 
+  The subnet mask is 32 bits in length and represented as a dotted quad. To determine what portion of an IP address belongs to the network, you look at the bits that are set to 1 in the subnet mask.</p>
+  <p>1111 1111.1111 1111.1111 1111.1000 0000</p>
+  <p>In this example: any bit position that has a 1 in it is part of the network segment. As a result, subnet masks can have only certain values: 0, 128, 192, 224, 240, 248, 252, 254 and 255. 
+  This is because every position is a power of two and we add on from the most significant bit on the left side. The <a target=_blank href=https://www.rapidtables.com/convert/number/binary-to-decimal.html?x=10000000>binary 10000000</a>
+  equals to 128 in decimal. 11000000 is 192. Every time we set a bit to 1, we add on the next lower power of 2. </p>
+ <p>11111111.11111111.11111111.10000000 = 255.255.255.128</p>
+ <p>With a subnet mask of 255.255.255.128 we have the possibility of two address blocks, regardless of what the IP address is, we can only vary the last octet. In this case, we can't change the value in the 
+ most significant bit position. This leaves us with the ranges 0 - 127 and 128 - 255. Once we known what the IP address is, we known in which block we are. Let's say the IP address is 172.20.30.42 and the network 
+ mask is 255.255.255.128. We can see the address block has to be 172.20.30.0 because that's the range .42 lands in.</p>
