@@ -120,7 +120,20 @@ ns1.bdm.microsoftonline.com. 216 IN     A       13.107.236.208<br>
 <br>
 ; Transfer failed.
 </code>
-<h2>DNSRecon</h2>
+
+<p>The response is quite a bit more detailed than we've seen so far. </p>
+    
+<h1>Zone Transfers</h1>
+    <p>Now that we know dig exists we have to be aware of the fact that issuing single requests is fine, but it assumes you known some information. In most cases, applications are asking for the information 
+    about IP addresses from FQDNs so the application can function correctly. In our case, as hackers, we are sometimes looking for all the hostnames that belong to a domain. This can be done using something 
+    called a zone transfer. A zone transfer is legitimately used between multiple authorative NSs in a domain to keep the servers in sync. Most domains you will run across won't allow zone transfers from any 
+    other than the secondary NSs that have been configured. Second, many companies use something called split DNS. Split DNS is where the outside world is given an authoritative server address for externally 
+    resolved hosts, like the web server and the mail server. Any system inside the enterprise network would use the company resolver, which would be configured as authoritative for the corporate domain. 
+    This means it can have many other systems that are not known or available to the outside world but that internal systems can resolve and connect to.</p>
+    <h2>Zone transfer using dig</h2>
+    <p>dig axfr domain.com @192.168.86.51</p>
+
+    <h2>DNSRecon</h2>
   <p>command: dnsrecon -d <i>tld</i> -z</p>
   <p>Output:</p>
   <code>
@@ -158,17 +171,6 @@ AAAA domain.nl 2a03:3c00:a002:240::100a<br>
 2 records found
 </code>
 
-<p>The response is quite a bit more detailed than we've seen so far. </p>
-
-<h1>Zone Transfers</h1>
-    <p>Now that we know dig exists we have to be aware of the fact that issuing single requests is fine, but it assumes you known some information. In most cases, applications are asking for the information 
-    about IP addresses from FQDNs so the application can function correctly. In our case, as hackers, we are sometimes looking for all the hostnames that belong to a domain. This can be done using something 
-    called a zone transfer. A zone transfer is legitimately used between multiple authorative NSs in a domain to keep the servers in sync. Most domains you will run across won't allow zone transfers from any 
-    other than the secondary NSs that have been configured. Second, many companies use something called split DNS. Split DNS is where the outside world is given an authoritative server address for externally 
-    resolved hosts, like the web server and the mail server. Any system inside the enterprise network would use the company resolver, which would be configured as authoritative for the corporate domain. 
-    This means it can have many other systems that are not known or available to the outside world but that internal systems can resolve and connect to.</p>
-    <h2>Zone transfer using dig</h2>
-    <p>dig axfr domain.com @192.168.86.51</p>
 
     <h1>Brute Force</h1>
     <p>As zone transfers are generally <b>disallowed</b> we have to rely on less elegant solutions to gather information about a target. We can use <b>dnsrecon</b> to extract some of the common resource records in DNS.
