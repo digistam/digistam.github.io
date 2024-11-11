@@ -47,6 +47,9 @@
         <ul>PTR -> pointer from IP address to FQDN. Unlike an A record, this is not necessary but considered usefule. A FQDN always has to map to an IP address but an IP address does not have to map to a hostname. 
         Often multiple FQDNs may map to a single IP address</ul>
     </ol></p>
+    <h2>IP blocks</h2>
+    <p>Once finding an IP address, it can be run through WhoIs (<a target=_blank href=https://whois.domaintools.com>https://whois.domaintools.com</a>) to get the <b>network block</b> and the <b>owner</b> of the block.
+    You may get ranges of IP addresses that belong to the company.</p>
     <h2>Tools</h2>
     
 <p>The amount of tools do perform DNS enumeration confuses me. I created an overview with standard tools to use:</p>
@@ -191,6 +194,11 @@ chased down.</p>
     <p>DNS gives a good idea how to start to size a footprint. Select a domain. Once you have the IP addresses, identify the address blocks and who owns them. Keep track of all the IP addresses and address blocks 
     owned by the company or organization associated with the domain.</p>
 
+    <h2>Internal and external DNS servers</h2>
+    <p>Using the mentioned tools, you will often only get the external DNS servers in use by a company. It's a common tactic for companies to have both internal and external DNS servers. This helps protect the company by not exposing internal systems to the outside world. 
+        Once having access to the inside of the network by compromising some system, you can look at the DNS cache. This is done on Windows systems by running <b>ipconfig /displaydns</b>. This will show all of the 
+    cached DNS entries, meaning FQDN/IP mappings that were resolved at some point and are being stored to help speed up the resolution next time an application needs the IP address. A cached entry will mean a network 
+    request doesn't have to be made, which can save time.</p>
     
     <h1>Other tools</h1>
 <h2>Nmap</h2>
