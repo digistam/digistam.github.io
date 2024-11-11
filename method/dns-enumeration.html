@@ -50,6 +50,78 @@
     <h2>IP blocks</h2>
     <p>Once finding an IP address, it can be run through WhoIs (<a target=_blank href=https://whois.domaintools.com>https://whois.domaintools.com</a>) to get the <b>network block</b> and the <b>owner</b> of the block.
     You may get ranges of IP addresses that belong to the company.</p>
+    <p>Example - IP address 141.138.169.243 found using DIG. Use https://whois.domaintools.com to find this information:</p>
+<code>
+    IP Information for 141.138.169.243
+
+ Quick Stats
+IP Location	Netherlands Netherlands Twekkelerveld Antagonist B.v.
+ASN	Netherlands AS20847 PREVIDER-AS Previder B.V., NL (registered Jun 18, 2001)
+Resolve Host	s240.webhostingserver.nl
+Whois Server	whois.ripe.net
+IP Address	141.138.169.243
+Reverse IP	1,759 websites use this address.
+% Abuse contact for '141.138.168.0 - 141.138.171.255' is ''
+
+inetnum:        141.138.168.0 - 141.138.171.255
+netname:        ANTAGONIST
+descr:          Antagonist B.V.
+country:        NL
+org:            ORG-AB34-RIPE
+admin-c:        ANTA1-RIPE
+tech-c:         ANTA1-RIPE
+status:         ASSIGNED PA
+mnt-by:         ANTAGONIST-MNT
+mnt-routes:     ANTAGONIST-MNT
+mnt-domains:    ANTAGONIST-MNT
+created:        2011-07-01T09:52:26Z
+last-modified:  2011-07-01T09:52:26Z
+source:         RIPE
+
+organisation:   ORG-AB34-RIPE
+org-name:       Antagonist B.V.
+country:        NL
+org-type:       LIR
+address:        Capitool 10
+address:        7521 PL
+address:        Enschede
+address:        NETHERLANDS
+phone:          +31532020010
+fax-no:         +31848746559
+e-mail:         
+mnt-ref:        ANTAGONIST-MNT
+mnt-ref:        RIPE-NCC-HM-MNT
+mnt-by:         RIPE-NCC-HM-MNT
+mnt-by:         ANTAGONIST-MNT
+abuse-c:        ANTA1-RIPE
+created:        2010-12-17T11:03:23Z
+last-modified:  2024-03-19T16:11:45Z
+source:         RIPE
+
+role:           Antagonist B.V. Operations
+address:        Antagonist B.V.
+address:        Capitool 10
+address:        7521 PL Enschede
+address:        NETHERLANDS
+e-mail:         
+abuse-mailbox:  
+admin-c:        SH4000-RIPE
+tech-c:         SH4000-RIPE
+nic-hdl:        ANTA1-RIPE
+mnt-by:         ANTAGONIST-MNT
+created:        2010-12-17T12:42:13Z
+last-modified:  2024-03-22T11:15:12Z
+source:         RIPE
+
+route:          141.138.168.0/22
+descr:          NL-ANTAGONIST-20090921
+descr:          Antagonist B.V., Enschede, NL
+origin:         AS20847
+mnt-by:         ANTAGONIST-MNT
+created:        2023-03-17T13:06:44Z
+last-modified:  2023-03-17T13:07:49Z
+source:         RIPE
+    </code>
     <h2>Tools</h2>
     
 <p>The amount of tools do perform DNS enumeration confuses me. I created an overview with standard tools to use:</p>
@@ -62,7 +134,7 @@
     </ol></p>
     <p><b>Reverse lookups</b> (from IP to FQDN) can give several hostnames associated with it. This is often the case when where a web server is hosting virtual servers.</p>
 
-    <h2>nslookup</h2>
+    <h2>NSLOOKUP</h2>
 <p>nslookup is just as simple as host, but has the advantage that you can issue many requests without having to keep running nslookup. When you run nslookup without any parameters, you get a <b>nslookup shell</b>
 where you can interact with the program.</p>
     <p><ol>
@@ -75,10 +147,6 @@ where you can interact with the program.</p>
 <p>Instead of just looking up the IP address from the FQDN, I used resource records to start. DNS supports multiple resource records, though the most common is the A address record. With <b>set type=ns</b> 
 we tell nslookup to issue subsequent requests asking for ns (name server) records. This will tell the authorative name servers for the given domain. </p>
 
-
-
-
-    
 <h2>DIG</h2>
 <p>command: dig ns <i>tld</i></p>
 <p>Output</p>
@@ -195,8 +263,9 @@ chased down.</p>
     owned by the company or organization associated with the domain.</p>
 
     <h2>Internal and external DNS servers</h2>
-    <p>Using the mentioned tools, you will often only get the external DNS servers in use by a company. It's a common tactic for companies to have both internal and external DNS servers. This helps protect the company by not exposing internal systems to the outside world. 
-        Once having access to the inside of the network by compromising some system, you can look at the DNS cache. This is done on Windows systems by running <b>ipconfig /displaydns</b>. This will show all of the 
+    <p>Using the mentioned tools, you will often only get the external DNS servers in use by a company. It's a common tactic for companies to have both internal and external DNS servers. This helps protect the company by not exposing internal systems to the outside world.</p> 
+    <h2>DNS cache</h2>
+    <p>Once having access to the inside of the network by compromising some system, you can look at the DNS cache. This is done on Windows systems by running <b>ipconfig /displaydns</b>. This will show all of the 
     cached DNS entries, meaning FQDN/IP mappings that were resolved at some point and are being stored to help speed up the resolution next time an application needs the IP address. A cached entry will mean a network 
     request doesn't have to be made, which can save time.</p>
     
