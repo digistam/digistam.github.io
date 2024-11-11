@@ -11,6 +11,13 @@
         When you visit a website, you enter something called a <b>Uniform Resource Locator (URL)</b>. The URL consists commonly of two parts. The first part is the <b>Uniform Resource Identifier</b> (URI). This 
         is the protocol used (http://, https://, ftp://, sftp:// etc.). Following the URI is the <b>FQDN</b></p>
     <h2>Process</h2>
+    <p><ol>
+        <ul>Request A: Your PC -> Caching DNS server</ul>
+        <ul>Request B: Caching DNS server -> Root Server</ul>
+        <ul>Request C: Caching DNS server -> domain.com</ul>
+        <ul>Request D: Caching DNS server -> labs.domain.com</ul>
+        <ul>Request E: Your PC -> www.labs.domain.com</ul>
+    </ol>
     <p>First, your webbrowser will issue a request to the operating system to open a connection to the FQDN at the default port indicated by the URI. Before the connection can be opened however, the system needs 
         to have an IP address to put into the Layer 3 headers. Remember: Layer 3 creates a packet with IP addresses! So, in order to acquire the necessary IP addresses, the system issues a <b>name resolution 
         request</b>. Each computer will have at least one <b>name resolver</b> configured. The <b>name resolver</b> is the system your computer goes to in order to accomplish the name resolution.</p>
