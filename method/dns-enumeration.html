@@ -3,7 +3,72 @@
 <a href=../index.html>Back to home</a>
 <hr/>
 <h1><b>DNS enumeration</b></h1>
+    <h2>Name Lookups</h2>
+    <p>When you interact with other systems, you need to communicate with an IP address. However, humans aren't good at remembering strings of numbers. Instead, we us fully qualified domain names (FQDN), but 
+        that means we need something that will translate the FQDNs into IP addresses for us. This is where DNS comes in. An example of FQDN is www.labs.domain.com. It is best to read the FQDN from righ to left, 
+        because that's how DNS will read it when it comes time to resolving the FQDN to an IP address. All the TLDs (.com, .edu, .nl etc.) will be at the top. Second level domains are where we start adding in 
+        organizations. The TLDs belong to the Internet at large. Under second-level domains are subdomains. Every domain can have has many levels of subdomains as they are willing to match. 
+        When you visit a website, you enter something called a <b>Uniform Resource Locator (URL)</b>. The URL consists commonly of two parts. The first part is the <b>Uniform Resource Identifier</b> (URI). This 
+        is the protocol used (http://, https://, ftp://, sftp:// etc.). Following the URI is the <b>FQDN</b></p>
+    <h2>Process</h2>
+    <p>First, your webbrowser will issue a request to the operating system to open a connection to the FQDN at the default port indicated by the URI. Before the connection can be opened however, the system needs 
+        to have an IP address to put into the Layer 3 headers. Remember: Layer 3 creates a packet with IP addresses! So, in order to acquire the necessary IP addresses, the system issues a <b>name resolution 
+        request</b>. Each computer will have at least one <b>name resolver</b> configured. The <b>name resolver</b> is the system your computer goes to in order to accomplish the name resolution.</p>
+    <p>The name resolver for TCP/IP networks is a DNS server, though other network protocols will use other name services. It takes in DNS requests and resolves them, based on what is being asked. Typically, the 
+        name resolver you will have configured will be what is called a <b>caching name server</b>. This means it gets requests from endpoints, resolves them and <b>caches</b> the result for efficiency. So, the 
+        first DNS request (request A) is the one from your system (using your webbrowser) to the caching server</p>
+    <p>The <b>caching DNS server</b> checks its <b>cache</b> and sees that it has NO IP address stored. It will begin something called a <b>recursive name query</b> or <b>recursive name resolution</b>. It is called <b>recursive</b>
+        because it will end up with multiple requests that keep getting narrower until we end up with what we want.</p>
+    <p>The caching name server will need to start with the TLD. It will have a hints file, indicating the IP address for the <b>root name servers</b>. Example: the caching server will need to identify the server to use for 
+        the .com TLD. Once it has identified the server it needs to send a request to, request B goes out, asking the root server for the IP address of the <b>name server</b> for the domain.com domain. The <b>root server</b> 
+        has the name server details for all the domains that fall under the TLD it is responsible for. The root server will reply to our caching server with the IP address for the name server for domain.com. When we do a 
+        WHOIS lookup, at the end of a whois lookup on a domain will be the name servers for that domain, since the name servers are stored with the domain. However, we can't just ask the root server for the IP address 
+        of the hostname, we have to do a <b>recursive query</b> and ask the root server for a pointer to who to ask next. The root server directs us to the <b>authorative name server</b> for domain.com.</p>
+    <p>Request C is the DNS request asking the authorative name server for domain.com about labs.domain.com. Since labs.domain.com is separate from domain.com, what our caching server gets back is another name server. 
+        This means one more request.</p>
+    <p>We are now at the point where the FQDN is being asked for. Request D goes out asking for the IP address of www.labs.domain.com. The authorative server, which is the one we are asking because it has the 
+        authorative information about that domain, responds with the IP address.</p>
+    <p>Once the caching server has the IP, it sends the response back to our system, which can then issue request E, which isn't a DNS request but a connectin request to the web server.</p>
+    <p>While DNS stores mappings between FQDNs and IP addresses, those are not the only data mappings that are stored. Some of the different record types you can and may want to look up include:</p>
+    <p><ol>
+        <ul>A -> address record that converts a FQDN to an IP address</ul>
+        <ul>AAAA -> converts FQDN to IPv6 address</ul>
+        <ul>MX -> mail exchanger record indicating the host that email should be sent to</ul>
+        <ul>NS -> name server records are the FQDNs and IP addresses of the authorative name servers for that domain</ul>
+        <ul>SOA -> start of authority records holds information about the zone, incl. serial number indicating when zone information has changed last</ul>
+        <ul>CNAME -> canonical name is an alias for a FQDN, mapping one hostname to another hostname or FQDN</ul>
+        <ul>PTR -> pointer from IP address to FQDN. Unlike an A record, this is not necessary but considered usefule. A FQDN always has to map to an IP address but an IP address does not have to map to a hostname. 
+        Often multiple FQDNs may map to a single IP address</ul>
+    </ol></p>
+    <h2>Tools</h2>
+    
 <p>The amount of tools do perform DNS enumeration confuses me. I created an overview with standard tools to use:</p>
+    <h2>HOST</h2>
+    <p>Perhaps the easiest tool to use is host in Linux. Using it is very straightforward. Just pass the hostname to host and you will get a response</p>
+    <p><ol>
+        <ul>host www.sybex.com</ul>
+        <ul>host www.sybex.com 8.8.8.8 (using public caching name server)</ul>
+        <ul>host 208.215.179.132 (looking up FQDNs from IP addresses, <b>reverse lookup</b></ul>
+    </ol></p>
+    <p><b>Reverse lookups</b> (from IP to FQDN) can give several hostnames associated with it. This is often the case when where a web server is hosting virtual servers.</p>
+
+    <h2>nslookup</h2>
+<p>nslookup is just as simple as host, but has the advantage that you can issue many requests without having to keep running nslookup. When you run nslookup without any parameters, you get a <b>nslookup shell</b>
+where you can interact with the program.</p>
+    <p><ol>
+        <ul>nslookup</ul>
+        <ul>> set type=ns</ul>
+        <ul>> sybex.com</ul>
+        <ul>> set type=A</ul>
+        <ul>> server sybex.com</ul>
+    </ol></p>
+<p>Instead of just looking up the IP address from the FQDN, I used resource records to start. DNS supports multiple resource records, though the most common is the A address record. With <b>set type=ns</b> 
+we tell nslookup to issue subsequent requests asking for ns (name server) records. This will tell the authorative name servers for the given domain. </p>
+
+
+
+
+    
 <h2>DIG</h2>
 <p>command: dig ns <i>tld</i></p>
 <p>Output</p>
@@ -92,6 +157,33 @@ A mydomain.nl 141.138.169.243<br>
 AAAA domain.nl 2a03:3c00:a002:240::100a<br>
 2 records found
 </code>
+
+<p>The response is quite a bit more detailed than we've seen so far. </p>
+
+<h1>Zone Transfers</h1>
+    <p>Now that we know dig exists we have to be aware of the fact that issuing single requests is fine, but it assumes you known some information. In most cases, applications are asking for the information 
+    about IP addresses from FQDNs so the application can function correctly. In our case, as hackers, we are sometimes looking for all the hostnames that belong to a domain. This can be done using something 
+    called a zone transfer. A zone transfer is legitimately used between multiple authorative NSs in a domain to keep the servers in sync. Most domains you will run across won't allow zone transfers from any 
+    other than the secondary NSs that have been configured. Second, many companies use something called split DNS. Split DNS is where the outside world is given an authoritative server address for externally 
+    resolved hosts, like the web server and the mail server. Any system inside the enterprise network would use the company resolver, which would be configured as authoritative for the corporate domain. 
+    This means it can have many other systems that are not known or available to the outside world but that internal systems can resolve and connect to.</p>
+    <h2>Zone transfer using dig</h2>
+    <p>dig axfr domain.com @192.168.86.51</p>
+
+    <h1>Brute Force</h1>
+    <p>As zone transfers are generally <b>disallowed</b> we have to rely on less elegant solutions to gather information about a target. We can use <b>dnsrecon</b> to extract some of the common resource records in DNS.
+    It can be used to identify hostnames as a result of repeated requests, based on a wordlist provided to the program. In the following code, dnsrecon is used to do a brute force scan. The wordlist provided has 
+    a number of possible hostnames. These hostnames are prepended to the provided domain name, and then the resulting FQDN is checked.</p>
+    <h2>Brute force with dnsrecon</h2>
+    <p>dnsrecon -d wiley.com -D /usr/share/wordlists/dnsmap.txt -t brt</p>
+<p>In some cases, lookup up an IP address results in an alias. In the output, these show up as canonical name (CNAME) responses. The CNAME refers to another hostname or FQDN, and that hostname or FQDN is then 
+resolved until there is an IP address. There can be multiple layers of CNAMEs that need to be resolved. Some of these IP addresses are private, but some others are public IP addresses. These IP addresses could be 
+chased down.</p>
+    <p>DNS gives a good idea how to start to size a footprint. Select a domain. Once you have the IP addresses, identify the address blocks and who owns them. Keep track of all the IP addresses and address blocks 
+    owned by the company or organization associated with the domain.</p>
+
+    
+    <h1>Other tools</h1>
 <h2>Nmap</h2>
 <p>command: nmap --script=broadcast-dns-service-discovery <i>tld</i></p>
 <p>Output:</p>
