@@ -3,3 +3,10 @@
   <a href=index.html>Back to home</a>
 <hr/>
 <h1><b>NMap commands</b></h1>
+<h2>SYN scan (half-open scan)</h2>
+<p>This is called the half-open scan because connections are left half open (handshake will not be completed). Nmap will send a SYN message to the target. If the port is open, it will respond with SYN/ACK messagen. 
+Nmap will respond to that with a RST message, indicating it doesn't want to continue with the connection. If the port is closed, the target will respond with RST. A SYN scan has the parameter -sS.</p>
+<p><b>sudo nmap -sS 192.168.86.32</b></p>
+<h2>Full connect scan</h2>
+<p>In a full connect scan, nmap completes the 3-way handshake. It can be used to demonstrate the use of a network block as a target. A full connect scan has the parameter -sT</p>
+<p><b>sudo nmap -sT -p 80, 443 192.168.86.0/24</b></p>
