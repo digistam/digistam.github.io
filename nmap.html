@@ -3,10 +3,25 @@
   <a href=index.html>Back to home</a>
 <hr/>
 <h1><b>NMap commands</b></h1>
-<h2>SYN scan (half-open scan)</h2>
+    <h2>TCP scans</h2>
+    <p>We can do TCP scans as well as UDP scans with nmap</p>
+<h2>[TCP] SYN scan (half-open scan)</h2>
 <p>This is called the half-open scan because connections are left half open (handshake will not be completed). Nmap will send a SYN message to the target. If the port is open, it will respond with SYN/ACK messagen. 
 Nmap will respond to that with a RST message, indicating it doesn't want to continue with the connection. If the port is closed, the target will respond with RST. A SYN scan has the parameter -sS.</p>
 <p><b>sudo nmap -sS 192.168.86.32</b></p>
 <h2>Full connect scan</h2>
 <p>In a full connect scan, nmap completes the 3-way handshake. It can be used to demonstrate the use of a network block as a target. A full connect scan has the parameter -sT</p>
 <p><b>sudo nmap -sT -p 80, 443 192.168.86.0/24</b></p>
+    <h2>[TCP] Other scans</h2>
+    <p>There are additional TCP scans that nmap run. The other scans make use of <b>unexpected</b> input as a way of potentially getting different responses. </p>
+<h2>[TCP] Xmas scan</h2>
+<p>It is named Xmas scan because the packages being sent have the FIN, PSH and URG flags set, which makes the packet look lit up like a Christmas tree. What we will see is that we don't get an indication 
+about open ports here. Instead, nmap is telling us that the port is either <b>open</b> or <b>filtered</b>. The reason for this is that with ports that are closed, the system responds with a RST. Ports that are open 
+don't respond at all because it is not a legal packet from the perspective of the protocol. If nmap doesn't get any response, it's not clear whether it's because a network device dropped the message or if they 
+system just didn't respond to an illegal message.</p>
+<p><b>sudo nmap -sX 192.168.86.32</b></p>
+<h2>UDP scans</h2>
+<p>UDP scanning is much more straigthforward than TCP scanning. There are NO options for UDP scanning. Nmap sends out UDP messages and then watches whatever responses may come back. The expectation is that if a 
+port is closed, the system will respond with an ICMP portunreachable message. If the port is open, the service may respond with something or <b>it may not respond at all</b>.</p>
+<p><b>sudo nmap -sU 192.168.86.32</b></p>
+<p>Notice that UDP scans may take much longer time than TCP scans.</p>
