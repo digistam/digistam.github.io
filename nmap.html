@@ -24,4 +24,5 @@ system just didn't respond to an illegal message.</p>
 <p>UDP scanning is much more straigthforward than TCP scanning. There are NO options for UDP scanning. Nmap sends out UDP messages and then watches whatever responses may come back. The expectation is that if a 
 port is closed, the system will respond with an ICMP portunreachable message. If the port is open, the service may respond with something or <b>it may not respond at all</b>.</p>
 <p><b>sudo nmap -sU 192.168.86.32</b></p>
-<p>Notice that UDP scans may take much longer time than TCP scans.</p>
+<p>Notice that UDP scans may take much longer time than TCP scans. It's possible to use the -T parameter, which sets the throttle rate. By default, the throttle rate is set at 3, which is a common rate of 
+message transmission. If you want it faster, you can go up to 5.</p>
