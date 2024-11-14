@@ -5,10 +5,11 @@
 <h1><b>NMap commands</b></h1>
     <h2>Least intrusive: List Scan</h2>
     <p>The list scan -sL is a degenerate form of host discovery that simply lists each host of the network(s) specified, without sending any packets to the 
-        target hosts. By default, Nmap still does reverse-<b>DNS resolution</b> on the hosts to learn their names. It is often surprising how much useful information 
-        simple hostnames give out. Nmap also reports the total number of IP addresses at the 
-        end. The list scan is a good sanity check to ensure that you have proper IP addresses for your targets. If the hosts sport domain names you do not 
-        recognize, it is worth investigating further to prevent scanning the wrong company's network. Since the idea is to simply print a list of target hosts, 
+        target hosts. All it does is running through all the IP addresses in the block (/24). It doesn't do a lot but by default, 
+        Nmap still does reverse-<b>DNS resolution</b> on the hosts to learn their names. It is often surprising how much useful information 
+        simple hostnames give out. The list scan is a good sanity check to ensure that you have proper IP addresses for your targets. 
+        If the hosts sport domain names you do not 
+        recognize, it is worth investigating further to prevent scanning the wrong company's network. Since the idea is to simply <b>print a list of target hosts</b>, 
         options for higher level functionality such as port scanning, OS detection, or host discovery cannot be combined with this. 
         If you wish to disable host discovery while still performing such higher level functionality, read up on the -Pn (skip host discovery) option.</p>
     <p><b>sudo nmap -sL 192.168.2.243/24</b></p>
