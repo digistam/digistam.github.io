@@ -11,6 +11,7 @@
         recognize, it is worth investigating further to prevent scanning the wrong company's network. Since the idea is to simply print a list of target hosts, 
         options for higher level functionality such as port scanning, OS detection, or host discovery cannot be combined with this. 
         If you wish to disable host discovery while still performing such higher level functionality, read up on the -Pn (skip host discovery) option.</p>
+    <p><b>sudo nmap -sL 192.168.2.243/24</b></p>
     <h2>Ping Sweep</h2>
 <p>This option tells Nmap not to do a port scan after host discovery, and only print out the available hosts that responded to the host discovery probes. 
     This is often known as a <b>ping scan</b>, but you can also request that traceroute and NSE host scripts be run. This is by default one step more 
@@ -19,7 +20,8 @@
     This is often called a <b>ping sweep</b>, and is more reliable than pinging the broadcast address because many hosts do not reply to broadcast queries.
     The default host discovery done with -sn consists of an ICMP echo request, TCP SYN to port 443, TCP ACK to port 80, and an ICMP timestamp request by default. 
     When executed by an unprivileged user, only SYN packets are sent (using a connect call) to ports 80 and 443 on the target. In previous releases of Nmap, 
-    -sn was known as -sP.</p>
+    -sn was known as -sP</p>
+    <p><b>sudo nmap -sn 192.168.2.254/24</b></p>
     <h2>TCP scans</h2>
     <p>We can do TCP scans as well as UDP scans with nmap</p>
 <h2>[TCP] SYN scan (half-open scan)</h2>
