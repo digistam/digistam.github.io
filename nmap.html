@@ -38,7 +38,7 @@ Nmap will respond to that with a RST message, indicating it doesn't want to cont
 <p><b>sudo nmap -sT -p 80, 443 192.168.86.0/24</b></p>
     <h2>[TCP] Other scans</h2>
     <p>There are additional TCP scans that nmap run. The other scans make use of <b>unexpected</b> input as a way of potentially getting different responses. </p>
-<p>The NULL, FIN and Xmas scan types (even more are possible with the --scanflags option described in the next section) exploit a 
+<p>The NULL, FIN and Xmas scan types (even more are possible with the --scanflags option) exploit a 
     subtle loophole in the TCP RFC to differentiate between open and closed ports. Page 65 of RFC 793 says that 
     <i>“if the [destination] port state is CLOSED .... an incoming segment not containing a RST causes a RST to be sent in response.”</i> 
     Then the next page discusses packets sent to open ports without the SYN, RST, or ACK bits set, stating that: 
