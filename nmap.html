@@ -50,7 +50,7 @@ When scanning systems compliant with this RFC text, any packet not containing SY
   
     
     <h2>[TCP] Xmas scan</h2>
-<p>It is named Xmas scan because the packages being sent have the FIN, PSH and URG flags set, which makes the packet look lit up like a Christmas tree. What we will see is that we don't get an indication 
+<p>It is named Xmas scan because the packages being sent have the FIN, PSH and URG flags set (leaving out SYN, RST or ACK), which makes the packet look lit up like a Christmas tree. What we will see is that we don't get an indication 
 about open ports here. Instead, nmap is telling us that the port is either <b>open</b> or <b>filtered</b>. The reason for this is that with ports that are closed, the system responds with a RST. Ports that are open 
 don't respond at all because it is not a legal packet from the perspective of the protocol. If nmap doesn't get any response, it's not clear whether it's because a network device dropped the message or if they 
 system just didn't respond to an illegal message.</p>
@@ -58,7 +58,7 @@ system just didn't respond to an illegal message.</p>
     <h2>[TCP] Null scan</h2>
 <p>Does not set any bits (TCP flag header is 0)</p>
 <h2>[TCP] FIN scan</h2>
-    <p>Sets just the TCP FIN bit</p>
+    <p>Sets just the TCP <b>FIN</b> bit</p>
     <p>These three scan types are exactly the same in behavior except for the TCP flags set in probe packets</p>
 
     <h2>Sneak through Firewalls and IDSs</h2>
