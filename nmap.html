@@ -33,7 +33,8 @@ Nmap will respond to that with a RST message, indicating it doesn't want to cont
 <p><b>sudo nmap -sS 192.168.86.32</b></p>
 <h2>Full connect scan</h2>
 <p>In a full connect scan, nmap completes the 3-way handshake. It can be used to demonstrate the use of a network block as a target. 
-    A full connect scan has the parameter -sT. Scanning with this parameter can take a while. It's best to limit scanning to some interesting ports.</p>
+    A full connect scan has the parameter -sT. Scanning with this parameter can take a while. It's best to limit scanning to some interesting ports otherwise
+    it will take ages to complete scanning thousands of ports.</p>
 <p><b>sudo nmap -sT -p 80, 443 192.168.86.0/24</b></p>
     <h2>[TCP] Other scans</h2>
     <p>There are additional TCP scans that nmap run. The other scans make use of <b>unexpected</b> input as a way of potentially getting different responses. </p>
