@@ -3,16 +3,16 @@
   <a href=index.html>Back to home</a>
 <hr/>
 <h1><b>NMap commands</b></h1>
-    <h2>Least intrusive</h2>
+    <h2>Least intrusive: List Scan</h2>
     <p>The list scan -sL is a degenerate form of host discovery that simply lists each host of the network(s) specified, without sending any packets to the 
-        target hosts. By default, Nmap still does reverse-DNS resolution on the hosts to learn their names. It is often surprising how much useful information 
-        simple hostnames give out. For example, fw.chi is the name of one company's Chicago firewall. Nmap also reports the total number of IP addresses at the 
+        target hosts. By default, Nmap still does reverse-<b>DNS resolution</b> on the hosts to learn their names. It is often surprising how much useful information 
+        simple hostnames give out. Nmap also reports the total number of IP addresses at the 
         end. The list scan is a good sanity check to ensure that you have proper IP addresses for your targets. If the hosts sport domain names you do not 
         recognize, it is worth investigating further to prevent scanning the wrong company's network. Since the idea is to simply print a list of target hosts, 
         options for higher level functionality such as port scanning, OS detection, or host discovery cannot be combined with this. 
         If you wish to disable host discovery while still performing such higher level functionality, read up on the -Pn (skip host discovery) option.</p>
     <p><b>sudo nmap -sL 192.168.2.243/24</b></p>
-    <h2>Ping Sweep</h2>
+    <h2>No Port Scan [Ping Sweep]</h2>
 <p>This option tells Nmap not to do a port scan after host discovery, and only print out the available hosts that responded to the host discovery probes. 
     This is often known as a <b>ping scan</b>, but you can also request that traceroute and NSE host scripts be run. This is by default one step more 
     intrusive than the list scan, and can often be used for the same purposes. It allows light reconnaissance of a target network without attracting much 
@@ -21,6 +21,7 @@
     The default host discovery done with -sn consists of an ICMP echo request, TCP SYN to port 443, TCP ACK to port 80, and an ICMP timestamp request by default. 
     When executed by an unprivileged user, only SYN packets are sent (using a connect call) to ports 80 and 443 on the target. In previous releases of Nmap, 
     -sn was known as -sP</p>
+    <p>The difference between de List scan (-sL) and the Ping sweep (-sn) is that with the Ping sweep nmap shows which hosts are UP!</p>
     <p><b>sudo nmap -sn 192.168.2.254/24</b></p>
     <h2>TCP scans</h2>
     <p>We can do TCP scans as well as UDP scans with nmap</p>
