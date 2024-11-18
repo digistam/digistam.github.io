@@ -3,4 +3,17 @@
   <a href=index.html>Back to home</a>
 <hr/>
 <h1>Enumeration</h1>
-<p>dd</p>
+<p>It's important to have some clue where to begin with enumerating. Following the CEH course, we can start with RCP, SMB, NetBios. In other words: ports 135 (RPC), 
+    136 (profile), 137 (netbios name service), 138 (netbios datagram service), 139 (netbios session service), 445 (SMB)</p>
+    <h2>Nmap port scan</h2>
+    <p><b>sudo nmap -sS -p 135-139,445 192.168.1.1/24</b></p>
+    <p>Example result: 192.168.1.216</p>
+    <h2>Nmap enumeration</h2>
+    <p><b>sudo nmap --script-help "*netbios*"</b></p>
+    <p>We can see it's possible to use the broadcast-netbios-master-browser script:</p>
+    <p><b>sudo nmap --script "broadcast-netbios-master-browser" 192.168.1.216</b></p>
+    <p>If port 445 (microsoft-ds, smb) is open, we can fire up all smb scripts:</p>
+    <p><b>sudo nmap --script "*smb*" 192.168.2.216</b></p>
+    <p>That can be an overkill in information, so we can for example focus on known smb vulnerabilities:</p>
+    <p><b>sudo nmap --script "smb-vuln*" 192.168.1.216</b></p>
+    
