@@ -5,15 +5,18 @@
 <h1>Enumeration</h1>
 <p>It's important to have some clue where to begin with enumerating. Otherwise, it can be hard and overwhelming.</p>
     <h2>Remote Procedure Calls</h2>
-    <p>
+    <p>The CEH course points us to RPC, Netbios and SMB. So, this is usefull to start with.</p>
     <p>Remote Procedure Call (RPC) is a <b>service</b> that allows remote machines to consume procedures external to the application calling them.
     A common implementation of remote procedure calls is the program <b>portmap</b>, also known as <b>rpcbind</b>. Common examples of services that use 
     rpcbind/portmap are file sharing servers like <b>Network File Server (NFS)</b>. The package that provides the portmap or rpcbind service may also 
     provide utilities that can also communicate using RPC. This is done over port 111. To identify programs and associated ports on a remote system, you 
     can use the program <b>rpcinfo</b>.</p>
     <p><b>sudo rpcinfo -p 192.168.1.254</b></p>
-    Following the CEH course, we can start with RCP, SMB, NetBios. In other words: ports 135 (RPC), 
-    136 (profile), 137 (netbios name service), 138 (netbios datagram service), 139 (netbios session service), 445 (SMB)</p>
+
+    
+    Following the CEH course, we can start with RCP, SMB, NetBios. In other words: ports 135 (msrpc), 
+    136 (profile), 137 (netbios-ns; netbios name service), 138 (netbios datagram service), 139 (netbios-ssn; netbios session service), 445 (microsoft-ds; Microsoft 
+    Direct SMB, SMB)</p>
     <h2>Nmap port scan</h2>
     <p><b>sudo nmap -sS -p 135-139,445 192.168.1.1/24</b></p>
     <p>Example result: 192.168.1.216</p>
