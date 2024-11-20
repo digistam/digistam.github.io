@@ -1,0 +1,16 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=index.html>Back to home</a>
+<hr/>
+  <h1>Postgres</h1>
+<p>Tools like Metasploit store data in Postgres database. Sometimes you need to edit using command line. This is how:</p>
+<p><a target=_blank href=https://phoenixnap.com/kb/how-to-connect-postgresql-database-command-line>Source</a></p>
+<p><ol>
+  <ul>sudo -i -u postgres</ul>
+  <ul>psql</ul>
+  <ul>\conninfo</ul>
+  <ul>\l -> list all available databases</ul>
+  <ul>\c -> change database</ul>
+  <ul>REINDEX DATABASE [database name]</ul>
+  <ul>ALTER DATABASE [database name] REFRESH COLLATION VERSION;</ul>
+</ol></p>
