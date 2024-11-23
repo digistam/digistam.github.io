@@ -76,9 +76,9 @@ various platforms. It performs full automated exploitation of web servers by abu
     <p>A discovery scan can be divided into four distinct phases:</p>
     <p><ol>
         <ul>1. Ping scan</ul>
-        <ul>Port scan</ul>
-        <ul>OS and version detection</ul>
-        <ul>Data import</ul>
+        <ul>2. Port scan</ul>
+        <ul>3. OS and version detection</ul>
+        <ul>4. Data import</ul>
     </ol></p>
     <h2>1. Ping scan</h2>
     <p>Also in Metasploit, ping scans and ping sweeps are done with nmap. In new versions of nmap the ping sweep uses the -sn parameter, but in Metasploit
@@ -102,9 +102,10 @@ various platforms. It performs full automated exploitation of web servers by abu
         <ul>hosts -R</ul>
         <ul>copy the temporary file location and use it in the nmap command with the -iL parameter</ul>
         <ul>nmap -sS -iL /tmp/msf-db-rhosts-20241123-2694-922msk</ul>
-        <ul>nmap will do port scan on all hosts that previously responded to the ping scan</ul>
+        <ul>nmap will do SYN scan on all hosts that previously responded to the ping scan (it can take a while to complete!)</ul>
+        <ul>db_nmap -sS iL /tmp/.. will add the responding ports to the services in Metasploit</ul>
     </ol>
-    <p>nmap -sS </p>
+    <p>Metasploit has also it's own methods for port scans:</p>
     <p><ol>
         <ul>search portscan type:aux</ul>
     <ul>0  auxiliary/scanner/portscan/ftpbounce              .                normal  No     FTP Bounce Port Scanner</ul>
@@ -121,9 +122,18 @@ various platforms. It performs full automated exploitation of web servers by abu
         <ul>use auxiliary/scanner/portscan/syn</ul>
         <ul>show options</ul>
     </ol></p>
-    <h2>Select Target</h2>
-    <p>Selecting targets: hosts -R (will create a temp file with all hosts in the subnet -> <i>hosts</i>)</p>
-
+<h2>3. OS and Version detection</h2>
+    <p>After the discovery scan identifies the open ports, the third phase begins. Nmap sends a variety of probes to the open ports and detects the 
+        service version numbers and operating system based on how the system responds to the probes. The operating system and version numbers provide 
+        valuable information about the system and help you identify a possible vulnerability and eliminate false positives.</p>
+<p>nmap -sV -O -iL /tmp/msf-db-rhosts-20241123-2694-922msk</p>
+    <p>Results are available in <i>services</i></p>
+    <h1>Further enumeration</h1>
+    <h2>SMB</h2>
+    <p>Then, based on our results, we will use the SMB scanner if port 445 is open. To scan an SMB, type <i>use auxiliary/scanner/smb/smb_version</p>
+    <p>set RHOSTS [all hosts with port 445 open] > run</p>
+    <p>Results will be added to <i>services</i></p>
+    
           <h1>Commands</h1>
     <p><ol>
         <ul>search -h</ul>
