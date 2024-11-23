@@ -59,6 +59,30 @@ various platforms. It performs full automated exploitation of web servers by abu
     <h2>Metasploit NOPS module</h2>
     <p>NOPS generate no-operation instructions used for blocking out buffers.</p>
 
+    <h1>Reconnaissance with Metasploit</h1>
+    <p>One of the first steps in penetration testing is reconnaissance. Reconnaissance is the process of gathering information to obtain a better understanding 
+        of a network. It enables you to create list of target IP addresses and devise a plan of attack. Once you have a list of IP addresses, you can run a 
+        discovery scan to learn more about those hosts. A discovery scan identifies the operating systems that are running on a network, maps those systems to 
+        IP addresses, and enumerates the open ports and services on those systems.<br/>
+        A discovery scan is the internal Metasploit scanner. It uses Nmap to perform basic TCP port scanning and runs additional scanner modules to gather 
+        more information about the target hosts. By default, the discovery scan includes a UDP scan, which sends UDP probes to the most commonly known UDP ports, 
+        such as NETBIOS, DHCP, DNS, and SNMP. The discovery scan tests approximately 250 ports that are typically exposed for external services and are more 
+        commonly tested during a penetration test.<br/>
+        During a discovery scan, Metasploit Pro automatically adds the host data to the project. You can review the host data to obtain a better understanding 
+        of the topology of the network and to determine the best way to exploit each target. Oftentimes, the network topology provides insight into the types 
+        of applications and devices the target has in place. The more information that you can gather about a target, the more it will help you fine-tune a 
+        test for it.</p>
+    <h2>How a Discovery Scan Works</h2>
+    <p>A discovery scan can be divided into four distinct phases:</p>
+    <p><ol>
+        <ul>Ping scan</ul>
+        <ul>Port scan</ul>
+        <ul>OS and version detection</ul>
+        <ul>Data import</ul>
+    </ol></p>
+<h2>Ping scan</h2>
+    <p>Also in Metasploit, ping scans and ping sweeps are done with nmap</p>
+
     <h1>Commands</h1>
     <p><ol>
         <ul>search -h</ul>
@@ -66,3 +90,22 @@ various platforms. It performs full automated exploitation of web servers by abu
         <ul>search ssh type:aux</ul>
         <ul>use ssh_enum type:aux</ul>
     </ol></p>
+    <h2>Port scanning</h2>
+    <p><ol>
+        <ul>search portscan type:aux</ul>
+    <ul>0  auxiliary/scanner/portscan/ftpbounce              .                normal  No     FTP Bounce Port Scanner</ul>
+   <ul>1  auxiliary/scanner/natpmp/natpmp_portscan          .                normal  No     NAT-PMP External Port Scanner</ul>
+   <ul>2  auxiliary/scanner/sap/sap_router_portscanner      .                normal  No     SAPRouter Port Scanner</ul>
+   <ul>3  auxiliary/scanner/portscan/xmas                   .                normal  No     TCP "XMas" Port Scanner</ul>
+   <ul>4  auxiliary/scanner/portscan/ack                    .                normal  No     TCP ACK Firewall Scanner</ul>
+   <ul>5  auxiliary/scanner/portscan/tcp                    .                normal  No     TCP Port Scanner</ul>
+   <ul>6  auxiliary/scanner/portscan/syn                    .                normal  No     TCP SYN Port Scanner</ul>
+   <ul>7  auxiliary/scanner/http/wordpress_pingback_access  .                normal  No     Wordpress Pingback Locator</ul>
+    </ol></p>
+    <p>
+    <ol>
+        <ul>use auxiliary/scanner/portscan/syn</ul>
+        <ul>show options</ul>
+    </ol></p>
+    <h2>Select Target</h2>
+    <p>Selecting targets: hosts + r (will create a temp file with all hosts in the subnet -> <i>hosts</i>)</p>
