@@ -105,6 +105,11 @@ various platforms. It performs full automated exploitation of web servers by abu
         <ul>nmap will do SYN scan on all hosts that previously responded to the ping scan (it can take a while to complete!)</ul>
         <ul>db_nmap -sS iL /tmp/.. will add the responding ports to the services in Metasploit</ul>
     </ol>
+    <p>One important thing to note (and it's often forgotten) is that nmap with parameter -sS will only scan TCP ports! It's important to also add UDP ports to 
+        the <i>services</i> in Metasploit, so you also will have to use the -sU parameter:</p>
+    <p><ol>
+        <ul>db_nmap -sU il /tmp/... will add the responding UDP ports to the services in Metasploit</ul>
+    </ol>
     <p>Metasploit has also it's own methods for port scans:</p>
     <p><ol>
         <ul>search portscan type:aux</ul>
