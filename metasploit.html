@@ -133,6 +133,11 @@ various platforms. It performs full automated exploitation of web servers by abu
     <p>Then, based on our results, we will use the SMB scanner if port 445 is open. To scan an SMB, type <i>use auxiliary/scanner/smb/smb_version</p>
     <p>set RHOSTS [all hosts with port 445 open] > run</p>
     <p>Results will be added to <i>services</i></p>
+    <p>Nmap scripts that can be valuable in this process:</p>
+    <p><ol>
+        <ul>--script smb-os-discovery</ul>
+        <ul>--script smb-enum-shares</ul>
+    </ol></p>
     
           <h1>Commands</h1>
     <p><ol>
