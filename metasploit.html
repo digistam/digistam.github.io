@@ -75,22 +75,36 @@ various platforms. It performs full automated exploitation of web servers by abu
     <h2>How a Discovery Scan Works</h2>
     <p>A discovery scan can be divided into four distinct phases:</p>
     <p><ol>
-        <ul>Ping scan</ul>
+        <ul>1. Ping scan</ul>
         <ul>Port scan</ul>
         <ul>OS and version detection</ul>
         <ul>Data import</ul>
     </ol></p>
-<h2>Ping scan</h2>
-    <p>Also in Metasploit, ping scans and ping sweeps are done with nmap</p>
-
-    <h1>Commands</h1>
+    <h2>1. Ping scan</h2>
+    <p>Also in Metasploit, ping scans and ping sweeps are done with nmap. In new versions of nmap the ping sweep uses the -sn parameter, but in Metasploit
+    this will not work well at the moment. In Metasploit, use the -sP parameter to do a ping sweep. You can <b>test</b> the command using plain nmap command and 
+    you can store the hosts which respond to the ping with <b>db_nmap command</b>.</p>
+    <p>Remember:</p>
     <p><ol>
-        <ul>search -h</ul>
-        <ul>search rpc type:aux</ul>
-        <ul>search ssh type:aux</ul>
-        <ul>use ssh_enum type:aux</ul>
-    </ol></p>
-    <h2>Port scanning</h2>
+        <ul>Metasploit also uses <b>nmap</b> for discover (ping sweep)</ul>
+        <ul>The -sP parameter is used for this</ul>
+        <ul>You can test with <b>nmap</b> command</ul>
+        <ul>You can add responding hosts with <b>db_nmap</b> command</ul>
+    </ol></p> 
+    <h2>2. Port scann</h2>
+    <p>During the second phase, port scanning, Metasploit runs Nmap to identify the ports that are open and the services are available on those ports. 
+        Nmap sends probes to various ports and classifies the responses to determine the current state of the port. The scan covers a wide variety of commonly 
+        exposed ports, such as HTTP, telnet, SSH, and FTP. The discovery scan uses the default Nmap settings, but you can add custom Nmap options to customize 
+        the Nmap scan. For example, the discovery scan runs a TCP SYN scan by default. If you want to run a TCP Connect Scan instead of a TCP SYN Scan, 
+        you can supply the -sT option. Any options that you specify override the default Nmap settings that the discovery scan uses.</p>
+    <p>There is a nice trick to add all hosts to a temporary file, which nmap can use:</p>
+    <p><ol>
+        <ul>hosts -R</ul>
+        <ul>copy the temporary file location and use it in the nmap command with the -iL parameter</ul>
+        <ul>nmap -sS -iL /tmp/msf-db-rhosts-20241123-2694-922msk</ul>
+        <ul>nmap will do port scan on all hosts that previously responded to the ping scan</ul>
+    </ol>
+    <p>nmap -sS </p>
     <p><ol>
         <ul>search portscan type:aux</ul>
     <ul>0  auxiliary/scanner/portscan/ftpbounce              .                normal  No     FTP Bounce Port Scanner</ul>
@@ -108,4 +122,12 @@ various platforms. It performs full automated exploitation of web servers by abu
         <ul>show options</ul>
     </ol></p>
     <h2>Select Target</h2>
-    <p>Selecting targets: hosts + r (will create a temp file with all hosts in the subnet -> <i>hosts</i>)</p>
+    <p>Selecting targets: hosts -R (will create a temp file with all hosts in the subnet -> <i>hosts</i>)</p>
+
+          <h1>Commands</h1>
+    <p><ol>
+        <ul>search -h</ul>
+        <ul>search rpc type:aux</ul>
+        <ul>search ssh type:aux</ul>
+        <ul>use ssh_enum type:aux</ul>
+    </ol></p>
