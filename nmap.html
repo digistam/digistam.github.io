@@ -48,10 +48,7 @@ Nmap will respond to that with a RST message, indicating it doesn't want to cont
 When scanning systems compliant with this RFC text, any packet not containing SYN, RST, or ACK bits will result in a <b>returned RST</b> if the port is 
     closed and <b>no response</b> at all if the port is open. As long as none of those three bits are included, any combination of the other three 
     (FIN, PSH, and URG) are OK.</p>
-
-  
-    
-    <h2>[TCP] Xmas scan</h2>
+<h2>[TCP] Xmas scan</h2>
 <p>It is named Xmas scan because the packages being sent have the FIN, PSH and URG flags set (leaving out SYN, RST or ACK), which makes the packet look lit up like a Christmas tree. What we will see is that we don't get an indication 
 about open ports here. Instead, nmap is telling us that the port is either <b>open</b> or <b>filtered</b>. The reason for this is that with ports that are closed, the system responds with a RST. Ports that are open 
 don't respond at all because it is not a legal packet from the perspective of the protocol. If nmap doesn't get any response, it's not clear whether it's because a network device dropped the message or if they 
@@ -76,3 +73,9 @@ port is closed, the system will respond with an ICMP portunreachable message. If
 <p><b>sudo nmap -sU 192.168.86.32</b></p>
 <p>Notice that UDP scans may take much longer time than TCP scans. It's possible to use the -T parameter, which sets the throttle rate. By default, the throttle rate is set at 3, which is a common rate of 
 message transmission. If you want it faster, you can go up to 5.</p>
+<h2>NOT all available ports!</h2>
+<p>Be aware that nmap will not show all available open ports. In order to scan all 65535 ports we can use the following:</p>
+<p><ol>
+    <ul>sudo masscan -sS --ports 0-65535 192.168.1.216</ul>
+    <ul>sudo masscan -sU --ports 0-65535 192.168.1.216</ul>
+</ol></p>
