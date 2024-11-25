@@ -79,3 +79,35 @@ message transmission. If you want it faster, you can go up to 5.</p>
     <ul>sudo masscan -sS --ports 0-65535 192.168.1.216</ul>
     <ul>sudo masscan -sU --ports 0-65535 192.168.1.216</ul>
 </ol></p>
+<h2>Evasion with nmap</h2>
+<p>Any target organization you test against will have security mechanisms in place to defend itself. It may be firewalls, IDS systems or IPS systems. Any of these could block scan attempts or issue an alert, 
+which may lead to discovery of your actions. This is why you need to think about evasion techniques. To some degree, nmap has its own evasion techniques built in. One of them is the Idle scan, using a zombie 
+system. Another way is to "blind" the defender with using a number of decoys. You can have nmap create a diversion by generating a lot of bogus traffic alongside the port scans you actually care about. This is 
+done with the -D flag along with decoy parameters. It's easy to let nmap randomize the source addresses:</p>
+<p><ol>
+    <ul>sudo nmap -D rnd:3 192.168.178.1</ul>
+</ol></p>
+    <p>On top of creating decoys, you can have nmap take care of fragmentation for you. While fragroute is good and can be used across many different circumstances, having nmap take care of fragmentation is 
+    easy, if all you need to do is scan:</p>
+    <p><ol>
+        <ul>sudo nmap -f -p 80,443,445 192.168.1.1</ul>
+    </ol></p>
+    <p>Another way is to have nmap set the MTU. The MTU is a field in the IP header that tells the network equipment how large the IP packets can be based on the transmission medium. Some networks will 
+    only accept data frames of a limited size. Ethernet, for example, allows a maximum transmission unit of 1500 bytes. Any data larger than that needs to be fragmented, with the fragmentation headers 
+    set appropriately. It is up to the receiving party to put the complete message back together in the right order. If you set the MTU small enough, some intermediate devices like routers or firewalls 
+    MAY opt to send the messages on rather than reconstructing to review. Letting nmap set the MTU looks like this, keeping in mind that the MTU needs to be a multiple of 8</p>
+    <p><ol>
+        <ul>sudo nmap -f -p 80,443 192.168.1.1</ul>
+        <ul>sudo nmap --mtu 24 -p 80,443 192.168.1.1</ul>
+    </ol></p>
+    <p>Additional techniques include spoofing of the originating MAC address. It's used to take advantage of a trust relationship in the firewall on the local network, trusting a specific MAC address. This 
+    doesn't work if the target is remote. The first time your frame hits a network device, like a router or firewall, the frame's header incl. the MAC address will be removed, only to be replaced by 
+    the appropriate MAC address on the other side of the firewall or router</p>
+    <p><ol>
+        <ul>sudo nmap --spoof-mac 00:00:00:00:00:FF -p 80 192.168.1.1</ul>
+    </ol></p>
+    <p>Finally, you can spoof the source port. Some firewalls look at the source port because it's necessary for some applications, like DNS or FTP. You could use:</p>
+    <p><ol>
+        <ul>sudo nmap -g 53 -p 80 192.168.1.1</ul>
+        <ul>here nmap sends traffic from a source port of 53, suggesting it is DNS related</ul>
+    </ol></p>
