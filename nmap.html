@@ -26,6 +26,8 @@
     <p><b>sudo nmap -sn 192.168.2.254/24</b></p>
     <p>ZenMap will create a nice list of detected IP addresses with their MAC addresses</p>
     <h2>TCP scans (Port scans)</h2>
+    <p>Tip: scanning port ranges with nmap can be slow and take a long while. It can be wise to use <b>masscan</b> for
+        scannning port ranges and nmap for scanning single hosts!</p>
     <p>We can do TCP scans as well as UDP scans with nmap</p>
 <h2>[TCP] SYN scan (half-open scan)</h2>
 <p>This is called the half-open scan because connections are left half open (handshake will not be completed). Nmap will send a SYN message to the target. If the port is open, it will respond with SYN/ACK messagen. 
