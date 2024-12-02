@@ -1,7 +1,9 @@
 <html>
 <a href=index.html>Back to home</a>
 <hr/>
-<h1>Information Security</h1>
+<h1>Information Security Concepts</h1>
+  <p>Information security: protection or safeguarding of information and information systems that use, store and transmit information from unauthorized access, disclosure, alteration and destruction. Information 
+  is a critical asset that organizations must secure.</p>
 <h2>Elements of information security</h2>
 <p><ol>
   <ul>Confidentiality</ul>
@@ -10,18 +12,54 @@
   <ul>Authenticity</ul>
   <ul>Non-repudiation</ul>
 </ol></p>
+  <p>It's important to remember that CIA is for <b>data</b> and the last two (Authenticity, Non-repudiation) is for <b>users</b> !</p>
+  
   <h2>Motives, goals and objectives of information security attacks</h2>
   <p>Attackers generally have motives (goals) and objectives behind their information security attacks. Once the attacker determines their goal, they can employ various tools, attack techniques and methods 
   to exploit vulnerabilities in a computer system or security policy and controls</p>
   <p><b>Attacks = Motive (Goal) + Method + Vulnerability</b></p>
+  <p>It's important to remember that without one of the elements (motive, method, vulnerability) there will be no attack !</p>
+
+  <h2>Tactics, Techniques and Procedures (TTPs)</h2>
+  <p>TTPs refer to the patterns of activities and methods associated with specific threat actors or groups of threat actors. Organizations should understand TTPs to protect their network against threat actors and 
+  upcoming attacks.</p>
+  <h2>Tactics</h2>
+  <p><b>Tactics</b> is defined as a <b>strategy</b> followed by an attacker to perform the attack from the beginning to the end.</p>
+  <h2>Techniques</h2>
+  <p><b>Techniques</b> is defined as the <b>technizal methods</b> used by an attacker to achieve results during the attack.</p>
+  <h2>Procedures</h2>
+  <p><b>Procedures</b> is defined as a <b>systematic approach</b> followed by the threat actor to launch an attack.</p>
+  
+  <p>In order to understand and defend against threat actors, it is important to understand the TTPs used by adversaries. Understanding the <b>tactics</b> of an attacker helps to predict and detect evolving threats 
+  in the early stages. Understanding the <b>techniques</b> used by attackers helps to identify vulnerabilities and implement defensive measures. Analyzing the <b>procedures</b> used by attackers helps to identify what the 
+  attacker is looking for within the target organization's infrastructure.</p>
+
+  <h2>Vulnerabilities</h2>
+  <p>A <b>vulnerability</b> refers to a weakness in the design or implementation of a system that can be exploited to compromise the security of the system. It is frequently a <b>security loophole</b> that enables an 
+  attacker to enter the system by bypassing user authentication. There are generally two main causes for vulnerable systems in a network:</p>
+  <p><ol>
+    <ul>software or hardware misconfiguration</ul>
+    <ul>poor programming practices</ul>
+  </ol></p>
+  <p>Common reasons for the existence of vulnerabilities</p>
+  <p><ol>
+    <ul>Hardware or software misconfiguration</ul>
+    <ul>Insecure or poor design of network and application</ul>
+    <ul>Inherent technology weaknesses</ul>
+    <ul>End-user carelessness</ul>
+    <ul>Intentional end-user acts</ul>
+  </ol></p>
+  
   <h2>Classification of attacks</h2>
   <p><ol>
     <ul>Passive attacks -> footprinting, sniffing, eavesdropping, network traffic analysis, decryption of weakly encrypted traffic</ul>
     <ul>Active attacks -> DoS, bypassing protection mechanisms, malware attacks (virus, worm, ransomware), modification of information, spoofing attacks, replay attacks etc.</ul>
-    <ul>Close-in attacks -> social engineering</ul>
+    <ul>Close-in attacks -> social engineering (shoulder surfing, dumpster diving etc.)</ul>
     <ul>Insider attacks -> eavesdropping, wiretapping, theft of physical devices, data theft, pod slurping, planting keyloggers, backdoors, malware</ul>
     <ul>Distribution attacks -> tampering with hardware or software prior to installation</ul>
   </ol></p>
+
+  
   <h2>Information Warfare</h2>
   <p>Information warfare (InfoWar): use of information and communication technologies (ICT) for competitive advantages over an opponent</p>
   <p><ol>
@@ -33,16 +71,69 @@
     <ul>Economic warfare -> affecting economy </ul>
     <ul>Cyberwarfare -> use of information systems against virtual personas of individuals or groups</ul>
   </ol></p>
+  <p>Each form of information warfare mentioned above consists of both <b>defensive</b> and <b>offensive</b> strategies.</p>
+  <p><ol>
+    <ul>Defensive Information Warfare -> all strategies and actions to defend against attacks on ICT assets</ul>
+    <ul>Offensive Information Warfare -> involves attacks against the ICT assets of an opponent</ul>
+  </ol></p>
+  <h1>Hacking Concepts</h1>
+  
+  <p>Hacking in the field of computer security refers to exploiting system vulnerabilities and compromising security controls to gain unauthorized or inappropriate access to system resources. It involves 
+  a modifying system or application features to achieve a goal <b>outside its creator's original purpose</b>.</p>
+  <p>A hacker is a person who breaks into a system or network without authorization to destroy, steal sensitive data, or perform malicious attacks.</p>
+
+  <h1>Ethical Hacking Concepts</h1>
+  <p>Ethical hacking is the practice of employing computer and network skills in order to assist organizations in testing their network security for possible loopholes and vulnerabilities. </p>
+  <p>Ethical hacking is necessary as it allows to counter attacks from malicious hackers by anticipating methods used by them to break into a system. Ethical hacking helps to predict various possible 
+  vulnerabilities well in advance and rectify them without incurring any kind of outside attack.</p>
+  <p>An ethical hacker's evaluation of a client's information system security seeks to answer three basic questions:</p>
+  <p><ol>
+    <ul>What can an attacker seen on the target system</ul>
+    <ul>What can an intruder do with that information</ul>
+    <ul>Are the attacker's attempts being noticed on the target system</ul>
+  </ol></p>
+  <p>Ethical hacking is a structured and organized security assessment, usually as part of a penetration test or security audit, and is a crucial component of risk assessment.</p>
+  <h2>How AI - driven ethical hacking helps ethical hacker</h2>
+  <p><ol>
+    <ul>Automation of repetitive tasks</ul>
+    <ul>Predictive analysis</ul>
+    <ul>Advanced threat detection</ul>
+    <ul>Enhanced decision making</ul>
+    <ul>Adaptive learning</ul>
+    <ul>Enhanced reporting</ul>
+    <ul>Simulation and testing</ul>
+    <ul>Scalability</ul>
+    <ul>Continuous monitoring</ul>
+    <ul>Adaptive defense mechanisms</ul>
+  </ol></p>
+
   <h1>Hacking Methodologies and Frameworks</h1>
+  
   <h2>CEH Hacking Methodology (CHM)</h2>
   <p>EC council's CEH hacking methodology (CHM) defines the step-by-step process to perform ethical hacking. The CHM follows the same process as that of an attacker, and the only differences are in its 
   hacking goals and strategies.</p>
+  <p>An understanding of the CEH ethical hacking framework helps ethical hackers learn various tactics, techniques and tools used by attackers at various <b>phases</b> of hacking.</p>
   <p><ol>
+    <ul>Phase 1: Reconnaissance</ul>
+    <ul>Phase 2: Vulnerability scanning</ul>
+    <ul>Phase 3: Gaining access</ul>
+    <ul>Phase 4: Maintaining access</ul>
+    <ul>Phase 5: Clearing tracks</ul>
+  </ol></p>
+  <p>The following steps take place in theses phases:</p>
+  <p><ol>
+    <ul><b>Phase 1: Reconnaissance</b></ul>
     <ul>Footprinting</ul>
     <ul>Scanning -> identify active hosts, open ports and unnecessary services enabled on particular hosts</ul>
     <ul>Enumeration -> making active connections to a target system or subjecting it to direct queries; method of intrusive probing trough which attackers gather information</ul>
+    <ul><b>Phase 2: Vulnerability scanning</b></ul>
     <ul>Vulnerability analysis</ul>
-    <ul>System hacking -> gaining access, escalating privileges, maintaining access, clearing logs</ul>
+    <ul><b>Phase 3: Gaining access</b></ul>
+    <ul>System hacking -> gaining access, escalating privileges</ul>
+    <ul><b>Phase 4: Maintaining access</b></ul>
+    <ul>maintaining access</ul>
+    <ul><b>Phase 5: Clearing Tracks</b></ul>
+    <ul>clearing tracks</ul>
   </ol></p>
 <h2>Cyber Kill Chain Methodology</h2>
 <p>The cyber kill chain methodology is a framework developed for securing cyberspace based on the concept of military kill chains. This method aims to actively enhance intrusion detection and response. 
@@ -56,49 +147,34 @@ The cyber kill chain is equipped with a <b>seven - phase</b> protection mechanis
   <ul>Command and Control -> create C2 channel to communicate and pass data back and forth</ul>
   <ul>Actions on Objectives -> perform actions to achieve goals and objectives</ul>
 </ol></p>
-  <h1>Tactics, Techniques and Procedures (TTPs)</h1>
-  <p>TTP refer to the patterns of activities and methods associated with specific threat actors or groups of threat actors. Organizations should understand TTPs to protect their network against threat actors and 
-  upcoming attacks.</p>
-  <h2>Tactics</h2>
-  <p>Tactics describe the way the threat actor operates during different phases of an attack.</p>
-  <h2>Techniques</h2>
-  <p>To launch an attack succesfully, threat actors use several techniques during its execution. These techniques include initial exploitation, setting up and maining C2 channels etc. Technique is the set of tools 
-  and the way they are used to obtain intermediate results during an attack campaign.</p>
-  <h2>Procedures</h2>
-  <p>A sequence of actions performed by the threat actors to execute different steps of an <b>attack life cycle</b></p>
 
-  <h1>Adversary Behavioral Identification</h1>
+  <h2>Adversary Behavioral Identification</h2>
   <p>Adversary behavioral identification involves the identification of the common methods or techniques followed by an adversary to launch attacks to penetrate an organization's network. This gives security 
   professionals insight into upcoming threats and exploits. It helps them plan network security infrastructure and adapt a range of security procedures as prevention against various attacks.</p>
-  <h2>Internal Reconnaissance</h2>
-  <p>Once the adversary is inside the target network, they follow various techniques and methods to carry out internal reconnaissance. This includes the enumeration of systems, hostss, processes, the execution 
+  <p><ol>
+  <ul><b>Internal Reconnaissance</b>: Once the adversary is inside the target network, they follow various techniques and methods to carry out internal reconnaissance. This includes the enumeration of systems, hostss, processes, the execution 
   of various commands to find out information such as the local user context and system configuration, hostname, IP addresses, active remote systems and programs running on the target systems. Security professionals 
-  can monitor the activities of an adversary by checking for unusual commands executed in the Batch scripts and PowerShell (LOTL) and by using packet capturing tools.</p>
-  <h2>Use of PowerShell</h2>
-  <p>POSH can be used by an adversary as a tool for automating data exfiltration and launching further attacks. Check PowerShell transcript logs or Windows Event Logs, user agent string and IP addresses</p>
-<h2>Unspecified Proxy Activities</h2>
-<p>An adversary can create and configure multiple domains pointing to the same host, allowing to switch quickly between the domains to avoid detection. Security professionals can find unspecified domains by 
-checking the data feeds that are generated by those domains. Find any malicious files downloaded and unsolicited communication with the outside network based on the domains</p>
-<h2>Use of Command Line Interface</h2>
-<p>On gaining access to the target system, ad adversary can make use of the CLI to interact with the target system, browse the files, read file content etc. Check logs for process IDs and malicious files 
-downloaded from the Internet</p>
-<h2>HTTP User Agent</h2>
-<p>In HTTP - based communication, the server identifies the connected HTTP client using the user agent field. An adversary modifies the content of the HTTP user agent field to communicate with the compromised 
-system and to carry out further attacks</p>
-<h2>Command and Control Server</h2>
-<p>Adversaries use command and control servers to communicate remotely with compromised system through an encrypted session. Using the channel an adversary can steal data, delete data and launch further attacks.</p>
-<h2>Use of DNS Tunneling</h2>
-<p>Adversaries use DNS tunneling to obfuscate malicious traffic in the legitimate traffic carried by common protocols used in the network. Using DNS tunneling, an adversary can also communicate with the command 
+  can monitor the activities of an adversary by checking for unusual commands executed in the Batch scripts and PowerShell (LOTL) and by using packet capturing tools.</ul>
+<ul><b>Use of PowerShell</b>: POSH can be used by an adversary as a tool for automating data exfiltration and launching further attacks. Check PowerShell transcript logs or Windows Event Logs, user agent string and IP addresses</ul>
+<ul><b>Unspecified Proxy Activities</b>: An adversary can create and configure multiple domains pointing to the same host, allowing to switch quickly between the domains to avoid detection. Security professionals can find unspecified domains by 
+checking the data feeds that are generated by those domains. Find any malicious files downloaded and unsolicited communication with the outside network based on the domains</ul>
+  <ul><b>Use of Command-Line Interface</b>: On gaining access to the target system, ad adversary can make use of the CLI to interact with the target system, browse the files, read file content etc. Check logs for process IDs and malicious files 
+downloaded from the Internet</ul>
+  <ul><b>HTTP User Agent</b>: In HTTP - based communication, the server identifies the connected HTTP client using the user agent field. An adversary modifies the content of the HTTP user agent field to communicate with the compromised 
+system and to carry out further attacks</ul>
+  <ul><b>Command and Control Server</b>: Adversaries use command and control servers to communicate remotely with compromised system through an encrypted session. Using the channel an adversary can steal data, delete data and launch further attacks</ul>
+<ul><b>Use of DNS Tunneling</b>: Adversaries use DNS tunneling to obfuscate malicious traffic in the legitimate traffic carried by common protocols used in the network. Using DNS tunneling, an adversary can also communicate with the command 
 and control server, bypass security controls and perform data exfiltration. Security professionals can identify DNS tunneling by analyzing malicious DNS requests, DNS payload, unspecified domains and destination of 
-DNS requests</p>
-<h2>Use of Web Shell</h2>
-<p>Adversaries uses a web shell to manipulate the web server by creating a shell within a website; it allows an adversary to gain remote access to the functionalities of a server. Using a web shell, an adversary 
+DNS requests</ul>
+  <ul><b>Use of Web Shell</b>: Adversaries uses a web shell to manipulate the web server by creating a shell within a website; it allows an adversary to gain remote access to the functionalities of a server. Using a web shell, an adversary 
 performs tasks such as data exfiltration, file transfers and file uploads. Security professionals cna identify the web shell running in the network by analyzing server access, error logs, suspicious strings that 
-indicate encoding, user agent strings etc.</p>
-<h2>Data Staging</h2>
-<p>After successful penetration into a target's network, the adversary uses data staging techniques to collect and combine as much data as possible. Security professionals can detect data staging by monitoring
-network traffic for malicious file transfers, file integrity monitoring and event logs</p>
-<h1>Indicators of Compromise (IoCs)</h1>
+indicate encoding, user agent strings etc.</ul>
+  <ul><b>Data Staging</b>: After successful penetration into a target's network, the adversary uses data staging techniques to collect and combine as much data as possible. Security professionals can detect data staging by monitoring
+network traffic for malicious file transfers, file integrity monitoring and event logs</ul>
+</ol></p>
+
+  
+  <h2>Indicators of Compromise (IoCs)</h2>
 <p>IoCs are the clues, artifacts and pieces of forensic data that are found on a network or OS of an organization that indicate a potential intrusion or malicious activity. IoCs are not intelligence, but rather 
 a good source of information about threats that serves as data points in the intelligence process. Cybersecurity professionals use various automated tools to monitor IoCs to detect and prevent various security
 breaches.</p>
@@ -135,27 +211,29 @@ breaches.</p>
   models and methodologies in the private sector, government and in the cybersecurity product and service community.</p>
   <p>Following are the stages the ATT&CK Framework identifies:</p>
   <p><ol>
-    <ul>Reconnaissance -> attacker is looking for victims or ways to get into victim's systems that have been identified</ul>
-    <ul>Resource Development -> infrastructure for managing compromised hosts is put together here, as well as developing exploits or collecting credentials from other sources that could be used</ul>
-    <ul>Initial Access -> systems or user accounts are compromised to provide the attacker access to a resource that can be used</ul>
-    <ul>Execution -> not a stage, but instead describes a series of actions or behaviors an attacker might use to maintain access to a system; this could include execute PowerShell scripts (LOTL) </ul>
-    <ul>Persistence -> the attacker needs to ensure they maintain access beyond reboots or other system changes, so they need to be sure they have a program that always runs when the system is started, or at least 
+    <ul><b>Reconnaissance</b> -> attacker is looking for victims or ways to get into victim's systems that have been identified</ul>
+    <ul><b>Resource Development</b> -> infrastructure for managing compromised hosts is put together here, as well as developing exploits or collecting credentials from other sources that could be used</ul>
+    <ul><b>Initial Access</b> -> systems or user accounts are compromised to provide the attacker access to a resource that can be used</ul>
+    <ul><b>Execution</b> -> not a stage, but instead describes a series of actions or behaviors an attacker might use to maintain access to a system; this could include execute PowerShell scripts (LOTL) </ul>
+    <ul><b>Persistence</b> -> the attacker needs to ensure they maintain access beyond reboots or other system changes, so they need to be sure they have a program that always runs when the system is started, or at least 
     when a user logs in</ul>
-    <ul>Privilege Escalation -> user behavior is restricted, attackers would typically look to gain administrative privileges</ul>
-    <ul>Defense Evasion -> businesses do a lot to protect systems, looking for malware and instances of persistence; when attackers try to get access and maintain access regardless of the protection measures in 
+    <ul><b>Privilege Escalation</b> -> user behavior is restricted, attackers would typically look to gain administrative privileges</ul>
+    <ul><b>Defense Evasion</b> -> businesses do a lot to protect systems, looking for malware and instances of persistence; when attackers try to get access and maintain access regardless of the protection measures in 
     place, it's <b>defense evasion</b> and may include masquerading or execution hijacking or tampering with protections in place</ul>
-    <ul>Credential Access -> gathering usernames and password, done either from previous attacks or from systems or users directly; any set of username and password may be useful at some point</ul>
-    <ul>Discovery -> any activity that collects information within the victim environment could be considered discovery</ul>
-    <ul>Lateral Movement -> attackers will generally move from one system to another within the victim environment, to collect more information or to gather details about systems or users that could be used 
+    <ul><b>Credential Access</b> -> gathering usernames and password, done either from previous attacks or from systems or users directly; any set of username and password may be useful at some point</ul>
+    <ul><b>Discovery</b> -> any activity that collects information within the victim environment could be considered discovery</ul>
+    <ul><b>Lateral Movement</b> -> attackers will generally move from one system to another within the victim environment, to collect more information or to gather details about systems or users that could be used 
     elsewhere</ul>
-    <ul>Collection -> once the attacker has found information they want to use or sell, they need to pull it together; staging the data</ul>
-    <ul>Command and Control -> the attacker needs a way of getting remote access to systems or to send commands to those systems; usually, there is infrastructure in place to perform this command and control 
+    <ul><b>Collection</b> -> once the attacker has found information they want to use or sell, they need to pull it together; staging the data</ul>
+    <ul><b>Command and Control</b> -> the attacker needs a way of getting remote access to systems or to send commands to those systems; usually, there is infrastructure in place to perform this command and control 
     work; because of firewalls direct access to victim systems is not possible so the connection needs to be initiated from the inside of the network</ul>
-    <ul>Exfiltration -> collected data needs to be moved out to the attacker locations so it can be dealt with; moving the data out of the target environment to the attacker's place is exfiltration</ul>
-    <ul>Impact -> attackers are not always looking to steal information; sometimes they are destructive or they modify data by encryption so victim's can't get access (ransomware)</ul>
+    <ul><b>Exfiltration</b> -> collected data needs to be moved out to the attacker locations so it can be dealt with; moving the data out of the target environment to the attacker's place is exfiltration</ul>
+    <ul><b>Impact</b> -> attackers are not always looking to steal information; sometimes they are destructive or they modify data by encryption so victim's can't get access (ransomware)</ul>
   </ol></p>
   <p>The MITRE ATT&CK Framework continues to be updated with new TTPs as they are discovered</p>
-  <h1>Diamond Model of Intrusion Analysis</h1>
+
+  
+  <h2>Diamond Model of Intrusion Analysis</h2>
   <p>The Diamond Model, developed by expert analysts, introduces state-of-the-art technology for intrusion analysis. This model offers a framework and a set of procedures for recognizing clusters of events that 
   are correlated on any of the systems in an organization. With the Diamond Model, more advanced and efficient mitigation approaches can be developed and analytic efficiency can be increased. The Diamond Model 
   consists of four basic features:</p>
@@ -176,3 +254,172 @@ breaches.</p>
   forcing and ransomware attacks.</p>
   <h2>Infrastructure</h2>
   <p>Refers to hardware or software used in the network by the target that has a connection with the <b>adversary</b>. It refers to <b>What</b> the adversary has used to reach the victim.</p>
+
+  <h1>Information Security Controls</h1>
+  <p><b>Information security controls</b> prevent the occurence of unwanted events and reduce risk to the organization's information assets. It are the buttons and knobs, the controls, to turn in order to finetune 
+  the risks. The basic security concepts critical to information on the internet are:</p>
+  <p><ol>
+    <ul>confidentiality</ul>
+    <ul>integrity</ul>
+    <ul>availability</ul>
+  </ol></p>
+  <p>The concepts related to the persons accessing the information are:</p>
+  <p><ol>
+    <ul>authentication</ul>
+    <ul>authorization</ul>
+    <ul>non-repudiation</ul>
+  </ol></p>
+<h2>Information Assurance (IA)</h2>
+<p>IA refers to confidentiality, integrity, availability and authenticity of information and information systems during the usage, processing, storage and transmission of information. Information assurance is 
+accomplished with phyical, technical and administrative controls:</p>
+<p><ol>
+  <ul>Develop local policy, process and guidance</ul>
+  <ul>Design network and user authentication strategy</ul>
+  <ul>Identify network vulnerabilities and threats</ul>
+  <ul>Identify problems and resource requirements</ul>
+  <ul>Apply appropriate information assurance controls</ul>
+  <ul>Perform Certification and Accreditation (C&A) process of information systems to trace vulnerabilities and implement safety measures</ul>
+  <ul>Provide information assurance training to all personnel</ul>
+</ol></p>
+  <h2>Continual / Adaptive Security Strategy</h2>
+  <p>The adaptive security strategy prescribes that continuous prediction, prevention, detection and response actions must be taken:</p>
+  <p><ol>
+    <ul><b>Protection</b>: security policies, physical security, host security, firewall, IDS etc.</ul>
+    <ul><b>Detection</b>: network monitoring, packet sniffing tools</ul>
+    <ul><b>Responding</b>: respond to incidents and find their root causes, decide whether the incident is an actual security incident or a false positive</ul>
+    <ul><b>Prediction</b>: conduct risk and vulnerability assessment, perform attack surface analysis, consume threat intelligence data</ul>
+  </ol></p>
+  <h2>Defense-in-Depth</h2>
+  <p>Security strategy using several protection layers throughout an information system. This stragy uses the military principle that it is more difficult for an enemy to defeat a complex and multi-layered 
+  defense system than to penetrate a single barrier. Defense-in-Depth helps to prevent direct attacks against an information system and its data because a break in one layer leads the attacker to the next 
+  layer. Defense-in-Depth minimizes any adverse impact and gives administrators and engineers time to deploy new or updated countermeasures.</p>
+
+  <h2>Risk</h2>
+  <p>Risk refers to the degree of uncertainty or expectation of potential damage that an adverse event may cause to the system or its resources, under specified conditions. Alternatively, risk can also be:</p>
+  <p><ol>
+    <ul>Probability of the occurence of a threat or an event that will damage, cause loss to, or have other negative impacts on the organization, either from internal or external liabilities</ul>
+    <ul>Possibility of a threat acting upon an internal or external vulnerability and causing harm to a resource</ul>
+    <ul>Product of the likelihood that an event will occur and the impact that the event might have on an information technology asset</ul>
+  </ol></p>
+  <p>The relation between Risk, Threats, Vulnerabilities and Impact:</p>
+  <p><b>RISK = Threats x Vulnerabilities x Impact</b></p>
+  <p>IT risk can be expanded to:</p>
+  <p><b>RISK = Threat x Vulnerability x Asset Value</b></p>
+
+  <h2>Risk Level</h2>
+  <p>Risk level is an assessment of the resulted impact on the network. Various methods exist. One of the common methods used to classify risks is to develop a <b>two-dimensional matrix</b></p>
+  <p><b>Level of Risk = Consequence x Likelihood</b></p>
+  <p>There are four risk levels:</p>
+  <p><ol>
+    <ul>extreme</ul>
+    <ul>high</ul>
+    <ul>medium</ul>
+    <ul>low</ul>
+  </ol></p>
+  <h2>Risk Matrix</h2>
+  <p>The risk matrix scales the risk occurrence or likelihood probability, along with its consequences or impact. It is one of the simplest processes to use for increased visibility of risk and 
+  contributes to decision making. Although there are many standard risk matrices, <b>individual organizations must create their own based on their business needs</b>.</p>
+
+  <h2>Risk Management</h2>
+  <p>Risk Management is the process of identifying, assessing, responding to and implementing the activities that control how the organization manages the potential effects of risk. Objectives:</p>
+  <p><ol>
+    <ul>Identify potential risks</ul>
+    <ul>Identify impact of risks</ul>
+    <ul>Prioritize the risks</ul>
+    <ul>Understand and analyze the risks and report identified risk events</ul>
+    <ul>Control the risk and mitigate its effect</ul>
+    <ul>Create awareness among the security staff and develop strategies and plans for lasting risk management strategies</ul>
+  </ol></p>
+  <p>Risk management is a continuous process performed by achieving goals at every phase and is applied in all stages of the organization.</p>
+  <p>The four key steps commonly termed as risk management phases:</p>
+  <p><ol>
+    <ul>Risk Identification -> uses skill set of people</ul>
+    <ul>Risk Assessment</ul>
+    <ul>Risk Treatment -> selecting and implementing appropriate controls</ul>
+    <ul>Risk Tracking and Review</ul>
+  </ol></p>
+
+  <h2>Cyber Threat Intelligence</h2>
+  <p>Cyber Threat Intelligence (CTI) is the collection and analysis of information about threats and adversaries and the drawing up of patterns that provide an ability to make knowledgeable decisions for 
+  preparedness, prevention and response actions against various cyberattacks. The main aim of CTI is to make the organization aware of existing or emerging threats and prepare them to develop a proactive 
+  cybersecurity posture in advance of exploitation. Threat intelligence is useful in achieving secure data sharing and global transactions among organizations.</p>
+  <p>Types of Threat Intelligence:</p>
+  <p><ol>
+    <ul>Strategic Threat Intelligence -> high level executives, CISO etc.</ul>
+    <ul>Tactical Threat Intelligence -> cybersecurity professionals, security operations staff, architects etc.</ul>
+    <ul>Operational Threat Intelligence -> security managers, heads of incident response, security forensics etc.</ul>
+    <ul>Technical Threat Intelligence -> shorter lifespan, collected from active campaigns, updating IDS, IPS, Firewall etc.</ul>
+  </ol></p>
+
+  <h2>Threat Intelligence Lifecycle</h2>
+  <p>The threat intelligence lifecycle is a continuous process of developing intelligence from raw data. It can be compared to the OSINT lifecycle and has five phases:</p>
+  <p><ol>
+    <ul>Planning and direction -> collection plan</ul>
+    <ul>Collection -> OSINT, HUMINT, IMINT, MASINT, SIGINT, IoCs</ul>
+    <ul>Processing and exploitation -> converting raw data into usable format</ul>
+    <ul>Analysis and production -> finding facts, findings and forecasts; objective, timely, accurate and actionable</ul>
+    <ul>Dissemination and integration -> distribution to intended consumers</ul>
+  </ol></p>
+  <p><ol>
+    <ul>Strategic threat intelligence -> high-level executives and focus on high-level business strategies</ul>
+    <ul>Operational threat intelligence -> cybersecurity specialists and focus on specific threats to the organization</ul>
+    <ul>Tactical threat intelligence -> SOC managers, architects and focus on adversary TTPs</ul>
+    <ul>Technical threat intelligence -> SOC staff and IR teams and focus on identified IoCs</ul>
+  </ol></p>
+
+  <h2>Threat Modeling</h2>
+  <p>Threat Modeling is a risk assessment approach for analyzing the security of an <b>application</b> and has three building blocks:</p>
+  <p><ol>
+    <ul>Understanding the adversary's perspective</ul>
+    <ul>Characterizing the security of the system</ul>
+    <ul>Determining threats</ul>
+  </ol></p>
+  <p>Every <b>application</b> should have a developed and documented threat model that should be revisited as the application evolves. Focus on the approach and try not to be rigid. Start with a whiteboard.</p>
+  <p>The threat modeling process involves five steps:</p>
+  <p><ol>
+    <ul>Identify Security Objectives -> what data should be protected, compliance requirements, QoS requirements etc.</ul>
+    <ul>Application overview -> identify components, data flows, trust boundaries, use a whiteboard; Identify rols of users</ul>
+    <ul>Decompose the application -> break it down to identify trust boundaries, data flows etc.</ul>
+    <ul>Identify Threats</ul>
+    <ul>Identify Vulnerabilities</ul>
+  </ol></p>
+
+  <h2>Incident Management</h2>
+  <p>Incident management is a set of defined processes to identify, analyze, prioritize and resolve security incidents to restore the system to normal service a.s.a.p.</p>
+  <p><ol>
+    <ul>Vulnerability analysis</ul>
+    <ul>Artifact analysis</ul>
+    <ul>Security awareness training</ul>
+    <ul>Intrusion detection</ul>
+    <ul>Public or technology monitoring</ul>
+    <ul>Conduct training sessions</ul>
+  </ol></p>
+
+  <h2>Incident handling and response</h2>
+  <p>IH&R is the process of taking organized and careful steps when reacting to a security incident or cyberattack. It is a set of procedures, actions and measures taken against an unexpected even occurence. It is 
+  a focused approach for restoring normal business operations as quickly as possible after an incident and with a minimal impact on the business.</p>
+  <p><ol>
+    <ul>Step 1: Preparation -> audit of resources and assets to determine the purpose of security and define rules, policies and procedures that drive the IH&R process</ul>
+    <ul>Step 2: Incident recording and assignment -> initial reporting and recording of the incident</ul>
+    <ul>Step 3: Incident Triage -> security incidents are analyzed, validated, categorized and prioritized</ul>
+    <ul>Step 4: Notification -> IH&R team informs various stakeholders, incl. management, third-party vendors, clients etc.</ul>
+    <ul>Step 5: Containment -> prevent spread of infection to other organizational assets, preventing additional damage</ul>
+    <ul>Step 6: Evidence gathering and forensic analysis -> accumulation of all possible evidence related to the incident and submitted to the forensic department for investigation</ul>
+    <ul>Step 7: Eradication -> removal or elimination of the root cause</ul>
+    <ul>Step 8: Recovery -> restoring affected system, services, resources and data through recovery</ul>
+    <ul>Step 9: Post-Incident activities -> incident documentation, incident impact assessment, reviewing and revising policies, closing the investigation, incident disclosure</ul>
+  </ol></p>
+
+  <h2>How do AI and ML prevent cyber attacks</h2>
+  <p><ol>
+    <ul>Password protection and authentication -> improve biometric validations and face recognition</ul>
+    <ul>Phishing detection and prevention -> scanning phishing emails faster than a human, quickly differentiate malicious websites from legitimate websites</ul>
+    <ul>Threat Detection</ul>
+    <ul>Vulnerability Management</ul>
+    <ul>Behavioral analytics</ul>
+    <ul>Network security</ul>
+    <ul>AI-based antivirus</ul>
+    <ul>Fraud detection</ul>
+    <ul>Botnet detection</ul>
+    <ul>AI to combat AI Threats</ul>
+  </ol></p>
