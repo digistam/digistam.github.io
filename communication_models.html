@@ -92,6 +92,7 @@ because the functionality is known. The individual protocols don't matter, neces
  <p>With a subnet mask of 255.255.255.128 we have the possibility of two address blocks, regardless of what the IP address is, we can only vary the last octet. In this case, we can't change the value in the 
  most significant bit position. This leaves us with the ranges 0 - 127 and 128 - 255. Once we known what the IP address is, we known in which block we are. Let's say the IP address is 172.20.30.42 and the network 
  mask is 255.255.255.128. We can see the address block has to be 172.20.30.0 because that's the range .42 lands in.</p>
+    <p><a target=_blank href=https://mxtoolbox.com/SubnetCalculator.aspx>Subnet calculator from MXToolbox</a></p>
     <h2>CIDR</h2>
     <p>Another way to designate network blocks is using Classless Inter-Domain Routing (CIDR) notation. You only get the number of prefix bits. Example: 172.20.30.42/25. Using this notation actually make life 
     a little easier if you think about it in powers of two. Often, you see CIDR notations hovering around the /24 area, which is the 255.255.255.0 subnet and is common. If you want to known how many hosts, you 
