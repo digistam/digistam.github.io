@@ -2,7 +2,7 @@
     <meta name=”robots” content=”noindex,nofollow”/>
   <a href=index.html>Back to home</a>
 <hr/>
-<h1><b>NMap commands</b></h1>
+<h1><b>Nmap commands</b></h1>
     <h2>Least intrusive: List Scan</h2>
     <p>The list scan -sL is a degenerate form of host discovery that simply lists each host of the network(s) specified, without sending any packets to the 
         target hosts. All it does is running through all the IP addresses in the block (/24). It doesn't do a lot but by default, 
@@ -24,7 +24,7 @@
     -sn was known as -sP. However, <b>Metasploit still uses the -sP parameter for ping sweep !</b></p>
     <p>The difference between de List scan (-sL) and the Ping sweep (-sn) is that with the Ping sweep nmap shows which hosts are UP!</p>
     <p><b>sudo nmap -sn 192.168.2.254/24</b></p>
-    <p>ZenMap will create a nice list of detected IP addresses with their MAC addresses</p>
+    <p>ZenMap will create a nice list of detected IP addresses with their MAC addresses. The no port scan with the -sn flag is used as a </p>
     <h2>PING scans</h2>
     <p>Ping scans are defined with the <b>-Px</b> flag!</p>
         <h2>[ARP] ARP ping scan</h2>
