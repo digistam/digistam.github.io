@@ -25,9 +25,41 @@
     <p>The difference between de List scan (-sL) and the Ping sweep (-sn) is that with the Ping sweep nmap shows which hosts are UP!</p>
     <p><b>sudo nmap -sn 192.168.2.254/24</b></p>
     <p>ZenMap will create a nice list of detected IP addresses with their MAC addresses</p>
-    <h2>TCP scans (Port scans)</h2>
+    <h2>PING scans</h2>
+    <p>Ping scans are defined with the <b>-Px</b> flag!</p>
+        <h2>[ARP] ARP ping scan</h2>
+    <p>ARP ping scan scan uses the -PR parameter. The ARP ping scan probes ARP request to target the host; an ARP response means that the host is active</p>
+    <p><b>sudo nmap -sn -PR 10.10.1.22</b></p>
+    <h2>[UDP] UDP ping scan</h2>
+    <p>The UDP ping scan (-PU) sends UDP packets to the target host; a UDP response means that the host is active. If the target host is offline or unreachable, various error messages 
+    such as "host/network unreachable" or "TTL exceeded" could be returned</p>
+    <p><b>sudo nmap -sn -PU 10.10.1.22</b></p>
+    <h2>[ICMP] ICMP ECHO ping scan</h2>
+    <p>The ICMP ECHO ping scan involves sending ICMP ECHO requests to a host. If the target host is alive, it will return an ICMP ECHO reply. This scan is useful for locating active
+    devices or determining if the ICMP is passing through a firewall</p>
+    <p><b>sudo nmap -sn -PE 10.10.1.22</b></p>
+    <h2>[ICMP] ICMP ECHO ping sweep</h2>
+    <p>An ICMP ECHO ping sweep discovers live hosts from a range of target IP addresses. If a host is alive, it will return an ICMP ECHO reply.</p>
+    <p><b>sudo nmap -sn -PE 10.10.1.10-23</b></p>
+    <h2>[ICMP] ICMP timestamp ping</h2>
+    <p>ICMP timestamp ping is an optional and additional type of ICMP ping whereby attackers query a timestamp message to acquire the information related to the current time from the host</p>
+    <p><b>sudo nmap -sn -PP 10.10.1.22</b></p>
+    <h2>[ICMP] ICMP Address Mask Ping Scan</h2>
+    <p>This technique is an alternative for the traditional ICMP ECHO ping scan specifically when administrators block the ICMP ECHO pings</p>
+    <p><b>sudo nmap -sn -PM 10.10.1.10</b></p>
+    <h2>[TCP] SYN Ping Scan</h2>
+    <p>This technique sends empty TCP SYN packets to the target host, ACK response means that the host is active</p>
+    <p><b>sudo nmap -sn -PS 10.10.1.10</b></p>
+    <h2>[TCP] ACK Ping Scan</h2>
+    <p>This technique sends empty TCP ACK packets to the target host, RST response means that the host is active</p>
+    <p><b>sudo nmap -sn -PA 10.10.1.10</b></p>
+    <h2>[IP] IP Protocol Ping Scan</h2>
+    <p>This technique sends different probe packets of different IP protocols to the target host, any response from any probe indicates that a host is active</p>
+    <p><b>sudo nmap -sn -PO 10.10.1.10</b></p>
+    <h1>TCP scans (Port scans)</h1>
     <p>Tip: scanning port ranges with nmap can be slow and take a long while. It can be wise to use <b>masscan</b> for
         scannning port ranges and nmap for scanning single hosts!</p>
+    <p>Port scans are defined with the <b>-sX</b> flag!</p>
     <p>We can do TCP scans as well as UDP scans with nmap</p>
 <h2>[TCP] SYN scan (half-open scan)</h2>
 <p>This is called the half-open scan because connections are left half open (handshake will not be completed). Nmap will send a SYN message to the target. If the port is open, it will respond with SYN/ACK messagen. 
