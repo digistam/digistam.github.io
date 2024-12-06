@@ -28,7 +28,10 @@
     <h2>PING scans</h2>
     <p>Ping scans are defined with the <b>-Px</b> flag!</p>
         <h2>[ARP] ARP ping scan</h2>
-    <p>ARP ping scan scan uses the -PR parameter. The ARP ping scan probes ARP request to target the host; an ARP response means that the host is active</p>
+    <p>ARP scan is a simple tool that can be used to list the IP addresses (and devices) used in a network. It works by sender ARP 'who-has' requests for every 
+        IP address of the subnet (we can see that perfectly with Wireshark). If the IP address is used by a device, it will reply with an ARP 'reply' packet. 
+        It's the preferred scan in nmap. ARP ping scan uses the -PR parameter. The ARP ping scan probes ARP request to target the host; an ARP response means 
+        that the host is active</p>
     <p><b>sudo nmap -sn -PR 10.10.1.22</b></p>
     <h2>[UDP] UDP ping scan</h2>
     <p>The UDP ping scan (-PU) sends UDP packets to the target host; a UDP response means that the host is active. If the target host is offline or unreachable, various error messages 
