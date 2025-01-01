@@ -62,23 +62,9 @@ Windows stores user account passwords in SAM file. This file contains hashes of 
 <p>First, we can try John to find the password:
 <p>cd /usr/share/responder/logs</p>
 <p>john SMB-NTLMv2-SSP-192.168.2.186.txt</p>
-<p>With a little luck, John finds passwords we can use to log into the target Windows computer.</p>
+<p>With a little luck, John finds passwords we can use to log into the target Windows computer. When logged in localy it is possible to get far more information, 
+    evade firewalls and use installed software (Live of the Land, LOTL, LOLBins). </p>
 
-<p>It is also possible to dump the SAM hashes with <a target=_blank href=https://github.com/fortra/impacket>Impacket</a>. 
+<h2>Impacket</h2>
+<p>It is also possible to dump the SAM hashes with <a target=_blank href=https://github.com/fortra/impacket>Impacket</a>.</p>
 
-<p>If you have a domain name of an organization and you want to find out the network range:</p>
-<h2>Method 1: dnsrecon and RIPE website</h2>
-<p><ol>
-  <ul>dnsrecon -d belastingdienst.nl</ul>
-  <ul>Copy IP address of "A" record</ul>
-  <ul>Visit <a target=_blank href=https://apps.db.ripe.net/db-web-ui>RIPE Database</a></ul>
-  <ul>Paste the IP address and search</ul>
-  <ul>Note the value at <b>inetnum</b></ul>
-</ol></p>
-<h2>Method 2: Censys website</h2>
-<p><ol>
-    <ul>Log in @ <a target=_blank href=https://www.censys.io>censys.io</a></ul>
-    <ul>Search for the domain</ul>
-    <ul>Click the right match</ul>
-    <ul>Click through on <b>Routing</b></ul>
-</ol></p>
