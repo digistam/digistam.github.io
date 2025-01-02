@@ -1,0 +1,25 @@
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+  <h1>Remote Shell Workflow</h1>
+<p>Visit <a target=_blank href=https://www.revshells.com/>On-line Reverse Shell Generator</a></p>
+<p>Under IP & Port enter the Listener IP (Kali machine) and Listener port 4444.</p>
+<h2>MSFvenom</h2>
+<p>First, we will create payload using msfvenom option present in the reverse shell generator tool, to do so, click MSFVenom tab. You can observe, msfvenom 
+  command which you can use to generate a payload (here, reverse.exe). Here, we are selecting Windows Meterpreter Staged Reverse TCP (x64) from MSFVenom 
+  section to generate payload.</p>
+<p>Switch to the terminal window and paste the copied code in the terminal and press Enter, to create a payload named reverse.exe</p>
+<p>We will start a listener using Reverse Shell Generator, to do so, switch to the browser window and select msfconsole as Type from the drop-down under Listener.
+  A code will be generated with the selected IP address and port number, click Copy to copy the code.</p>
+<p>Now, switch to the terminal window and paste the copied code to start the listener. As we have started the listener, we will now, transfer the payload to the victim machine.</p>
+<p>As soon as the victim starts reverse.exe, a remote shell will be created. But, in practice, it will be blocked by Windows defender or other anti-malware programs.</p>
+  
+<h2>PowerShell</h2>
+<p>Now, we will gain access to the remote system using PowerShell script. To do so, switch to the browser window and select HoaxShell tab. In the HoaxShell section, 
+  select PowerShell IEX from the left pane (change the port number to 444 in the payload) and click on Copy button at the bottom to copy the payload.</p>
+  <p>Open a new terminal window as a superuser and run nano shell.ps1 command to open a text editor window. In the shell.ps1 text editor window, paste the copied 
+    code Save the file and close the text editor window.</p>
+    <p>We will now run a hoaxshell listener, to do so, switch to the Firefox browser and ensure the port number is 444, select hoaxshell from the Type drop-down under Listener section and click on Copy to copy the code.</p>
+    <p>Switch to the terminal window and paste the copied code to start the listener.</p>
+    <p>Also, here are a lot of issues, for example the script will be recognized by anti-malware programs, powershell not able to run scripts and missing Python modules in Kali./p>
+      
