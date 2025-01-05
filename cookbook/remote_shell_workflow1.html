@@ -11,8 +11,19 @@
 <p>Switch to the terminal window and paste the copied code in the terminal and press Enter, to create a payload named reverse.exe</p>
 <p>We will start a listener using Reverse Shell Generator, to do so, switch to the browser window and select msfconsole as Type from the drop-down under Listener.
   A code will be generated with the selected IP address and port number, click Copy to copy the code.</p>
-<p>Now, switch to the terminal window and paste the copied code to start the listener. As we have started the listener, we will now, transfer the payload to the victim machine.</p>
-<p>As soon as the victim starts reverse.exe, a remote shell will be created. But, in practice, it will be blocked by Windows defender or other anti-malware programs.</p>
+<p>Now, switch to the terminal window and paste the copied code to start the listener. As we have started the listener, we will now have to lure the victim into starting the exploit.</p>
+
+<h2>Most easy distribution</h2>
+<p>Create shared folder on the web server and copy the exploit:</p>
+<p><ol>
+    <ul>mkdir /var/www/html/share</ul>
+    <ul>chmod -R 755 /var/www/html/share</ul>
+    <ul>chown -R www-data:www-data /var/www/html/share</ul>
+    <ul>cp /home/[USER]/Documents/reverse.exe /var/www/html/share/</ul>
+    <ul>service apache2 start</ul>
+</ol>
+<p>The victim can download reverse.exe from the webserver and start it. As soon as reverse.exe is executed, a remote shell will be created. 
+    But, in practice, it will be blocked by Windows defender or other anti-malware programs.</p>
 <p>Red teamers never build quick exploits from scratch, because a lot of obfuscation, packing and encoding is needed to evade (signature based) anti-virus programs.</p>
 <p>So, this cookbook recipe will soon be expanded with working examples of obfuscation, packing etc.</p>
   
