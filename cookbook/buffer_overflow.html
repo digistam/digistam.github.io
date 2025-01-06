@@ -2,16 +2,47 @@
   <a href=../index.html>Back to home</a>
 <hr/>
   <h1>Buffer Overflow</h1>
-<p>We can use AI now to do quick and dirty vulnerability scans:</p>
-<h2>Nikto</h2>
+
+  <h2>Phases</h2>
 <p><ol>
-  <ul>sgpt --chat nikto --shell "launch nikto to execute a scan against www.certifiedhacker.com to identify potential vulnerabilities"</ul>
-</ol>
-<h2>Nmap</h2>
+ <ul>Perform Spiking</ul>
+ <ul>Perform Fuzzing</ul>
+ <ul>Identify the Offset</ul>
+ <ul>Overwrite the EIP Register</ul>
+ <ul>Identify Bad Characters</ul>
+ <ul>Identify the Right Module</ul>
+ <ul>Generate Shellcode</ul> 
+ <ul>Gain shell access</ul>
+</ol></p>
+
+<h2>Perform Spiking</h2>
+<p>Spiking allows attackers to send crafted TCP and UDP packets to the vulnerable server in order to make it crash. We use a tool for this named <b>Netcat</b>. 
+ We will set up a Netcat Listener. Netcat will give us a command line or terminal at the end of the procedure and we can do a <b>WhoAmI</b> with that. But first, we generate spike templates and perform spiking.</p>
 <p><ol>
-  <ul>sgpt --chat vuln --shell "perform vulnerability scan on www.moviescope.com with nmap"</ul>
-</ol>
-<h2>Skipfish</h2>
+ <ul>Establish a connection with the vulnerable server using Netcat</ul>
+ <ul>nc -nv [Target IP] [Target Port]</ul>
+</ol></p>
+
+<h2>Perform Fuzzing</h2>
+<p>Using fuzz.py we send a large amount of data to the target server so that it experiences buffer overflow and overwrites the EIP register. Fuzzing helps in identifying the number of bytes required to crash the 
+ target server. This information helps in determining the exact location of the EIP register, which further helps in injecting malicious shellcode.</p>
 <p><ol>
-  <ul>sgpt --chat vuln --shell "perform a vulnerability scan on target url testphp.vulnweb.com with skipfish"</ul>
-</ol>
+ <ul>Generate spike templates</ul>
+ <ul>nano -> s_readline(); s_string("STATS"); s_string_variable("0");</ul>
+</ol></p>
+
+<h2>Identify the Offset</h2>
+<p>We use the Metasploit framework pattern_create and pattern_offset ruby tools to identify the offset and exact location where the EIP register is being overwritten.</p>
+
+<h2>Overwrite the EIP Register</h2>
+<p>We use overwrite.py to test if we can overwrite the EIP register with malicious shellcode.</p>
+
+<h2>Identify Bad Characters</h2>
+<p>Before injecting the shellcode into the EIP register, attackers identify bad characters that may cause issues in the shellcode. Obtain the badchars through a Google search. Characters such as no byte, i.e. 
+"\x00" are badchars.</p>
+
+<h2>Identify the Right Module</h2>
+<p>In this step, attackers identify the right module of the vulnerable server that lacks memory protection. In Immunity Debugger, we can use scripts such as mona.py to identify modules that lack memory protection.</p>
+
+<h2>Generate Shellcode and gain shell access</h2>
+<p>Using msfvenom, we create shellcode and inject it into the EIP register to gain shell access.</p>
