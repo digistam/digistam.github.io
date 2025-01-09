@@ -1,0 +1,31 @@
+ <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>Active Directory (AD) attacks</h1>
+<p>AD attacks involve exploiting vulnerabilities in the AD to gain unauthorized access, escalate privileges, and steal sensitive data. 
+  Techniques include password cracking, Kerberos attacks, and exploiting misconfigurations. As ethical hackers, you can use these methods 
+  to test defenses, identify weaknesses, and enhance security for organizations' network infrastructures.</p>
+<h2>Initial Scans to Obtain Domain Controller IP and Domain Name</h2>
+<p>nmap 10.10.1.0/24</p>
+<p>Observe the nmap output carefully. Here, nmap shows that host 10.10.1.22 has port 88/TCP kerberos-sec and port 389/TCP LDAP opened which confirms that 
+  our DC IP address is 10.10.1.22.</p>
+<p>Now, we will scan 10.10.1.22 in more detail to obtain more information. Execute the nmap -A -sC -sV 10.10.1.22 command. After scanning is complete, we 
+get the Domain name. Now, we have DC IP and domain name, which can be used in the AS-REP Roasting attack.</p>
+<h2>AS-REP Roasting Attack</h2>
+<p>An AS-REP roasting attack targets user accounts in AD that do <b>not require Kerberos pre-authentication</b>, exploiting the DONT_REQ_PREAUTH setting. 
+  Attackers can request a ticket-granting ticket (TGT) for these accounts without needing the user's password. The DC responds with an encrypted TGT, 
+  which the attacker captures. This TGT, encrypted with the user's password hash, is then subjected to offline password-cracking tools such as Hashcat or John the Ripper. 
+  By rapidly guessing the password, the attacker can eventually decrypt the TGT, revealing the user's password.</p>
+<p>Software needed: <a target=_blank href=https://github.com/fortra/impacket>Impacket</a>. Impacket is a collection of Python scripts that an attacker can use to target Windows network protocols.</p>
+<p><ol>
+  <ul>cd impacket/examples/</ul>
+  <ul>python3 GetNPUsers.py [Domain name] -no-pass -usersfile /root/ADtools/users.txt -dc-ip 10.10.1.22</ul>
+</ol></p>
+<p>We can observe users who have DONT_REQUIRE_PREAUTH set. As these users are vulnerable to AS-REP roasting, we can obtain their passwords.</p>
+<p><ol>
+  <ul>copy the hash</ul>
+  <ul>echo '[hash]' > username_hash.txt</ul>
+  <ul>john --wordlist ../rockyou.txt username_hash.txt</ul>
+  <ul>the password in plain text will hopefully be found</ul>
+</ol></p>
+
