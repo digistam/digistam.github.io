@@ -2,30 +2,23 @@
 <html>
   <meta name=”robots” content=”noindex,nofollow”/>
 <body>
-<h1>Hello World!</h1>
-<p>This simple but <b>fast</b>, <b>no-nonsense</b>, <b>free</b> and <b>"always there"</b> website has been created on the Github network in order to prepare myself for the CEH exam 2024.</p>
+<h1>My Cybercrime Knowledge Base</h1>
+<p>This simple but <b>fast</b>, <b>no-nonsense</b>, <b>free</b> and <b>"always there"</b> website has been created on the Github network in order to prepare myself for the CEH exam 2024 / 2025 / ?</p>
   <p>The information on these pages is for PERSONAL use and not intended to be distributed to other people!</p>
   <p>My collection of valuable links to sources, methods, tools etc. is available on <a target=_blank href=https://www.start.me>start.me</a></p>
-  <h2>Topics</h2>
-  <p><ol>
-    <ul><a href=malware.html>Malware information</a></ul>
-    <ul><a href=trojan_info.html>Trojan background information</a></ul>
-    <ul><a href=infostealers_info.html>Infostealers background information</a></ul>
-    <ul><a href=virus_info.html>Virus background information</a></ul>
-    <ul><a href=ransomware_info.html>Ransomware background information</a></ul>
-    <ul><a href=worms_info.html>Worms background information</a></ul>
-    <ul><a href=fileless_info.html>Fileless Malware</a></ul>
-    <ul><a href=C2.html>C2 Command & Control</a></ul>
-    <ul><a href=domain_dominance.html>Domain Dominance</a></ul>
-    <ul><a href=APT.html>APT</a></ul>
-    <ul><a href=postgres.html>Postgres</a></ul>
-  </ol></p>
-  <h1>Contents</h1>
+  <h1>Framework</h1>
   <h2>Network basics</h2>
   <p><ol>
     <ul><a href=communication_models.html>Communication models and subnets</a></ul>
     <ul><a href=cookbook/locate_network_range.html>[Recipe] Locate network range</a></ul>
+    <ul><a href=postgres.html>Postgres</a></ul>
   </ol></p>
+  <h2>VMware and virtualisation</h2>
+  <p>
+    <ol>
+      <ul><a href=method/VMware_virtualisation.html>VMware and virtualisation</a></ul>
+    </ol>
+  </p>
   <h2>Hacking background information</h2>
   <p><ol>
     <ul><a href=information_security.html>Information Security concepts</a></ul>
@@ -45,6 +38,16 @@
     <ul><a href=nmap.html>NMap commands</a></ul>
     <ul><a href=enumeration.html>Enumeration</a></ul>
   </ol></p>
+  <h2>DNS</h2>
+  <p><ol>
+      <ul><a href=method/dns-enumeration.html>Domain Name System and DNS enumeration</a></ul>
+      <ul><a href=method/active_sniffing_techniques.html>DNS poisoning with Bettercap</a></ul>
+  </ol></p>
+  <h2>Vulnerabilities</h2>
+  <p><ol>
+    <ul><a href=method/nmap_cve.html>Detect CVEs Using Nmap Vulnerability Scan Scripts</a></ul>
+    <ul><a href=vulnerabilityscanners.html>Free vulnerability scanners test</a></ul>
+  </ol></p>
   <h2>Vulnerability Scanning</h2>
   <p><ol>
     <ul><a href=vulnerabilities.html>Vulnerabilities</a></ul>
@@ -62,6 +65,17 @@
     <ul><a href=cookbook/active_directory_attacks.html>[Recipe] Active Directory (AD) attacks</a></ul>
     <ul><a href=cookbook/password_spraying.html>[Recipe] Password spraying and Brute-force using CrackMapExec and Hydra</a></ul>
   </ol></p>
+  <h2>Reverse TCP</h2>
+  <p><ol>
+      <ul><a href=method/reverse_tcp.html>Reverse TCP</a></ul>
+      <ul><a href=method/escalate_privileges.html>Escalate privileges</a></ul>
+      <ul><a href=method/backdoor.html>Backdoor</a></ul>
+      <ul><a href=method/sticky_keys.html>Sticky Keys exploit</a></ul>
+      <ul><a href=method/mimikatz_privilege_escalation.html>Mimikatz privilege escalation</a></ul>
+      <ul><a href=method/Persistence_boot.html>Persistence using boot and logon autostart</a></ul>
+      <ul><a href=method/domain_persistence_ad.html>Domain persistence using AD objects</a></ul>
+      <ul><a href=method/WMI-privilege-persistence.html>Privilege escalation and maintain persistence using WMI</a></ul>
+  </ol></p>
   <h2>Escalating Privileges</h2>
   <p><ol>
     <ul><a href=cookbook/escalating_privileges.html>[Recipe] Escalating privileges</a></ul>
@@ -70,20 +84,32 @@
   <p><ol>
     <ul><a href=rootkit_info.html>Rootkit background information</a></ul>
     <ul><a href=cookbook/maintain_access.html>[Recipe] Maintain persistence by modifying Registry Run keys</a></ul>
+    <ul><a href=method/Persistence_boot.html>Persistence using boot and logon autostart</a></ul>
+    <ul><a href=method/domain_persistence_ad.html>Domain persistence using AD objects</a></ul>
   </ol></p>
   <h2>Covering Tracks</h2>
   <p><ol>
+    <ul><a href=method/NTFS_streams.html>NTFS streams</a></ul>
     <ul><a href=steganography.html>Steganography information</a></ul>
+    <ul><a href=method/Steganography_whitespace.html>Whitespace Steganography</a></ul>
     <ul><a href=clearing_logs.html>Clearing Logs</a></ul>
   </ol></p>
-  <h2>Password cracking</h2>
+  <h2>Malware threats</h2>
   <p><ol>
+    <ul><a href=malware.html>Malware information</a></ul>
+    <ul><a href=trojan_info.html>Trojan background information</a></ul>
+    <ul><a href=infostealers_info.html>Infostealers background information</a></ul>
+    <ul><a href=virus_info.html>Virus background information</a></ul>
+    <ul><a href=ransomware_info.html>Ransomware background information</a></ul>
+    <ul><a href=worms_info.html>Worms background information</a></ul>
+    <ul><a href=fileless_info.html>Fileless Malware</a></ul>
+    <ul><a href=C2.html>C2 Command & Control</a></ul>
+    <ul><a href=domain_dominance.html>Domain Dominance</a></ul>
+    <ul><a href=APT.html>APT</a></ul>
+    <ul><a href=method/gain_control_trojan.html>Gain control to target system using Trojans</a></ul>
+    <ul><a href=method/infect_target_virus.html>Infect target system using a virus</a></ul>
+    <ul><a href=method/Ninja_behind_firewall.html>Ninja behind NAT, firewall</a></ul>
   </ol></p>
-  
-  <h2>ARP spoofing</h2>
-  <p><ol>
-    <ul><a href=method/active_sniffing_techniques.html>Arp spoof with Bettercap</a></ul>
-    <ul><a href=method/active_sniffing_techniques.html>LLMNR poisoning with Responder.py</a></ul>
   </ol></p>
   <h2>Malware Analysis</h2>
   <p><ol>
@@ -92,76 +118,15 @@
     <ul><a href=method/virus_detection.html>Virus Detection Methods</ul>
     <ul><a href=method/practical_malware_analysis.html>Practical malware analysis</a></ul>
   </ol></p>
-  <h2>Vulnerabilities</h2>
+  <h2>Sniffing</h2>
   <p><ol>
-    <ul><a href=method/nmap_cve.html>Detect CVEs Using Nmap Vulnerability Scan Scripts</a></ul>
-    <ul><a href=vulnerabilityscanners.html>Free vulnerability scanners test</a></ul>
-  </ol></p>
-  <h2>DNS</h2>
-  <p>
-    <ol>
-      <ul><a href=method/dns-enumeration.html>Domain Name System and DNS enumeration</a></ul>
-      <ul><a href=method/active_sniffing_techniques.html>DNS poisoning with Bettercap</a></ul>
-    </ol>
-  </p>
-    <h2>Reverse TCP</h2>
-  <p>
-    <ol>
-      <ul><a href=method/reverse_tcp.html>Reverse TCP</a></ul>
-      <ul><a href=method/escalate_privileges.html>Escalate privileges</a></ul>
-      <ul><a href=method/backdoor.html>Backdoor</a></ul>
-      <ul><a href=method/sticky_keys.html>Sticky Keys exploit</a></ul>
-      <ul><a href=method/mimikatz_privilege_escalation.html>Mimikatz privilege escalation</a></ul>
-      <ul><a href=method/Persistence_boot.html>Persistence using boot and logon autostart</a></ul>
-      <ul><a href=method/domain_persistence_ad.html>Domain persistence using AD objects</a></ul>
-       <ul><a href=method/WMI-privilege-persistence.html>Privilege escalation and maintain persistence using WMI</a></ul>
-    </ol>
-  </p>
-    <h2>Maintain persistence</h2>
-  <p>
-    <ol>
-      <ul><a href=method/Persistence_boot.html>Persistence using boot and logon autostart</a></ul>
-      <ul><a href=method/domain_persistence_ad.html>Domain persistence using AD objects</a></ul>
-    </ol>
-  </p>
-  <h2>Spyware</h2>
-  <p>
-    <ol>
-      <ul><a href=method/Ninja_behind_firewall.html>Ninja behind NAT, firewall</a></ul>
-    </ol>
-  </p>
-  <h2>NTFS streams</h2>
-  <p>
-    <ol>
-      <ul><a href=method/NTFS_streams.html>NTFS streams</a></ul>
-    </ol>
-  </p>
-  <h2>Steganography</h2>
-  <p>
-    <ol>
-      <ul><a href=method/Steganography_whitespace.html>Whitespace Steganography</a></ul>
-    </ol>
-  </p>
-  <h2>Malware threats</h2>
-  <p><ol>
-    <ul><a href=method/gain_control_trojan.html>Gain control to target system using Trojans</a></ul>
-    <ul><a href=method/infect_target_virus.html>Infect target system using a virus</a></ul>
-  </ol></p>
-    <h2>VMware and virtualisation</h2>
-  <p>
-    <ol>
-      <ul><a href=method/VMware_virtualisation.html>VMware and virtualisation</a></ul>
-    </ol>
-  </p>
-    <h2>Sniffing</h2>
-  <p>
-    <ol>
       <ul><a href=sniffing.html>Sniffing</a></ul>
       <ul><a href=protocols.html>Protocols</a></ul>
       <ul><a href=sniffing_tools.html>Sniffing Tools</a></ul>
       <ul><a href=method/active_sniffing_techniques.html>Active sniffing techniques</a></ul>
-    </ol>
-  </p>
+      <ul><a href=method/active_sniffing_techniques.html>Arp spoof with Bettercap</a></ul>
+     <ul><a href=method/active_sniffing_techniques.html>LLMNR poisoning with Responder.py</a></ul>
+  </ol></p>
   <h2>Social Engineering</h2>
   <p><ol>
     <ul><a href=social_engineering.html>Social Engineering Concepts</a></ul>
