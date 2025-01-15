@@ -44,21 +44,27 @@ every system restart to continue the attack.</p>
   <p>A fileless malware attack generally consists of several stages</p>
   <h2>Point of Entry</h2>
   <p><ol>
-    <ul>Memory Exploits -> Fileless malware uses a variety of techniques to inject and execute itself in the process memory of a legitimate system process. It exploits the memory and privileges of whitelisted system tools
-    such as Windows Management Instrumentation (WMI), PowerShell, Command.exe, PsExec etc.</ul>
-    <ul>Malicious Website -> exploit-hosting websites that appear to be legitimate business pages, when the user visits the page the exploit kit starts scanning for vulnerabilities such as outdated Flash or Java plugins. If 
+    <ul><b>Memory Exploits</b> -> Fileless malware uses a variety of techniques to inject and execute itself in the process memory of a legitimate system process. It exploits the memory and privileges of whitelisted system tools
+    such as <b>Windows Management Instrumentation (WMI)</b>, <b>PowerShell</b>, <b>Command.exe</b>, <b>PsExec</b> etc.</ul>
+    <ul><b>Malicious Website</b> -> exploit-hosting websites that appear to be legitimate business pages, when the user visits the page the exploit kit starts scanning for vulnerabilities such as outdated Flash or Java plugins. If 
     successful, it invokes Windows native tools such as PowerShell to download and execute the payload directly in the memory without writing any files to disk</ul>
-    <ul>Phishing Email / Malicious Documents -> malicious macros in the form of VBScript or Javascript in a document</ul>
+    <ul><b>Phishing Email / Malicious Documents</b> -> malicious macros in the form of VBScript or Javascript in a document</ul>
   </ol></p>
   <h2>Code Execution</h2>
   <p><ol>
-    <ul>Code Injection -> various code injection techniques such as process hollowing and reflective DLL injection, which directly load the shellcode into the memory without writing any file to the disk</ul>
-    <ul>Script-based Injection -> fileless malware often comes embedded in a document as an email attachment, once the document is opened the malicious script runs in the memory. All operations occur in memory, which makes it
+    <ul><b>Code Injection</b> -> various code injection techniques such as process hollowing and reflective DLL injection, which directly load the shellcode into the memory without writing any file to the disk</ul>
+    <ul><b>Script-based Injection</b> -> fileless malware often comes embedded in a document as an email attachment, once the document is opened the malicious script runs in the memory. All operations occur in memory, which makes it
     difficult for traditional anti-malware solutions to detect them</ul>
   </ol></p>
   <h2>Persistence</h2>
   <p>In general, fileless malware is not persistent in nature. As it is memory-based, restarting the system would remove the malicious code from memory and stop the infection. However, malicious scripts can be stored in 
   various Windows built-in tools and utilities such as Windows registry, WMI, Windows Task Scheduler and be set to run even after a system reboot</p>
+    <p><ol>
+        <ul><b>Windows Registry</b>: attackers can store the malicious scripts in the <b>Windows AutoStart</b> registry keys so that they are loaded and executed whenever the machine is restarted</ul>
+        <ul><b>Windows Management Instrumentation (WMI)</b>: Fileless malware also abuses WMI, which is commonly used for automating system administration tasks, to achieve and maintain persistence. In this case, 
+        attackers store the malicious scripts in the WMI repositories that are periodically triggered via WMI bindings</ul>
+        <ul><b>Windows Task Scheduler</b>: using a task scheduler, attackers can set malicious scripts to be automatically triggered and executed in a chosen time interval</ul>
+    </ol></p>
   <h2>Achieving Objectives</h2>
     <p>By maintaining persistence, attackers bypass security solutions and achieve a variety of objectives, such as data exfiltration, credential stealing, reconnaissance, cyberspying on the target systems and network.</p>
 
@@ -101,14 +107,28 @@ every system restart to continue the attack.</p>
     <ul>The AutoStart registry key is created for storing the malicious script in the victim's system to maintain persistence</ul>
     <ul>Once the malicious payload is injected, it steals critical information, performs data exfiltration and sends all the data to the attacker</ul>
   </ol></p>
+    <h2>Launching Fileless Malware through Windows Registry</h2>
+    <p>The modification of the <b>ExecutionPolicy</b> settings in the registry to "unrestricted" or "bypass" can facilitate the execution of malicious scripts. 
+    Attackers can exploit such vulnerabilities in the Windows registry to deploy fileless malware on targeted systems. Attackers may use malware such as <b>Kovter</b>
+    for the execution of a malicious script through the registry modifications. It allows attackers to execute their malicious code while evading standard security measures, 
+    such as antivirus software. The malware also exploits the <b>mshta.exe</b> Windows binary through registry modifications to run a malicious script. It creates multiple 
+    registry entries containing encoded Javascript, which is then executed by another registry entry that incorporates mshta and the JavaScript ActiveXObject. This setup 
+    uses the <b>wscript.shell</b> to execute the encoded script, making it a sophisticated method to launch fileless attacks.</p>
 
   <h1>Maintaining Persistence with Fileless Techniques</h1>
   <p>Unlike other malware, fileless malware does not use disk files to spread its infection or maintain persistence. Attackers adopt unique methods such as developing load points to restart infected payloads to 
   maintain the persistence of fileless malware. Attackers save the malicious payload inside the registry that holds data for configurations, application files and settings. Attackers can also exploit the 
   Windows task scheduler to activate scripts and run them at a specific time. Attackers can also maintain persistence by exploiting WMI. Malicious scripts are stored inside the WMI repositoy and they can later run them 
-  using WMI utilities.</p>
+  using WMI utilities. Then, the stored scripts can further exploit the vulnerable systems in a network and spread the infection.</p>
 
   <h1>Fileless Malware</h1>
+    <h2>LODEINFO</h2>
+    <p>LODEINFO is fileless malware that allows attackers to remotely access and operate infected hosts without detection by security solutions. The infection begins with phishing emails attached with malicious 
+    Microsoft Word documents. When the victim opens the email, it triggers VBA macros to launch downloader shellcode capable of executing the LODEINFO implant. LODEINFO uses remote template injection methods to 
+    retrieve and execute malicious macros hosted in the attacker's environment every time the victim opens a lured Word document containing the template.</p>
+    <p>The shellcode downloader fetches a file that masquerades as privacy-enhanced mail (PEM) from a C2 server, which, in turn loads the backdoor directly into memory. The downloader shares similarities with a known 
+    fileless downloader dubbed DOWNIISSA, based on the self-patching mechanisms to conceal malicious code, the encoding method for C2 server information, and the structure of the data decrypted from the fake PEM 
+    file. In this manner, the fileless malware evades security controls and maintains prolonged persistence to carry out malicous operations.</p>
   <p><ol>
     <ul><a target=_blank href=https://malpedia.caad.fkie.fraunhofer.de/details/win.lemonduck>LemonDuck</a> -> Python based fileless malware, two variants: LemonDuck and <a target=_blank href=https://cybotsai.com/lemon-duck-attack/>LemonCat</a></ul>
     <ul><a target=_blank href=https://threatpost.com/thousands-of-pcs-affected-by-nodersok-divergent-malware/148733/>Divergent</a></ul>
@@ -126,11 +146,12 @@ every system restart to continue the attack.</p>
 
   <h2>Fileless Malware Obfuscation Techniques to Bypass Antivirus</h2>
   <p><ol>
-    <ul>Inserting characters (inserting comma's, semicolons etc. between malicious commands and strings to make well-known commands more difficult to detect. These special characters are considered as whitespace characters in commandline arguments)</ul>
-    <ul>Inserting Parentheses</ul>
+    <ul>Inserting characters (inserting comma's, semicolons etc. between malicious commands and strings to make well-known commands more difficult to detect. 
+        These special characters are considered as whitespace characters in commandline arguments) -> ,;cmd.exe,/c,;echo;powershell.exe</ul>
+    <ul>Inserting Parentheses -> cmd.exe /c ((echo command1)) &&(echo command2))</ul>
     <ul>Inserting Caret Symbol (^ is a reserved character used in shell commands for escaping, attackers use this feature to escape malicious commands at execution time -> p^o^w^e^r^s^h^e^l^l^.^e^x^e)</ul>
     <ul>Inserting Double Quotes (Pow""er""Shell"".ex""e)</ul>
-    <ul>Using Custom Environment Variables (in Windows environment variables are dynamic objects that store modifiable values used by applications at run time -> set a=Power &&set b=Shell)</ul>
+    <ul>Using Custom Environment Variables (in Windows environment variables are dynamic objects that store modifiable values used by applications at run time -> set a=Power &&set b=Shell && %a:~0,-1%%b%)</ul>
     <ul>Using Pre-assigned Environment Variables (retrieving specific characters from pre-assigned environment variables such as "%CommonProgramFiles%" which contains a default value "C:\Program Files\Common Files". Specific characters from this 
     value can be accessed through indexing and used to execute malicious commands -> "%CommonProgramFiles:~3,1%owerShell.exe" retrieves a single character 'P' at index 3 which is concatenated with "owerShell.exe" and executes 
     the malicious command</ul>
