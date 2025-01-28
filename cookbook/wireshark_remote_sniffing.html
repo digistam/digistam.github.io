@@ -1,0 +1,49 @@
+ <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+  <h1>Wireshark remote sniffing</h1>
+<p>
+Wireshark is a network packet analyzer used to capture network packets and display packet data in detail. The tool uses Winpcap to capture packets on its own supported networks. 
+  It captures live network traffic from Ethernet, IEEE 802.11, PPP/HDLC, ATM, Bluetooth, USB, Token Ring, Frame Relay, and FDDI networks. The captured files can be programmatically edited via the command-line. 
+  A set of filters for customized data displays can be refined using a display filter. Here, we will use the Wireshark tool to perform password sniffing.</p>
+
+<h2>HTTP POST</h2>
+<p>
+  In the "apply a display filter" field, type http.request.method == POST to filter only http POST traffic packets
+</p>
+
+
+<p><ol>
+  <ul>Navigate to Edit -> Find Packet from the menu bar</ul>
+  <ul>Click Display filter, select String from the dropdown options, click Narrow & Wide and select Narrow (UTF-8 / ASCII) </ul>
+  <ul>Click Packet list, select Packet details from the dropdown options</ul>
+  <ul>In the field next to String, type pwd and click the Find button</ul>
+  <ul>Expand the HTML Form URL Encoded: application/x-www-form-urlencoded node</ul>
+</ol>
+
+<h2>Remote Interfaces</h2>
+<p><ol>
+  <ul>Click Capture in the menu bar -> Options</ul>
+  <ul>In the popup screen, click Manage Interfaces</ul>
+  <ul>The Manage Interfaces window appears</ul>
+  <ul>Click the Remote Interfaces tab</ul>
+  <ul>Click + to add a remote host and its interface</ul>
+  <ul>The Remote Interface window appears</ul>
+  <ul>In the Host text field, enter the IP address of the target machine</ul>
+  <ul>In the Port field, enter the port number as 2002</ul>
+  <ul>Under the Authentication section, select the Password authentication radio button and enter the target machine's user credentials</ul>
+  <ul>A new remote interface is added to the Manage Interfaces window, click OK</ul>
+  <ul>The newly added remote interface appears in the Wireshark Capture Options window, click Start</ul>
+</ol>
+</p>
+<p>In real-time, when attackers gain the credentials of a victim's machine, they attempt to capture its remote interface and monitor the traffic its user browses to reveal confidential user information</p>
+
+<h2>Prepare victims computer</h2>
+<p><ol>
+  <ul>Start remote desktop connection to victim's computer</ul>
+  <ul>Start Control Panel on the remote computer</ul>
+  <ul>Navigate to System and Security -> Windows Tools</ul>
+  <ul>In the Windows Tools control panel, double click Services</ul>
+  <ul>In the Services window, choose Remote Packet Capture Protocol v.0 (experimental)</ul>
+  <ul>Click Start</ul>
+</ol></p>
