@@ -1,0 +1,28 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=index.html>Back to home</a>
+<hr/>
+source: CEH v. 12
+
+<h1>Pharming</h1>
+<p>Pharming is a social engineering technique in which the attacker executes malicious programs on a victim's computer or server, and when the victim enters any url or domain name, it automatically 
+redirects the victim's traffic to an attacker-controlled website. This attack is known as 'Phishing without a Lure'. The attacker steals confidential information like credentials, banking details and 
+other information related to web-based services.</p>
+  <p>Pharming attack can be performed in two ways: <b>DNS Cache Poisoning</b> and <b>Host File Modification</b>.</p>
+<h2>DNS Cache Poisoning</h2>
+<p><ol>
+    <ul>The attacker performs DNS Cache Poisoning on the targeted DNS server</ul>
+    <ul>The attacker modifies the IP address of the target website www.targetwebsite.com to that of a fake website www.hackerwebsite.com</ul>
+    <ul>When the victim enters the target website's url in the browser's address bar, a request is sent to the DNS server to obtain the IP address of the target website</ul>
+    <ul>The DNS server returns a fake IP address that is already modified by the attacker</ul>
+    <ul>The victim is redirected to the fake website</ul>
+</ol></p>
+  <h2>Host File Modification</h2>
+  <p><ol>
+    <ul>An attacker sends a malicious code as an email attachment</ul>
+    <ul>When the user clicks on the attachment, the code executes and modifies local host files on the user's computer</ul>
+    <ul>When te victim enters the target website's url in the browsers address bar, the compromised host file automatically redirects the user's traffic to the fraudulent website controlled 
+      by the attacker</ul>
+</ol></p>
+  <p>Pharming attacks can also be performed using malware like Trojans or worms.</p>
+  <p>The difference with MITM sniffing (for example using Bettercap for DNS poisoning) is that Pharming is <b>on-line</b> fraud caused by criminals using malicious websites !</p>
