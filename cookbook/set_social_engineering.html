@@ -1,0 +1,35 @@
+ <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>Social-Engineer Toolkit - first impression</h1>
+<p>The Social-Engineer Toolkit (SET) is an open-source Python driven tool aimed at penetration tessting via social engineering. SET is particularly useful to attackers, because it is freely available and can be
+used to carry out a range of attacks. For example, it allows attackers to draft email messages, attach malicious files, an send them to a large number of people using spear phishing. Moreover, SET's multi-attack method
+allows Java applets, the Metasploit browser and Credential Harvester/Tabnabbing to be used simultaneously. SET categorizes attacks according to the attack vector used such as email, web, and USB.</p>
+<p>Although many kinds of attacks can be carried out using SET, it is also a must-have tool for penetration testers to check for vulnerabilities. For this reason, SET is the standard for social engineering penetration tests, 
+and is strongly supported within the security community.</p>
+
+<h2>Start SET</h2>
+<p><ol>
+<ul>sudo setoolkit</ul
+<ul>SET menu: 1 to choose social-engineering attacks</ul>
+<ul>A list of options for social-engineering attacks appears</ul>
+</ol?</p>
+
+<h2>Website Attack Vectors: Credential Harvester Attack</h2>
+<p>
+<ol>
+<ul>Type 3 for Credential Harvester Attack Method</ul>
+<ul>Type 2 for Site Cloner</ul>
+<ul>Type the IP address of the local machine</ul>
+<ul>Enter the url to clone</ul>
+<ul>After cloning is complete, a highlighted message appears</ul>
+<ul>Now you must send the IP address of the local machine to a victim and trick him into clicking the link</ul>
+<ul>When the victim clicks Login, he will be directed to the legitimate login page </ul>
+<ul>As soon as the victim types in his username and password and clicks Login, SET extracts the typed credentials</ul>
+</ol></p>
+<h2>Simple example: Academie.belastingdienst.nl</h2>
+<p><ol>
+<ul>Clone https://academie.belastingdienst.nl</ul>
+<ul>Use Bettercap to spoof the domain</ul>
+<ul>We need to know the attacker's and victim IP address along with gateway IP address to perform the attack</ul>
+<ul>In Bettercap: set dns.spoof.domains belastingdienst.nl; set dns.spoof.address 192.168.59.128; dns.spoof on</ul>
