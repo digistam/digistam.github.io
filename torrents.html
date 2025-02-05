@@ -1,0 +1,28 @@
+<html>
+<meta name=”robots” content=”noindex,nofollow”/>
+  <a href=index.html>Back to home</a>
+<hr/>
+<h1>Torrents</h1>
+<p>Torrents are a method of distributing files over the internet. They operate over the BitTorrent protocol to facilitate what's called peer-to-peer (P2P) file-sharing.
+There are a number of benefits torrent-based file sharing has over traditional file sharing. Expensive server equipment isn't necessary to send files to many people at once, 
+and low-bandwidth (slow) networks can just as easily download large sets of data. The most common way to use torrents is through a special file that uses the .TORRENT file 
+extension. Within the file are directions for how to share specific data with other people. It's important to remember that unless you can trust the source, it's far too easy 
+to accidentally download files that weren't uploaded with the proper legal permission or even download files infected with malware. If you're interested in using torrents to share 
+your own files or to download large files from other people, stay safe with an antivirus program and only download torrents from users you trust.</p>
+<h2>Magnet links</h2>
+<p>A magnet link is a hyperlink that contains the magnet identifier, file name, and cryptographic content hash in place of the . torrent file extension and mechanism. 
+The content hash, which functions like an ISBN number, is computed from the contents in the file itself and can be used to track data across servers.</p>
+<h2>Aria2</h2>
+<p>Aria2 is a lightweight multi-protocol & multi-source command-line download utility. It supports HTTP/HTTPS, FTP, SFTP, BitTorrent and Metalink. aria2 can be manipulated via 
+built-in JSON-RPC and XML-RPC interfaces. Features:</p>
+<p><ol>
+<ul>Multi-Connection Download. aria2 can download a file from multiple sources/protocols and tries to utilize your maximum download bandwidth. Really speeds up your download experience.</ul>
+<ul>Lightweight. aria2 doesn’t require much memory and CPU time. When disk cache is off, the physical memory usage is typically 4MiB (normal HTTP/FTP downloads) to 9MiB (BitTorrent downloads). CPU usage in BitTorrent with download speed of 2.8MiB/sec is around 6%.</ul>
+<ul>Fully Featured BitTorrent Client. All features you want in BitTorrent client are available: DHT, PEX, Encryption, Magnet URI, Web-Seeding, Selective Downloads, Local Peer Discovery and UDP tracker. </ul>
+<ul>Metalink Enabled. aria2 supports The Metalink Download Description Format (aka Metalink v4), Metalink version 3 and Metalink/HTTP. Metalink offers the file verification, HTTP/FTP/SFTP/BitTorrent integration and the various configurations for language, location, OS, etc.</ul>
+<ul>Remote Control. aria2 supports RPC interface to control the aria2 process. The supported interfaces are JSON-RPC (over HTTP and WebSocket) and XML-RPC.</ul>
+</ol></p>
+<h2>Install on Kali</h2>
+<p><i>sudo apt-get install aria2</i></p>
+<h2>Download files</h2>
+<p><i>sudo aria2c 'magnet:?xt=urn:btih:3b4084c9afb2467812113238a203fa3904966b9e&dn=Twitter_Leak.zip&tr=udp://tracker.openbittorrent.com:80&tr=udp://tracker.opentrackr.org:1337/announce' --dir=/mnt/hgfs/Temp</i></p>
