@@ -220,14 +220,32 @@ docker run -d -p 443:443 --name openvas mikesplain/openvas</p>
         <ul>search for tcp.dstport == 135</ul>
         <ul>answer to this challenge is 172.30.10.99</ul>
     </ol></p>
-
-Challenge 6:
-
-An incident handler identified severe DDoS attack on a network and provided report using Anti-DDoS Guardian tool. You are assigned to analyse the reports submitted by the IH team which are stored in "C:\Users\Admin\Documents\Anti-DDoS" directory of the EH Workstation-1 and determine the attacker IP which has transmitted more number of packets to the target machine. (Format: NNN.NNN.NN.NNN)
-
-Challenge 7:
-
-You are assigned to analyse the domain controller from the target subnet and perform AS-REP roasting attack on the user accounts and determine the password of the vulnerable user whose credentials are obtained. Note: use users.txt and rockyou.txt files stored in attacker home directory while cracking the credentials. (Format: aNaaN*NNN)
+<p>Challenge 6:</p>
+    <p>An incident handler identified severe DDoS attack on a network and provided report using Anti-DDoS Guardian tool. You are assigned to analyse the 
+        reports submitted by the IH team which are stored in "C:\Users\Admin\Documents\Anti-DDoS" directory of the EH Workstation-1 and determine the attacker 
+        IP which has transmitted more number of packets to the target machine. (Format: NNN.NNN.NN.NNN)</p>
+    <p>Answer: there is only one report text file. This file contains delimited values and can be opened in Excel. I opened this file in Excel and converted 
+    it into a Table. We can see that IP <b>192.168.10.222</b> has sent a large amount of packets to the target machine.</p>
+<p>Challenge 7:</p>
+<p>You are assigned to analyse the domain controller from the target subnet and perform AS-REP roasting attack on the user accounts and determine the 
+    password of the vulnerable user whose credentials are obtained. Note: use users.txt and rockyou.txt files stored in attacker home directory while 
+    cracking the credentials. (Format: aNaaN*NNN)</p>
+    <p>Answer: I created a <a href=cookbook/active_directory_attacks.html>recipe</a> for AS-REP roasting attack.</p>
+    <p>An AS-REP roasting attack targets user accounts in AD that do not require Kerberos pre-authentication, exploiting the DONT_REQ_PREAUTH setting. 
+        Attackers can request a ticket-granting ticket (TGT) for these accounts without needing the user's password. The DC responds with an encrypted TGT, 
+        which the attacker captures. This TGT, encrypted with the user's password hash, is then subjected to offline password-cracking tools such as 
+        Hashcat or John the Ripper. By rapidly guessing the password, the attacker can eventually decrypt the TGT, revealing the user's password.</p>
+    <p><ol>
+        <ul>In Workstation - 2 start console</ul>
+        <ul>Impacket's GetNPUsers.py seems to be available in /usr/local/bin</ul>
+        <ul>In challenge 4 of Part 1 we found the domain controller and the domain (192.168.0.222, SKILL.CEH)</ul>
+        <ul>python3 GetNPUsers.py SKILL.CEH/  -no-pass -usersfile /home/attacker/users.txt -dc-ip 192.168.0.222</ul>
+        <ul>We can observe users who have DONT_REQUIRE_PREAUTH set. As these users are vulnerable to AS-REP roasting, we can obtain their passwords</ul>
+        <ul>copy the hash</ul>
+        <ul>echo [paste the hash] > /home/attacker/asrephash.txt</ul>
+        <ul>john wordlist=/home/attacker/rockyou.txt /home/attacker/asrephash.txt 
+        <ul>The password of user Joshua is <b>c3ll0@123</b></ul>
+    </ol></p>
 
 Challenge 8:
 
