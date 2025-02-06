@@ -188,10 +188,20 @@ docker run -d -p 443:443 --name openvas mikesplain/openvas</p>
         <ul>Here you find the answer: kety/apple</ul>
     </ol></p>
 
-Challenge 3:
-
-You are assigned to analyse a packet capture file ServerDoS.pcapng located in Downloads folder of EH Workstation-2 machine. Determine the UDP based application layer protocol which attacker employed to flood the machine in targeted network.
-Note: Check for target Destination port. (Format: Aaaaa Aaaaaaa Aaaaaaaa)
+<p>Challenge 3:</p>
+<p>You are assigned to analyse a packet capture file ServerDoS.pcapng located in Downloads folder of EH Workstation-2 machine. 
+    Determine the UDP based application layer protocol which attacker employed to flood the machine in targeted network. Note: Check for target Destination port. 
+    (Format: Aaaaa Aaaaaaa Aaaaaaaa)</p>
+    <p>Answer: we get a very important tip -> check for target Destination port</p>
+    <p><ol>
+        <ul>Open ServerDos.pcapng in wireshark</ul>
+        <ul>Double click an interesting row (UDP protocol)</ul>
+        <ul>In the UDP datagram we can see the Dest port is 26.000</ul>
+        <ul>Some old school OSINT tells us that port 26.000 is used by Quake</ul>
+        <ul>It's a kind of hard to find the official name for the protocol Quake uses</ul>
+        <ul>Wireshark keeps a list of official protocol names at https://www.wireshark.org/docs/dfref/</ul>
+        <ul>The answer for this challenge is <b>Quake Network Protocol</b></ul>
+    </ol></p>
 
 Challenge 4:
 
