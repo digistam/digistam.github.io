@@ -162,7 +162,7 @@ docker run -d -p 443:443 --name openvas mikesplain/openvas</p>
 <p>You are assigned to perform brute-force attack on a linux machine from 192.168.10.0/24 subnet and crack the FTP credentials of user nick. 
     An exploitation information file is saved in the home directory of the FTP server. Determine the Vendor homepage of the FTP vulnerability specified in the file. 
     (Format: aaaaa://aaa.aaaaaaaa.aaa/)</p>
-    <p>Answer: first we want to know the FTP credentials of nick</p>
+    <p>Answer: first we want to know the FTP credentials of nick and we use the amazing <a href=cookbook/password_spraying.html>hydra</a> to do this:</p>
     <p><ol>
         <ul>cd ~/Desktop</ul>
         <ul>sudo hydra -l nick -P password.txt 192.168.10.111 ftp</ul>
