@@ -202,14 +202,24 @@ docker run -d -p 443:443 --name openvas mikesplain/openvas</p>
         <ul>Wireshark keeps a list of official protocol names at https://www.wireshark.org/docs/dfref/</ul>
         <ul>The answer for this challenge is <b>Quake Network Protocol</b></ul>
     </ol></p>
-
-Challenge 4:
-
-A severe DDoS attack is occurred in an organization, degrading the performance of a ubuntu server machine in the SKILL.CEH network. You are assigned to analyse the DD_attack.pcapng file stored in Documents folder of EH workstation -2 and determine the IP address of the attacker trying to attack the target server through UDP. (Format: NNN.NNN.NN.NNN)
-
-Challenge 5:
-
-You are assigned to analyse PyD_attack.pcapng file stored in Downloads folder of EH Workstation -2 machine. Determine the attacker IP machine which is targeting the RPC service of the target machine. (Format: NNN.NN.NN.NN)
+<p>Challenge 4:</p>
+    <p>A severe DDoS attack is occurred in an organization, degrading the performance of a ubuntu server machine in the SKILL.CEH network. 
+        You are assigned to analyse the DD_attack.pcapng file stored in Documents folder of EH workstation -2 and determine the IP address of the attacker 
+        trying to attack the target server through UDP. (Format: NNN.NNN.NN.NNN)</p>
+    <p><ol>
+        <ul>Open the pcap file in wireshark</ul>
+        <ul>Order the rows on column Protocol so we get a list of UDP below each other</ul>
+        <ul>answer to this challenge is 192.168.10.144</ul>
+    </ol></p>
+<p>Challenge 5:</p>
+    <p>You are assigned to analyse PyD_attack.pcapng file stored in Downloads folder of EH Workstation -2 machine. Determine the attacker IP machine which 
+        is targeting the RPC service of the target machine. (Format: NNN.NN.NN.NN)</p>
+    <p>Answer: searching for rdp in wireshark gives no results. It's important to know that RDP makes use of port 135</p>
+    <p><ol>
+        <ul>Load the pcap file in wireshark</ul>
+        <ul>search for tcp.dstport == 135</ul>
+        <ul>answer to this challenge is 172.30.10.99</ul>
+    </ol></p>
 
 Challenge 6:
 
