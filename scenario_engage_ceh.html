@@ -1,0 +1,151 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=index.html>Back to home</a>
+<hr/>
+<h1>Lab: Security Audit</h1>
+
+<h2>Scenario</h2>
+<p>You have been hired as a part of the Red Team at CEHORG, an IT and ITES organization that deals with advanced research and development in the field of 
+information security. It has offices all over the country connected in real-time by its network infrastructure. Your organization is worried about rising 
+cybersecurity incidents and has entrusted you with a comprehensive security audit of the complete infrastructure. </p>
+<h2>Infrastructure</h2>
+<p>CEHORG’s internal network consists of <b>several subnets</b> housing various organizational units like any large organization. The front office is connected 
+to a <b>separate subnet</b> that connects to the company’s public-facing computers. The company has installed multiple kiosks to help customers understand their 
+products and services. The front office also has <b>Wi-Fi connectivity</b> to cater to the users who carry their smartphones and laptops.</p>
+<p>The CEHORG’s internal network is made up of <b>Militarized and Demilitarized zones</b>. As a security precaution, and by design, all the internal resource 
+zones are configured with <b>different subnet IPs</b>. The militarized zone houses the application servers that provide application frameworks for various 
+departments. The Demilitarized Zone contains public-facing systems of the organization, such as web and mail servers. The headquarter’s network topology and 
+protocols are <b>replicated</b> worldwide in all its satellite offices for easy communication with the headquarters.</p>
+
+<h2>Inventory</h2>
+<p>On the cyber range, you will have access to Ethical Hacker Workstations, EH Workstation – 1 and EH Workstation – 2. EH Workstation – 1 is a Windows 11 
+machine and EH Workstation – 2 is a Parrot Security machine. You can switch to these machines from the Resources tab.</p>
+<p>The credentials to access EH Workstation – 1 (Windows 11) machine are: Username: Admin Password: Pa$$w0rd</p>
+<p>The credentials to access EH Workstation – 2 (Parrot Security) are: Username: attacker Password: toor</p>
+<p>The credentials to access OpenVAS on EH Workstation – 1 (Parrot Security) machine are: Username: admin Password: password</p>
+<p>You can use username.txt and password.txt available on the Desktop of the EH Workstation – 2 (Parrot Security) machine for any <b>credentials/password 
+cracking</b> attempt.</p>
+
+<h1>CEH Engage - Part I</h1>
+<p>Part 1 of CEH Engage covers Footprinting and Reconnaissance, Scanning Networks, Enumeration, and Vulnerability Analysis modules. In this part, you are 
+required to perform passive and active reconnaissance of the target organization, enumerating services, shares, users, user groups, etc., and perform 
+vulnerability analysis of the identified systems/networks on the target. You need to note all the information discovered in this part of the CEH Engage and 
+proceed to the subsequent phases of the ethical hacking cycle in the next part of the CEH Engage.</p>
+<h2>Flags</h2>
+<p>Challenge 1:</p>
+<p>An attacker conducted footprinting on a web application and saved the resulting report Dumpster.xlsx in the documents folder of EH Workstation-1. 
+Your task is to analyze this report and identify the hostname associated with the IP address 173.245.59.176. (Format: aaaaa.aa.aaaaaaaaaa.aaa)</p>
+<p>Answer: henry.ns.cloudflare.com</p>
+<p>Challenge 2:</p>
+<p>Identify the number of live machines in <b>192.168.10.0/24</b> subnet. (Format: N)</p>
+<p>Answer: we can do this task from Workstation 1 as ZenMap is installed</p>
+<p><ol>
+<ul>nmap -sn -T4 192.168.10.0/24</ul>
+<ul>6 hosts are up</p>
+</ol></p>
+<p>Challenge 3:</p>
+<p>Identify the IP address of a Linux-based machine with port 22 open in the target network 192.168.10.0/24 (Format: NNN.NNN.NN.NNN).</p>
+<p>Answer:<p>
+<p><ol>
+<ul>nmap -sV -p 22 192.168.10.0/24</ul>
+<ul>192.168.10.101 has port 22 open with OpenSSH for_Windows_8.1</ul>
+<ul>192.168.10.111 has port 22 open with OpenSSH 8.9p1 Ubuntu</ul>
+<ul>192.168.10.111 is Linux based and the right answer</ul>
+</ol></p>
+<p>Challenge 4:</p>
+<p>Find the IP address of the Domain Controller machine in <b>192.168.0.0/24</b>. (Format: NNN.NNN.NN.NNN)</p>
+<p>Tip: for any exercise <b>read the IP address</b> and don't make mistakes !</p>
+<p><ol>
+<ul>Very important to remember is the Domain Controllers use <b>port 389</b> (ldap)</ul>
+<ul>nmap -sV -p 389 192.168.0.0/24</ul>
+<ul>192.168.0.222 has open port 389</ul>
+</ol></p>
+<p>Challenge 5:</p>
+<p>Perform a host discovery scanning and identify the NetBIOS_Domain_Name of the host at 192.168.0.222. (Format: AAAAA.AAA)</p>
+<p><ol>
+<ul>nmap -sV -O 192.168.0.222</ul>
+<ul>NetBIOS_Domain_Name is SKILL.CEH</ul>
+</ol></p>
+<p>Challenge 6:</p>
+<p>Perform an intense scan on 192.168.0.222 and find out the DNS_Tree_Name of the machine in the network. (Format: AAAAA.AAA.aaa)</p>
+<p><ol>
+<ul>DNS_Tree_Name is SKILL.CEH.com</ul>
+</ol></p>
+<p>Challenge 7:</p>
+<p>While performing a security assessment against the CEHORG network, you came to know that one machine in the network is running OpenSSH 
+and is vulnerable. Identify the version of the OpenSSH running on the machine. Note: Target network 192.168.10.0/24. (Format: N.NaN)</p>
+<p>Answer: earlier in challenge 3 we found out that 192.168.10.111 has OpenSSH 8.9p1 installed, so the answer here is 8.9p1</p>
+<p>Challenge 8:</p>
+<p>During a security assessment, it was found that a server was hosting a website that was susceptible to blind SQL injection attacks. 
+Further investigation revealed that the underlying database management system of the site was MySQL. Determine the machine OS that hosted the database. 
+Note: Target network 172.30.10.0/24 (Format: Aaaaaa)</p>
+<p>Answer: it's important to remember that MySQL makes us of port 3306</p>
+<p><ol>
+<ul>nmap -sV -p 3306 172.30.10.0/24</ul>
+<ul>172.30.10.99 has open port 3306</ul>
+<ul>nmap -O -T4 172.30.10.99</ul>
+<ul>Running: Linux</ul>
+<p>Challenge 9:</p>
+<p>Perform an intense scan on target subnet 192.168.10.0/24 and determine the IP address of the machine hosting the MSSQL database service. 
+(Format: NNN.NNN.NN.NNN)</p>
+<p>Answer: a lot of times MSSQL makes use of port 1433, but this is not always the case so we have to use a broader approach</p>
+<p><ol>
+<ul>nmap -sS -T4 192.168.10.0/24</ul>
+<ul>192.168.10.144 has open port 1433 with service ms-sql-s</ul>
+</ol></p>
+<p>Challenge 10:</p>
+<p>Perform a DNS enumeration on www.certifiedhacker.com and find out the name servers used by the domain. (Format: aaN.aaaaaaaa.aaa, aaN.aaaaaaaa.aaa)</p>
+<p>Answer: nobody said we have to use nmap for this, so we use nslookup which is maybe a better choice</p>
+<p><ol>
+<ul>nslookup</ul>
+<ul>set type=ns</ul>
+<ul>www.certifiedhacker.com</ul>
+<ul>ns1.bluehost.com, ns2.bluehost.com</ul>
+</ol></p>
+<p>Challenge 11:</p>
+<p>Find the IP address of the machine running SMTP service on the 172.30.10.0/24 network. (Format: NNN.NN.NN.NNN)</p>
+<p>Answer: important to understand that SMTP makes use of port 25</p>
+<p><ol>
+<ul>nmap -sV -p 25 172.30.10.0/24</ul>
+<ul>172.30.10.200 has open port 25 with service Microsoft ESMTP</ul>
+</ol></p>
+<p>Challenge 12:</p>
+<p>Perform an SMB Enumeration on 172.30.10.200 and check whether the Message signing feature is required. Give your response as Yes/No.</p>
+<p>Answer: for this challenge we need to use an nmap script</p>
+<p><ol>
+<ul>nmap --script-help *smb*</ul>
+<ul>script smb2-security-mode determines the message signing configuration</ul>
+<ul>nmap --script smb2-security-mode.nse 172.30.10.200</ul>
+<ul>Message signing enable but not required</ul>
+</ol></p>
+<p>Challenge 13:</p>
+<p>Perform a vulnerability assessment on the 2023 CWE Top 25 most dangerous software vulnerabilities and determine the weakness ID of the last entry on the list. 
+(Format: NNN)</p>
+<p>Answer: visit https://cwe.mitre.org/top25/archive/2023/2023_top25_list.html. The answer is 276</p>
+<p>Challenge 14:</p>
+<p>Perform vulnerability scanning for the Linux host in the 192.168.10.0/24 network using OpenVAS and find the QoD percentage of vulnerabilitiy with 
+severity level as medium. (Format: NN)</p>
+<p>Answer: to do this task we have to know that in the CEH course OpenVAS is used as docker. The command to start this is:<br/>
+docker run -d -p 443:443 --name openvas mikesplain/openvas</p>
+<p><ol>
+<ul>Go to Workstation - 2</ul>
+<ul>Start terminal</ul>
+<ul>docker run -d -p 443:443 --name openvas mikesplain/openvas</ul>
+<ul>Start Firefox and open 127.0.0.1</ul>
+<ul>Log in with admin:admin</ul>
+<ul>We have to scan the Linux host in 192.168.10.0/24 and earlier, in challenge 3, we found out that this is 192.168.10.111</ul>
+<ul>In OpenVAS we create a new task for this scan</ul>
+<ul>Scans -> Task -> Task Wizard -> 192.168.10.111</ul>
+<ul>Now we wait for the scan to complete</ul>
+<ul>The answer is 70% QOD (FTP Unencrypted Cleartext Login)
+</ol></p>
+<p>Challenge 15:</p>
+<p>Perform a vulnerability scan on the host at 192.168.10.144 using OpenVAS and identify any FTP-related vulnerability. (Format: AAA Aaaaaaaaa Aaaaaaaaa Aaaaa )</p>
+<p><ol>
+<ul>OpenVAS -> Scans -> Task -> Task Wizart -> 192.168.10.144</ul>
+<ul>Wait for the scan to finish</ul>
+<ul>Look at the report</ul>
+<ul>Result: 
+
+
+
