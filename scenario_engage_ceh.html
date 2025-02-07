@@ -38,9 +38,13 @@ Your task is to analyze this report and identify the hostname associated with th
 <p>Answer: henry.ns.cloudflare.com</p>
 <p>Challenge 2:</p>
 <p>Identify the number of live machines in <b>192.168.10.0/24</b> subnet. (Format: N)</p>
-<p>Answer: we can do this task from Workstation 1 as ZenMap is installed</p>
+<p>Answer: we can do this task from Workstation 1 as ZenMap is installed. What's the best method to scan for live hosts in a subnet ? ARP should be the answer.
+One of the <b>most common Nmap usage scenarios</b> is to scan an ethernet LAN. On most LANs, especially those using private address ranges granted by RFC 1918, 
+    the vast majority of IP addresses are unused at any given time. When Nmap tries to send a raw IP packet such as an ICMP echo request, the operating system 
+    must determine the destination hardware (ARP) address corresponding to the target IP so that it can address the ethernet frame properly. This requires it 
+    to issue a series of ARP requests.</p>
 <p><ol>
-<ul>nmap -sn -T4 192.168.10.0/24</ul>
+<ul>nmap -sP -PR 192.168.10.0/24</ul>
 <ul>6 hosts are up</p>
 </ol></p>
 <p>Challenge 3:</p>
