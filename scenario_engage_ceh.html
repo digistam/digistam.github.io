@@ -46,6 +46,9 @@ One of the <b>most common Nmap usage scenarios</b> is to scan an ethernet LAN. O
 <p><ol>
 <ul>nmap -sP -PR 192.168.10.0/24</ul>
 <ul>6 hosts are up</p>
+<ul>Nmap tells us -PR is deprecated and ARP is used when possible. It also is clear -sP is replaced by -sn, so:</ul>
+<ul><b>nmap -sn 192.168.10.0/24</b> is the most modern command to print out the available hosts that responded to the host discovery probes</ul>
+<ul>Tip: -sn can be remembered as "serial number"</ul>
 </ol></p>
 <p>Challenge 3:</p>
 <p>Identify the IP address of a Linux-based machine with port 22 open in the target network 192.168.10.0/24 (Format: NNN.NNN.NN.NNN).</p>
