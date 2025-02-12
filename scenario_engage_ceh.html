@@ -306,10 +306,20 @@ docker run -d -p 443:443 --name openvas mikesplain/openvas</p>
     <p>Answer: this one is easy, open the webbrowser and go to virustotal. Upload the file and click DETAILS. The answer to this question is d282.</p>
 <p>Challenge 11:</p>
     <p>You are assigned to monitor a suspicious process running in a machine whose log file Logfile.PML is saved in Pictures folder of the EH Workstation -2. Analyse the logfile and determine the Parent PID of the malicious file H3ll0.exe process from the log file. (Format: NNNN)</p>
-    <p>Ollydbg ?</p>
+    <p>Answer: solving this one was not easy because PML is a Windows file and it was stored on the Linux system. What I did:</p>
+    <p><ol>
+        <ul>Open webbrowser in Linux and go to file.io</ul>
+        <ul>Upload Logfile.PML to file.io and copy the url</ul>
+        <ul>Go to codeshare.io and paste the url, share the codeshare.io page</ul>
+        <ul>Go to the Windows system en open codeshare.io page</ul>
+        <ul>Download Logfile.PML and open it in SysInternals ProcMon</ul>
+        <ul>Search for h3 and find the information for H3110.exe file</ul>
+        <ul>Double click the information and find the Parent ID</ul>
+        <ul>Answer: Parent ID is 6952</ul>
+    </ol>
 <p>Challenge 12:</p>
     <p>You are assigned to analyse a ELF executable file Tornado.elf stored in Downloads folder of EH Workstation -2. Determine the Entropy value of the file as answer. (Format: N*NNNNN)</p>
-    <p></p>
+    <p>Answer: best is to download and install DIE (Detect-It-Easy) and open the Tornado.elf file. After opening the file you can immediately choose to see the entropy value. Answer to this question is: 2.87903</p>
 <p>Challenge 13:</p>
     <p>You are assigned to scan the target subnets to identify the remote packet capture feature that is enabled to analyse the traffic on the target machine remotetly. Scan the target subnets and determine the IP address using rpcap service. (Format: NNN.NNN.NN.NNN)</p>
     <p></p>
