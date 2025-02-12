@@ -316,20 +316,39 @@ docker run -d -p 443:443 --name openvas mikesplain/openvas</p>
         <ul>Search for h3 and find the information for H3110.exe file</ul>
         <ul>Double click the information and find the Parent ID</ul>
         <ul>Answer: Parent ID is 6952</ul>
-    </ol>
+    </ol></p>
 <p>Challenge 12:</p>
     <p>You are assigned to analyse a ELF executable file Tornado.elf stored in Downloads folder of EH Workstation -2. Determine the Entropy value of the file as answer. (Format: N*NNNNN)</p>
     <p>Answer: best is to download and install DIE (Detect-It-Easy) and open the Tornado.elf file. After opening the file you can immediately choose to see the entropy value. Answer to this question is: 2.87903</p>
 <p>Challenge 13:</p>
-    <p>You are assigned to scan the target subnets to identify the remote packet capture feature that is enabled to analyse the traffic on the target machine remotetly. Scan the target subnets and determine the IP address using rpcap service. (Format: NNN.NNN.NN.NNN)</p>
-    <p></p>
+    <p>You are assigned to scan the target subnets to identify the remote packet capture feature that is enabled to analyse the traffic on the target machine remotetly. Scan the target subnets and determine the 
+        IP address using rpcap service. (Format: NNN.NNN.NN.NNN)</p>
+    <p>Answer: in order to answer this question, we first have to known:</p>
+    <p><ol>
+        <ul>what are the subnets</ul>
+        <ul>which port is related to the rpcap service</ul>
+    </ol></p>
+    <p><ol>
+        <ul>subnets are: 172.30.10.0/24 and 192.168.10.0/24</ul>
+        <ul>port 2002 is related to the rpcap service</ul>
+        <ul>nmap -p 2002 -T4 -A -v 192.168.10.0/24</ul>
+        <ul>IP 192.168.10.144 has open port 2002 with WinPcap remote packet capture daemon</ul>
+        </ol>
+</p>
 <p>Challenge 14:</p>
     <p>An insider attack occurred in an organization and the confidential data regarding an upcoming event is sniffed and encrypted in a image file stealth.jpeg stored in Desktop of EH Workstation -2 machine. 
         You are assigned to extract the hidden data inside the cover file using steghide tool and determine the tender quotation value. (Use azerty@123 for passphrase) (Format: NNNNNNN)</p>
-    <p></p>
+    <p>Answer:</p>
+    <p><ol>
+        <ul>cd ~/Desktop</ul>
+        <ul>steghide info stealth.jpeg</ul>
+        <ul>steghide extract -sf stealth.jpeg</ul>
+        <ul>cat hidden.txt</ul>
+        <ul>answer: Tender quote for techiquest event 2024: 3965222</ul>
+    </ol></p>
 <p>Challenge 15:</p>
     <p>Perform vulnerability search using searchsploit tool and determine the path of AirDrop 2.0 vulnerability. (Format: aaaaaaa/aaa/NNNNN.a)</p>
-    <p></p>
+    <p>Answer: use a terminal and enter 'searchsploit airdrop' -> Path of Airdrop 2.0 vulnerability is android/dos/46445.c</p>
 
 
 
