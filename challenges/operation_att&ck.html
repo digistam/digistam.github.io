@@ -22,7 +22,9 @@ escalation and other web exploitation techniques.</p>
 <p>Answer: nmap -sV -p 22 10.10.1.213 shows that OpenSSH 8.2p1 is running</p>
 <p>Challenge 3:</p>
 <p>What is the version of the OS kernel on the target system ?</p>
-<p>Answer: ???<p>
+<p>Answer: this was hard to answer, because all details nmap gave me was not exact enough (nmap gives an estimate or something like that). 
+    I could answer the question after learning about challenge 5. Surfing to <b>http://10.10.1.213/upload/cmd.php?cmd=uname -r</b> gave the answer:
+    5.4.0-42<p>
 <p>Challenge 4:</p>
 <p>Identify the page that has the file upload vulnerability </p>
 <p>Tip: use httrack to download the website for complete analysis</p>
