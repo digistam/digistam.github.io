@@ -30,6 +30,7 @@
   the loopholes in the web server of the target organization. This will help in predicting the effectiveness of additional security measures for strengthening 
   and protecting the web server of the target organization. The labs in this exercise demonstrate how to footprint a web server using various footprinting tools 
   and techniques.</p>
+<h2>Banner Grabbing</h2>
 <h2>NetCat</h2>
 <p><ol>
   <ul>nc -vv www.website.com 80</ul>
@@ -47,8 +48,7 @@
   <ul>accept ranges</ul>
   <ul><a target=_blank href=https://en.wikipedia.org/wiki/HTTP_ETag>ETag</a></ul>
   <ul>Server information</ul>
-</ol></p>content type, last modified date, accept ranges, ETag, and server information.</p>
-
+</ol></p>
 <h2>Enumerate Web Server Information using Nmap Scripting Engine (NSE)</h2>
 <p>The web applications that are available on the Internet may have vulnerabilities. Some hackers’ attack strategies may need the Administrator role on your 
   server, but sometimes they simply need sensitive information about the server. Utilizing Nmap and http-enum.nse content returns a diagram of those 
@@ -104,7 +104,7 @@ Nmap, along with Nmap Scripting Engine, can extract a lot of valuable informatio
 <p><b>Gobuster</b> is a tool used to brute-force: URIs (directories and files) in web sites, DNS subdomains (with wildcard support), Virtual Host names on 
   target web servers, Open Amazon S3 buckets, Open Google Cloud buckets and TFTP servers. Gobuster is useful for pentesters, ethical hackers and 
   forensics experts. It also can be used for security tests.</p>
-<p><b>DIRB is a Web Content Scanner. It looks for existing (and/or hidden) Web Objects. It basically works by launching a dictionary based attack against a 
+<p><b>DIRB</b> is a Web Content Scanner. It looks for existing (and/or hidden) Web Objects. It basically works by launching a dictionary based attack against a 
   web server and analyzing the responses.</p>
   <p><ol>
     <ul>sgpt --shell "perform webserver footprinting on 192.168.2.196"</ul>
