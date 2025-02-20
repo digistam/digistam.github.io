@@ -111,3 +111,13 @@ Nmap, along with Nmap Scripting Engine, can extract a lot of valuable informatio
     <ul>sgpt --shell "use nmap, whatweb and nikto to perform webserver footprinting on 192.168.2.196"</ul>
   </ol></p>
   <p>Ultimate goal is that nmap, whatweb and nikto will be started to footprint the web server.</p>
+<h1>Subdomain discovery</h1>
+<p>Sublist3r is a python tool designed to enumerate subdomains of websites using OSINT(Open Source Intelligence). It helps penetration testers and bug 
+ hunters collect and gather subdomains for the domain they are targeting. Sublist3r enumerates subdomains using many search engines such as Google, Yahoo, 
+ Bing, Baidu, and Ask. Sublist3r also enumerates subdomains using Netcraft, Virustotal, ThreatCrowd, DNSdumpster, and ReverseDNS. The tool is wordlist-based, 
+ which means it will use its internal wordlist to attempt to check if the subdomain truly exists. Sublist3r is available in Kali Linux and can be installed 
+ using the apt-get command.</p>
+<p><ol>
+ <ul>sgpt --shell "use sublist3r on shell.com"</ul>
+ <ul>sgpt --shell "sublist3r amsterdam.nl output to subdomains.txt and use nmap to check for open port 21 on each result found"</ul>
+</ol></p>
