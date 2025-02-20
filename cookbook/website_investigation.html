@@ -111,6 +111,13 @@ Nmap, along with Nmap Scripting Engine, can extract a lot of valuable informatio
     <ul>sgpt --shell "use nmap, whatweb and nikto to perform webserver footprinting on 192.168.2.196"</ul>
   </ol></p>
   <p>Ultimate goal is that nmap, whatweb and nikto will be started to footprint the web server.</p>
+<h2>Find web directories without brute force</h2>
+<p>Dirhunt is a web crawler optimize for search and analyze directories. This tool can find interesting things if the server has the "index of" mode enabled. 
+ <a target=_blank href=https://github.com/Nekmo/dirhunt>Dirhunt</a> is also useful if the directory listing is not enabled. It detects directories with false 404 errors, directories where an empty index file has 
+ been created to hide things and much more.</p>
+<p><ol>
+ <ul>dirhunt website.com</ul>
+</ol></p>
 <h1>Subdomain discovery</h1>
 <p>Sublist3r is a python tool designed to enumerate subdomains of websites using OSINT(Open Source Intelligence). It helps penetration testers and bug 
  hunters collect and gather subdomains for the domain they are targeting. Sublist3r enumerates subdomains using many search engines such as Google, Yahoo, 
@@ -120,4 +127,6 @@ Nmap, along with Nmap Scripting Engine, can extract a lot of valuable informatio
 <p><ol>
  <ul>sgpt --shell "use sublist3r on shell.com"</ul>
  <ul>sgpt --shell "sublist3r amsterdam.nl output to subdomains.txt and use nmap to check for open port 21 on each result found"</ul>
+ <ul>sgpt --shell "sublist3r amsterdam.nl output to subdomains.txt and show only the hosts that are alive"</ul>
 </ol></p>
+<p>Be creative in combining functions with sgpt, the sky is the limit !</p>
