@@ -41,3 +41,9 @@
     when an attacker is able to insert these characters into unexpected places in the headers, which can cause the web application to behave in unexpected ways. To find CRLF vulnerabilities, you can use various tools 
     such as web application scanners, penetration testing tools, and manual testing methods. Web application scanners can automatically scan your web application for CRLF vulnerabilities, while penetration testing tools 
     can be used to manually test for the presence of these vulnerabilities. Manual testing methods include sending HTTP requests with special characters in the headers and observing the web application’s response.</p>
+  <p>CRLF vulnerabilities can have a variety of impacts on web applications, depending on the specific vulnerability and the context in which it is found. Some of the most common impacts include:</p>
+  <p><ol>
+    <ul>HTTP response splitting: An attacker can use CRLF characters to split an HTTP response into multiple parts, which can be used to inject malicious content into the web page or to redirect users to a malicious website.</ul>
+    <ul>Cache poisoning: An attacker can use CRLF characters to change the caching behavior of the web application, which can cause the web application to return malicious content to users instead of the intended content.</ul>
+    <ul>Cross-site scripting (XSS): An attacker can use CRLF characters to inject malicious JavaScript code into the web page, which can be used to steal sensitive information from users or to perform other types of attacks.</ul>
+  </ol></p>
