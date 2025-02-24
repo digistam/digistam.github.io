@@ -33,3 +33,11 @@
     <p>Most XSPA attack occurs when <b>xmlrpc.php</b> file is enabled. I exploited the file and got an IP address and when I visited that IP address there wasn’t any content on it but when I used directory traversal 
       payload I was able to call /etc/passwd file.</p>
       <p><a target=_blank href=https://shahjerry33.medium.com/cross-site-port-attack-a-strangers-call-c2467f93792f>Explanation</a></p>
+
+  <h2>CRLF</h2>
+  <p>CRLF (Carriage Return Line Feed) vulnerability is a type of security flaw that can occur in web applications. It allows an attacker to inject newline characters into the HTTP headers, which can be used to perform 
+    various types of attacks, such as HTTP response splitting and cache poisoning. CRLF refers to the combination of two special characters, the Carriage Return (CR) and the Line Feed (LF), that are used to mark the 
+    end of a line in text files. In web applications, these characters are used to separate different parts of an HTTP request or response, such as the headers, the body, and the status line. CRLF vulnerability occurs 
+    when an attacker is able to insert these characters into unexpected places in the headers, which can cause the web application to behave in unexpected ways. To find CRLF vulnerabilities, you can use various tools 
+    such as web application scanners, penetration testing tools, and manual testing methods. Web application scanners can automatically scan your web application for CRLF vulnerabilities, while penetration testing tools 
+    can be used to manually test for the presence of these vulnerabilities. Manual testing methods include sending HTTP requests with special characters in the headers and observing the web application’s response.</p>
