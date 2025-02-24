@@ -1,0 +1,35 @@
+<html>
+<meta name=”robots” content=”noindex,nofollow”/>
+  <a href=index.html>Back to home</a>
+<hr/>
+<h1>Differences XSS, CSRF, CSLF etc.</h1>
+  <h2>XSS</h2>
+<p>XSS stands for Cross-site scripting. It's like someone sneaking a message into a conversation. XSS, or Cross-site scripting, is a sneaky way attackers can insert harmful codes into web applications. When this happens, 
+  the target is often the application itself.</p>
+<h2>CSRF</h2>
+  <p>Also named XSRF. Cross-Site Request Forgery (CSRF) is a type of online attack that tricks an unsuspecting user into performing an unwanted action on a website where they are authenticated. The main target of CSRF is the 
+    authenticated user, and the attacker's aim is to perform an action on behalf of that user without their knowledge or consent. Example: Imagine you're logged into your account on example.com.
+    While still logged in, you decide to visit another website, let's call it malicious.com. Unknown to you, this site contains a hidden script. As you browse malicious.com, this script covertly attempts to send a 
+    request to example.com, trying to change your email address on your behalf. Since you are already authenticated on example.com, the website might consider this request legitimate, leading to potential misuse of 
+    your account.</p>
+
+<h2>SSRF</h2>
+  <p>Server-side request forgery is a web security vulnerability that allows an attacker to cause the server-side application to make requests to an unintended location. In a typical SSRF attack, the attacker might cause 
+    the server to make a connection to internal-only services within the organization's infrastructure. In other cases, they may be able to force the server to connect to arbitrary external systems. This could leak 
+    sensitive data, such as authorization credentials. SSRF stands for Server-Side Request Forgery, and although both describe forged requests, it is very different from CSRF. CSRF is all about compromising the browser 
+    and the user, while SSRF is about compromising the server and the environment itself.</p>
+  <p>Attackers exploit server-side request forgery vulnerabilities in public web servers to send crafted requests to internal or backend servers. Internal servers usually employ firewalls to prevent unwanted traffic 
+  inflows to the network. Therefore, attackers leverage SSRF vulnerabilities in internet-facing web servers to gain access to backend servers that are protected by a firewall, VPN or access control lists (ACL). The
+  backend server believes that the request is made by the web server because these servers are on the same network; consequently, the backend server responds with the data in it. Once the attack is succesful, attackers 
+  can perform various actions such as port scanning, network scanning, IP address discovery, reading of web server files, bypassing of host-based authentication, interaction with critical protocols, and remote code 
+  execution.</p>
+
+  <h2>XSPA</h2>
+  <p>Cross Site Port Attack is an abbreviation of XSPA. In this attack an application processes user supplied URLs and does not verify or sanitize the back end response received from remote servers before sending it 
+    back to the client. An attacker can send crafted queries to a vulnerable web application to proxy attacks to external Internet facing servers, intranet devices and the web server itself. The responses, in certain 
+    cases, can be studied to identify service availability like open ports, banner versions etc. and even fetch data from remote services in an unconventional ways. It allows attackers to abuse available functionality 
+    in most web applications to scan port of intranet and external Internet facing servers, fingerprint internal (non-Internet exposed) network aware services, perform banner grabbing, identify web application frameworks, 
+    exploit vulnerable programs, run code on reachable machines, exploit web application vulnerabilities listening on internal networks, read local files using the file protocol and much more.</p>
+    <p>Most XSPA attack occurs when <b>xmlrpc.php</b> file is enabled. I exploited the file and got an IP address and when I visited that IP address there wasn’t any content on it but when I used directory traversal 
+      payload I was able to call /etc/passwd file.</p>
+      <p><a target=_blank href=https://shahjerry33.medium.com/cross-site-port-attack-a-strangers-call-c2467f93792f>Explanation</a></p>
