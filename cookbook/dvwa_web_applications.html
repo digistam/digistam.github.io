@@ -1,0 +1,66 @@
+ <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>DVWA web applications hacking</h1>
+<p>Damn Vulnerable Web Application, shorter DVWA, is a PHP/MySQL web application that is damn vulnerable. The main goal of this pentesting playground is to aid penetration testers and security professionals 
+  to test their skills and tools. In addition it can aid web devs better understand how to secure web apps, but also to aid students/teachers to learn all about web app security and possible vulnerabilities.</p>
+<h2>Metasploitable</h2>
+<p>DVWA is available on the <a target=_blank href=https://docs.rapid7.com/metasploit/metasploitable-2/>Metasploitable 2 system</a>. In my case, the IP address of Metasploitable 2 is 192.168.1.69.</p>
+<h2>Scanning</h2>
+<p><ol>
+  <ul>nmap -T4 -A -v 192.168.1.69</ul>
+</ol></p>
+<p>Interesting information:</p>
+<p><ol>
+  <ul>port 21: open - service vsftpd 2.3.4</ul>
+  <ul>anonymous FTP login allowed - logged in as ftp</ul>
+  <ul>port 22: open - service openSSH 4.7p1</ul>
+  <ul>port 23: telnet</ul>
+  <ul>port 25: open - service Postfix smtpd</ul>
+  <ul>port 53: open - service ISC Bind 9.4.2</ul>
+  <ul>port 111: open</ul>
+  <ul>port 139: open</ul>
+  <ul>port 445: open</ul>
+  <ul>port 1099: open - sevice java-rmi GNU Classpath grmiregistry</ul>
+</ol></p>
+<p>and more ....</p>
+<h2>DVWA attacks</h2>
+<p><ol>
+  <ul>Brute force</ul>
+  <ul>Command Injection</ul>
+  <ul>CSRF</ul>
+  <ul>File Inclusion</ul>
+  <ul>File Upload</ul>
+  <ul>Insecure CAPTCHA</ul>
+  <ul>SQL Injection (Blind)</ul>
+  <ul>Weak session IDs</ul>
+  <ul>XSS (DOM)</ul>
+  <ul>XSS (Reflected)</ul>
+  <ul>XSS (Stored)</ul>
+  <ul>CSP Bypass</ul>
+</ol></p>
+<h2>SMB enumeration</h2>
+<p>I learned that SMB enumeration is one of the first steps to do:</p>
+<p><ol>
+  <ul>nmap -sV -T4 --script *smb* 192.168.1.69</ul>
+</ol></p>
+<h2>Shares</h2>
+<p><ol>
+  <ul>account used: msfadmin</ul>
+  <ul>\\192.168.1.69\ADMIN$ (Path: c:\tmp)</ul>
+  <ul>\\192.168.1.69\IPC$ (Path: c:\tmp)</ul>
+  <ul>\\192.168.1.69\msfadmin (Path: c:\home\msfadmin)</ul>
+  <ul>\\192.168.1.69\opt (Path: c:\tmp)</ul>
+  <ul>\\192.168.1.69\print$ (Path: c:\var\lib\samba\printers</ul>
+  <ul>\\192.168.1.69\tmp (Path: c:\tmp</ul>
+</ol></p>
+<h2>SMB protocols</h2>
+<p><ol>
+  <ul>NT LM 0.12 (SMBv1)</ul>
+</ol></p>
+<h2>SMB security mode</h2>
+<p><ol>
+  <ul>message signing disabled</ul>
+</ol></p>
+
+<h1>To be continued ...</h1>
