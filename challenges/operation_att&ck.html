@@ -104,6 +104,12 @@ do all kinds of things with this.</p>
         <ul>If standard john wordlist doesn't work, try this  --wordlist=/usr/share/wordlists/rockyou.txt</ul>
         <ul>After some minutes john found the password <b>boylover1</b></ul>
     </ol></p>
+    <p>Previously, we found the user named <b>henry</b> during enumeration of the system. We can use this username for ssh connection:</p>
+    <p><ol>
+        <ul>ssh -i priv_key.txt henry@10.10.1.213</ul>
+        <ul>enter the passphrase boylover1</ul>
+        <ul>if everything went well, we are in the system using SSH</ul>
+    </ol></p>
 <p>Challenge 6:</p>
 <p>What is the hash value stored in the file root.txt at the target ?</p>
 <p>Answer: again, this is hard without previous experience or knowledge. It has something to do with privilege escalation or adding things to the /etc/sudoers.d file. Work in progress ...</p>
