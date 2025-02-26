@@ -5,9 +5,10 @@
 <h1>Differences XSS, CSRF, CSLF etc.</h1>
   <h2>XSS</h2>
 <p>XSS stands for Cross-site scripting. It's like someone sneaking a message into a conversation. XSS, or Cross-site scripting, is a sneaky way attackers can insert harmful codes into web applications. When this happens, 
-  the target is often the application itself.</p>
+  the target is often the application itself. Remember: the user DOESN't have to be logged in (an active session is not needed).</p>
 <h2>CSRF</h2>
-  <p>Also named XSRF. Cross-Site Request Forgery (CSRF) is a type of online attack that tricks an unsuspecting user into performing an unwanted action on a website where they are authenticated. The main target of CSRF is the 
+  <p>Remember: the user HAS to be <b>logged in</b> (there has to be an active session). The term "logged in" is most important. CSRF is also named XSRF. The purpose is to send malicious requests with the user's browser. 
+    Cross-Site Request Forgery (CSRF) is a type of online attack that tricks an unsuspecting user into performing an unwanted action on a website where they are authenticated. The main target of CSRF is the 
     authenticated user, and the attacker's aim is to perform an action on behalf of that user without their knowledge or consent. Example: Imagine you're logged into your account on example.com.
     While still logged in, you decide to visit another website, let's call it malicious.com. Unknown to you, this site contains a hidden script. As you browse malicious.com, this script covertly attempts to send a 
     request to example.com, trying to change your email address on your behalf. Since you are already authenticated on example.com, the website might consider this request legitimate, leading to potential misuse of 
