@@ -352,6 +352,37 @@ docker run -d -p 443:443 --name openvas mikesplain/openvas</p>
         searches through a locally checked out copy of the repository. On Kali Linux, the exploitdb package is updated weekly.</p>
     <p>Answer: use a terminal and enter 'searchsploit airdrop' -> Path of Airdrop 2.0 vulnerability is <b>android/dos/46445.c</b></p>
 
+   <h1>CEH Engage - Part III</h1>
+<p>Part 3 of CEH Engage covers Session Hijacking, Evading IDS, Firewalls, and Honeypots, Hacking Web Servers, Hacking Web Applications, and SQL Injection modules. In this part, you must take over active 
+    network and application sessions, compromise firewall, IDS, and other perimeter defense mechanisms, and exploit the organization’s web applications. You need to note all the information discovered in this part 
+    of the CEH Engage and proceed to the subsequent phases of the ethical hacking cycle in the next part of the CEH Engage.</p>
+<h2>Flags</h2>
+    
+<p>Challenge 1:</p>
+<p>An attacker tried to perform session hijacking on a machine from 172.30.10.0/24 subnet. An incident handler found a packet capture file $_Jack.pcapng obtained from the victim machine which is stored in 
+    Documents folder of EH Workstation -1. You are assigned to analyse the packet capture file and determine the IP of the victim machine targeted by the attacker. (Format: NNN.NN.NN.NNN)</p>
+    <p>Answer:</p>
+    <p><ol>
+        <ul>open $_Jack.pcapng which is in the Documents folder in wireshark using the EH Workstation-1 system</ul>
+        <ul>172.30.10.200 is the victim machine targeted by the attacker</ul>
+    </ol></p>
 
-
-
+<p>Challenge 2:</p>
+    <p>An attacker tried to intercept a login session by intercepting the http traffic from the victim machine. The security analyst captured the traffic and stored it in Downloads folder of EH Workstation -1 as 
+        Intercep_$niffer.pcapng. Analyse the pcap file and determine the credentials captured by the attacker. (Format: aaa/aaaa)</p>
+    <p>Answer:</p>
+    <p><ol>
+        <ul>open Intercep_$niffer.pcapng which is in the Downloads folder in wireshark</ul>
+        <ul>filter: ip.addr == 172.30.10.200</ul>
+        <ul>select a frame with this ip address</ul>
+        <ul>menu bar: analyze -> Follow -> TCP stream</ul>
+        <ul>Find: pwd</ul>
+        <ul>answer: lee/test</ul>
+    </ol></p>
+<p>Challenge 3:</p>
+<p>A honeypot has been set up on a machine within the 192.168.10.0/24 subnet to monitor and detect malicious network activity. Your task is to analyze the honeypot log file, cowrie.log, located in the 
+    Downloads folder of EH Workstation -2, and determine the attacker IP trying to access the target machine. (Format: NNN*NN*NN*NN)</p>
+    <p>Answer:</p>
+    <p><ol>
+        <ul></ul>
+    </ol></p>
