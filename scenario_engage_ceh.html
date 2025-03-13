@@ -545,3 +545,12 @@ docker run -d -p 443:443 --name openvas mikesplain/openvas</p>
         <ul>sqlmap http://www.moviescope.com/viewprofile.aspx?id=1 --cookie "mscope=xxxxx=; ui-tabs-1=0" -D moviescope -t User_Profile --dump</ul>
         <ul>You can see there are 5 users in the database</ul>
     </ol></p>
+<p>Challenge 15:</p>
+<p>Perform a SQL Injection vulnerability scan on the target website www.moviescope.com and determine the WASC ID for SQL Injection (Format: NN)</p>
+<p>Answer:</p>
+<p><ol>
+    <ul>start OWASP Zap to do this</ul>
+    <ul>zaproxy</ul>
+    <ul>ZAP finds the SQL injection vulernability</ul>
+    <ul>The WASC ID is 19</ul>
+</ol></p>
