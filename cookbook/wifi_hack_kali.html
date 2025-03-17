@@ -1,0 +1,25 @@
+ <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>Hack Wi-Fi with Kali</h1>
+<p></p>
+<h2>Hidden SSID detection</h2>
+<p><ol>
+  <ul>sudo airmon-ng start wlan0</ul>
+  <ul>sudo airmon-ng check kill</ul>
+  <ul>You will notice that airmon-ng will kill NetworkManager</ul>
+</ol></p>
+<p><ol>
+  <ul>sudo airodump-ng wlan0</ul>
+  <ul>Hidden SSIDs will show [length: X]</ul>
+  <ul>Copy the BSSID (MAC address)</ul>
+  <ul>Open a new terminal</ul>
+  <ul>sudo mdk3 wlan 0 p -b 1 -c [Channel] -t [BSSID]</ul>
+</ol></p>
+<h2>Restart NetworkManager</h2>
+<p><ol>
+  <ul>sudo ifconfig wlan0 down</ul>
+  <ul>sudo iwconfig wlan0 mode managed</ul>
+  <ul>sudo service NetworkManager start</ul>
+  <ul>sometimes, it will NOT work and a restart is needed first</ul>
+</ol></p>
