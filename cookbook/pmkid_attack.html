@@ -47,8 +47,12 @@ Het is niet meer nodig om DeAuth pakketten te versturen. I.p.v. de DeAuth pakket
 </ol></p>
 
 <h2>Ticker</h2>
-<p>set ticker.commands 'clear; wifi.show; net.show; events.show 20'<br/>
-ticker on</p>
+<p>
+<ol>
+    <ul>set ticker.period 10</ul>
+    <ul>set ticker.commands 'clear; wifi.show; net.show; events.show 20'</ul>
+    <ul>ticker on</ul>
+</ol></p>
 
 <h2>WPA handshake capture</h2>
 <p>Bettercap kan een WPA handshake capturen. We stellen de netwerksniffer in op "verbose" zodat we uitgebreide meldingen krijgen. Vervolgens stellen we de filter in op 0x888e frames (handshake frames). 
