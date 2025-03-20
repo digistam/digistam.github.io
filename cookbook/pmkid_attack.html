@@ -54,7 +54,14 @@ Het is niet meer nodig om DeAuth pakketten te versturen. I.p.v. de DeAuth pakket
     <ul>ticker on</ul>
 </ol></p>
 
-<h2>WPA handshake capture</h2>
+<h1>WPA handshake capture</h1>
+<h2>Most easy</h2>
+<p><ol>
+  <ul>set wifi.handshakes.file /home/kali/Downloads/handshakes.pcap</ul>
+  <ul>wifi.recon on</ul>
+  <ul>wifi.assoc all</ul>
+</ol></p>
+<p>Met bovenstaande commando's kunnen binnen korte tijd een aantal handshakes worden verzameld in een pcap bestand</p>
 <p>Bettercap kan een WPA handshake capturen. We stellen de netwerksniffer in op "verbose" zodat we uitgebreide meldingen krijgen. Vervolgens stellen we de filter in op 0x888e frames (handshake frames). 
 De output wordt weggeschreven naar een PCAP file. Daarna starten we de sniffer:</p>
 <p><ol>
