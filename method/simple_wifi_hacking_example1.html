@@ -14,6 +14,11 @@
 <h2>Bettercap</h2>
 <p>Start Bettercap -> <b>sudo bettercap -iface wlan0</b></p>
     <p>In Bettercap -> <b>set ticker.period 5; set ticker.commands "clear; wifi.show"; wifi.recon on; ticker on</b>
+    <p>Better way -> you can leave the ticker shizzle for what it is and use:</p>
+    <p><ol>
+        <ul>wifi.recon on</ul>
+        <ul>wifi.show</ul>
+    </ol></p>
 <p>A nice, continuously updating table with available APs will be created (be patient and let it grow!)</p>
 <p>Most interesting columns in this table: <b>BSSID</b>, <b>Channel</b> and <b>Clients</b> </p>
 <p>As soon as you found an interesting AP <b>with some clients connected</b>, copy the BSSID (MAC Address) and take a note of the <b>Channel</b> and stop Bettercap.</p>
