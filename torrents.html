@@ -16,16 +16,18 @@ The content hash, which functions like an ISBN number, is computed from the cont
 <p>Aria2 is a lightweight multi-protocol & multi-source command-line download utility. It supports HTTP/HTTPS, FTP, SFTP, BitTorrent and Metalink. aria2 can be manipulated via 
 built-in JSON-RPC and XML-RPC interfaces. Features:</p>
 <p><ol>
-<ul>Multi-Connection Download. aria2 can download a file from multiple sources/protocols and tries to utilize your maximum download bandwidth. Really speeds up your download experience.</ul>
-<ul>Lightweight. aria2 doesn’t require much memory and CPU time. When disk cache is off, the physical memory usage is typically 4MiB (normal HTTP/FTP downloads) to 9MiB (BitTorrent downloads). CPU usage in BitTorrent with download speed of 2.8MiB/sec is around 6%.</ul>
-<ul>Fully Featured BitTorrent Client. All features you want in BitTorrent client are available: DHT, PEX, Encryption, Magnet URI, Web-Seeding, Selective Downloads, Local Peer Discovery and UDP tracker. </ul>
-<ul>Metalink Enabled. aria2 supports The Metalink Download Description Format (aka Metalink v4), Metalink version 3 and Metalink/HTTP. Metalink offers the file verification, HTTP/FTP/SFTP/BitTorrent integration and the various configurations for language, location, OS, etc.</ul>
-<ul>Remote Control. aria2 supports RPC interface to control the aria2 process. The supported interfaces are JSON-RPC (over HTTP and WebSocket) and XML-RPC.</ul>
+<ul>Multi-Connection Download: aria2 can download a file from <b>multiple sources/protocols</b> and tries to utilize your <b>maximum download bandwidth</b>, which speeds up your download experience</ul>
+<ul>Lightweight: aria2 doesn’t require much <b>memory</b> and <b>CPU time</b>, with disk cache off, the physical memory usage is typically 4MiB (normal HTTP/FTP downloads) to 9MiB (BitTorrent downloads)</ul>
+<ul>CPU usage in BitTorrent with download speed of 2.8MiB/sec is around 6%</ul>
+<ul>Fully Featured <b>BitTorrent</b> client: all features you want in BitTorrent client are available: <b>DHT</b>, PEX, Encryption, <b>Magnet URI</b>, Web-Seeding, Selective Downloads, Local Peer Discovery and UDP tracker</ul>
+<ul>Metalink Enabled: aria2 supports The Metalink Download Description Format (aka Metalink v4), Metalink version 3 and Metalink/HTTP. Metalink offers the file verification, HTTP/FTP/SFTP/BitTorrent integration and the various configurations for language, location, OS, etc.</ul>
+<ul>Remote Control: aria2 supports RPC interface to control the aria2 process, supported interfaces are JSON-RPC (over HTTP and WebSocket) and XML-RPC</ul>
 </ol></p>
 <h2>Install on Kali</h2>
 <p><i>sudo apt-get install aria2</i></p>
 <h2>Download files</h2>
 <p><i>sudo aria2c 'magnet:?xt=urn:btih:3b4084c9afb2467812113238a203fa3904966b9e&dn=Twitter_Leak.zip&tr=udp://tracker.openbittorrent.com:80&tr=udp://tracker.opentrackr.org:1337/announce' --dir=/mnt/hgfs/Temp</i></p>
+<p>After reboot / shutdown of the computer, aria2 continues where it was !</p>
   <h1>Downloading hacked databases</h1>
   <h2>Sources</h2>
   <p>
