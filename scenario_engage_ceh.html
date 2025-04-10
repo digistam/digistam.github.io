@@ -656,15 +656,105 @@ packet captures, use different attack vectors to exploit mobile devices and audi
         <ul>Answer: 50 percentage</ul>
     </ol></p>
 <p>Challenge 7:</p>
-<p>An attacker had sent a file cryt-128-06encr.hex containing ransom file password, which is located in documents folder of EH-workstation-2. You are assigned a task to decrypt the file using <b>cryptool</b>. Perform cryptanalysis, 
-    Identify the algorithm used for file encryption and hidden text. Note: check filename for key length and hex characters. (Format: Aaaaaaa/**aa**aA*a)</p>
+<p>An attacker had sent a file cryt-128-06encr.hex containing ransom file password, which is located in documents folder of EH-workstation-2. You are assigned a task to decrypt the file using <b>cryptool</b>. 
+    Perform cryptanalysis, Identify the algorithm used for file encryption and hidden text. Note: check filename for key length and hex characters. (Format: Aaaaaaa/**aa**aA*a)</p>
 <p>
     <ol>
         <ul>File Cryt-128-06encr.hex is in EH Workstation -2 Documents folder</ul>
         <ul>It took me a while to find out that Cryptool is NOT available on EH Workstation-2 but IS available on EH Workstation -1</ul>
-          <ul>In EH-Workstation-1 terminal: ncat -l -p 8080 > received_file.hex</ul>
-        <ul>In EH-Workstation-2 terminal: cat cryt-128-06encr.hex | nc 172.25.0.11 8080 </ul>
+        <ul>In EH-Workstation-1 terminal: ncat -l -p 4444 > received_file.hex</ul>
+        <ul>In EH-Workstation-2 terminal: cat cryt-128-06encr.hex | nc 172.25.0.11 4444 </ul>
         <ul>In EH-Workstation-1 start Cryptool and load received_file.hex</ul>
         <ul>not yet solved yet !</ul>
     </ol>
 </p>
+
+<p>Challenge 8:</p>
+<p>A VeraCrypt volume file "MyVeracrypt" is stored on the Document folder of the EH Workstation – 1 machine. You are an ethical hacker working with CEHORG; you have been tasked to decrypt the encrypted 
+    volume and determine the number of files stored in the volume folder. (Hint: Password: veratest). (Format: N )</p>
+<p><ol>
+    <ul>Start veracrypt</ul>
+    <ul>load file MyVeracrypt</ul>
+    <ul>enter password veratest</ul>
+    <ul>Answer: 4 files</ul>
+</ol></p>
+
+<p>Challenge 9:</p>
+<p>An ex-employee of CEHORG is suspected of performing an insider attack. You are assigned a task to retrieve the contacts dump from the employee's Android phone. Using PhoneSploit, find the country code of the contact named "Maddy." 
+    (Note: Use option 'N' in PhoneSploit for next page.). (Format: NN )</p>
+<p><ol>
+    <ul>Again, we return to the Android vm as found in Challenge 4</ul>
+    <ul>In EH Workstation -2: sudo su</ul>
+    <ul>cd /home/attacker/Phonesploit-Pro</ul>
+    <ul>python3 Phonesploit-Pro</ul>
+    <ul>In a second terminal: adb start-server</ul>
+    <ul>In the first terminal: 34</ul>
+    <ul>Download all contacts</ul>
+    <ul>cat the downloaded .txt file and look for the answer</ul>
+    <ul>Answer: 61</ul>
+</ol></p>
+
+<p>Challenge 10:</p>
+<p>CEHORG manages multiple IoT devices and sensors to oversee its supply chain fleet. You are tasked with examining the file "MQTT.pcapng," located in the Home directory of the EH Workstation - 2 machine. Analyze the packet containing the 
+    "High_temperature" message and determine the topic length . (Format: NN )</p>
+<p><ol>
+    <ul>Take the steps as in Challenge 6</ul>
+    <ul>Answer: 13</ul>
+</ol></p>    
+
+<p>Challenge 11:</p>
+<p>An ex-employee of CEHORG is suspected to be performing insider attack. You are assigned a task to attain KEYCODE-5 used in the employees' mobile phone. Note: use option N in PhoneSploit for next page. 
+    (Format: Aaaaa*Aaaaaa)</p>
+<p><ol>
+    <ul>Phonesploit-Pro option 39</ul>
+    <ul>in other terminal: adb start-server</ul>
+    <ul>In first terminal: 5</ul>
+    <ul>Answer: Power Button</ul>
+</ol></p>
+
+<p>Challenge 12:</p>
+<p>An employee in CEHORG has secretly acquired Confidential access ID through an application from the company. He has saved this information on the Music folder of his Android mobile phone. 
+    You have been assigned a task as an ethical hacker to access the file and delete it covertly. Enter the account information present in the file. Note: Only provide the numeric values in the answer field. 
+    (Format: NNNNNNNN)</p>
+<p><ol>
+    <ul>Use Phonesploit-Pro option 14 (Shell)</ul>
+    <ul>cd sdcard/Music</ul>
+    <ul>Confidential file: /sdcard/Music/2024-09-11_11-52-05.png</ul>
+    <ul>Confidential file: /sdcard/Music/confidential.txt</ul>
+    <ul>Option 8 (download files)</ul>
+    <ul>Answer: 80099889</ul>
+</ol></p>    
+
+<p>Challenge 13:</p>
+<p>An attacker has hacked an employee's Android device at CEHORG and initiated a LOIC attack from the device. As an ethical hacker, you have obtained a screenshot of the attack using a background application. 
+    Retrieve the screenshot of the attack using PhoneSploit from the compromised mobile device and determine the number of HTTP packets sent per second. (Format: NN)</p>
+<p><ol>
+    <ul>In Challenge 12 we did download  /sdcard/Music/2024-09-11_11-52-05.png</ul>
+    <ul>Answer: 23</ul>
+</ol></p>    
+
+<p>Challenge 14:</p>
+<p>You have received a folder named "Archive" from a vendor. You suspect that someone might have tampered with the files during transmission. The Original hashes of the files have been sent by the sender 
+    separately and are stored in a file named FileHashes.txt stored in the Document folder in the "EH Workstation – 2" machine. Your task is to check the integrity of the files by comparing the MD5 hashes. 
+    Compare the hash values and determine the file name that has been tampered with. Note: Exclude the file extension in the answer field. The answer is case-sensitive. (Format: Aaaaaa)</p>
+<p><ol>
+    <ul>In the documents folder of EH Workstation-2 I found the file FileHashes.txt as well as the folder Archive</ul>\
+    <ul>md5sum Archive/* > newFileHashes.txt</ul>
+    <ul>cat FileHashes.txt</ul>
+    <ul>cat newFileHashes.txt</ul>
+    <ul>compare the hashes</ul>
+    <ul>Hash of Quotes.txt is different</ul>
+    <ul>Answer: Quotes</ul>
+</ol></p>    
+
+<p>Challenge 15:</p>
+<p>A VeraCrypt volume file "secret" is stored on the Document folder in the EH Workstation – 2 machine. You are an ethical hacker working with CEHORG; you have been tasked to decrypt the encrypted volume and determine 
+    the number of files stored in the volume. (Hint: Password: test). (Format: N)</p>
+<p><ol>
+    <ul>In EH-Workstation-1 terminal: ncat -l -p 4444 > received_file.veracrypt</ul>
+        <ul>In EH-Workstation-2 terminal: cat secret | nc 172.25.0.11 4444 </ul>
+        <ul>In EH-Workstation-1 start veracrypt</ul>
+    <ul>load file received_file.veracrypt</ul>
+    <ul>enter password test</ul>
+    <ul>Answer: 6 files</ul>
+</ol></p>   
