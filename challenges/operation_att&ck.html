@@ -24,7 +24,7 @@ escalation and other web exploitation techniques.</p>
 <p>What is the version of the OS kernel on the target system ?</p>
 <p>Answer: this was hard to answer, because all details nmap gave me was not exact enough (nmap gives an estimate or something like that). 
     I could answer the question after learning about challenge 5. Surfing to <b>http://10.10.1.213/upload/cmd.php?cmd=uname -r</b> gave the answer:
-    5.4.0-42<p>
+    5.4.0-42 (curl http://10.10.1.213/upload/cmd.php?cmd=uname%20-r)<p>
 <p>Challenge 4:</p>
 <p>Identify the page that has the file upload vulnerability </p>
 <p>Tip: use httrack to download the website for complete analysis</p>
@@ -129,4 +129,14 @@ site</p>
 <p>Upload shell.php to 10.10.1.213 and open http://10.10.1.213/upload/shell.php. This will connect back to the local Metasploit listener and open up a shell on 
 the server.</p>
 <p>Now, we can use all kinds of Linux commands such as ls, head, cat etc. For example: ls /etc/passwd; cat /etc/passwd</p>
-<p>Until now, didn't find root.txt and can't answer challenge 6 at this moment</p>
+    <p>
+    <ol>
+        <ul>as root.txt is a file that can only be found when having user rights, we have to find a way to elevate privileges from www-data to root</ul>
+        <ul>sudo -V</ul>
+        <ul>Sudo version is 1.8.31</ul>
+        <ul>This sudo version has a vulnerability</ul>
+    </ol></p>
+<p>A critical bug in sudo came out and could potentially affect most of the Linux-based operating systems, since this tool is usually installed by default. This vulnerability is identified as CVE-2021-3156, 
+    but better known as "Baron Samedit", and is sitting there in the code since July 2011, ready to guide you to the underworld. It affects legacy versions from 1.8.2 to 1.8.31p2 and stable versions from 1.9.0 
+    to 1.9.5p1. If you have not done it already, patch now!</p>
+<p><a target=_blank href=https://www.exploit-db.com/exploits/49522>Exploit-DB</a></p>
