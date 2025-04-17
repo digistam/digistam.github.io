@@ -1,0 +1,52 @@
+<html>
+    <meta name=”robots” content=”noindex,nofollow”/>
+  <a href=../index.html>Back to home</a>
+<hr/>
+<h1>Challenge: Operation Deep Breach</h1>
+
+<h2>Scenario</h2>
+<p>TechNova Inc. is a multinational technology firm specializing in enterprise security solutions and cloud infrastructure management. 
+With over 15,000 employees globally, TechNova provides cutting-edge cybersecurity consulting, digital forensics, and secure cloud hosting for high-profile clients, 
+including government agencies and Fortune 500 companies. The organization's internal infrastructure is highly segmented, ensuring sensitive data remains isolated 
+from public access. However, recent intelligence suggests that a misconfigured public-facing service could be the key to breaching TechNova's internal network.
+Your mission is to breach TechNova Inc., leveraging publicly available services, escalating privileges, and pivoting into the internal network to reach the highest 
+privileges possible.</p>
+<h2>Description</h2>
+<p>The target machines operate on Linux, with IP addresses 192.168.1.105 and 10.10.1.136. Your first objective is to identify and exploit vulnerabilities on 
+192.168.1.105 using various web exploitation techniques. After gaining initial access, escalate privileges to achieve root access. Once rooted, pivot through the 
+network to reach 10.10.1.136 and escalate privileges to the highest level. This challenge tests your proficiency in web application pentesting, ExploitDB searches, 
+privilege escalation, pivoting, service enumeration, and cron job exploitation</p>
+
+<h2>Flags</h2>
+<p>Challenge 1:</p>
+<p>Identify the number of user accounts pertaining to the web application. (Answer Format: N)</p>
+<p>Answer:</p>
+<p><ol>
+<ul>In order to keep results administered, I use Metasploit for the investigation. Because when using nmap all results are volatile.</ul>
+<ul>sudo su</ul>
+<ul>systemctl start postgresql</ul>
+<ul>msfdb init</ul>
+<ul>msfconsole</ul>
+<ul>workspace -a deep_breach</ul>
+<ul>db_nmap -Sv 192.168.1.105/24</ul>
+<ul>db_nmap -A 192.168.1.105/24</ul>
+<ul>as we can see, port 80 is open</ul>
+<ul>db_nmap --script http-enum 192.168.1.105</ul>
+<ul>result shows that php is available (login.php) and there is an upload folder (/uploads/)</ul>
+<ul>let's do some Nikto kungfu</ul>
+<ul>nikto -h 192.168.1.105</ul>
+<ul>Apache 2.4.18 appears to be outdated</ul>
+<ul>/db.php might be interesting</ul>
+<ul>cd /home/kali/Downloads</ul>
+<ul>wget http://192.168.1.105/db.php</ul>
+<ul>db.php seems to be an empty file</ul>
+<ul>It's time to visit the web page</ul>
+<ul>Browser: http://192.168.1.105</ul>
+<ul>The web application is a ticketing system and we can access the /uploads folder easily</ul>
+<ul>Now, we see if SQL Injection is possible</ul>
+<ul>SQLmap and BurpSuite are available</ul>
+<ul>Use BurpSuite and SQLmap to detect any SQL Injection vulnerabilities</ul>
+<ul>I could not find any method for SQL injection using SQLmap</ul>
+<ul>I installed OWASP ZAP and ran a scan on 192.168.1.105</ul>
+<ul>ZAP tells me SQL Injection is possible</ul>
+</ol></p>
