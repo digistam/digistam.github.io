@@ -90,6 +90,7 @@ do all kinds of things with this.</p>
         <ul>ifconfig</ul>
         <ul>find . -type f -exec grep -i -I "PASSWORD=" {} /dev/null \;</ul>
         <ul>locate pass | more</ul>
+        <ul>find / -perm -u=s -type f 2>/dev/null</ul>
     </ol></p>
     <p>During enumeration I found a file name id_rsa.tar.gz in /var/www. I was able to unzip this file and read the contents of the id_rsa.tar file which turned out to be a private key file.</p>
     <h2>SSH private key hacking</h2>
