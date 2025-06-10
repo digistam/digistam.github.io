@@ -5,6 +5,14 @@
 <h1>Practical</h1>
 <p>Detailing essential tools, strategies and techniques</p>
     <h2>TRYHACKME rooms</h2>
+    <p>In order to work with TryHackMe it's very convenient to create a VPN connection between Kali machine and TryHackMe.</p>
+    <p><ol>
+        <ul>sudo apt install openvpn</ul>
+        <ul>Download the vpn configuration file from <a target=_blank href=https://tryhackme.com/access>TryHackMe.com access page</a></ul>
+        <ul>locate the full path to the downloaded VPN configuration file (most of the times downloaded to the Download folder)</ul>
+        <ul>sudo openvpn /path-to-file/file-name.ovpn</ul>
+        <ul>Deploy a machine in TryHackMe, take a note of the IP address and ping the IP address / browse to http://IP-address</ul>
+    </ol></p>
   <p>
 <ol>
     <ul><a target=_blank href=https://tryhackme.com/room/netsecchallenge>Reconnaissance and enumerations (Nmap, FTP, Hydra)</a></ul>
