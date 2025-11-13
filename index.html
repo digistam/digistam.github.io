@@ -147,6 +147,8 @@
   <ol><a target=_blank href=https://medium.com/@digistam/sub-domain-investigation-f9ef9fa1a512>Subdomain enumeration with dirbuster</a></ol>
   <ol><a target=_blank href=https://medium.com/@digistam/sub-domain-investigation-f9ef9fa1a512>Subdomain enumeration with amass</a></ol>
   <ol><a target=_blank href=https://medium.com/@digistam/tryhackme-juice-shop-7db3afd0f02a>Finding endpoints</a></ol>
+  <ol>FFUF subdomain: ffuf -u http://domain.tld -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-110000.txt -H
+  "Host:FUZZ.domain.tld" -o subdom.txt -of csv; grep "charset" subdom.txt</ol>
   </ul>
   <ul><h3><b>Techniques</b></h3></ul>
   <ul>
