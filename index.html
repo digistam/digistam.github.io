@@ -155,6 +155,7 @@
   <ol><a target=_blank href=https://medium.com/@digistam/enumerating-b2cc23f8efb9>Enumeration heads-up</a></ol>    
   <ol>FFUF subdomain: ffuf -u http://domain.tld -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-110000.txt -H
   "Host:FUZZ.domain.tld" -o subdom.txt -of csv; grep "charset" subdom.txt</ol>
+  <ol>ffuf -H "Host: FUZZ.futurevera.thm" -u https://10.80.186.147 -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-110000.txt -fs 0,4605</ol>
   </ul>
   <ul><h3><b>Techniques</b></h3></ul>
   <ul>
